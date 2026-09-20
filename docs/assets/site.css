@@ -526,9 +526,21 @@ body { font-size: var(--bx-text-md); }
   .spec > dt { border-inline-end: 0; border-block-end: var(--bx-border) solid var(--bx-line-subtle); } }
 
 /* ---- Swatches ---- */
-.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
-  gap: var(--bx-border); background: var(--bx-line); border: var(--bx-border) solid var(--bx-line); }
-.swatch { background: var(--bx-surface); }
+/* Cells draw only their end/bottom rule and the container draws the start/top
+   pair, so lines are never doubled and a part-filled last row leaves no stray
+   slab of line colour behind it. Works at any item count. */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  background: var(--bx-surface);
+  border-block-start: var(--bx-border) solid var(--bx-line);
+  border-inline-start: var(--bx-border) solid var(--bx-line);
+}
+.swatch {
+  background: var(--bx-surface);
+  border-inline-end: var(--bx-border) solid var(--bx-line);
+  border-block-end: var(--bx-border) solid var(--bx-line);
+}
 .swatch__chip { block-size: 56px; border-block-end: var(--bx-border) solid var(--bx-line); }
 .swatch__meta { padding: var(--bx-space-2); }
 .swatch__name { font-family: var(--bx-font-mono); font-size: var(--bx-text-2xs);
