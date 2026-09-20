@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en" data-mode="blueprint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boxy — a sharp-edged design system</title>
+<meta name="description" content="A zero-radius design system for AI coding agents. Hairline structure, blueprint detailing, a disciplined neutral palette, and a linter that keeps it honest.">
+<meta property="og:title" content="Boxy — a sharp-edged design system">
+<meta property="og:description" content="radius: 0. Hairline structure, blueprint detailing, and a linter that keeps it honest.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+    <nav class="site-nav hide-sm" aria-label="Primary">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="tokens.html">Tokens</a>
+      <a href="components.html">Components</a>
+      <a href="patterns.html">Patterns</a>
+    </nav>
+    <span class="site-head__spacer"></span>
+    <div class="site-controls">
+      <button class="ctl hide-sm" data-act="mode" title="Cycle mode">mode <span class="val">blueprint</span></button>
+      <button class="ctl hide-sm" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
+      <button class="ctl" data-act="theme" title="Toggle theme"><span class="val">light</span></button>
+      <a class="ctl ctl--icon" href="https://github.com/avestura/boxy-design-skill" aria-label="GitHub repository">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="site">
+<main id="main" class="site-main">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <p class="bx-label">01 / A design system for agents</p>
+    <h1>Interfaces with square corners and nothing to hide</h1>
+    <p class="hero__sub lede">
+      A zero-radius design system your coding agent actually follows. Hairline
+      structure, engineering detail, a rationed palette — and a linter that fails
+      the build when something drifts.
+    </p>
+
+    <div class="install" data-tabs="self">
+      <div class="install__tabs" role="tablist" aria-label="Install method">
+        <button class="install__tab" role="tab" data-tab="mkt" aria-selected="true">Claude Code</button>
+        <button class="install__tab" role="tab" data-tab="npx" aria-selected="false">npx</button>
+        <button class="install__tab" role="tab" data-tab="curl" aria-selected="false">curl</button>
+      </div>
+
+      <div data-panel="mkt">
+        <div class="install__body">
+          <code>/plugin marketplace add avestura/boxy-design-skill</code>
+          <button class="bx-btn bx-btn--sm" data-copy="/plugin marketplace add avestura/boxy-design-skill">copy</button>
+        </div>
+        <div class="install__body" style="border-block-start: 1px solid var(--bx-line-subtle)">
+          <code>/plugin install boxy@boxy-design-skill</code>
+          <button class="bx-btn bx-btn--sm" data-copy="/plugin install boxy@boxy-design-skill">copy</button>
+        </div>
+      </div>
+
+      <div data-panel="npx" hidden>
+        <div class="install__body">
+          <code>npx boxy-design init</code>
+          <button class="bx-btn bx-btn--sm" data-copy="npx boxy-design init">copy</button>
+        </div>
+        <div class="install__note">
+          <span class="bx-label">Add --ai all for Cursor, Windsurf, AGENTS.md and Copilot</span>
+        </div>
+      </div>
+
+      <div data-panel="curl" hidden>
+        <div class="install__body">
+          <code>curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh</code>
+          <button class="bx-btn bx-btn--sm" data-copy="curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh">copy</button>
+        </div>
+        <div class="install__note">
+          <span class="bx-label">No registries. Installs into .claude/skills/boxy</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="bx-label mt-5">MIT &middot; zero dependencies &middot; 13 reference docs &middot; 15 lint rules</p>
+  </section>
+
+  <!-- ========================================================== AXIOMS -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">02 / The rules</p>
+      <h2>Seven axioms. Violating one is a bug, not a preference.</h2>
+      <p>
+        Most design guidance is advisory, so agents drift back to rounded cards and
+        soft shadows by the third prompt. These are written as constraints, and the
+        last cell is what enforces them.
+      </p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--4" style="--bx-collapse-min: 240px">
+      <div class="axiom">
+        <p class="axiom__n">01</p>
+        <h3>Radius is zero</h3>
+        <p>Everywhere, without exception. Including avatars, badges and toggles. The radius token exists only so that zero is explicit and greppable.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">02</p>
+        <h3>Lines carry structure</h3>
+        <p>A 1px border is the primary separator. Reach for a border before a background change, and a background change before a shadow.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">03</p>
+        <h3>Never blur a shadow</h3>
+        <p>Depth is a hard offset or a hairline. Any blur radius above zero is forbidden, <code>backdrop-filter</code> included.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">04</p>
+        <h3>Everything snaps to 4px</h3>
+        <p>Spacing, sizing and leading come from one scale. No 13px, no 0.375rem, no arbitrary values slipped in under deadline.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">05</p>
+        <h3>Accent is rationed</h3>
+        <p>Under 5% of painted pixels: links, focus, one primary action. Neutrals carry everything else.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">06</p>
+        <h3>Hierarchy is typographic</h3>
+        <p>Size, weight, tracking, case and rules. Not colored headings, not gradient text, not another shade of purple.</p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">07</p>
+        <h3>Motion is mechanical</h3>
+        <p>80&ndash;160ms, linear or sharp. Opacity, color and whole-pixel translation. No scale, no bounce, no spring.</p>
+      </div>
+      <div class="axiom" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)">
+        <p class="axiom__n" style="color: var(--bx-ink-inverse-muted)">08</p>
+        <h3 style="color: var(--bx-ink-inverse)">And it is checked</h3>
+        <p style="color: var(--bx-ink-inverse-muted)">
+          <code style="color: var(--bx-ink-inverse)">boxy-check</code> reads your source and
+          fails on every one of the rules above. The agent runs it before it says done.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== SHIFT -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">03 / The difference</p>
+      <h2>Same content. One of them was designed by default.</h2>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 32px">
+        <p class="bx-label" style="color: var(--bx-ink-danger)">Before &mdash; the default</p>
+        <!-- boxy-ignore-start: the counter-example is meant to violate the system -->
+        <svg viewBox="0 0 320 180" width="100%" style="margin-block-start: 20px; max-inline-size: 360px" role="img" aria-label="A rounded card with a soft drop shadow, a pill badge and a gradient button">
+          <defs>
+            <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0b0d0f" flood-opacity="0.18"/>
+            </filter>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+          <rect x="16" y="14" width="288" height="146" rx="14" fill="var(--bx-surface)" stroke="#e5e7eb" filter="url(#soft)"/>
+          <rect x="36" y="34" width="72" height="22" rx="11" fill="#ede9fe"/>
+          <text x="52" y="49" font-family="Inter, sans-serif" font-size="10" fill="#7c3aed">Featured</text>
+          <rect x="36" y="70" width="170" height="13" rx="6" fill="#d1d5db"/>
+          <rect x="36" y="92" width="230" height="9" rx="4" fill="#e5e7eb"/>
+          <rect x="36" y="108" width="196" height="9" rx="4" fill="#e5e7eb"/>
+          <rect x="36" y="130" width="96" height="30" rx="15" fill="url(#grad)"/>
+        </svg>
+        <ul class="stack--tight mt-5" style="list-style: none; padding: 0; display: grid; font-size: var(--bx-text-base); color: var(--bx-ink-muted)">
+          <li>&times;&nbsp; 14px radius, pill badge, pill button</li>
+          <li>&times;&nbsp; 8px blurred drop shadow</li>
+          <li>&times;&nbsp; Violet gradient doing the work of hierarchy</li>
+          <li>&times;&nbsp; Indistinguishable from every other dashboard</li>
+        </ul>
+        <!-- boxy-ignore-end -->
+      </div>
+
+      <div style="padding: 32px">
+        <p class="bx-label" style="color: var(--bx-ink-success)">After &mdash; Boxy</p>
+        <svg viewBox="0 0 320 180" width="100%" style="margin-block-start: 20px; max-inline-size: 360px" role="img" aria-label="A square card with a hairline border, a square mono tag and a flat accent button">
+          <rect x="16" y="14" width="288" height="146" fill="var(--bx-surface)" stroke="var(--bx-line)" stroke-width="1"/>
+          <path d="M16 14 h10 M16 14 v10 M304 160 h-10 M304 160 v-10" stroke="var(--bx-line-heavy)" stroke-width="1.5" fill="none"/>
+          <rect x="36" y="34" width="74" height="20" fill="var(--bx-accent-soft)" stroke="var(--bx-line-accent)"/>
+          <text x="44" y="48" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" fill="var(--bx-ink-accent)">FEATURED</text>
+          <rect x="36" y="70" width="170" height="13" fill="var(--bx-ink)"/>
+          <rect x="36" y="93" width="230" height="8" fill="var(--bx-line)"/>
+          <rect x="36" y="109" width="196" height="8" fill="var(--bx-line)"/>
+          <rect x="36" y="130" width="96" height="30" fill="var(--bx-accent)"/>
+          <rect x="132" y="130" width="96" height="30" fill="none" stroke="var(--bx-line)"/>
+        </svg>
+        <ul class="stack--tight mt-5" style="list-style: none; padding: 0; display: grid; font-size: var(--bx-text-base); color: var(--bx-ink-muted)">
+          <li>&#10003;&nbsp; Zero radius, square tag, square buttons</li>
+          <li>&#10003;&nbsp; 1px hairline and corner ticks carry the structure</li>
+          <li>&#10003;&nbsp; One flat accent; the second action is an outline</li>
+          <li>&#10003;&nbsp; Reads as engineered rather than decorated</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== MODES -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">04 / Modes</p>
+      <h2>One system, three postures</h2>
+      <p>
+        Identical radius, borders, spacing, type and motion. Only section rhythm,
+        display scale, grid columns and substrate visibility change. Set
+        <code>data-mode</code> and the whole page follows — try the
+        <b>mode</b> control in the header.
+      </p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <!-- blueprint -->
+      <div style="padding: 24px" data-mode="blueprint">
+        <div class="row" style="justify-content: space-between">
+          <span class="bx-tag bx-tag--accent">blueprint</span>
+          <button class="ctl" data-set-mode="blueprint" aria-pressed="false">apply</button>
+        </div>
+        <div class="bx-grid-bg mt-4" style="border: 1px solid var(--bx-line); padding: 20px; --bx-grid-unit: 8px">
+          <p class="bx-label">01 / Runtime</p>
+          <p style="font-family: var(--bx-font-display); font-size: var(--bx-text-xl); font-weight: 600; letter-spacing: -0.02em; margin-block-start: 8px">Keystroke latency</p>
+          <div class="bx-collapse bx-collapse--2 mt-4">
+            <div style="padding: 12px"><p class="bx-label">p50</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500">0.6<span class="subtle" style="font-size: var(--bx-text-sm)">ms</span></p></div>
+            <div style="padding: 12px"><p class="bx-label">p99</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500">4.1<span class="subtle" style="font-size: var(--bx-text-sm)">ms</span></p></div>
+          </div>
+        </div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Dev tools, infra, technical products. Grid substrate, corner ticks, mono
+          annotations, dense by default.
+        </p>
+      </div>
+
+      <!-- industrial -->
+      <div style="padding: 24px" data-mode="industrial" data-density="compact">
+        <div class="row" style="justify-content: space-between">
+          <span class="bx-tag">industrial</span>
+          <button class="ctl" data-set-mode="industrial" aria-pressed="false">apply</button>
+        </div>
+        <div class="mt-4" style="border: 1px solid var(--bx-line)">
+          <table class="bx-table">
+            <thead><tr><th>Node</th><th>State</th><th class="num">Load</th></tr></thead>
+            <tbody>
+              <tr><td class="bx-mono">api-01</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Active</span></td><td class="num bx-mono">0.42</td></tr>
+              <tr><td class="bx-mono">api-02</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Active</span></td><td class="num bx-mono">0.38</td></tr>
+              <tr><td class="bx-mono">api-03</td><td><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)">Drain</span></td><td class="num bx-mono">0.91</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Enterprise apps, dashboards, admin. 16 columns, bottom-border fields,
+          heavy tables, no substrate.
+        </p>
+      </div>
+
+      <!-- editorial -->
+      <div style="padding: 24px" data-mode="editorial">
+        <div class="row" style="justify-content: space-between">
+          <span class="bx-tag">editorial</span>
+          <button class="ctl" data-set-mode="editorial" aria-pressed="false">apply</button>
+        </div>
+        <div class="mt-4" style="border: 1px solid var(--bx-line); padding: 24px 20px">
+          <p class="bx-label">Payments</p>
+          <p style="font-family: var(--bx-font-display); font-size: var(--bx-text-3xl); line-height: 1.05; font-weight: 600; letter-spacing: -0.03em; margin-block-start: 12px">
+            Revenue<br>infrastructure
+          </p>
+          <div class="bx-btn-group mt-5">
+            <span class="bx-btn bx-btn--sm bx-btn--primary">Start</span>
+            <span class="bx-btn bx-btn--sm">Docs</span>
+          </div>
+        </div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Marketing, landing, docs. Big display type, 160px rhythm, generous air,
+          still perfectly square.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== LINTER -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">05 / Enforcement</p>
+      <h2>The part that makes it stick</h2>
+      <p>
+        Guidance an agent can ignore is decoration. <code>boxy-check</code> parses
+        CSS, HTML, JSX, Vue and Svelte, flags every violation with a file and line,
+        and exits non-zero. Zero dependencies, Node 18+.
+      </p>
+    </div>
+
+    <div class="code" style="max-inline-size: 860px">
+      <div class="code__head">
+        <span class="bx-label">terminal</span>
+        <button class="bx-btn bx-btn--ghost bx-btn--sm" data-copy="npx boxy-design check &quot;src/**/*&quot;">copy</button>
+      </div>
+<!-- boxy-ignore-start: this transcript documents violations on purpose -->
+<pre><i>$</i> npx boxy-design check "src/**/*"
+
+<b>src/components/Card.tsx</b>
+     8  <em>error</em>  Nonzero border-radius: border-radius: 8px  <i>radius</i>
+     9  <em>error</em>  Shadow with a blur or spread radius: blur 12px  <i>shadow-blur</i>
+    14  <i>warn </i>  Spacing off the 4px scale: padding: 13px (13px)  <i>space</i>
+    22  <i>warn </i>  Raw hex outside the token file: #333333  <i>raw-hex</i>
+
+<b>src/styles/hero.css</b>
+    31  <em>error</em>  transition: all: transition: all  <i>transition-all</i>
+    31  <em>error</em>  Transition longer than 240ms: 0.3s &gt; 240ms  <i>duration</i>
+    47  <em>error</em>  backdrop-filter / filter blur: backdrop-filter  <i>blur</i>
+
+[ <em>FAIL</em> ]  46 files - 5 errors, 2 warnings
+         boxy-check.mjs --list-rules for the full rule set</pre>
+<!-- boxy-ignore-end -->
+    </div>
+
+    <div class="bx-collapse bx-collapse--2 mt-8" style="max-inline-size: 860px">
+      <div style="padding: 20px 24px">
+        <p class="bx-label">Errors &mdash; build fails</p>
+        <!-- boxy-ignore-start: naming the banned utilities -->
+        <ul class="mt-2 muted" style="font-size: var(--bx-text-base); padding-inline-start: 20px; display: grid; gap: 4px">
+          <li>Nonzero radius, and rounded utility classes</li>
+          <li>Blur or spread on a shadow, drop-shadow, shadow-md</li>
+          <li><code>backdrop-filter</code>, <code>filter: blur()</code>, <code>text-shadow</code></li>
+          <li><code>transition: all</code>, durations over 240ms</li>
+          <li>Gradient clipped to text</li>
+        </ul>
+        <!-- boxy-ignore-end -->
+      </div>
+      <div style="padding: 20px 24px">
+        <p class="bx-label">Warnings &mdash; --strict to fail</p>
+        <ul class="mt-2 muted" style="font-size: var(--bx-text-base); padding-inline-start: 20px; display: grid; gap: 4px">
+          <li>Spacing off the 4px scale</li>
+          <li>Font sizes off the type scale</li>
+          <li>Raw hex outside the token file</li>
+          <li>Font weights below 400</li>
+          <li><code>ease-in-out</code>, overshoot curves, <code>scale()</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== CONTENTS -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">06 / Contents</p>
+      <h2>What lands in your project</h2>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 0">
+        <div class="code" style="border: 0">
+          <div class="code__head"><span class="bx-label">.claude/skills/boxy/</span></div>
+<pre><b>SKILL.md</b>                     <i>the seven axioms, modes, routing</i>
+<b>references/</b>
+  tokens.md                <i>every token, every value</i>
+  modes.md                 <i>blueprint / industrial / editorial</i>
+  layout.md                <i>rails, grids, shells, breakpoints</i>
+  typography.md            <i>scale, labels, numerals, measure</i>
+  color.md                 <i>contrast pairs, semantics, charts</i>
+  components-core.md       <i>16 components, exact specs</i>
+  components-data.md       <i>tables, tiles, charts, states</i>
+  components-marketing.md  <i>hero, pricing, footer, docs</i>
+  components-forms.md      <i>steppers, validation, auth, palette</i>
+  motion-depth.md          <i>durations, easing, elevation</i>
+  blueprint-details.md     <i>substrate, ticks, annotations</i>
+  accessibility.md         <i>contrast, focus, keyboard, targets</i>
+  anti-patterns.md         <i>what breaks it, and the fix</i>
+<b>assets/</b>
+  boxy.css                 <i>tokens, reset, utilities</i>
+  design-tokens.json       <i>W3C DTCG export</i>
+<b>scripts/</b>
+  boxy-check.mjs           <i>the linter</i></pre>
+        </div>
+      </div>
+
+      <div style="padding: 24px">
+        <p class="bx-label">Agent targets</p>
+        <div class="bx-table-wrap mt-4">
+          <table class="bx-table">
+            <thead><tr><th>Target</th><th>Writes</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Code</td><td class="bx-mono" style="font-size: var(--bx-text-sm)">.claude/skills/boxy/</td></tr>
+              <tr><td>Cursor</td><td class="bx-mono" style="font-size: var(--bx-text-sm)">.cursor/rules/boxy.mdc</td></tr>
+              <tr><td>Windsurf</td><td class="bx-mono" style="font-size: var(--bx-text-sm)">.windsurf/rules/boxy.md</td></tr>
+              <tr><td>Any agent</td><td class="bx-mono" style="font-size: var(--bx-text-sm)">AGENTS.md</td></tr>
+              <tr><td>Copilot</td><td class="bx-mono" style="font-size: var(--bx-text-sm)">.github/copilot-instructions.md</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="code mt-5">
+          <div class="code__head">
+            <span class="bx-label">all at once</span>
+            <button class="bx-btn bx-btn--ghost bx-btn--sm" data-copy="npx boxy-design init --ai all --css">copy</button>
+          </div>
+<pre><i>$</i> npx boxy-design init --ai all --css</pre>
+        </div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Non-Claude targets also get the full reference set in <code>.boxy/</code>,
+          so every agent reads the same source of truth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= CTA -->
+  <section class="inverse" style="border-block-end: 1px solid var(--bx-line-heavy)">
+    <div style="padding: 96px 32px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between">
+      <div>
+        <p class="bx-label" style="color: var(--bx-ink-inverse-muted)">Ready</p>
+        <h2 style="font-size: var(--bx-text-3xl); max-inline-size: 20ch; margin-block-start: 12px">
+          Stop asking your agent to remove the rounded corners
+        </h2>
+        <p class="muted mt-4" style="max-inline-size: 52ch">
+          Install once. Every UI it builds afterwards is square, ruled, accessible
+          and checked.
+        </p>
+      </div>
+      <div class="bx-btn-group" style="background: var(--bx-n-700); flex-shrink: 0">
+        <button class="bx-btn bx-btn--lg" style="background: var(--bx-n-0); color: var(--bx-n-900); border: 0"
+                data-copy="/plugin marketplace add avestura/boxy-design-skill">Copy install</button>
+        <a class="bx-btn bx-btn--lg" style="background: transparent; color: var(--bx-ink-inverse); border: 0"
+           href="components.html">See components</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== FOOTER -->
+  <footer class="site-foot">
+    <div class="site-foot__cols">
+      <div>
+        <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base); max-inline-size: 36ch">
+          A sharp-edged design system for AI coding agents. Inspired by Zed, Stripe
+          and IBM Carbon.
+        </p>
+        <p class="mt-4"><span class="bx-status bx-status--ok bx-mono" style="font-size: var(--bx-text-xs); letter-spacing: 0.08em">ALL SYSTEMS OPERATIONAL</span></p>
+      </div>
+      <div>
+        <p class="bx-label">Reference</p>
+        <ul>
+          <li><a href="tokens.html">Tokens</a></li>
+          <li><a href="components.html">Components</a></li>
+          <li><a href="patterns.html">Patterns</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="bx-label">Install</p>
+        <ul>
+          <li><a href="https://github.com/avestura/boxy-design-skill">GitHub</a></li>
+          <li><a href="https://www.npmjs.com/package/boxy-design">npm</a></li>
+          <li><a href="install.sh">install.sh</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="bx-label">Credits</p>
+        <ul>
+          <li><a href="https://zed.dev">Zed</a></li>
+          <li><a href="https://stripe.com">Stripe</a></li>
+          <li><a href="https://carbondesignsystem.com">IBM Carbon</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-foot__bar">
+      <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
+      <span class="bx-label">v1.0.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+    </div>
+  </footer>
+
+</main>
+</div>
+
+<!-- command palette template (Cmd/Ctrl+K) -->
+<template id="tpl-palette">
+  <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-block-end: 1px solid var(--bx-line)">
+    <span class="subtle" aria-hidden="true">&#9906;</span>
+    <input class="bx-input" style="border: 0; height: 46px; padding: 0; box-shadow: none; font-size: var(--bx-text-md)"
+           placeholder="Search the system…" aria-label="Search">
+  </div>
+  <div role="listbox" aria-label="Results">
+    <div class="bx-label" style="height: 24px; display: flex; align-items: center; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line-subtle)">Pages</div>
+    <a href="tokens.html" role="option" aria-selected="true" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); background: var(--bx-surface-active); box-shadow: inset 2px 0 0 0 var(--bx-accent); text-decoration: none">Tokens<span style="flex:1"></span><span class="bx-kbd">T</span></a>
+    <a href="components.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Components<span style="flex:1"></span><span class="bx-kbd">C</span></a>
+    <a href="patterns.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Patterns<span style="flex:1"></span><span class="bx-kbd">P</span></a>
+  </div>
+  <div style="height: 32px; display: flex; align-items: center; gap: 16px; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-start: 1px solid var(--bx-line)">
+    <span class="bx-label">&uarr;&darr; navigate</span>
+    <span class="bx-label">&crarr; select</span>
+    <span class="bx-label">esc close</span>
+    <span style="flex:1"></span>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm" data-dialog="close">close</button>
+  </div>
+</template>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

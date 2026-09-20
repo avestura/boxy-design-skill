@@ -1,0 +1,56 @@
+{
+  "name": "boxy-design",
+  "version": "1.0.0",
+  "description": "Sharp-edged, zero-radius design system skill for AI coding agents — hairline structure, blueprint detailing, a disciplined neutral palette, and a linter that keeps it honest.",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css",
+    "ui",
+    "ux",
+    "claude",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "ai",
+    "skill",
+    "agent",
+    "brutalist",
+    "carbon",
+    "accessibility",
+    "linter"
+  ],
+  "homepage": "https://avestura.github.io/boxy-design-skill/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avestura/boxy-design-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/avestura/boxy-design-skill/issues"
+  },
+  "author": "avestura",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "boxy-design": "cli/bin/boxy-design.mjs",
+    "boxy": "cli/bin/boxy-design.mjs"
+  },
+  "exports": {
+    "./boxy.css": "./skills/boxy/assets/boxy.css",
+    "./tokens.json": "./skills/boxy/assets/design-tokens.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "cli",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node skills/boxy/scripts/boxy-check.mjs",
+    "test": "node cli/test/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

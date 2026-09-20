@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en" data-mode="blueprint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Components — Boxy</title>
+<meta name="description" content="Live Boxy components: buttons, fields, square checkboxes and toggles, tags, cards, tabs, data tables, callouts, modals, toasts and blueprint details.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+    <nav class="site-nav hide-sm" aria-label="Primary">
+      <a href="index.html">Overview</a>
+      <a href="tokens.html">Tokens</a>
+      <a href="components.html" aria-current="page">Components</a>
+      <a href="patterns.html">Patterns</a>
+    </nav>
+    <span class="site-head__spacer"></span>
+    <div class="site-controls">
+      <button class="ctl hide-sm" data-act="mode" title="Cycle mode">mode <span class="val">blueprint</span></button>
+      <button class="ctl hide-sm" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
+      <button class="ctl" data-act="theme" title="Toggle theme"><span class="val">light</span></button>
+      <a class="ctl ctl--icon" href="https://github.com/avestura/boxy-design-skill" aria-label="GitHub repository">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="site">
+<main id="main" class="site-main">
+
+  <section class="sec sec--tight">
+    <p class="bx-label">Reference</p>
+    <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Components</h1>
+    <p class="lede mt-4" style="max-inline-size: 64ch">
+      Everything on this page is live and built from the role tokens. Toggle theme
+      and density in the header; every component follows without a re-render.
+      Press <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span> for the
+      command palette.
+    </p>
+  </section>
+
+  <!-- =========================================================== BUTTONS -->
+  <section class="sec" id="buttons">
+    <div class="sec__head">
+      <p class="bx-label">01 / Buttons</p>
+      <h2>One primary action per view</h2>
+      <p>Everything else is outline or ghost. Groups share a single border so two
+      1px lines never sit side by side.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Variants</span></dt><dd>
+        <button class="bx-btn bx-btn--primary">Primary</button>
+        <button class="bx-btn">Secondary</button>
+        <button class="bx-btn bx-btn--ghost">Ghost</button>
+        <button class="bx-btn bx-btn--danger">Delete</button>
+        <button class="bx-btn" disabled>Disabled</button>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Sizes</span></dt><dd>
+        <button class="bx-btn bx-btn--sm">Small 32</button>
+        <button class="bx-btn">Medium 40</button>
+        <button class="bx-btn bx-btn--lg">Large 48</button>
+        <button class="bx-btn bx-btn--icon" aria-label="Settings"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/><path d="M5 8h6M8 5v6"/></svg></button>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Group</span></dt><dd>
+        <div class="bx-btn-group">
+          <button class="bx-btn bx-btn--primary">Deploy</button>
+          <button class="bx-btn">Preview</button>
+          <button class="bx-btn bx-btn--icon" aria-label="More options">&#8230;</button>
+        </div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Segmented</span></dt><dd>
+        <div class="bx-btn-group">
+          <button class="bx-btn bx-btn--sm" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)">Day</button>
+          <button class="bx-btn bx-btn--sm">Week</button>
+          <button class="bx-btn bx-btn--sm">Month</button>
+        </div>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ============================================================ FIELDS -->
+  <section class="sec" id="fields">
+    <div class="sec__head">
+      <p class="bx-label">02 / Fields</p>
+      <h2>Labels above, helper text permanent</h2>
+      <p>No floating labels — the animation and the mid-border position both fight
+      the system. Focus uses an inset ring so nothing shifts.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Boxed &mdash; default</p>
+        <div class="stack">
+          <div class="bx-field">
+            <label class="bx-label" for="f1">Project name</label>
+            <input class="bx-input" id="f1" value="edge-router" aria-describedby="f1h">
+            <p class="bx-help" id="f1h">Lowercase, hyphens only.</p>
+          </div>
+          <div class="bx-field">
+            <label class="bx-label" for="f2">Region</label>
+            <select class="bx-select" id="f2">
+              <option>us-east-1</option><option>eu-west-2</option><option>ap-south-1</option>
+            </select>
+          </div>
+          <div class="bx-field">
+            <label class="bx-label" for="f3">API key</label>
+            <input class="bx-input" id="f3" value="sk_live_4eC39" aria-invalid="true" aria-describedby="f3h">
+            <p class="bx-help bx-help--error" id="f3h">&#9633; This key has been revoked.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Underlined &mdash; industrial</p>
+        <div class="stack">
+          <div class="bx-field">
+            <label class="bx-label" for="f4">Cluster</label>
+            <input class="bx-input bx-input--underline" id="f4" value="prod-eu">
+          </div>
+          <div class="bx-field">
+            <label class="bx-label" for="f5">Replicas</label>
+            <input class="bx-input bx-input--underline bx-mono" id="f5" value="12">
+          </div>
+          <div class="bx-field">
+            <label class="bx-label" for="f6">Disabled</label>
+            <input class="bx-input" id="f6" value="locked by policy" disabled>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Textarea &amp; search</p>
+        <div class="stack">
+          <div class="bx-field">
+            <label class="bx-label" for="f7">Release notes</label>
+            <textarea class="bx-textarea" id="f7" placeholder="What changed in this release?"></textarea>
+          </div>
+          <div class="bx-field">
+            <label class="bx-label" for="f8">Search</label>
+            <div style="position: relative">
+              <input class="bx-input" id="f8" placeholder="Find anything" style="padding-inline: 36px 56px">
+              <span style="position: absolute; inset-block-start: 50%; inset-inline-start: 12px; transform: translateY(-50%); color: var(--bx-ink-subtle)" aria-hidden="true">&#9906;</span>
+              <span class="bx-kbd" style="position: absolute; inset-block-start: 50%; inset-inline-end: 12px; transform: translateY(-50%)">&#8984;K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= SELECTION -->
+  <section class="sec" id="selection">
+    <div class="sec__head">
+      <p class="bx-label">03 / Selection</p>
+      <h2>The radio is a square too</h2>
+      <p>This is the intentional break from convention, and the one most people
+      hesitate over. Keep it — a single round control in a square interface reads
+      as an oversight.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Checkbox</span></dt><dd>
+        <label class="bx-choice"><input class="bx-check" type="checkbox" checked> Enable edge caching</label>
+        <label class="bx-choice"><input class="bx-check" type="checkbox"> Preserve query strings</label>
+        <label class="bx-choice"><input class="bx-check" type="checkbox" disabled> Locked by policy</label>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Radio</span></dt><dd>
+        <label class="bx-choice"><input class="bx-check" type="radio" name="r" checked> Rolling</label>
+        <label class="bx-choice"><input class="bx-check" type="radio" name="r"> Blue-green</label>
+        <label class="bx-choice"><input class="bx-check" type="radio" name="r"> Canary</label>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Toggle</span></dt><dd>
+        <label class="bx-choice"><input class="bx-toggle" type="checkbox" checked> Auto-scale</label>
+        <label class="bx-choice"><input class="bx-toggle" type="checkbox"> Maintenance mode</label>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ============================================================== TAGS -->
+  <section class="sec" id="tags">
+    <div class="sec__head">
+      <p class="bx-label">04 / Tags &amp; status</p>
+      <h2>Square tags, square status squares</h2>
+      <p>Never a pill, never a circular dot. Status is always a shape plus a word.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Tags</span></dt><dd>
+        <span class="bx-tag">neutral</span>
+        <span class="bx-tag bx-tag--accent">accent</span>
+        <span class="bx-tag bx-tag--success">passing</span>
+        <span class="bx-tag bx-tag--warning">degraded</span>
+        <span class="bx-tag bx-tag--danger">failing</span>
+        <span class="bx-tag bx-tag--solid">128</span>
+        <span class="bx-tag bx-tag--sm">small</span>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Status</span></dt><dd>
+        <span class="bx-status bx-status--ok">Operational</span>
+        <span class="bx-status bx-status--warn">Degraded</span>
+        <span class="bx-status bx-status--down">Outage</span>
+        <span class="bx-status bx-status--idle">Not deployed</span>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Keys</span></dt><dd>
+        <span class="bx-kbd">&#8984;</span><span class="bx-kbd">K</span>
+        <span class="bx-kbd">esc</span>
+        <span class="bx-kbd">&#8679;</span><span class="bx-kbd">&#8629;</span>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ============================================================= CARDS -->
+  <section class="sec" id="cards">
+    <div class="sec__head">
+      <p class="bx-label">05 / Cards</p>
+      <h2>Cards sit in a collapsed grid, not in whitespace</h2>
+      <p>The 1px gap over a line-colored background <em>is</em> the border. Cells
+      carry none of their own, so lines are never doubled and never misalign.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div class="axiom">
+        <p class="axiom__n">01</p>
+        <h3>Immutable deploys</h3>
+        <p>Every build is content-addressed and kept for 90 days. Roll back in under a second.</p>
+        <p class="mt-4"><a href="#cards" style="font-size: var(--bx-text-base); font-weight: 500">Learn more &rarr;</a></p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">02</p>
+        <h3>Edge routing</h3>
+        <p>Requests terminate at the nearest of 310 locations, with automatic failover.</p>
+        <p class="mt-4"><a href="#cards" style="font-size: var(--bx-text-base); font-weight: 500">Learn more &rarr;</a></p>
+      </div>
+      <div class="axiom">
+        <p class="axiom__n">03</p>
+        <h3>Zero-config TLS</h3>
+        <p>Certificates issued, renewed and stapled without a line of configuration.</p>
+        <p class="mt-4"><a href="#cards" style="font-size: var(--bx-text-base); font-weight: 500">Learn more &rarr;</a></p>
+      </div>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2 mt-8">
+      <div style="padding: 0">
+        <div class="bx-card" style="border: 0">
+          <div class="bx-card__head">
+            <div><p class="bx-label">Deployment</p><h3 style="font-size: var(--bx-text-md); margin-block-start: 4px">edge-router</h3></div>
+            <span class="bx-tag bx-tag--success">live</span>
+          </div>
+          <div class="bx-card__body">
+            <p class="muted" style="font-size: var(--bx-text-base)">
+              Pushed 12 minutes ago by a teammate from <code>main</code> at
+              <code>8f3a1c</code>.
+            </p>
+          </div>
+          <div class="bx-card__foot">
+            <div class="bx-btn-group"><button class="bx-btn bx-btn--sm">Logs</button><button class="bx-btn bx-btn--sm">Rollback</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 24px">
+        <p class="bx-label">Stat tiles</p>
+        <div class="bx-collapse bx-collapse--2 mt-4">
+          <div style="padding: 20px">
+            <p class="bx-label">Requests</p>
+            <p class="bx-mono" style="font-size: var(--bx-text-3xl); font-weight: 500; letter-spacing: -0.02em; margin-block-start: 8px">2.41<span class="subtle" style="font-size: var(--bx-text-md)">M</span></p>
+            <p class="mt-2" style="font-size: var(--bx-text-sm)"><span style="color: var(--bx-ink-success)">&#9650; 12.4%</span> <span class="subtle">vs last week</span></p>
+          </div>
+          <div style="padding: 20px">
+            <p class="bx-label">Error rate</p>
+            <p class="bx-mono" style="font-size: var(--bx-text-3xl); font-weight: 500; letter-spacing: -0.02em; margin-block-start: 8px">0.04<span class="subtle" style="font-size: var(--bx-text-md)">%</span></p>
+            <p class="mt-2" style="font-size: var(--bx-text-sm)"><span style="color: var(--bx-ink-danger)">&#9650; 0.01pp</span> <span class="subtle">vs last week</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== TABS -->
+  <section class="sec" id="tabs">
+    <div class="sec__head">
+      <p class="bx-label">06 / Tabs &amp; table</p>
+      <h2>Dense data is where this system earns its keep</h2>
+      <p>Mono uppercase headers on a sunken strip, 1px row rules, no vertical rules,
+      numbers right-aligned and tabular. Arrow keys move between tabs.</p>
+    </div>
+
+    <div data-tabs="self">
+      <div class="bx-tabs" role="tablist" aria-label="Environment">
+        <button class="bx-tab" role="tab" data-tab="prod" aria-selected="true">Production</button>
+        <button class="bx-tab" role="tab" data-tab="stg" aria-selected="false">Staging</button>
+        <button class="bx-tab" role="tab" data-tab="dev" aria-selected="false">Development</button>
+      </div>
+
+      <div data-panel="prod" class="mt-5">
+        <div class="bx-table-wrap">
+          <table class="bx-table">
+            <thead><tr>
+              <th style="inline-size: 40px"><input class="bx-check" type="checkbox" aria-label="Select all"></th>
+              <th>Service</th><th>Region</th><th>Status</th>
+              <th class="num">p95</th><th class="num">Requests</th><th class="num">Error rate</th>
+            </tr></thead>
+            <tbody>
+              <tr><td><input class="bx-check" type="checkbox" aria-label="Select edge-router"></td><td class="bx-mono">edge-router</td><td>us-east-1</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-base)">Healthy</span></td><td class="num">41 ms</td><td class="num">2,410,882</td><td class="num">0.04%</td></tr>
+              <tr><td><input class="bx-check" type="checkbox" checked aria-label="Select api-gateway"></td><td class="bx-mono">api-gateway</td><td>eu-west-2</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-base)">Healthy</span></td><td class="num">88 ms</td><td class="num">1,092,441</td><td class="num">0.11%</td></tr>
+              <tr><td><input class="bx-check" type="checkbox" aria-label="Select image-proxy"></td><td class="bx-mono">image-proxy</td><td>ap-south-1</td><td><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-base)">Degraded</span></td><td class="num">612 ms</td><td class="num">318,204</td><td class="num">2.80%</td></tr>
+              <tr><td><input class="bx-check" type="checkbox" aria-label="Select webhook-fanout"></td><td class="bx-mono">webhook-fanout</td><td>us-east-1</td><td><span class="bx-status bx-status--down" style="font-size: var(--bx-text-base)">Failing</span></td><td class="num">&mdash;</td><td class="num">0</td><td class="num">100.00%</td></tr>
+              <tr><td><input class="bx-check" type="checkbox" aria-label="Select cron-worker"></td><td class="bx-mono">cron-worker</td><td>eu-west-2</td><td><span class="bx-status bx-status--idle" style="font-size: var(--bx-text-base)">Paused</span></td><td class="num">&mdash;</td><td class="num">0</td><td class="num">&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row mt-4" style="justify-content: space-between">
+          <span class="bx-label">Showing 1&ndash;5 of 1,284</span>
+          <nav class="bx-btn-group" aria-label="Pagination">
+            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Previous page">&#8249;</button>
+            <button class="bx-btn bx-btn--sm bx-mono" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)" aria-current="page">1</button>
+            <button class="bx-btn bx-btn--sm bx-mono">2</button>
+            <button class="bx-btn bx-btn--sm bx-mono">3</button>
+            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Next page">&#8250;</button>
+          </nav>
+        </div>
+      </div>
+
+      <div data-panel="stg" class="mt-5" hidden>
+        <div class="bx-empty">
+          <div class="bx-empty__glyph" aria-hidden="true"></div>
+          <h3 style="font-size: var(--bx-text-md)">No staging services</h3>
+          <p class="muted mt-2" style="font-size: var(--bx-text-base)">
+            Services promoted from development appear here before they reach
+            production.
+          </p>
+          <button class="bx-btn bx-btn--primary mt-5">Create service</button>
+        </div>
+      </div>
+
+      <div data-panel="dev" class="mt-5" hidden>
+        <div class="bx-table-wrap">
+          <table class="bx-table">
+            <thead><tr><th>Service</th><th>Branch</th><th class="num">Updated</th></tr></thead>
+            <tbody>
+              <tr><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 120px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 80px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 64px; margin-inline-start: auto"></div></td></tr>
+              <tr><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 148px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 96px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 64px; margin-inline-start: auto"></div></td></tr>
+              <tr><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 96px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 72px"></div></td><td><div class="bx-skeleton" style="block-size: 12px; inline-size: 64px; margin-inline-start: auto"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="bx-label mt-4">Skeletons pulse on steps(4, end) &mdash; a stepped hold, never a sweeping shimmer</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== FEEDBACK -->
+  <section class="sec" id="feedback">
+    <div class="sec__head">
+      <p class="bx-label">07 / Feedback</p>
+      <h2>Callouts, overlays and progress</h2>
+    </div>
+
+    <div class="stack" style="max-inline-size: 760px">
+      <div class="bx-callout bx-callout--info"><span class="bx-mono" aria-hidden="true">i</span><div><p style="font-weight: 600">Scheduled maintenance</p><p class="mt-2" style="font-size: var(--bx-text-base)">Read replicas will fail over on Sunday at 02:00 UTC.</p></div></div>
+      <div class="bx-callout bx-callout--success"><span class="bx-mono" aria-hidden="true">&#10003;</span><div><p style="font-weight: 600">Certificate issued</p><p class="mt-2" style="font-size: var(--bx-text-base)">Auto-renews 30 days before expiry.</p></div></div>
+      <div class="bx-callout bx-callout--warning"><span class="bx-mono" aria-hidden="true">!</span><div><p style="font-weight: 600">Approaching quota</p><p class="mt-2" style="font-size: var(--bx-text-base)">You have used 84% of this month's build minutes.</p></div></div>
+      <div class="bx-callout bx-callout--danger"><span class="bx-mono" aria-hidden="true">&#9633;</span><div><p style="font-weight: 600">Deployment failed</p><p class="mt-2" style="font-size: var(--bx-text-base)">Build step 4 exited with code 1.</p></div></div>
+    </div>
+
+    <dl class="spec bx-collapse mt-8" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Overlays</span></dt><dd>
+        <button class="bx-btn" data-dialog="tpl-modal">Open modal</button>
+        <button class="bx-btn" data-toast="success">Success toast</button>
+        <button class="bx-btn" data-toast="error">Error toast</button>
+        <button class="bx-btn" data-dialog="tpl-palette">Command palette</button>
+        <span class="bx-btn bx-btn--ghost" data-tip="A square tooltip, offset 6px, with no arrow">Hover for a tooltip</span>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Progress</span></dt><dd>
+        <div style="inline-size: 200px"><div class="bx-progress"><i style="inline-size: 68%"></i></div><p class="bx-label mt-2">68% &mdash; 34 of 50 steps</p></div>
+        <div style="inline-size: 200px"><div class="bx-progress bx-progress--indeterminate"><i></i></div><p class="bx-label mt-2">Indeterminate</p></div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Skeleton</span></dt><dd>
+        <div style="inline-size: 280px; display: grid; gap: 8px">
+          <div class="bx-skeleton" style="block-size: 20px; inline-size: 60%"></div>
+          <div class="bx-skeleton" style="block-size: 12px"></div>
+          <div class="bx-skeleton" style="block-size: 12px; inline-size: 80%"></div>
+        </div>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ========================================================= BLUEPRINT -->
+  <section class="sec" id="blueprint">
+    <div class="sec__head">
+      <p class="bx-label">08 / Blueprint details</p>
+      <h2>Opt-in, and rationed to three per viewport</h2>
+      <p>Applied everywhere, precision turns into noise. These earn their place on
+      hero blocks, feature panels and empty states.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div style="padding: 40px 32px">
+        <p class="bx-label">Grid substrate</p>
+        <div class="bx-grid-bg mt-5" style="block-size: 120px; border: 1px solid var(--bx-line)"></div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">8px pitch at 5.5% ink. Real element edges must land on it.</p>
+      </div>
+      <div style="padding: 40px 32px">
+        <p class="bx-label">Corner ticks</p>
+        <div class="bx-ticks mt-5" style="block-size: 120px; border: 1px solid var(--bx-line); display: grid; place-items: center">
+          <span class="bx-label">Registration marks</span>
+        </div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">Two corners is the tasteful default. Not on every card.</p>
+      </div>
+      <div style="padding: 40px 32px">
+        <p class="bx-label">Hatch fill</p>
+        <div class="mt-5" style="block-size: 120px; border: 1px solid var(--bx-line); background-image: repeating-linear-gradient(45deg, var(--bx-grid-line) 0 1px, transparent 1px 6px)"></div>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">Placeholders and inactive regions. The Boxy gray blob.</p>
+      </div>
+    </div>
+
+    <div class="mt-8" style="border: 1px solid var(--bx-line); padding: 32px; max-inline-size: 760px">
+      <p class="bx-label">Technical annotations</p>
+      <p class="mt-4" style="font-size: var(--bx-text-lg); max-inline-size: 48ch">
+        Mono metadata is the cheapest way to get the datasheet feel — as long as the
+        values are real.
+      </p>
+      <div class="row mt-5" style="gap: 24px">
+        <span class="bx-label">v1.0.0 &middot; MIT &middot; 16 KB</span>
+        <span class="bx-label">FIG. 02 / REQUEST PATH</span>
+        <span class="bx-label">p50 &middot; LAST 24H &middot; UTC</span>
+      </div>
+      <div class="mt-6" style="position: relative; padding-block-start: 24px" aria-hidden="true">
+        <div style="position: absolute; inset-block-start: 8px; inset-inline: 0; border-block-start: 1px solid var(--bx-line-strong)"></div>
+        <div style="position: absolute; inset-block-start: 4px; inset-inline-start: 0; inline-size: 1px; block-size: 9px; background: var(--bx-line-strong)"></div>
+        <div style="position: absolute; inset-block-start: 4px; inset-inline-end: 0; inline-size: 1px; block-size: 9px; background: var(--bx-line-strong)"></div>
+        <span class="bx-label" style="position: absolute; inset-block-start: 0; inset-inline-start: 50%; transform: translateX(-50%); background: var(--bx-surface); padding-inline: 8px">696 PX</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__cols">
+      <div>
+        <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base); max-inline-size: 36ch">
+          A sharp-edged design system for AI coding agents. Inspired by Zed, Stripe
+          and IBM Carbon.
+        </p>
+      </div>
+      <div><p class="bx-label">Reference</p><ul><li><a href="tokens.html">Tokens</a></li><li><a href="components.html">Components</a></li><li><a href="patterns.html">Patterns</a></li></ul></div>
+      <div><p class="bx-label">Install</p><ul><li><a href="https://github.com/avestura/boxy-design-skill">GitHub</a></li><li><a href="https://www.npmjs.com/package/boxy-design">npm</a></li><li><a href="install.sh">install.sh</a></li></ul></div>
+      <div><p class="bx-label">Credits</p><ul><li><a href="https://zed.dev">Zed</a></li><li><a href="https://stripe.com">Stripe</a></li><li><a href="https://carbondesignsystem.com">IBM Carbon</a></li></ul></div>
+    </div>
+    <div class="site-foot__bar">
+      <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
+      <span class="bx-label">v1.0.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+    </div>
+  </footer>
+
+</main>
+</div>
+
+<template id="tpl-modal">
+  <div style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding-inline: 24px; border-block-end: 1px solid var(--bx-line)">
+    <h2 style="font-size: var(--bx-text-md)">Delete edge-router</h2>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close">&#215;</button>
+  </div>
+  <div style="padding: 24px">
+    <p class="muted">
+      This permanently removes the service and its 90 days of build history. Traffic
+      routed here will start returning 502 immediately.
+    </p>
+    <div class="bx-field mt-5">
+      <label class="bx-label" for="confirm">Type <b style="color: var(--bx-ink)">edge-router</b> to confirm</label>
+      <input class="bx-input" id="confirm" placeholder="edge-router">
+    </div>
+  </div>
+  <div style="padding: 16px 24px; border-block-start: 1px solid var(--bx-line); background: var(--bx-surface-sunken); display: flex; justify-content: flex-end">
+    <div class="bx-btn-group">
+      <button class="bx-btn" data-dialog="close">Cancel</button>
+      <button class="bx-btn bx-btn--danger" data-dialog="close">Delete service</button>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-palette">
+  <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-block-end: 1px solid var(--bx-line)">
+    <span class="subtle" aria-hidden="true">&#9906;</span>
+    <input class="bx-input" style="border: 0; height: 46px; padding: 0; box-shadow: none; font-size: var(--bx-text-md)" placeholder="Search the system…" aria-label="Search">
+  </div>
+  <div role="listbox" aria-label="Results">
+    <div class="bx-label" style="height: 24px; display: flex; align-items: center; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line-subtle)">Pages</div>
+    <a href="tokens.html" role="option" aria-selected="true" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); background: var(--bx-surface-active); box-shadow: inset 2px 0 0 0 var(--bx-accent); text-decoration: none">Tokens<span style="flex:1"></span><span class="bx-kbd">T</span></a>
+    <a href="components.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Components<span style="flex:1"></span><span class="bx-kbd">C</span></a>
+    <a href="patterns.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Patterns<span style="flex:1"></span><span class="bx-kbd">P</span></a>
+  </div>
+  <div style="height: 32px; display: flex; align-items: center; gap: 16px; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-start: 1px solid var(--bx-line)">
+    <span class="bx-label">&uarr;&darr; navigate</span><span class="bx-label">&crarr; select</span><span class="bx-label">esc close</span>
+    <span style="flex:1"></span>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm" data-dialog="close">close</button>
+  </div>
+</template>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

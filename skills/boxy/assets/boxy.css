@@ -1,0 +1,475 @@
+/* ==========================================================================
+   BOXY - a sharp-edged design system
+   radius: 0 - hairline structure - mechanical motion - neutral-heavy
+   https://github.com/avestura/boxy-design-skill
+   MIT. Accent + semantic ramps adapted from IBM Carbon (Apache-2.0).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. PRIMITIVES - raw values. Never reference these in component code.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Neutral ramp - cool gray, the workhorse of the system */
+  --bx-n-0:    #ffffff;
+  --bx-n-50:   #f6f7f8;
+  --bx-n-100:  #eceef0;
+  --bx-n-200:  #dde1e4;
+  --bx-n-300:  #c7ccd1;
+  --bx-n-400:  #a6aeb5;
+  --bx-n-500:  #7f8993;
+  --bx-n-600:  #616b75;
+  --bx-n-700:  #4a535b;
+  --bx-n-800:  #343b41;
+  --bx-n-900:  #23282d;
+  --bx-n-950:  #16191c;
+  --bx-n-1000: #0b0d0f;
+
+  /* Accent - interaction only. Budget: under 5% of painted pixels. */
+  --bx-a-50:  #edf5ff;
+  --bx-a-100: #d0e2ff;
+  --bx-a-200: #a6c8ff;
+  --bx-a-300: #78a9ff;
+  --bx-a-400: #4589ff;
+  --bx-a-500: #0f62fe;
+  --bx-a-600: #0043ce;
+  --bx-a-700: #002d9c;
+  --bx-a-800: #001d6c;
+  --bx-a-900: #001141;
+
+  /* Semantic ramps */
+  --bx-r-50:  #fff1f1; --bx-r-100: #ffd7d9; --bx-r-500: #da1e28;
+  --bx-r-600: #a2191f; --bx-r-700: #750e13;
+  --bx-y-50:  #fcf4d6; --bx-y-100: #fddc69; --bx-y-500: #f1c21b;
+  --bx-y-600: #b28600; --bx-y-700: #8e6a00;
+  --bx-g-50:  #defbe6; --bx-g-100: #a7f0ba; --bx-g-500: #24a148;
+  --bx-g-600: #198038; --bx-g-700: #0e6027;
+
+  /* Space - 4px base grid. Every gap, pad and margin comes from here. */
+  --bx-space-px:   1px;
+  --bx-space-0:    0;
+  --bx-space-half: 2px;
+  --bx-space-1:    4px;
+  --bx-space-2:    8px;
+  --bx-space-3:    12px;
+  --bx-space-4:    16px;
+  --bx-space-5:    24px;
+  --bx-space-6:    32px;
+  --bx-space-7:    40px;
+  --bx-space-8:    48px;
+  --bx-space-9:    64px;
+  --bx-space-10:   80px;
+  --bx-space-11:   96px;
+  --bx-space-12:   128px;
+  --bx-space-13:   160px;
+  --bx-space-14:   192px;
+
+  /* Type families */
+  --bx-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bx-font-display: "Inter Tight", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bx-font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale - size / leading, all leading snapped to 4px */
+  --bx-text-2xs: 0.625rem;  --bx-lh-2xs: 0.875rem;  /* 10 / 14 */
+  --bx-text-xs:  0.6875rem; --bx-lh-xs:  1rem;      /* 11 / 16 */
+  --bx-text-sm:  0.75rem;   --bx-lh-sm:  1rem;      /* 12 / 16 */
+  --bx-text-base:0.875rem;  --bx-lh-base:1.25rem;   /* 14 / 20 */
+  --bx-text-md:  1rem;      --bx-lh-md:  1.5rem;    /* 16 / 24 */
+  --bx-text-lg:  1.125rem;  --bx-lh-lg:  1.75rem;   /* 18 / 28 */
+  --bx-text-xl:  1.25rem;   --bx-lh-xl:  1.75rem;   /* 20 / 28 */
+  --bx-text-2xl: 1.5rem;    --bx-lh-2xl: 2rem;      /* 24 / 32 */
+  --bx-text-3xl: 2rem;      --bx-lh-3xl: 2.25rem;   /* 32 / 36 */
+  --bx-text-4xl: 2.5rem;    --bx-lh-4xl: 2.75rem;   /* 40 / 44 */
+  --bx-text-5xl: 3.375rem;  --bx-lh-5xl: 3.5rem;    /* 54 / 56 */
+  --bx-text-6xl: 4.5rem;    --bx-lh-6xl: 4.5rem;    /* 72 / 72 */
+  --bx-text-7xl: 6rem;      --bx-lh-7xl: 5.75rem;   /* 96 / 92 */
+
+  /* Weight - no 300 (too frail beside hairlines) */
+  --bx-weight-normal: 400;
+  --bx-weight-medium: 500;
+  --bx-weight-semibold: 600;
+  --bx-weight-bold: 700;
+
+  /* Tracking */
+  --bx-track-display: -0.03em;
+  --bx-track-heading: -0.02em;
+  --bx-track-body: 0;
+  --bx-track-label: 0.08em;
+  --bx-track-micro: 0.12em;
+
+  /* Geometry - the non-negotiable */
+  --bx-radius: 0;
+  --bx-border: 1px;
+  --bx-border-strong: 2px;
+  --bx-focus-width: 2px;
+  --bx-focus-offset: 2px;
+
+  /* Motion - mechanical. No bounce, no spring, no scale. */
+  --bx-dur-1: 80ms;
+  --bx-dur-2: 120ms;
+  --bx-dur-3: 160ms;
+  --bx-dur-4: 240ms;
+  --bx-ease: linear;
+  --bx-ease-sharp: cubic-bezier(0.2, 0, 0, 1);
+  --bx-ease-step: steps(4, end);
+
+  /* Layout */
+  --bx-container: 1280px;
+  --bx-container-wide: 1440px;
+  --bx-container-prose: 68ch;
+  --bx-grid-columns: 12;
+  --bx-grid-unit: 8px;      /* blueprint substrate pitch */
+  --bx-gutter: var(--bx-space-5);
+
+  /* Density - comfortable is the default */
+  --bx-control-sm: 32px;
+  --bx-control-md: 40px;
+  --bx-control-lg: 48px;
+  --bx-pad-x-sm: var(--bx-space-3);
+  --bx-pad-x-md: var(--bx-space-4);
+  --bx-pad-x-lg: var(--bx-space-5);
+  --bx-cell-y: var(--bx-space-3);
+  --bx-section-y: var(--bx-space-11);
+}
+
+[data-density="compact"] {
+  --bx-control-sm: 24px;
+  --bx-control-md: 32px;
+  --bx-control-lg: 40px;
+  --bx-pad-x-sm: var(--bx-space-2);
+  --bx-pad-x-md: var(--bx-space-3);
+  --bx-pad-x-lg: var(--bx-space-4);
+  --bx-cell-y: var(--bx-space-2);
+  --bx-section-y: var(--bx-space-9);
+}
+
+/* --------------------------------------------------------------------------
+   2. ROLES - light theme. Component code uses ONLY these.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bx-canvas:          var(--bx-n-0);
+  --bx-surface:         var(--bx-n-0);
+  --bx-surface-sunken:  var(--bx-n-50);
+  --bx-surface-raised:  var(--bx-n-0);
+  --bx-surface-hover:   var(--bx-n-50);
+  --bx-surface-active:  var(--bx-n-100);
+  --bx-surface-inverse: var(--bx-n-900);
+  --bx-surface-accent:  var(--bx-a-50);
+
+  --bx-ink:         var(--bx-n-900);   /* 14.8:1 on canvas */
+  --bx-ink-muted:   var(--bx-n-700);   /*  7.7:1 - AAA     */
+  --bx-ink-subtle:  var(--bx-n-600);   /*  5.5:1 - AA      */
+  --bx-ink-faint:   var(--bx-n-500);   /*  3.6:1 - non-text only */
+  --bx-ink-inverse: var(--bx-n-0);
+  --bx-ink-inverse-muted: var(--bx-n-400);
+  --bx-ink-accent:  var(--bx-a-600);
+  --bx-ink-danger:  var(--bx-r-600);
+  --bx-ink-warning: var(--bx-y-700);
+  --bx-ink-success: var(--bx-g-600);
+
+  --bx-line:        var(--bx-n-300);
+  --bx-line-subtle: var(--bx-n-200);
+  --bx-line-strong: var(--bx-n-500);
+  --bx-line-heavy:  var(--bx-n-900);
+  --bx-line-accent: var(--bx-a-500);
+
+  --bx-accent:        var(--bx-a-500);
+  --bx-accent-hover:  var(--bx-a-600);
+  --bx-accent-active: var(--bx-a-700);
+  --bx-accent-soft:   var(--bx-a-50);
+  --bx-on-accent:     var(--bx-n-0);
+
+  --bx-danger:       var(--bx-r-500);
+  --bx-danger-hover: var(--bx-r-600);
+  --bx-danger-soft:  var(--bx-r-50);
+  --bx-warning:      var(--bx-y-500);
+  --bx-warning-soft: var(--bx-y-50);
+  --bx-success:      var(--bx-g-500);
+  --bx-success-soft: var(--bx-g-50);
+
+  --bx-focus:         var(--bx-a-500);
+  --bx-focus-inverse: var(--bx-n-0);
+
+  --bx-shadow-color: rgba(11, 13, 15, 0.16);
+  --bx-scrim:        rgba(11, 13, 15, 0.56);
+  --bx-grid-line:    rgba(11, 13, 15, 0.055);
+  --bx-selection:    var(--bx-a-100);
+}
+
+/* --------------------------------------------------------------------------
+   3. ROLES - dark theme
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bx-canvas:          var(--bx-n-1000);
+  --bx-surface:         var(--bx-n-950);
+  --bx-surface-sunken:  var(--bx-n-1000);
+  --bx-surface-raised:  var(--bx-n-900);
+  --bx-surface-hover:   var(--bx-n-900);
+  --bx-surface-active:  var(--bx-n-800);
+  --bx-surface-inverse: var(--bx-n-100);
+  --bx-surface-accent:  var(--bx-a-900);
+
+  --bx-ink:         var(--bx-n-100);
+  --bx-ink-muted:   var(--bx-n-300);
+  --bx-ink-subtle:  var(--bx-n-400);
+  --bx-ink-faint:   var(--bx-n-500);
+  --bx-ink-inverse: var(--bx-n-1000);
+  --bx-ink-inverse-muted: var(--bx-n-600);
+  --bx-ink-accent:  var(--bx-a-300);
+  --bx-ink-danger:  #ff8389;
+  --bx-ink-warning: var(--bx-y-100);
+  --bx-ink-success: var(--bx-g-100);
+
+  --bx-line:        var(--bx-n-800);
+  --bx-line-subtle: var(--bx-n-900);
+  --bx-line-strong: var(--bx-n-700);
+  --bx-line-heavy:  var(--bx-n-400);
+  --bx-line-accent: var(--bx-a-400);
+
+  --bx-accent:        var(--bx-a-500);
+  --bx-accent-hover:  var(--bx-a-400);
+  --bx-accent-active: var(--bx-a-300);
+  --bx-accent-soft:   var(--bx-a-900);
+  --bx-on-accent:     var(--bx-n-0);
+
+  --bx-danger:       var(--bx-r-500);
+  --bx-danger-hover: #ff8389;
+  --bx-danger-soft:  #2d0709;
+  --bx-warning:      var(--bx-y-500);
+  --bx-warning-soft: #302200;
+  --bx-success:      var(--bx-g-500);
+  --bx-success-soft: #071f12;
+
+  --bx-focus:         var(--bx-a-300);
+  --bx-focus-inverse: var(--bx-n-1000);
+
+  --bx-shadow-color: rgba(0, 0, 0, 0.72);
+  --bx-scrim:        rgba(0, 0, 0, 0.72);
+  --bx-grid-line:    rgba(246, 247, 248, 0.055);
+  --bx-selection:    var(--bx-a-800);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bx-canvas:          var(--bx-n-1000);
+    --bx-surface:         var(--bx-n-950);
+    --bx-surface-sunken:  var(--bx-n-1000);
+    --bx-surface-raised:  var(--bx-n-900);
+    --bx-surface-hover:   var(--bx-n-900);
+    --bx-surface-active:  var(--bx-n-800);
+    --bx-surface-inverse: var(--bx-n-100);
+    --bx-surface-accent:  var(--bx-a-900);
+
+    --bx-ink:         var(--bx-n-100);
+    --bx-ink-muted:   var(--bx-n-300);
+    --bx-ink-subtle:  var(--bx-n-400);
+    --bx-ink-faint:   var(--bx-n-500);
+    --bx-ink-inverse: var(--bx-n-1000);
+    --bx-ink-inverse-muted: var(--bx-n-600);
+    --bx-ink-accent:  var(--bx-a-300);
+    --bx-ink-danger:  #ff8389;
+    --bx-ink-warning: var(--bx-y-100);
+    --bx-ink-success: var(--bx-g-100);
+
+    --bx-line:        var(--bx-n-800);
+    --bx-line-subtle: var(--bx-n-900);
+    --bx-line-strong: var(--bx-n-700);
+    --bx-line-heavy:  var(--bx-n-400);
+    --bx-line-accent: var(--bx-a-400);
+
+    --bx-accent-hover:  var(--bx-a-400);
+    --bx-accent-active: var(--bx-a-300);
+    --bx-accent-soft:   var(--bx-a-900);
+
+    --bx-danger-hover: #ff8389;
+    --bx-danger-soft:  #2d0709;
+    --bx-warning-soft: #302200;
+    --bx-success-soft: #071f12;
+
+    --bx-focus:         var(--bx-a-300);
+    --bx-focus-inverse: var(--bx-n-1000);
+
+    --bx-shadow-color: rgba(0, 0, 0, 0.72);
+    --bx-scrim:        rgba(0, 0, 0, 0.72);
+    --bx-grid-line:    rgba(246, 247, 248, 0.055);
+    --bx-selection:    var(--bx-a-800);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. ELEVATION - hard offsets only. Never a blur radius.
+   -------------------------------------------------------------------------- */
+:root {
+  --bx-shadow-0: none;
+  --bx-shadow-1: 0 1px 0 0 var(--bx-line);
+  --bx-shadow-2: 2px 2px 0 0 var(--bx-shadow-color);
+  --bx-shadow-3: 4px 4px 0 0 var(--bx-shadow-color);
+  --bx-shadow-6: 8px 8px 0 0 var(--bx-shadow-color);
+  --bx-ring:        inset 0 0 0 1px var(--bx-line);
+  --bx-ring-accent: inset 0 0 0 1px var(--bx-line-accent);
+}
+
+/* --------------------------------------------------------------------------
+   5. MODES - one system, three postures. Set data-mode on <html> or a section.
+   -------------------------------------------------------------------------- */
+[data-mode="blueprint"] {
+  --bx-section-y: var(--bx-space-10);
+  --bx-grid-show: 1;
+  --bx-display-size: var(--bx-text-4xl);
+}
+[data-mode="industrial"] {
+  --bx-grid-columns: 16;
+  --bx-section-y: var(--bx-space-9);
+  --bx-grid-show: 0;
+  --bx-display-size: var(--bx-text-3xl);
+  --bx-gutter: var(--bx-space-4);
+}
+[data-mode="editorial"] {
+  --bx-section-y: var(--bx-space-13);
+  --bx-grid-show: 0;
+  --bx-display-size: var(--bx-text-6xl);
+  --bx-gutter: var(--bx-space-6);
+}
+
+/* --------------------------------------------------------------------------
+   6. RESET - minimal, opinionated
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+
+html { -webkit-text-size-adjust: 100%; tab-size: 2; }
+
+body {
+  margin: 0;
+  background: var(--bx-canvas);
+  color: var(--bx-ink);
+  font-family: var(--bx-font-sans);
+  font-size: var(--bx-text-md);
+  line-height: var(--bx-lh-md);
+  letter-spacing: var(--bx-track-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--bx-selection); color: var(--bx-ink); }
+
+:where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  font-family: var(--bx-font-display);
+  font-weight: var(--bx-weight-semibold);
+  letter-spacing: var(--bx-track-heading);
+  text-wrap: balance;
+}
+h1 { font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); letter-spacing: var(--bx-track-display); }
+h2 { font-size: var(--bx-text-3xl); line-height: var(--bx-lh-3xl); }
+h3 { font-size: var(--bx-text-xl);  line-height: var(--bx-lh-xl); }
+h4 { font-size: var(--bx-text-md);  line-height: var(--bx-lh-md); }
+h5, h6 { font-size: var(--bx-text-base); line-height: var(--bx-lh-base); }
+
+:where(p, ul, ol, pre, figure, table) { margin: 0; }
+:where(p) { text-wrap: pretty; }
+
+:where(a) { color: var(--bx-ink-accent); text-decoration: none; text-underline-offset: 3px; }
+:where(a:hover) { text-decoration: underline; }
+
+:where(code, kbd, samp, pre) { font-family: var(--bx-font-mono); font-size: 0.9em; }
+
+:where(img, svg, video, canvas) { display: block; max-width: 100%; }
+
+:where(button, input, select, textarea) { font: inherit; color: inherit; }
+
+hr { border: 0; border-top: var(--bx-border) solid var(--bx-line); margin: 0; }
+
+/* Focus - a hard, offset, high-contrast square. Never removed. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--bx-focus-width) solid var(--bx-focus);
+  outline-offset: var(--bx-focus-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. PRIMITIVE UTILITIES - the small set worth having
+   -------------------------------------------------------------------------- */
+.bx-mono {
+  font-family: var(--bx-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.bx-label {
+  font-family: var(--bx-font-mono);
+  font-size: var(--bx-text-xs);
+  line-height: var(--bx-lh-xs);
+  font-weight: var(--bx-weight-medium);
+  letter-spacing: var(--bx-track-label);
+  text-transform: uppercase;
+  color: var(--bx-ink-subtle);
+}
+
+.bx-num { font-variant-numeric: tabular-nums; }
+
+.bx-container {
+  width: 100%;
+  max-width: var(--bx-container);
+  margin-inline: auto;
+  padding-inline: var(--bx-space-4);
+}
+@media (min-width: 768px) { .bx-container { padding-inline: var(--bx-space-6); } }
+
+/* The rail: page-wide vertical hairlines that everything hangs from */
+.bx-rail { border-inline: var(--bx-border) solid var(--bx-line-subtle); }
+
+.bx-section {
+  padding-block: var(--bx-section-y);
+  border-bottom: var(--bx-border) solid var(--bx-line);
+}
+
+/* Blueprint substrate */
+.bx-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--bx-grid-line) var(--bx-border), transparent var(--bx-border)),
+    linear-gradient(to bottom, var(--bx-grid-line) var(--bx-border), transparent var(--bx-border));
+  background-size: var(--bx-grid-unit) var(--bx-grid-unit);
+}
+.bx-grid-bg--lg { --bx-grid-unit: 32px; }
+
+.bx-dot-bg {
+  background-image: radial-gradient(var(--bx-grid-line) 1px, transparent 1px);
+  background-size: var(--bx-grid-unit) var(--bx-grid-unit);
+}
+
+/* Corner ticks - crosshair marks at the corners of a box */
+.bx-ticks { position: relative; }
+.bx-ticks::before,
+.bx-ticks::after {
+  content: "";
+  position: absolute;
+  inline-size: 7px;
+  block-size: 7px;
+  border: var(--bx-border) solid var(--bx-line-heavy);
+  pointer-events: none;
+}
+.bx-ticks::before { inset-block-start: -4px; inset-inline-start: -4px; border-inline-end: 0; border-block-end: 0; }
+.bx-ticks::after  { inset-block-end: -4px;   inset-inline-end: -4px;   border-inline-start: 0; border-block-start: 0; }
+
+/* Collapse adjacent borders so lines are never doubled */
+.bx-collapse { display: grid; gap: var(--bx-border); background: var(--bx-line); }
+.bx-collapse > * { background: var(--bx-surface); }
+
+/* Screen-reader only */
+.bx-sr {
+  position: absolute; inline-size: 1px; block-size: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}

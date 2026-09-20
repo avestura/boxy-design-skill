@@ -1,0 +1,24 @@
+{
+  "name": "boxy",
+  "version": "1.0.0",
+  "description": "Sharp-edged, zero-radius design system for AI-built UI — hairline structure, blueprint detailing, and a disciplined neutral palette. In the spirit of Zed, Stripe and IBM Carbon.",
+  "author": {
+    "name": "avestura",
+    "url": "https://github.com/avestura"
+  },
+  "homepage": "https://avestura.github.io/boxy-design-skill/",
+  "repository": "https://github.com/avestura/boxy-design-skill",
+  "license": "MIT",
+  "keywords": [
+    "design-system",
+    "ui",
+    "ux",
+    "css",
+    "design-tokens",
+    "brutalist",
+    "carbon",
+    "zed",
+    "stripe",
+    "accessibility"
+  ]
+}

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-mode="blueprint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokens — Boxy</title>
+<meta name="description" content="Every Boxy token: the neutral and accent ramps with live contrast ratios, the type scale, the 4px space scale, elevation, motion and density.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+    <nav class="site-nav hide-sm" aria-label="Primary">
+      <a href="index.html">Overview</a>
+      <a href="tokens.html" aria-current="page">Tokens</a>
+      <a href="components.html">Components</a>
+      <a href="patterns.html">Patterns</a>
+    </nav>
+    <span class="site-head__spacer"></span>
+    <div class="site-controls">
+      <button class="ctl hide-sm" data-act="mode" title="Cycle mode">mode <span class="val">blueprint</span></button>
+      <button class="ctl hide-sm" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
+      <button class="ctl" data-act="theme" title="Toggle theme"><span class="val">light</span></button>
+      <a class="ctl ctl--icon" href="https://github.com/avestura/boxy-design-skill" aria-label="GitHub repository">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="site">
+<main id="main" class="site-main">
+
+  <section class="sec sec--tight">
+    <p class="bx-label">Reference</p>
+    <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Tokens</h1>
+    <p class="lede mt-4" style="max-inline-size: 64ch">
+      Two layers. <b>Primitives</b> are raw values, referenced only inside the token
+      file. <b>Roles</b> are what component code uses. Writing
+      <code>var(--bx-n-600)</code> in a component is a violation — reach for
+      <code>var(--bx-ink-subtle)</code>.
+    </p>
+    <div class="row mt-6">
+      <a class="bx-btn" href="assets/boxy.css" download>boxy.css</a>
+      <a class="bx-btn" href="assets/design-tokens.json" download>design-tokens.json</a>
+      <span class="bx-label">contrast ratios below are computed live against the light theme</span>
+    </div>
+  </section>
+
+  <!-- ====================================================== NEUTRAL RAMP -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">01 / Color primitives</p>
+      <h2>The neutral ramp does 95% of the work</h2>
+      <p>A cool gray, 13 stops. Every surface, every line, every piece of text on a
+      Boxy page comes from here.</p>
+    </div>
+
+    <!-- boxy-ignore-start: a color reference page prints hex on purpose -->
+    <div class="swatches">
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-0)"></div><div class="swatch__meta"><div class="swatch__name">n-0</div><div class="swatch__hex">#ffffff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-50)"></div><div class="swatch__meta"><div class="swatch__name">n-50</div><div class="swatch__hex">#f6f7f8</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-100)"></div><div class="swatch__meta"><div class="swatch__name">n-100</div><div class="swatch__hex">#eceef0</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-200)"></div><div class="swatch__meta"><div class="swatch__name">n-200</div><div class="swatch__hex">#dde1e4</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-300)"></div><div class="swatch__meta"><div class="swatch__name">n-300</div><div class="swatch__hex">#c7ccd1</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-400)"></div><div class="swatch__meta"><div class="swatch__name">n-400</div><div class="swatch__hex">#a6aeb5</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-500)"></div><div class="swatch__meta"><div class="swatch__name">n-500</div><div class="swatch__hex">#7f8993</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-600)"></div><div class="swatch__meta"><div class="swatch__name">n-600</div><div class="swatch__hex">#616b75</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-700)"></div><div class="swatch__meta"><div class="swatch__name">n-700</div><div class="swatch__hex">#4a535b</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-800)"></div><div class="swatch__meta"><div class="swatch__name">n-800</div><div class="swatch__hex">#343b41</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-900)"></div><div class="swatch__meta"><div class="swatch__name">n-900</div><div class="swatch__hex">#23282d</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-950)"></div><div class="swatch__meta"><div class="swatch__name">n-950</div><div class="swatch__hex">#16191c</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-1000)"></div><div class="swatch__meta"><div class="swatch__name">n-1000</div><div class="swatch__hex">#0b0d0f</div></div></div>
+    </div>
+
+    <p class="bx-label mt-8">Accent — interaction only, under 5% of painted pixels</p>
+    <div class="swatches mt-2">
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-50)"></div><div class="swatch__meta"><div class="swatch__name">a-50</div><div class="swatch__hex">#edf5ff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-100)"></div><div class="swatch__meta"><div class="swatch__name">a-100</div><div class="swatch__hex">#d0e2ff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-200)"></div><div class="swatch__meta"><div class="swatch__name">a-200</div><div class="swatch__hex">#a6c8ff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-300)"></div><div class="swatch__meta"><div class="swatch__name">a-300</div><div class="swatch__hex">#78a9ff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-400)"></div><div class="swatch__meta"><div class="swatch__name">a-400</div><div class="swatch__hex">#4589ff</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-500)"></div><div class="swatch__meta"><div class="swatch__name">a-500</div><div class="swatch__hex">#0f62fe</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-600)"></div><div class="swatch__meta"><div class="swatch__name">a-600</div><div class="swatch__hex">#0043ce</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-700)"></div><div class="swatch__meta"><div class="swatch__name">a-700</div><div class="swatch__hex">#002d9c</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-800)"></div><div class="swatch__meta"><div class="swatch__name">a-800</div><div class="swatch__hex">#001d6c</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-900)"></div><div class="swatch__meta"><div class="swatch__name">a-900</div><div class="swatch__hex">#001141</div></div></div>
+    </div>
+
+    <p class="bx-label mt-8">Semantic — always paired with an icon or a word, never color alone</p>
+    <div class="swatches mt-2">
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-r-50)"></div><div class="swatch__meta"><div class="swatch__name">red-50</div><div class="swatch__hex">#fff1f1</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-r-500)"></div><div class="swatch__meta"><div class="swatch__name">red-500</div><div class="swatch__hex">#da1e28</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-r-600)"></div><div class="swatch__meta"><div class="swatch__name">red-600</div><div class="swatch__hex">#a2191f</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-y-50)"></div><div class="swatch__meta"><div class="swatch__name">yel-50</div><div class="swatch__hex">#fcf4d6</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-y-500)"></div><div class="swatch__meta"><div class="swatch__name">yel-500</div><div class="swatch__hex">#f1c21b</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-y-700)"></div><div class="swatch__meta"><div class="swatch__name">yel-700</div><div class="swatch__hex">#8e6a00</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-g-50)"></div><div class="swatch__meta"><div class="swatch__name">grn-50</div><div class="swatch__hex">#defbe6</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-g-500)"></div><div class="swatch__meta"><div class="swatch__name">grn-500</div><div class="swatch__hex">#24a148</div></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background: var(--bx-g-600)"></div><div class="swatch__meta"><div class="swatch__name">grn-600</div><div class="swatch__hex">#198038</div></div></div>
+    </div>
+    <!-- boxy-ignore-end -->
+  </section>
+
+  <!-- ============================================================= ROLES -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">02 / Color roles</p>
+      <h2>The only color names component code may use</h2>
+      <p>Ratios are computed in the browser against the light-theme canvas. Switch
+      the theme in the header and every swatch below follows.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 0">
+        <div style="padding: 16px 24px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line)"><span class="bx-label">Ink</span></div>
+        <!-- boxy-ignore-start: contrast pairs are declared as literal hex so the ratio is verifiable -->
+        <table class="bx-table">
+          <thead><tr><th>Token</th><th>Sample</th><th class="num">On canvas</th></tr></thead>
+          <tbody>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink</td><td style="color: var(--bx-ink)">Primary text</td><td class="num bx-mono" data-contrast="#23282d|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-muted</td><td style="color: var(--bx-ink-muted)">Secondary text</td><td class="num bx-mono" data-contrast="#4a535b|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-subtle</td><td style="color: var(--bx-ink-subtle)">Labels, captions</td><td class="num bx-mono" data-contrast="#616b75|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-faint</td><td style="color: var(--bx-ink-faint)">Disabled only</td><td class="num bx-mono" data-contrast="#7f8993|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-accent</td><td style="color: var(--bx-ink-accent)">Links</td><td class="num bx-mono" data-contrast="#0043ce|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-danger</td><td style="color: var(--bx-ink-danger)">Error text</td><td class="num bx-mono" data-contrast="#a2191f|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-warning</td><td style="color: var(--bx-ink-warning)">Warning text</td><td class="num bx-mono" data-contrast="#8e6a00|#ffffff"></td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-success</td><td style="color: var(--bx-ink-success)">Success text</td><td class="num bx-mono" data-contrast="#198038|#ffffff"></td></tr>
+          </tbody>
+        </table>
+        <!-- boxy-ignore-end -->
+      </div>
+
+      <div style="padding: 0">
+        <div style="padding: 16px 24px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line)"><span class="bx-label">Surface &amp; line</span></div>
+        <table class="bx-table">
+          <thead><tr><th>Token</th><th>Sample</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-canvas</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-canvas);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Page</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Cards, panels</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-sunken</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-sunken);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Wells, headers</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-raised</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-raised);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Popovers, modals</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-inverse</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-inverse);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Emphasis blocks</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-subtle</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-subtle)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Row rules</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Default border</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-strong</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-strong)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">State borders</td></tr>
+            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-heavy</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-heavy)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Ticks, frames</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bx-callout bx-callout--warning mt-6" style="max-inline-size: 760px">
+      <span class="bx-mono" aria-hidden="true">!</span>
+      <div>
+        <p style="font-weight: 600"><code>--bx-ink-faint</code> fails AA for text by design</p>
+        <p class="mt-2" style="font-size: var(--bx-text-base)">
+          At 3.6:1 it is for disabled controls and decorative glyphs. A border that
+          conveys state must clear 3:1, which is why state borders use
+          <code>--bx-line-accent</code>, <code>--bx-danger</code> or
+          <code>--bx-line-heavy</code> rather than <code>--bx-line</code>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== TYPE -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">03 / Type</p>
+      <h2>Inter, Inter Tight, JetBrains Mono</h2>
+      <p>Thirteen steps. Every line-height snaps to 4px. Tracking tightens as size
+      grows and opens up only for mono labels.</p>
+    </div>
+
+    <div class="bx-table-wrap">
+      <table class="bx-table">
+        <thead><tr><th style="inline-size: 140px">Token</th><th style="inline-size: 96px" class="num">Size / LH</th><th>Specimen</th></tr></thead>
+        <tbody>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-7xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">96 / 92</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-7xl); line-height: var(--bx-lh-7xl); letter-spacing: var(--bx-track-display); font-weight: 600">Boxy</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-6xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">72 / 72</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-6xl); line-height: var(--bx-lh-6xl); letter-spacing: var(--bx-track-display); font-weight: 600">Editorial hero</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-5xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">54 / 56</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-5xl); line-height: var(--bx-lh-5xl); letter-spacing: var(--bx-track-display); font-weight: 600">Sub-hero</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-4xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">40 / 44</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); letter-spacing: var(--bx-track-display); font-weight: 600">Page heading</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-3xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">32 / 36</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-3xl); line-height: var(--bx-lh-3xl); letter-spacing: var(--bx-track-heading); font-weight: 600">Section heading</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-2xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">24 / 32</td><td style="font-family: var(--bx-font-display); font-size: var(--bx-text-2xl); line-height: var(--bx-lh-2xl); letter-spacing: var(--bx-track-heading); font-weight: 600">App page title</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">20 / 28</td><td style="font-size: var(--bx-text-xl); line-height: var(--bx-lh-xl); font-weight: 600">Card title</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-lg</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">18 / 28</td><td style="font-size: var(--bx-text-lg); line-height: var(--bx-lh-lg)">Lead paragraph, large body copy</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-md</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">16 / 24</td><td style="font-size: var(--bx-text-md); line-height: var(--bx-lh-md)">Default body copy for reading</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-base</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">14 / 20</td><td style="font-size: var(--bx-text-base); line-height: var(--bx-lh-base)">Default UI text — controls, tables, navigation</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-sm</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">12 / 16</td><td style="font-size: var(--bx-text-sm); line-height: var(--bx-lh-sm)">Captions, helper text, dense tables</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-xs</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">11 / 16</td><td class="bx-label">Mono label, eyebrow, table header</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-2xs</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">10 / 14</td><td class="bx-label" style="font-size: var(--bx-text-2xs)">Micro annotation, dimension label</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3 mt-8">
+      <div style="padding: 24px">
+        <p class="bx-label">The mono label</p>
+        <p class="mt-4 bx-label" style="font-size: var(--bx-text-xs)">01 / Architecture</p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          11px mono, 0.08em, uppercase, <code>--bx-ink-subtle</code>. Never longer
+          than 32 characters, never on running prose.
+        </p>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label">Tabular numerals</p>
+        <p class="bx-mono mt-4" style="font-size: var(--bx-text-2xl); font-weight: 500">1,284.00</p>
+        <p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500">9,011.75</p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Every figure in a table, metric or price. Digits line up in columns.
+        </p>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label">Inverted emphasis</p>
+        <p class="mt-4" style="font-size: var(--bx-text-lg)">
+          The Boxy answer to a
+          <span style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse); padding-inline: 4px">highlighter</span>.
+        </p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">
+          Not a colored background, not a gradient. A solid inverted block.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= SPACE -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">04 / Space</p>
+      <h2>One 4px scale for every gap in the system</h2>
+      <p>Seventeen steps. A value outside this list is a lint warning, and usually a
+      sign the layout is wrong rather than the number.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-mono">space-1</span> <span class="subtle">4px</span></dt><dd><span style="display:block;block-size:16px;inline-size:4px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Tightest gap, chip internals</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-2</span> <span class="subtle">8px</span></dt><dd><span style="display:block;block-size:16px;inline-size:8px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Icon-to-label, tag padding</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-3</span> <span class="subtle">12px</span></dt><dd><span style="display:block;block-size:16px;inline-size:12px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Control padding, table cell</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-4</span> <span class="subtle">16px</span></dt><dd><span style="display:block;block-size:16px;inline-size:16px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Control padding, compact card</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-5</span> <span class="subtle">24px</span></dt><dd><span style="display:block;block-size:16px;inline-size:24px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Card padding, stack gap, gutter</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-6</span> <span class="subtle">32px</span></dt><dd><span style="display:block;block-size:16px;inline-size:32px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Roomy card, group separation</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-8</span> <span class="subtle">48px</span></dt><dd><span style="display:block;block-size:16px;inline-size:48px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Sub-section spacing</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-9</span> <span class="subtle">64px</span></dt><dd><span style="display:block;block-size:16px;inline-size:64px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Industrial section padding</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-11</span> <span class="subtle">96px</span></dt><dd><span style="display:block;block-size:16px;inline-size:96px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Default section padding</span></dd></div>
+      <div class="spec"><dt><span class="bx-mono">space-13</span> <span class="subtle">160px</span></dt><dd><span style="display:block;block-size:16px;inline-size:160px;background:var(--bx-accent)"></span><span class="subtle" style="font-size: var(--bx-text-sm)">Editorial section padding</span></dd></div>
+    </dl>
+  </section>
+
+  <!-- ========================================================= ELEVATION -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">05 / Elevation</p>
+      <h2>Hard offsets. Never a blur radius.</h2>
+      <p>The offset is always positive on both axes, so the implied light source is
+      consistent across the whole interface. A floating element always carries a 1px
+      border in addition to its shadow.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--4">
+      <div style="padding: 32px; display: grid; place-items: center; gap: 24px">
+        <div style="inline-size: 88px; block-size: 56px; background: var(--bx-surface); border: 1px solid var(--bx-line)"></div>
+        <div style="text-align: center"><p class="bx-label">shadow-0</p><p class="subtle bx-mono" style="font-size: var(--bx-text-2xs)">none</p></div>
+      </div>
+      <div style="padding: 32px; display: grid; place-items: center; gap: 24px">
+        <div style="inline-size: 88px; block-size: 56px; background: var(--bx-surface); border: 1px solid var(--bx-line); box-shadow: var(--bx-shadow-2)"></div>
+        <div style="text-align: center"><p class="bx-label">shadow-2</p><p class="subtle bx-mono" style="font-size: var(--bx-text-2xs)">2px 2px 0 0</p></div>
+      </div>
+      <div style="padding: 32px; display: grid; place-items: center; gap: 24px">
+        <div style="inline-size: 88px; block-size: 56px; background: var(--bx-surface); border: 1px solid var(--bx-line); box-shadow: var(--bx-shadow-3)"></div>
+        <div style="text-align: center"><p class="bx-label">shadow-3</p><p class="subtle bx-mono" style="font-size: var(--bx-text-2xs)">4px 4px 0 0</p></div>
+      </div>
+      <div style="padding: 32px; display: grid; place-items: center; gap: 24px">
+        <div style="inline-size: 88px; block-size: 56px; background: var(--bx-surface); border: 1px solid var(--bx-line); box-shadow: var(--bx-shadow-6)"></div>
+        <div style="text-align: center"><p class="bx-label">shadow-6</p><p class="subtle bx-mono" style="font-size: var(--bx-text-2xs)">8px 8px 0 0</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ MOTION -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">06 / Motion &amp; density</p>
+      <h2>Four durations, three curves</h2>
+      <p>Hover the squares. <code>linear</code> is the house easing — no acceleration
+      means no implied weight, which is what makes it read as mechanical.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--4">
+      <div style="padding: 24px"><p class="bx-label">dur-1 / 80ms</p><div class="mt-4" style="block-size: 40px; background: var(--bx-surface-sunken); border: 1px solid var(--bx-line); transition: background-color 80ms linear"
+        onmouseover="this.style.background='var(--bx-accent)'" onmouseout="this.style.background='var(--bx-surface-sunken)'"></div><p class="subtle mt-2" style="font-size: var(--bx-text-sm)">Hover, focus, color</p></div>
+      <div style="padding: 24px"><p class="bx-label">dur-2 / 120ms</p><div class="mt-4" style="block-size: 40px; background: var(--bx-surface-sunken); border: 1px solid var(--bx-line); transition: background-color 120ms linear"
+        onmouseover="this.style.background='var(--bx-accent)'" onmouseout="this.style.background='var(--bx-surface-sunken)'"></div><p class="subtle mt-2" style="font-size: var(--bx-text-sm)">Default</p></div>
+      <div style="padding: 24px"><p class="bx-label">dur-3 / 160ms</p><div class="mt-4" style="block-size: 40px; background: var(--bx-surface-sunken); border: 1px solid var(--bx-line); transition: background-color 160ms cubic-bezier(0.2,0,0,1)"
+        onmouseover="this.style.background='var(--bx-accent)'" onmouseout="this.style.background='var(--bx-surface-sunken)'"></div><p class="subtle mt-2" style="font-size: var(--bx-text-sm)">Panels, modals</p></div>
+      <div style="padding: 24px"><p class="bx-label">dur-4 / 240ms</p><div class="mt-4" style="block-size: 40px; background: var(--bx-surface-sunken); border: 1px solid var(--bx-line); transition: background-color 240ms linear"
+        onmouseover="this.style.background='var(--bx-accent)'" onmouseout="this.style.background='var(--bx-surface-sunken)'"></div><p class="subtle mt-2" style="font-size: var(--bx-text-sm)">Scrim. The ceiling.</p></div>
+    </div>
+
+    <p class="bx-label mt-8">Control heights — toggle density in the header</p>
+    <div class="bx-collapse bx-collapse--3 mt-2">
+      <div style="padding: 24px"><p class="bx-label">control-sm</p><button class="bx-btn bx-btn--sm mt-4">Small</button></div>
+      <div style="padding: 24px"><p class="bx-label">control-md</p><button class="bx-btn mt-4">Medium</button></div>
+      <div style="padding: 24px"><p class="bx-label">control-lg</p><button class="bx-btn bx-btn--lg mt-4">Large</button></div>
+    </div>
+  </section>
+
+  <!-- ========================================================= REBRANDING -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">07 / Extending</p>
+      <h2>Rebrand by overriding roles, never primitives</h2>
+    </div>
+    <div class="code" style="max-inline-size: 760px">
+      <div class="code__head"><span class="bx-label">your-theme.css</span></div>
+<!-- boxy-ignore-start: the rebrand example must show literal values -->
+<pre><s>[data-theme="light"]</s> {
+  <b>--bx-accent</b>:        #b5252b;
+  <b>--bx-accent-hover</b>:  #8e1d22;
+  <b>--bx-accent-active</b>: #6b1519;
+  <b>--bx-accent-soft</b>:   #fdf0f0;
+  <b>--bx-ink-accent</b>:    #8e1d22;  <i>/* must clear 4.5:1 on canvas */</i>
+  <b>--bx-line-accent</b>:   #b5252b;
+  <b>--bx-focus</b>:         #b5252b;
+}</pre>
+<!-- boxy-ignore-end -->
+    </div>
+    <p class="muted mt-5" style="max-inline-size: 64ch">
+      Before shipping a new accent, verify three things: <code>--bx-ink-accent</code>
+      clears 4.5:1 on the canvas in both themes, <code>--bx-on-accent</code> clears
+      4.5:1 on the accent fill, and <code>--bx-focus</code> clears 3:1 on both the
+      canvas and the inverse surface.
+    </p>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__cols">
+      <div>
+        <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base); max-inline-size: 36ch">
+          A sharp-edged design system for AI coding agents. Inspired by Zed, Stripe
+          and IBM Carbon.
+        </p>
+      </div>
+      <div><p class="bx-label">Reference</p><ul><li><a href="tokens.html">Tokens</a></li><li><a href="components.html">Components</a></li><li><a href="patterns.html">Patterns</a></li></ul></div>
+      <div><p class="bx-label">Install</p><ul><li><a href="https://github.com/avestura/boxy-design-skill">GitHub</a></li><li><a href="https://www.npmjs.com/package/boxy-design">npm</a></li><li><a href="install.sh">install.sh</a></li></ul></div>
+      <div><p class="bx-label">Credits</p><ul><li><a href="https://zed.dev">Zed</a></li><li><a href="https://stripe.com">Stripe</a></li><li><a href="https://carbondesignsystem.com">IBM Carbon</a></li></ul></div>
+    </div>
+    <div class="site-foot__bar">
+      <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
+      <span class="bx-label">v1.0.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+    </div>
+  </footer>
+
+</main>
+</div>
+<script src="assets/site.js"></script>
+</body>
+</html>

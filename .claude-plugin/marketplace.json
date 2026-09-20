@@ -1,0 +1,26 @@
+{
+  "name": "boxy-design-skill",
+  "owner": {
+    "name": "avestura",
+    "url": "https://github.com/avestura"
+  },
+  "metadata": {
+    "description": "The Boxy design system, packaged as an installable skill.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "boxy",
+      "source": "./",
+      "description": "Sharp-edged, zero-radius design system for AI-built UI — hairline structure, blueprint detailing, and a disciplined neutral palette.",
+      "version": "1.0.0",
+      "author": {
+        "name": "avestura"
+      },
+      "homepage": "https://avestura.github.io/boxy-design-skill/",
+      "license": "MIT",
+      "category": "design",
+      "keywords": ["design-system", "ui", "ux", "css", "design-tokens", "accessibility"]
+    }
+  ]
+}

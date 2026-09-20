@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en" data-mode="blueprint">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patterns — Boxy</title>
+<meta name="description" content="Whole-page Boxy layouts: an industrial dashboard shell, an editorial landing section, a docs layout, an auth screen and a settings page.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="site-head__inner">
+    <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+    <nav class="site-nav hide-sm" aria-label="Primary">
+      <a href="index.html">Overview</a>
+      <a href="tokens.html">Tokens</a>
+      <a href="components.html">Components</a>
+      <a href="patterns.html" aria-current="page">Patterns</a>
+    </nav>
+    <span class="site-head__spacer"></span>
+    <div class="site-controls">
+      <button class="ctl hide-sm" data-act="mode" title="Cycle mode">mode <span class="val">blueprint</span></button>
+      <button class="ctl hide-sm" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
+      <button class="ctl" data-act="theme" title="Toggle theme"><span class="val">light</span></button>
+      <a class="ctl ctl--icon" href="https://github.com/avestura/boxy-design-skill" aria-label="GitHub repository">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="site">
+<main id="main" class="site-main">
+
+  <section class="sec sec--tight">
+    <p class="bx-label">Reference</p>
+    <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Patterns</h1>
+    <p class="lede mt-4" style="max-inline-size: 64ch">
+      Whole layouts, each in the mode it belongs to. Every one of these is assembled
+      from the same tokens and components — the difference is rhythm, density and
+      display scale, not a different system.
+    </p>
+  </section>
+
+  <!-- ======================================================== DASHBOARD -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">01 / App shell &mdash; industrial</p>
+      <h2>Dashboard</h2>
+      <p>48px top bar, 256px sidebar, both separated by 1px rules. Compact density,
+      sticky mono table headers, status as a square plus a word.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">console.example.com/services</span>
+      </div>
+      <div class="frame__body" data-mode="industrial" data-density="compact" style="background: var(--bx-canvas)">
+        <div style="display: grid; grid-template-columns: 200px 1fr; min-block-size: 520px">
+
+          <aside style="border-inline-end: 1px solid var(--bx-line); background: var(--bx-surface)">
+            <div style="height: 40px; display: flex; align-items: center; gap: 8px; padding-inline: 12px; border-block-end: 1px solid var(--bx-line)">
+              <span style="inline-size: 14px; block-size: 14px; border: 2px solid var(--bx-ink)"></span>
+              <span style="font-family: var(--bx-font-display); font-weight: 700; font-size: var(--bx-text-base); letter-spacing: -0.02em">ORBIT</span>
+            </div>
+            <p class="bx-label" style="height: 24px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line-subtle)">Platform</p>
+            <nav aria-label="Sidebar">
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink); font-weight: 500; background: var(--bx-surface-active); box-shadow: inset 2px 0 0 0 var(--bx-accent); text-decoration: none">Services</a>
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Deployments</a>
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Databases</a>
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Logs</a>
+            </nav>
+            <p class="bx-label" style="height: 24px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-surface-sunken); border-block: 1px solid var(--bx-line-subtle)">Account</p>
+            <nav aria-label="Account">
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Members</a>
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Billing</a>
+              <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Settings</a>
+            </nav>
+          </aside>
+
+          <div>
+            <header style="height: 40px; display: flex; align-items: center; gap: 12px; padding-inline: 16px; border-block-end: 1px solid var(--bx-line); background: var(--bx-surface)">
+              <nav aria-label="Breadcrumb" class="bx-mono" style="font-size: var(--bx-text-sm); color: var(--bx-ink-subtle)">
+                acme <span style="color: var(--bx-ink-faint)">/</span> production <span style="color: var(--bx-ink-faint)">/</span> <span style="color: var(--bx-ink)">services</span>
+              </nav>
+              <span style="flex: 1"></span>
+              <span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">4 healthy</span>
+              <span class="bx-tag bx-tag--sm">us-east-1</span>
+            </header>
+
+            <div style="padding: 16px">
+              <div class="row" style="justify-content: space-between; margin-block-end: 16px">
+                <div>
+                  <h3 style="font-size: var(--bx-text-xl)">Services</h3>
+                  <p class="subtle" style="font-size: var(--bx-text-sm); margin-block-start: 2px">6 services across 3 regions</p>
+                </div>
+                <div class="bx-btn-group">
+                  <button class="bx-btn bx-btn--sm">Filter</button>
+                  <button class="bx-btn bx-btn--sm bx-btn--primary">New service</button>
+                </div>
+              </div>
+
+              <div class="bx-collapse bx-collapse--4" style="margin-block-end: 16px">
+                <div style="padding: 12px 16px"><p class="bx-label">Requests / 24h</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500; margin-block-start: 4px">2.41<span class="subtle" style="font-size: var(--bx-text-sm)">M</span></p></div>
+                <div style="padding: 12px 16px"><p class="bx-label">p95 latency</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500; margin-block-start: 4px">88<span class="subtle" style="font-size: var(--bx-text-sm)">ms</span></p></div>
+                <div style="padding: 12px 16px"><p class="bx-label">Error rate</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500; margin-block-start: 4px">0.04<span class="subtle" style="font-size: var(--bx-text-sm)">%</span></p></div>
+                <div style="padding: 12px 16px"><p class="bx-label">Spend / mo</p><p class="bx-mono" style="font-size: var(--bx-text-2xl); font-weight: 500; margin-block-start: 4px"><span class="subtle" style="font-size: var(--bx-text-sm)">$</span>1,284</p></div>
+              </div>
+
+              <div class="bx-table-wrap">
+                <table class="bx-table">
+                  <thead><tr><th>Service</th><th>Region</th><th>Status</th><th class="num">p95</th><th class="num">Requests</th></tr></thead>
+                  <tbody>
+                    <tr><td class="bx-mono">edge-router</td><td>us-east-1</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Healthy</span></td><td class="num">41 ms</td><td class="num">2,410,882</td></tr>
+                    <tr><td class="bx-mono">api-gateway</td><td>eu-west-2</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Healthy</span></td><td class="num">88 ms</td><td class="num">1,092,441</td></tr>
+                    <tr><td class="bx-mono">image-proxy</td><td>ap-south-1</td><td><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)">Degraded</span></td><td class="num">612 ms</td><td class="num">318,204</td></tr>
+                    <tr><td class="bx-mono">webhook-fanout</td><td>us-east-1</td><td><span class="bx-status bx-status--down" style="font-size: var(--bx-text-sm)">Failing</span></td><td class="num">&mdash;</td><td class="num">0</td></tr>
+                    <tr><td class="bx-mono">cron-worker</td><td>eu-west-2</td><td><span class="bx-status bx-status--idle" style="font-size: var(--bx-text-sm)">Paused</span></td><td class="num">&mdash;</td><td class="num">0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== LANDING -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">02 / Marketing &mdash; editorial</p>
+      <h2>Landing</h2>
+      <p>Split hero with a 1px rule between columns, a collapsed feature grid so the
+      whole section reads as one ruled table, and exactly one inverted CTA band.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev</span>
+      </div>
+      <div class="frame__body" data-mode="editorial">
+
+        <header style="height: 56px; display: flex; align-items: center; gap: 24px; padding-inline: 32px; border-block-end: 1px solid var(--bx-line); background: var(--bx-surface)">
+          <span style="display: flex; align-items: center; gap: 8px; font-family: var(--bx-font-display); font-weight: 700; letter-spacing: -0.02em">
+            <span style="inline-size: 16px; block-size: 16px; border: 2px solid var(--bx-ink)"></span>ORBIT
+          </span>
+          <nav class="hide-sm" style="display: flex; gap: 20px; font-size: var(--bx-text-base); color: var(--bx-ink-muted)">
+            <span>Product</span><span>Pricing</span><span>Docs</span><span>Changelog</span>
+          </nav>
+          <span style="flex: 1"></span>
+          <div class="bx-btn-group"><span class="bx-btn bx-btn--sm">Sign in</span><span class="bx-btn bx-btn--sm bx-btn--primary">Start free</span></div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 7fr 5fr; border-block-end: 1px solid var(--bx-line)">
+          <div style="padding: 64px 32px">
+            <p class="bx-label">Infrastructure</p>
+            <p style="font-family: var(--bx-font-display); font-size: var(--bx-text-5xl); line-height: 1.02; letter-spacing: -0.03em; font-weight: 600; max-inline-size: 13ch; margin-block-start: 20px">
+              Ship to the edge in one command
+            </p>
+            <p class="muted mt-5" style="font-size: var(--bx-text-lg); max-inline-size: 44ch">
+              310 locations, immutable builds, instant rollback. No YAML, no control
+              plane to babysit.
+            </p>
+            <div class="bx-btn-group mt-6">
+              <span class="bx-btn bx-btn--lg bx-btn--primary">Start building</span>
+              <span class="bx-btn bx-btn--lg">Read the docs</span>
+            </div>
+            <p class="bx-label mt-5">No credit card &middot; 4,000 free builds</p>
+          </div>
+          <div class="bx-grid-bg" style="border-inline-start: 1px solid var(--bx-line); padding: 64px 32px; display: grid; align-content: center; --bx-grid-unit: 32px">
+            <div class="bx-ticks" style="border: 1px solid var(--bx-line); background: var(--bx-surface)">
+              <div style="height: 28px; display: flex; align-items: center; padding-inline: 12px; border-block-end: 1px solid var(--bx-line); background: var(--bx-surface-sunken)">
+                <span class="bx-label">deploy.log</span>
+              </div>
+              <div class="bx-mono" style="padding: 16px; font-size: var(--bx-text-sm); line-height: 20px; color: var(--bx-ink-muted)">
+                <div><span style="color: var(--bx-ink-faint)">$</span> orbit deploy</div>
+                <div style="color: var(--bx-ink-success)">&#10003; build      1.8s</div>
+                <div style="color: var(--bx-ink-success)">&#10003; upload     0.4s</div>
+                <div style="color: var(--bx-ink-success)">&#10003; propagate  2.1s</div>
+                <div style="color: var(--bx-ink)">live at orbit.app &#8594; 310 pops</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 64px 32px; border-block-end: 1px solid var(--bx-line)">
+          <p class="bx-label">02 / Platform</p>
+          <p style="font-family: var(--bx-font-display); font-size: var(--bx-text-3xl); letter-spacing: -0.02em; font-weight: 600; margin-block-start: 12px">Everything the team needs</p>
+          <div class="bx-collapse bx-collapse--3" style="margin-block-start: 40px">
+            <div style="padding: 32px 24px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15"/><path d="M2.5 7.5h15M7.5 7.5v10"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 20px">Instant rollback</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Every deploy is content-addressed. Roll back in under a second.</p>
+            </div>
+            <div style="padding: 32px 24px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15"/><path d="M6 10h8M10 6v8"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 20px">Edge routing</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Requests terminate at the nearest of 310 locations, with failover.</p>
+            </div>
+            <div style="padding: 32px 24px">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2.5" y="6.5" width="15" height="11"/><path d="M6.5 6.5V4a3.5 3.5 0 0 1 7 0v2.5"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 20px">Zero-config TLS</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Certificates issued, renewed and stapled with no configuration.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="inverse" style="padding: 48px 32px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+          <div>
+            <p style="font-family: var(--bx-font-display); font-size: var(--bx-text-2xl); font-weight: 600; letter-spacing: -0.02em; max-inline-size: 22ch">Start shipping in under five minutes</p>
+            <p class="muted mt-2">Free for personal projects.</p>
+          </div>
+          <div class="bx-btn-group" style="background: var(--bx-n-700)">
+            <span class="bx-btn" style="background: var(--bx-n-0); color: var(--bx-n-900); border: 0">Create account</span>
+            <span class="bx-btn" style="background: transparent; color: var(--bx-ink-inverse); border: 0">Talk to us</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= DOCS -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">03 / Documentation</p>
+      <h2>Docs</h2>
+      <p>Three columns separated by 1px rules. Prose constrained to 68ch, square code
+      blocks with a mono language strip, an accent rule on the active heading.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/docs/routing</span>
+      </div>
+      <div class="frame__body" style="display: grid; grid-template-columns: 200px 1fr 180px; min-block-size: 440px">
+
+        <aside style="border-inline-end: 1px solid var(--bx-line); background: var(--bx-surface)">
+          <p class="bx-label" style="height: 28px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line-subtle)">Getting started</p>
+          <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Installation</a>
+          <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Your first deploy</a>
+          <p class="bx-label" style="height: 28px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-surface-sunken); border-block: 1px solid var(--bx-line-subtle)">Guides</p>
+          <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink); font-weight: 500; background: var(--bx-surface-active); box-shadow: inset 2px 0 0 0 var(--bx-accent); text-decoration: none">Routing</a>
+          <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Caching</a>
+          <a href="#" style="display: flex; align-items: center; height: 32px; padding-inline: 12px; font-size: var(--bx-text-base); color: var(--bx-ink-muted); text-decoration: none">Secrets</a>
+        </aside>
+
+        <article style="padding: 32px; max-inline-size: 68ch">
+          <p class="bx-label">Guides / Routing</p>
+          <h3 style="font-size: var(--bx-text-3xl); letter-spacing: -0.02em; margin-block-start: 8px">Routing</h3>
+          <p class="muted mt-4">
+            Requests are matched against your route table in order. The first match
+            wins, so put specific patterns above catch-alls.
+          </p>
+
+          <p class="bx-label" style="margin-block-start: 32px; padding-block-end: 8px; border-block-end: 1px solid var(--bx-line)">Defining routes</p>
+          <p class="muted mt-4">
+            Routes live in <code>orbit.toml</code> at the root of your project.
+          </p>
+
+          <div class="code mt-4">
+            <div class="code__head"><span class="bx-label">orbit.toml</span><span class="bx-label">12 lines</span></div>
+<pre><i>[[routes]]</i>
+<b>pattern</b> = <s>"/api/*"</s>
+<b>service</b> = <s>"api-gateway"</s>
+<b>timeout</b> = <s>30</s>
+
+<i>[[routes]]</i>
+<b>pattern</b> = <s>"/*"</s>
+<b>service</b> = <s>"edge-router"</s></pre>
+          </div>
+
+          <div class="bx-callout bx-callout--info mt-5">
+            <span class="bx-mono" aria-hidden="true">i</span>
+            <div><p style="font-weight: 600">Order matters</p>
+            <p class="mt-2" style="font-size: var(--bx-text-base)">A catch-all above a specific pattern will shadow it entirely.</p></div>
+          </div>
+        </article>
+
+        <aside style="border-inline-start: 1px solid var(--bx-line); padding: 32px 16px">
+          <p class="bx-label">On this page</p>
+          <div style="margin-block-start: 16px; display: grid">
+            <a href="#" style="height: 24px; display: flex; align-items: center; font-size: var(--bx-text-sm); color: var(--bx-ink); box-shadow: inset 2px 0 0 0 var(--bx-accent); padding-inline-start: 12px; text-decoration: none">Defining routes</a>
+            <a href="#" style="height: 24px; display: flex; align-items: center; font-size: var(--bx-text-sm); color: var(--bx-ink-subtle); padding-inline-start: 12px; text-decoration: none">Matching order</a>
+            <a href="#" style="height: 24px; display: flex; align-items: center; font-size: var(--bx-text-sm); color: var(--bx-ink-subtle); padding-inline-start: 12px; text-decoration: none">Rewrites</a>
+            <a href="#" style="height: 24px; display: flex; align-items: center; font-size: var(--bx-text-sm); color: var(--bx-ink-subtle); padding-inline-start: 12px; text-decoration: none">Redirects</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== AUTH + SETTINGS -->
+  <section class="sec">
+    <div class="sec__head">
+      <p class="bx-label">04 / Flows</p>
+      <h2>Auth and settings</h2>
+      <p>A 400px auth card on a sunken canvas with a grid substrate, and a settings
+      page where each row is a cell in a collapsed grid.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <!-- auth -->
+      <div style="padding: 0">
+        <div class="bx-grid-bg" style="background-color: var(--bx-surface-sunken); padding: 48px 24px; display: grid; place-items: center; min-block-size: 520px">
+          <div style="inline-size: 100%; max-inline-size: 360px">
+            <div style="display: flex; align-items: center; gap: 8px; justify-content: center; margin-block-end: 24px">
+              <span style="inline-size: 20px; block-size: 20px; border: 2px solid var(--bx-ink)"></span>
+              <span style="font-family: var(--bx-font-display); font-weight: 700; letter-spacing: -0.02em">ORBIT</span>
+            </div>
+            <div style="background: var(--bx-surface); border: 1px solid var(--bx-line); padding: 32px">
+              <h3 style="font-size: var(--bx-text-xl)">Sign in</h3>
+              <p class="subtle mt-2" style="font-size: var(--bx-text-base)">Welcome back.</p>
+
+              <div style="display: grid; gap: 1px; background: var(--bx-line); border: 1px solid var(--bx-line); margin-block-start: 24px">
+                <button class="bx-btn bx-btn--block" style="border: 0">Continue with GitHub</button>
+                <button class="bx-btn bx-btn--block" style="border: 0">Continue with Google</button>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px; margin-block: 24px">
+                <span style="flex: 1; border-block-start: 1px solid var(--bx-line)"></span>
+                <span class="bx-label">or</span>
+                <span style="flex: 1; border-block-start: 1px solid var(--bx-line)"></span>
+              </div>
+
+              <div class="stack">
+                <div class="bx-field">
+                  <label class="bx-label" for="email">Email</label>
+                  <input class="bx-input" id="email" type="email" autocomplete="username" placeholder="you@company.com">
+                </div>
+                <div class="bx-field">
+                  <div class="row" style="justify-content: space-between">
+                    <label class="bx-label" for="pw">Password</label>
+                    <a href="#" style="font-size: var(--bx-text-sm)">Forgot?</a>
+                  </div>
+                  <input class="bx-input" id="pw" type="password" autocomplete="current-password" value="············">
+                </div>
+                <button class="bx-btn bx-btn--primary bx-btn--block">Sign in</button>
+              </div>
+            </div>
+            <p class="subtle mt-5" style="text-align: center; font-size: var(--bx-text-base)">
+              No account? <a href="#">Create one</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- settings -->
+      <div style="padding: 0">
+        <div style="padding: 32px 24px">
+          <p class="bx-label">Account / Settings</p>
+          <h3 style="font-size: var(--bx-text-2xl); letter-spacing: -0.02em; margin-block-start: 8px">Settings</h3>
+
+          <p class="bx-label" style="margin-block-start: 24px; height: 28px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-surface-sunken); border: 1px solid var(--bx-line)">General</p>
+          <div class="bx-collapse" style="grid-template-columns: 1fr; border-block-start: 0">
+            <div style="padding: 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between">
+              <div><p style="font-weight: 600; font-size: var(--bx-text-base)">Auto-scale</p><p class="subtle" style="font-size: var(--bx-text-sm)">Add instances when p95 exceeds 200ms.</p></div>
+              <input class="bx-toggle" type="checkbox" checked aria-label="Auto-scale">
+            </div>
+            <div style="padding: 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between">
+              <div><p style="font-weight: 600; font-size: var(--bx-text-base)">Preview deploys</p><p class="subtle" style="font-size: var(--bx-text-sm)">Build every pull request.</p></div>
+              <input class="bx-toggle" type="checkbox" checked aria-label="Preview deploys">
+            </div>
+            <div style="padding: 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between">
+              <div><p style="font-weight: 600; font-size: var(--bx-text-base)">Region</p><p class="subtle" style="font-size: var(--bx-text-sm)">Primary write region.</p></div>
+              <select class="bx-select bx-btn--sm" style="inline-size: 140px; height: 32px"><option>us-east-1</option><option>eu-west-2</option></select>
+            </div>
+          </div>
+
+          <p class="bx-label" style="margin-block-start: 32px; height: 28px; display: flex; align-items: center; padding-inline: 12px; background: var(--bx-danger-soft); border: 1px solid var(--bx-danger); color: var(--bx-ink-danger)">Danger zone</p>
+          <div style="border: 1px solid var(--bx-danger); border-block-start: 0; padding: 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between">
+            <div><p style="font-weight: 600; font-size: var(--bx-text-base)">Delete project</p><p class="subtle" style="font-size: var(--bx-text-sm)">Permanent. Requires typing the project name.</p></div>
+            <button class="bx-btn bx-btn--danger bx-btn--sm" data-dialog="tpl-modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <div class="site-foot__cols">
+      <div>
+        <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base); max-inline-size: 36ch">
+          A sharp-edged design system for AI coding agents. Inspired by Zed, Stripe
+          and IBM Carbon.
+        </p>
+      </div>
+      <div><p class="bx-label">Reference</p><ul><li><a href="tokens.html">Tokens</a></li><li><a href="components.html">Components</a></li><li><a href="patterns.html">Patterns</a></li></ul></div>
+      <div><p class="bx-label">Install</p><ul><li><a href="https://github.com/avestura/boxy-design-skill">GitHub</a></li><li><a href="https://www.npmjs.com/package/boxy-design">npm</a></li><li><a href="install.sh">install.sh</a></li></ul></div>
+      <div><p class="bx-label">Credits</p><ul><li><a href="https://zed.dev">Zed</a></li><li><a href="https://stripe.com">Stripe</a></li><li><a href="https://carbondesignsystem.com">IBM Carbon</a></li></ul></div>
+    </div>
+    <div class="site-foot__bar">
+      <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
+      <span class="bx-label">v1.0.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+    </div>
+  </footer>
+
+</main>
+</div>
+
+<template id="tpl-modal">
+  <div style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding-inline: 24px; border-block-end: 1px solid var(--bx-line)">
+    <h2 style="font-size: var(--bx-text-md)">Delete project</h2>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close">&#215;</button>
+  </div>
+  <div style="padding: 24px">
+    <p class="muted">This permanently removes the project, its services and 90 days of build history.</p>
+    <div class="bx-field mt-5">
+      <label class="bx-label" for="confirm2">Type <b style="color: var(--bx-ink)">orbit</b> to confirm</label>
+      <input class="bx-input" id="confirm2" placeholder="orbit">
+    </div>
+  </div>
+  <div style="padding: 16px 24px; border-block-start: 1px solid var(--bx-line); background: var(--bx-surface-sunken); display: flex; justify-content: flex-end">
+    <div class="bx-btn-group">
+      <button class="bx-btn" data-dialog="close">Cancel</button>
+      <button class="bx-btn bx-btn--danger" data-dialog="close">Delete project</button>
+    </div>
+  </div>
+</template>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
