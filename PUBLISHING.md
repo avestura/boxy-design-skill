@@ -32,8 +32,16 @@ gh api -X POST repos/avestura/boxy-design-skill/pages \
   -f 'source[branch]=main' -f 'source[path]=/docs'
 ```
 
-Live at <https://avestura.github.io/boxy-design-skill/> within a minute or two.
+Live at <https://github.avestura.dev/boxy-design-skill/> within a minute or two.
 `docs/.nojekyll` is present so Jekyll does not eat any underscore-prefixed paths.
+
+**On the URL:** this account serves Pages from the custom domain
+`github.avestura.dev`, so `avestura.github.io/boxy-design-skill` issues a 301 to it
+— and that redirect currently lands on **http**, not https. Every link in this repo
+therefore points at `https://github.avestura.dev/...` directly, which matters most
+for `install.sh`: piping a plaintext-HTTP response into `sh` is not something to
+ship. If you ever tick *Enforce HTTPS* in the Pages settings, both hosts become
+safe and either URL will do.
 
 ## 3. Publish to npm
 
@@ -75,8 +83,8 @@ live:
 
 ```bash
 cd $(mktemp -d)
-curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh
-BOXY_REF=v1.0.0 curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh
+curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh
+BOXY_REF=v1.0.0 curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh
 ```
 
 ## Cutting a release

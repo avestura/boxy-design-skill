@@ -1,9 +1,9 @@
 #!/bin/sh
 # Boxy — sharp-edged design system. One-command install, no registries.
 #
-#   curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh
-#   curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh -s -- --portable
-#   curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh -s -- --dir path/to/skills/boxy
+#   curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh
+#   curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh -s -- --portable
+#   curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh -s -- --dir path/to/skills/boxy
 #
 # Env: BOXY_REF=v1.0.0 pins a tag or branch (default: main).
 
@@ -76,4 +76,4 @@ case "$DEST" in
     printf '   Point your agent at \033[34m%s/SKILL.md\033[0m\n' "$DEST" ;;
 esac
 printf '   Lint with \033[34mnode %s/scripts/boxy-check.mjs "src/**/*"\033[0m\n' "$DEST"
-printf '\n\033[2m   https://avestura.github.io/boxy-design-skill/\033[0m\n\n'
+printf '\n\033[2m   https://github.avestura.dev/boxy-design-skill/\033[0m\n\n'

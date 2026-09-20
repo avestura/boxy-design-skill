@@ -11,10 +11,10 @@
 Hairline structure, engineering detail, a rationed palette —
 and a linter that fails the build when something drifts.
 
-[Documentation](https://avestura.github.io/boxy-design-skill/) ·
-[Tokens](https://avestura.github.io/boxy-design-skill/tokens.html) ·
-[Components](https://avestura.github.io/boxy-design-skill/components.html) ·
-[Patterns](https://avestura.github.io/boxy-design-skill/patterns.html)
+[Documentation](https://github.avestura.dev/boxy-design-skill/) ·
+[Tokens](https://github.avestura.dev/boxy-design-skill/tokens.html) ·
+[Components](https://github.avestura.dev/boxy-design-skill/components.html) ·
+[Patterns](https://github.avestura.dev/boxy-design-skill/patterns.html)
 
 </div>
 
@@ -47,7 +47,7 @@ npx boxy-design init --ai all     # every supported agent
 **curl** — no registries at all:
 
 ```bash
-curl -fsSL https://avestura.github.io/boxy-design-skill/install.sh | sh
+curl -fsSL https://github.avestura.dev/boxy-design-skill/install.sh | sh
 ```
 
 Then just ask for UI. The skill triggers on its own; `/boxy` invokes it explicitly.
@@ -150,7 +150,7 @@ Suppress a line with a `boxy-ignore` comment, a region with
 Two layers. **Primitives** (`--bx-n-600`, `--bx-a-500`) are raw values referenced
 only inside the token file. **Roles** (`--bx-ink-subtle`, `--bx-accent`) are what
 component code uses. Full listing in
-[the token reference](https://avestura.github.io/boxy-design-skill/tokens.html).
+[the token reference](https://github.avestura.dev/boxy-design-skill/tokens.html).
 
 ```css
 /* rebrand by overriding roles, never primitives */

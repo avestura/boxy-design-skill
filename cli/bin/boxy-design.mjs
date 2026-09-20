@@ -91,7 +91,7 @@ ${Object.entries(TARGETS).map(([k, v]) => `    ${c.acc(k.padEnd(10))} ${c.dim(v)
     npx boxy-design init --ai cursor,agents --dir ./apps/web
     npx boxy-design check "src/**${"/"}*.{css,tsx}" --strict
 
-  ${c.dim("https://avestura.github.io/boxy-design-skill/")}
+  ${c.dim("https://github.avestura.dev/boxy-design-skill/")}
 `);
 }
 
@@ -212,7 +212,7 @@ function init() {
     console.log(`    Other agents read ${c.acc(".boxy/")} for the full reference set.`);
   }
   console.log(`    Lint with ${c.acc("npx boxy-design check \"src/**/*\"")}`);
-  console.log(`\n  ${c.dim("Docs: https://avestura.github.io/boxy-design-skill/")}\n`);
+  console.log(`\n  ${c.dim("Docs: https://github.avestura.dev/boxy-design-skill/")}\n`);
 }
 
 function report(root) {

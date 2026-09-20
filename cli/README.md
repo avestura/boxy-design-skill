@@ -1,6 +1,6 @@
 # boxy-design
 
-CLI installer for [Boxy](https://avestura.github.io/boxy-design-skill/) — a
+CLI installer for [Boxy](https://github.avestura.dev/boxy-design-skill/) — a
 sharp-edged, zero-radius design system for AI coding agents.
 
 ```bash
