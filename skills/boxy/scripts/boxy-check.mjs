@@ -51,6 +51,7 @@ const RULES = [
   ["space",         "warn",  "Spacing off the 4px scale"],
   ["font-size",     "warn",  "Font size off the type scale"],
   ["raw-hex",       "warn",  "Raw hex outside the token file"],
+  ["primitive",     "warn",  "Primitive token in component code"],
   ["font-weight",   "warn",  "Font weight below 400"],
 ];
 
@@ -250,6 +251,16 @@ function checkLine(line, file, isTokenFile) {
   }
   const fw = src.match(/font-weight\s*:\s*(\d{3})/i);
   if (fw && parseInt(fw[1], 10) < 400) add("font-weight", `font-weight: ${fw[1]}`);
+
+  /* --- primitive tokens ------------------------------------------------ */
+  /* --bx-n-700 and friends are fixed values that do not flip with the theme.
+     Using one in component code is how an inverted block ends up dark-on-dark.
+     Role tokens (--bx-ink, --bx-line, --bx-surface, ...) are the public API. */
+  if (!isTokenFile) {
+    for (const m of src.matchAll(/--bx-(?:n|a|r|y|g)-\d{1,4}\b/g)) {
+      add("primitive", `${m[0]} - use a role token`);
+    }
+  }
 
   /* --- raw hex --------------------------------------------------------- */
   if (!isTokenFile) {

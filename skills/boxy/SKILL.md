@@ -104,6 +104,10 @@ filed off".
   neighbors or separated by exact scale spacing. It does not hover on a soft shadow.
 - **One primary action per view.** Solid accent fill. Everything else is outline or
   ghost.
+- **Invert with the scope, not by hand.** Put `.bx-inverse` on the block; it remaps
+  the role tokens so ordinary components work inside it. Styling children with
+  primitives (`--bx-n-700`) is how an inverted CTA ends up dark-on-dark in one
+  theme, and `boxy-check` flags it.
 
 ## Anti-patterns
 

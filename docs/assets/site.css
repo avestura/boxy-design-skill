@@ -38,8 +38,17 @@
 .bx-btn--ghost { background: transparent; border-color: transparent; color: var(--bx-ink-muted); }
 .bx-btn--ghost:hover { background: var(--bx-surface-hover); border-color: transparent; color: var(--bx-ink); }
 
-.bx-btn--danger { background: var(--bx-danger); border-color: var(--bx-danger); color: var(--bx-n-0); }
+.bx-btn--danger { background: var(--bx-danger); border-color: var(--bx-danger); color: var(--bx-on-danger); }
 .bx-btn--danger:hover { background: var(--bx-danger-hover); border-color: var(--bx-danger-hover); }
+
+/* Inverts against whatever scope it sits in - dark-on-light outside an
+   inverted block, light-on-dark inside one. Use it for the CTA-band action. */
+.bx-btn--contrast {
+  background: var(--bx-ink);
+  border-color: var(--bx-ink);
+  color: var(--bx-canvas);
+}
+.bx-btn--contrast:hover { background: var(--bx-ink-muted); border-color: var(--bx-ink-muted); color: var(--bx-canvas); }
 
 .bx-btn--sm { height: var(--bx-control-sm); padding-inline: var(--bx-pad-x-sm); font-size: var(--bx-text-sm); }
 .bx-btn--lg { height: var(--bx-control-lg); padding-inline: var(--bx-pad-x-lg); }
@@ -590,10 +599,11 @@ body { font-size: var(--bx-text-md); }
 .mt-8 { margin-block-start: var(--bx-space-8); }
 @media (max-width: 767px) { .hide-sm { display: none !important; } }
 
+/* .inverse is an alias for the system's inverse scope (see boxy.css) - the
+   role remap means children need no per-element colour overrides at all. */
 .inverse { background: var(--bx-surface-inverse); color: var(--bx-ink-inverse); }
-.inverse h2, .inverse h3 { color: var(--bx-ink-inverse); }
-.inverse .muted { color: var(--bx-ink-inverse-muted); }
-.inverse a { color: var(--bx-ink-inverse); }
+.inverse h1, .inverse h2, .inverse h3 { color: var(--bx-ink); }
+.inverse .muted, .inverse .subtle { color: var(--bx-ink-muted); }
 
 /* Skip link */
 .skip {

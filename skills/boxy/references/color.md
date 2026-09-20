@@ -28,6 +28,10 @@ Inversion is the Boxy answer to "this section needs to pop". A solid near-black 
 with white text, square, full-bleed, is more striking than any gradient and costs no
 color budget.
 
+Reach for the `.bx-inverse` scope rather than hand-styling the children. It remaps
+the role tokens inside the block, so ordinary components render correctly in both
+themes and you never touch a primitive. Details in `tokens.md`.
+
 ## Contrast pairs that are known good
 
 Light theme, on `--bx-canvas` (`#ffffff`):

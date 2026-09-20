@@ -135,32 +135,51 @@ header row, per `components-data.md`.
 
 The one inverted block per page.
 
+Use the `.bx-inverse` scope (in `boxy.css`) rather than hand-styling the children.
+It remaps the role tokens inside itself, so ordinary components render correctly
+and stay correct in both themes:
+
 ```html
-<section style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse);
-                border-block: 1px solid var(--bx-line-heavy)">
+<section class="bx-inverse" style="border-block: 1px solid var(--bx-line)">
   <div class="bx-container" style="padding-block: 96px; display: flex;
               justify-content: space-between; align-items: center; gap: 48px">
     <div>
       <h2 style="font-size: var(--bx-text-3xl); max-width: 20ch">
         Start shipping in under five minutes
       </h2>
-      <p style="margin-top: 12px; color: var(--bx-n-400); max-width: 48ch">
+      <p style="margin-top: 12px; color: var(--bx-ink-muted); max-width: 48ch">
         Free for personal projects. No credit card required.
       </p>
     </div>
-    <div class="bx-btn-group" style="background: var(--bx-n-700); flex-shrink: 0">
-      <a class="bx-btn bx-btn--lg" style="background: var(--bx-n-0);
-         color: var(--bx-n-900); border: 0" href="#">Create account</a>
-      <a class="bx-btn bx-btn--lg" style="background: transparent;
-         color: var(--bx-ink-inverse); border: 0" href="#">Talk to us</a>
+    <div class="bx-btn-group" style="flex-shrink: 0">
+      <a class="bx-btn bx-btn--lg bx-btn--contrast" href="#">Create account</a>
+      <a class="bx-btn bx-btn--lg" href="#">Talk to us</a>
     </div>
   </div>
 </section>
 ```
 
-Inside an inverted block, re-check contrast: body text should be `--bx-n-400` or
-lighter on `--bx-n-900`, and the accent blue is too dark - use white or
-`--bx-a-300` for links.
+Inside the scope, `--bx-surface`, `--bx-ink`, `--bx-ink-muted`, `--bx-line` and
+`--bx-focus` all point at their inverse counterparts, so `.bx-btn` renders as a
+light outline on the dark block with no overrides. The filled action uses
+`.bx-btn--contrast` (`background: var(--bx-ink); color: var(--bx-canvas)`), which
+inverts against whatever scope it sits in.
+
+**The failure this prevents.** Hand-styling the children with primitives is the
+classic way an inverted CTA breaks:
+
+```html
+<!-- wrong: --bx-n-700 is a fixed value that does not flip with the theme, so in
+     dark mode this puts near-black --bx-ink-inverse text on a dark grey group -->
+<div class="bx-btn-group" style="background: var(--bx-n-700)">
+  <a class="bx-btn" style="color: var(--bx-ink-inverse)">Talk to us</a>
+</div>
+```
+
+`boxy-check` flags any `--bx-n-*` / `--bx-a-*` in component code for exactly this
+reason. Re-check contrast inside any inverted block: `--bx-ink-muted` is the body
+colour, and plain `--bx-accent` is too dark against a dark block — the scope
+already swaps links to `--bx-ink-accent-inverse`.
 
 ---
 

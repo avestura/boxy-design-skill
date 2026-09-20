@@ -165,6 +165,7 @@
   --bx-ink-inverse: var(--bx-n-0);
   --bx-ink-inverse-muted: var(--bx-n-400);
   --bx-ink-accent:  var(--bx-a-600);
+  --bx-ink-accent-inverse: var(--bx-a-300);
   --bx-ink-danger:  var(--bx-r-600);
   --bx-ink-warning: var(--bx-y-700);
   --bx-ink-success: var(--bx-g-600);
@@ -175,11 +176,20 @@
   --bx-line-heavy:  var(--bx-n-900);
   --bx-line-accent: var(--bx-a-500);
 
+  /* companions to --bx-surface-inverse, so an inverted block has a full set */
+  --bx-surface-inverse-hover:  var(--bx-n-800);
+  --bx-surface-inverse-active: var(--bx-n-700);
+  --bx-line-inverse:           var(--bx-n-700);
+  --bx-line-inverse-strong:    var(--bx-n-500);
+
   --bx-accent:        var(--bx-a-500);
   --bx-accent-hover:  var(--bx-a-600);
   --bx-accent-active: var(--bx-a-700);
   --bx-accent-soft:   var(--bx-a-50);
   --bx-on-accent:     var(--bx-n-0);
+  --bx-on-danger:     var(--bx-n-0);
+  --bx-on-success:    var(--bx-n-0);
+  --bx-on-warning:    var(--bx-n-1000);
 
   --bx-danger:       var(--bx-r-500);
   --bx-danger-hover: var(--bx-r-600);
@@ -220,6 +230,7 @@
   --bx-ink-inverse: var(--bx-n-1000);
   --bx-ink-inverse-muted: var(--bx-n-600);
   --bx-ink-accent:  var(--bx-a-300);
+  --bx-ink-accent-inverse: var(--bx-a-600);
   --bx-ink-danger:  #ff8389;
   --bx-ink-warning: var(--bx-y-100);
   --bx-ink-success: var(--bx-g-100);
@@ -230,11 +241,20 @@
   --bx-line-heavy:  var(--bx-n-400);
   --bx-line-accent: var(--bx-a-400);
 
+  /* surface-inverse is light in this theme, so its companions step darker */
+  --bx-surface-inverse-hover:  var(--bx-n-200);
+  --bx-surface-inverse-active: var(--bx-n-300);
+  --bx-line-inverse:           var(--bx-n-300);
+  --bx-line-inverse-strong:    var(--bx-n-500);
+
   --bx-accent:        var(--bx-a-500);
   --bx-accent-hover:  var(--bx-a-400);
   --bx-accent-active: var(--bx-a-300);
   --bx-accent-soft:   var(--bx-a-900);
   --bx-on-accent:     var(--bx-n-0);
+  --bx-on-danger:     var(--bx-n-0);
+  --bx-on-success:    var(--bx-n-0);
+  --bx-on-warning:    var(--bx-n-1000);
 
   --bx-danger:       var(--bx-r-500);
   --bx-danger-hover: #ff8389;
@@ -273,6 +293,7 @@
     --bx-ink-inverse: var(--bx-n-1000);
     --bx-ink-inverse-muted: var(--bx-n-600);
     --bx-ink-accent:  var(--bx-a-300);
+    --bx-ink-accent-inverse: var(--bx-a-600);
     --bx-ink-danger:  #ff8389;
     --bx-ink-warning: var(--bx-y-100);
     --bx-ink-success: var(--bx-g-100);
@@ -282,6 +303,12 @@
     --bx-line-strong: var(--bx-n-700);
     --bx-line-heavy:  var(--bx-n-400);
     --bx-line-accent: var(--bx-a-400);
+
+    --bx-surface-inverse-hover:  var(--bx-n-200);
+    --bx-surface-inverse-active: var(--bx-n-300);
+    --bx-line-inverse:           var(--bx-n-300);
+    --bx-line-inverse-strong:    var(--bx-n-500);
+    --bx-on-warning:             var(--bx-n-1000);
 
     --bx-accent-hover:  var(--bx-a-400);
     --bx-accent-active: var(--bx-a-300);
@@ -335,6 +362,42 @@
   --bx-grid-show: 0;
   --bx-display-size: var(--bx-text-6xl);
   --bx-gutter: var(--bx-space-6);
+}
+
+/* --------------------------------------------------------------------------
+   5b. INVERSE SCOPE - the one inverted block per page.
+
+   Remaps the role tokens inside itself, so ordinary components work unchanged
+   and stay correct in both themes. Never hand-style children with primitives
+   (--bx-n-700 and friends are fixed values that do not flip with the theme -
+   that is the classic way an inverted CTA ends up dark-on-dark).
+
+     <section class="bx-inverse"> ... </section>
+     <section data-surface="inverse"> ... </section>
+   -------------------------------------------------------------------------- */
+.bx-inverse,
+[data-surface="inverse"] {
+  background: var(--bx-surface-inverse);
+  color: var(--bx-ink-inverse);
+
+  --bx-canvas:         var(--bx-surface-inverse);
+  --bx-surface:        var(--bx-surface-inverse);
+  --bx-surface-sunken: var(--bx-surface-inverse);
+  --bx-surface-raised: var(--bx-surface-inverse-hover);
+  --bx-surface-hover:  var(--bx-surface-inverse-hover);
+  --bx-surface-active: var(--bx-surface-inverse-active);
+
+  --bx-ink:         var(--bx-ink-inverse);
+  --bx-ink-muted:   var(--bx-ink-inverse-muted);
+  --bx-ink-subtle:  var(--bx-ink-inverse-muted);
+  --bx-ink-accent:  var(--bx-ink-accent-inverse);
+
+  --bx-line:        var(--bx-line-inverse);
+  --bx-line-subtle: var(--bx-line-inverse);
+  --bx-line-strong: var(--bx-line-inverse-strong);
+  --bx-line-heavy:  var(--bx-ink-inverse);
+
+  --bx-focus: var(--bx-focus-inverse);
 }
 
 /* --------------------------------------------------------------------------

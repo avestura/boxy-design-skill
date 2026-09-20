@@ -98,6 +98,31 @@ decorative glyphs only.
 `#002d9c` - `--bx-accent-soft` `#edf5ff` - `--bx-on-accent` `#ffffff` -
 `--bx-focus` `#0f62fe`.
 
+Foreground pairings for filled elements: `--bx-on-accent`, `--bx-on-danger`,
+`--bx-on-success` (all white in both themes) and `--bx-on-warning` (near-black,
+because the warning yellow needs dark text).
+
+### The inverse scope
+
+`--bx-surface-inverse` has a full set of companions so an inverted block is not a
+special case: `--bx-surface-inverse-hover`, `--bx-surface-inverse-active`,
+`--bx-line-inverse`, `--bx-line-inverse-strong`, `--bx-ink-inverse`,
+`--bx-ink-inverse-muted`, `--bx-ink-accent-inverse` and `--bx-focus-inverse`.
+
+Do not wire them up by hand. Put `.bx-inverse` (or `data-surface="inverse"`) on the
+block and `boxy.css` remaps `--bx-surface`, `--bx-ink`, `--bx-ink-muted`,
+`--bx-line`, `--bx-focus` and friends inside it, so ordinary components work
+unchanged:
+
+```html
+<section class="bx-inverse">
+  <h2>Start shipping in under five minutes</h2>
+  <p style="color: var(--bx-ink-muted)">Free for personal projects.</p>
+  <button class="bx-btn bx-btn--contrast">Create account</button>
+  <button class="bx-btn">Talk to us</button>
+</section>
+```
+
 ### Semantic
 `--bx-danger` `#da1e28` - `--bx-warning` `#f1c21b` - `--bx-success` `#24a148`,
 each with a `-soft` background variant and an `--bx-ink-*` text variant. Always pair

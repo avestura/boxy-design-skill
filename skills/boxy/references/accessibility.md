@@ -26,8 +26,9 @@ Watch out for:
   decorative glyphs.
 - `--bx-line` at 1.6:1 is a decorative rule. A border that means something - focus,
   error, selected - must use `--bx-line-strong` or better.
-- Inside an inverted block, re-check everything. `--bx-accent` on `--bx-n-900` is
-  only 2.5:1; use white or `--bx-a-300` there.
+- Inside an inverted block, re-check everything. Use the `.bx-inverse` scope, which
+  remaps ink, line and focus to their inverse counterparts; plain `--bx-accent` on a
+  dark block is only 2.5:1.
 - `--bx-warning` `#f1c21b` as text on white is 1.7:1. Use `--bx-ink-warning`.
 - The grid substrate reduces effective contrast slightly. Keep it at or below 8% and
   never put 12px text directly on it.
@@ -45,8 +46,8 @@ Never remove the outline. `boxy.css` sets:
 
 - The 2px offset means the ring sits clear of the element's own 1px border, so both
   stay legible.
-- On inverse surfaces, set `--bx-focus: var(--bx-focus-inverse)` on that block so the
-  ring stays visible.
+- On inverse surfaces the `.bx-inverse` scope already sets
+  `--bx-focus: var(--bx-focus-inverse)`, so the ring stays visible.
 - On an accent-filled button, the ring needs separation from the fill - keep the 2px
   offset and, if the surrounding surface is also accent-colored, add a 1px
   `--bx-canvas` inner ring via `box-shadow`.

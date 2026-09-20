@@ -192,6 +192,14 @@ test("linter ignores HTML numeric entities when hunting hex", () => {
   ok(rules(lint("<p style='color:#333333'>x</p>", "html")).includes("raw-hex"), "real hex missed");
 });
 
+test("linter catches primitive tokens in component code", () => {
+  /* Regression: a CTA button group hardcoded --bx-n-700, which does not flip
+     with the theme, so the inverted band rendered dark-on-dark in dark mode. */
+  const r = rules(lint('<div style="background: var(--bx-n-700)">x</div>', "html"));
+  ok(r.includes("primitive"), `got ${JSON.stringify(r)}`);
+  eq(lint('<div style="background: var(--bx-surface-inverse)">x</div>', "html").findings.length, 0, "role token flagged");
+});
+
 test("linter honours the suppression comments", () => {
   eq(lint(".a { border-radius: 8px; } /* boxy-ignore */").findings.length, 0, "line ignore");
   eq(lint("/* boxy-ignore-start */\n.a { border-radius: 8px; }\n/* boxy-ignore-end */").findings.length, 0, "block ignore");
@@ -224,6 +232,25 @@ test("docs/assets/boxy.css is in sync with the skill copy", () => {
     readFileSync(join(ROOT, "skills", "boxy", "assets", "boxy.css"), "utf8"),
     "copies differ - run: cp skills/boxy/assets/boxy.css docs/assets/boxy.css"
   );
+});
+
+test("the stylesheet ships an inverse scope with no self-referencing vars", () => {
+  const css = readFileSync(join(ROOT, "skills", "boxy", "assets", "boxy.css"), "utf8");
+  const start = css.indexOf(".bx-inverse,");
+  ok(start !== -1, "inverse scope missing");
+  ok(css.includes('[data-surface="inverse"]'), "inverse scope attribute selector missing");
+
+  const block = css.slice(start, css.indexOf("6. RESET"));
+  /* A custom property that reads a property the same rule also defines is a
+     cycle, and CSS throws the whole chain away - both would resolve to nothing. */
+  const defined = new Set(
+    [...block.matchAll(/^\s*(--bx-[\w-]+)\s*:/gm)].map((m) => m[1])
+  );
+  for (const m of block.matchAll(/(--bx-[\w-]+)\s*:\s*var\((--bx-[\w-]+)\)/g)) {
+    ok(m[1] !== m[2], `self-referencing custom property: ${m[1]}`);
+    ok(!defined.has(m[2]), `cycle: ${m[1]} reads ${m[2]}, which this rule also defines`);
+  }
+  ok(defined.size >= 12, `inverse scope only remaps ${defined.size} roles`);
 });
 
 test("every reference named in SKILL.md exists", () => {
