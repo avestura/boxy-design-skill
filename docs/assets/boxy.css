@@ -528,7 +528,9 @@ hr { border: 0; border-top: var(--bx-border) solid var(--bx-line); margin: 0; }
 
 /* Collapse adjacent borders so lines are never doubled */
 .bx-collapse { display: grid; gap: var(--bx-border); background: var(--bx-line); }
-.bx-collapse > * { background: var(--bx-surface); }
+/* min-inline-size keeps a long cell - a code block, a wide table - from forcing
+   an auto track wider than the container and pushing the page sideways. */
+.bx-collapse > * { background: var(--bx-surface); min-inline-size: 0; }
 
 /* Screen-reader only */
 .bx-sr {

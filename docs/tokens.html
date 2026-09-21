@@ -19,7 +19,7 @@
 <header class="site-head">
   <div class="site-head__inner">
     <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
-    <nav class="site-nav hide-sm" aria-label="Primary">
+    <nav class="site-nav" aria-label="Primary">
       <a href="index.html">Overview</a>
       <a href="tokens.html" aria-current="page">Tokens</a>
       <a href="components.html">Components</a>
@@ -28,7 +28,7 @@
     <span class="site-head__spacer"></span>
     <div class="site-controls">
       <button class="ctl hide-sm" data-act="mode" title="Cycle mode">mode <span class="val">blueprint</span></button>
-      <button class="ctl hide-sm" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
+      <button class="ctl hide-md" data-act="density" title="Toggle density">den <span class="val">comfortable</span></button>
       <button class="ctl" data-act="theme" title="Toggle theme"><span class="val">light</span></button>
       <a class="ctl ctl--icon" href="https://github.com/avestura/boxy-design-skill" aria-label="GitHub repository">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -124,38 +124,42 @@
       <div style="padding: 0">
         <div style="padding: 16px 24px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line)"><span class="bx-label">Ink</span></div>
         <!-- boxy-ignore-start: contrast pairs are declared as literal hex so the ratio is verifiable -->
-        <table class="bx-table">
-          <thead><tr><th>Token</th><th>Sample</th><th class="num">On canvas</th></tr></thead>
-          <tbody>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink</td><td style="color: var(--bx-ink)">Primary text</td><td class="num bx-mono" data-contrast="#23282d|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-muted</td><td style="color: var(--bx-ink-muted)">Secondary text</td><td class="num bx-mono" data-contrast="#4a535b|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-subtle</td><td style="color: var(--bx-ink-subtle)">Labels, captions</td><td class="num bx-mono" data-contrast="#616b75|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-faint</td><td style="color: var(--bx-ink-faint)">Disabled only</td><td class="num bx-mono" data-contrast="#7f8993|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-accent</td><td style="color: var(--bx-ink-accent)">Links</td><td class="num bx-mono" data-contrast="#0043ce|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-danger</td><td style="color: var(--bx-ink-danger)">Error text</td><td class="num bx-mono" data-contrast="#a2191f|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-warning</td><td style="color: var(--bx-ink-warning)">Warning text</td><td class="num bx-mono" data-contrast="#8e6a00|#ffffff"></td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-success</td><td style="color: var(--bx-ink-success)">Success text</td><td class="num bx-mono" data-contrast="#198038|#ffffff"></td></tr>
-          </tbody>
-        </table>
+        <div class="bx-table-wrap bx-table-wrap--flush">
+          <table class="bx-table">
+            <thead><tr><th>Token</th><th>Sample</th><th class="num">On canvas</th></tr></thead>
+            <tbody>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink</td><td style="color: var(--bx-ink)">Primary text</td><td class="num bx-mono" data-contrast="#23282d|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-muted</td><td style="color: var(--bx-ink-muted)">Secondary text</td><td class="num bx-mono" data-contrast="#4a535b|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-subtle</td><td style="color: var(--bx-ink-subtle)">Labels, captions</td><td class="num bx-mono" data-contrast="#616b75|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-faint</td><td style="color: var(--bx-ink-faint)">Disabled only</td><td class="num bx-mono" data-contrast="#7f8993|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-accent</td><td style="color: var(--bx-ink-accent)">Links</td><td class="num bx-mono" data-contrast="#0043ce|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-danger</td><td style="color: var(--bx-ink-danger)">Error text</td><td class="num bx-mono" data-contrast="#a2191f|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-warning</td><td style="color: var(--bx-ink-warning)">Warning text</td><td class="num bx-mono" data-contrast="#8e6a00|#ffffff"></td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-ink-success</td><td style="color: var(--bx-ink-success)">Success text</td><td class="num bx-mono" data-contrast="#198038|#ffffff"></td></tr>
+            </tbody>
+          </table>
+        </div>
         <!-- boxy-ignore-end -->
       </div>
 
       <div style="padding: 0">
         <div style="padding: 16px 24px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line)"><span class="bx-label">Surface &amp; line</span></div>
-        <table class="bx-table">
-          <thead><tr><th>Token</th><th>Sample</th><th>Use</th></tr></thead>
-          <tbody>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-canvas</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-canvas);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Page</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Cards, panels</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-sunken</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-sunken);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Wells, headers</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-raised</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-raised);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Popovers, modals</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-inverse</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-inverse);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Emphasis blocks</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-subtle</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-subtle)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Row rules</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Default border</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-strong</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-strong)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">State borders</td></tr>
-            <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-heavy</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-heavy)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Ticks, frames</td></tr>
-          </tbody>
-        </table>
+        <div class="bx-table-wrap bx-table-wrap--flush">
+          <table class="bx-table">
+            <thead><tr><th>Token</th><th>Sample</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-canvas</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-canvas);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Page</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Cards, panels</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-sunken</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-sunken);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Wells, headers</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-raised</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-raised);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Popovers, modals</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-surface-inverse</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;background:var(--bx-surface-inverse);border:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Emphasis blocks</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-subtle</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-subtle)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Row rules</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Default border</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-strong</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-strong)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">State borders</td></tr>
+              <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">--bx-line-heavy</td><td><span style="display:inline-block;inline-size:40px;block-size:20px;border-block-start:1px solid var(--bx-line-heavy)"></span></td><td class="subtle" style="font-size: var(--bx-text-sm)">Ticks, frames</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 

@@ -112,7 +112,7 @@
   padding-inline-end: var(--bx-space-8);
   background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
                     linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: calc(100% - 20px) 17px, calc(100% - 14px) 17px;
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
 }
@@ -282,6 +282,8 @@
 .bx-table tbody tr:hover { background: var(--bx-surface-hover); }
 .bx-table .num { text-align: end; font-variant-numeric: tabular-nums; }
 .bx-table-wrap { border: var(--bx-border) solid var(--bx-line); overflow-x: auto; }
+/* For a table that already sits inside a ruled cell - the cell draws the box. */
+.bx-table-wrap--flush { border: 0; }
 
 /* ---- Callout ---- */
 .bx-callout {
@@ -341,7 +343,7 @@
 
 .bx-toast {
   display: flex; gap: var(--bx-space-3); align-items: flex-start;
-  inline-size: 360px; padding: var(--bx-space-3) var(--bx-space-4);
+  inline-size: min(360px, calc(100vw - var(--bx-space-6))); padding: var(--bx-space-3) var(--bx-space-4);
   background: var(--bx-surface-raised);
   border: var(--bx-border) solid var(--bx-line-heavy);
   border-inline-start-width: 3px;
@@ -454,7 +456,6 @@ body { font-size: var(--bx-text-md); }
   border-block-end: var(--bx-border) solid var(--bx-line); }
 .sec--tight { padding-block: var(--bx-space-8); }
 .sec--flush { padding-inline: 0; }
-@media (max-width: 767px) { .sec { padding-block: var(--bx-space-8); padding-inline: var(--bx-space-4); } }
 
 .sec__head { margin-block-end: var(--bx-space-8); }
 .sec__head h2 { margin-block-start: var(--bx-space-2); max-inline-size: 24ch; }
@@ -484,7 +485,6 @@ body { font-size: var(--bx-text-md); }
   margin-block-start: var(--bx-space-5);
 }
 .hero__sub { margin-block-start: var(--bx-space-5); max-inline-size: 56ch; }
-@media (max-width: 767px) { .hero { padding-block: var(--bx-space-9); padding-inline: var(--bx-space-4); } }
 
 /* ---- Install block ---- */
 .install { margin-block-start: var(--bx-space-8); max-inline-size: 720px;
@@ -540,8 +540,6 @@ body { font-size: var(--bx-text-md); }
 .spec > dt { padding: var(--bx-space-4); border-inline-end: var(--bx-border) solid var(--bx-line); }
 .spec > dd { padding: var(--bx-space-4); margin: 0; display: flex; flex-wrap: wrap;
   align-items: center; gap: var(--bx-space-3); }
-@media (max-width: 767px) { .spec { grid-template-columns: 1fr; }
-  .spec > dt { border-inline-end: 0; border-block-end: var(--bx-border) solid var(--bx-line-subtle); } }
 
 /* ---- Swatches ---- */
 /* Cells draw only their end/bottom rule and the container draws the start/top
@@ -567,6 +565,8 @@ body { font-size: var(--bx-text-md); }
   color: var(--bx-ink-subtle); text-transform: uppercase; }
 
 /* ---- Frame (device preview) ---- */
+/* Only shown below md, where the frame becomes a pannable viewport. */
+.pan-hint { display: none; }
 .frame { border: var(--bx-border) solid var(--bx-line); background: var(--bx-canvas); overflow: hidden; }
 .frame__bar {
   display: flex; align-items: center; gap: var(--bx-space-2);
@@ -592,7 +592,6 @@ body { font-size: var(--bx-text-md); }
   padding-block: var(--bx-space-4);
   border-block-start: var(--bx-border) solid var(--bx-line);
 }
-@media (max-width: 767px) { .site-foot__cols { grid-template-columns: 1fr 1fr; } }
 
 /* ---- Utilities used by the site ---- */
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bx-space-3); }
@@ -606,7 +605,6 @@ body { font-size: var(--bx-text-md); }
 .mt-5 { margin-block-start: var(--bx-space-5); }
 .mt-6 { margin-block-start: var(--bx-space-6); }
 .mt-8 { margin-block-start: var(--bx-space-8); }
-@media (max-width: 767px) { .hide-sm { display: none !important; } }
 
 /* .inverse is an alias for the system's inverse scope (see boxy.css) - the
    role remap means children need no per-element colour overrides at all. */
@@ -622,3 +620,101 @@ body { font-size: var(--bx-text-md); }
   font-size: var(--bx-text-base); transform: translateY(-200%);
 }
 .skip:focus { transform: translateY(0); }
+
+/* ============================== 3. RESPONSIVE ============================= */
+/* Implements the breakpoint rules in references/layout.md. Three of the five
+   breakpoints earn their keep here - lg (1024), md (768), sm (480). Every rule
+   below is a viewport rule, so they are gathered in one place rather than
+   scattered through the component blocks above. */
+
+/* ---- lg and below: the wide grids halve ---- */
+@media (max-width: 1023px) {
+  /* The two wide mono controls do not fit beside the nav below lg. */
+  .hide-md { display: none !important; }
+
+  /* Collapsed grids: 3 and 4 go to 2 at md, 1 at sm. The 1px gap is kept at
+     every step so the rules stay continuous. */
+  .bx-collapse--3,
+  .bx-collapse--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* A device preview is a miniature of a desktop screen, so it keeps the
+     layout it is there to document. Same for the frame rules further down. */
+  .frame .bx-collapse--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .frame .bx-collapse--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---- md and below: one column becomes the default posture ---- */
+@media (max-width: 767px) {
+
+  /* Section rhythm halves. */
+  .sec  { padding-block: var(--bx-space-8); padding-inline: var(--bx-space-4); }
+  .hero { padding-block: var(--bx-space-9); padding-inline: var(--bx-space-4); }
+  .site-foot { padding-inline: var(--bx-space-4); }
+
+  .hide-sm { display: none !important; }
+
+  /* A two-column grid goes straight to one. */
+  .bx-collapse--2 { grid-template-columns: minmax(0, 1fr); }
+
+  /* Label/demo rows stack, and the vertical rule becomes a horizontal one. */
+  .spec { grid-template-columns: 1fr; }
+  .spec > dt { border-inline-end: 0; border-block-end: var(--bx-border) solid var(--bx-line-subtle); }
+
+  /* A button group is a fixed-width row on desktop; on a phone it wraps rather
+     than pushing the page wider than the viewport. The gap is the line colour
+     showing through, so wrapped rows stay ruled. */
+  .bx-btn-group { inline-size: auto; max-inline-size: 100%; flex-wrap: wrap; }
+
+  /* The install command wraps instead of scrolling behind the copy button -
+     on a phone the whole command should be readable without a gesture. */
+  .install__body { align-items: flex-start; }
+  .install__body code { white-space: normal; overflow-wrap: anywhere; }
+
+  .site-foot__cols { grid-template-columns: 1fr 1fr; }
+
+  /* A dense table pans inside its wrapper instead of squeezing every cell to
+     two words. max-content is its natural width; min-inline-size keeps a short
+     table filling the wrapper rather than sitting in half of it. */
+  .bx-table-wrap .bx-table { inline-size: max-content; min-inline-size: 100%; }
+
+  /* Header: the bar keeps the mark and the controls, and the nav drops to its
+     own full-width rail beneath, scrollable if the four items do not fit. */
+  .site-head__inner { height: auto; padding-inline: 0; flex-wrap: wrap; gap: 0; }
+  .site-mark { height: 56px; padding-inline-start: var(--bx-space-4); }
+  .site-controls { margin-inline-end: var(--bx-space-4); }
+  .site-nav {
+    order: 9;
+    flex: 1 0 100%;
+    margin-inline-start: 0;
+    border-block-start: var(--bx-border) solid var(--bx-line);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav a { height: 44px; flex: none; }
+
+  /* Two rows of header instead of one. */
+  html { scroll-padding-block-start: 132px; }
+
+  /* Device previews are miniatures of desktop screens - squeezing one into
+     375px would misrepresent the pattern it documents. The frame becomes a
+     viewport of its own and pans horizontally, chrome and all. */
+  .frame { overflow-x: auto; }
+  .frame__bar,
+  .frame__body { min-inline-size: 760px; }
+  .pan-hint { display: block; }
+
+  /* ...which means the rules above must not reach inside a frame, or the
+     miniature would restyle itself to the phone it is being viewed on. */
+  .frame .bx-collapse--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .frame .bx-btn-group { inline-size: fit-content; flex-wrap: nowrap; }
+  .frame .spec { grid-template-columns: 200px 1fr; }
+}
+
+/* ---- sm and below ---- */
+@media (max-width: 479px) {
+  .bx-collapse--3,
+  .bx-collapse--4 { grid-template-columns: minmax(0, 1fr); }
+
+  .site-foot__cols { grid-template-columns: 1fr; }
+}
