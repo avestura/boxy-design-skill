@@ -265,10 +265,40 @@ A card is a bordered rectangle. It does not float.
 
 - Height 40px (32 compact), label 14/500, padding-x 16px.
 - 1px `--bx-line` bottom rule spanning the full tab strip width.
-- Active: 2px `--bx-accent` bottom border overlapping the rule, `--bx-ink` label.
-- Inactive: `--bx-ink-subtle` label, no border.
+- Active: a 2px `--bx-accent` bar that *replaces* the rule beneath it, `--bx-ink` label.
+- Inactive: `--bx-ink-subtle` label, no indicator.
 - Hover: `--bx-surface-hover`, `--bx-ink` label.
 - No gap between tabs; they butt against each other.
+
+**Draw the indicator with shadows, not with a negative margin.** The obvious
+implementation - a transparent 2px bottom border plus `margin-block-end: -1px` so
+the active bar overlaps the strip's rule - breaks on hover: the tab now extends
+over that 1px, and its opaque hover background paints across the rule, leaving a
+visible gap in the line under whichever tab the pointer is on.
+
+Keep the tab exactly as tall as the strip's content box so its background can never
+reach the rule, and draw the active indicator as two shadows - an inset bar plus a
+1px outset that recolours the rule segment underneath, so it reads as one
+continuous mark instead of 2px of accent stacked on 1px of grey:
+
+```css
+.bx-tabs { display: flex; align-items: stretch;
+           border-block-end: var(--bx-border) solid var(--bx-line); }
+.bx-tab {
+  height: var(--bx-control-md);          /* no border, no negative margin */
+  background: transparent; border: 0;
+  transition: color var(--bx-dur-1) var(--bx-ease),
+              background-color var(--bx-dur-1) var(--bx-ease);
+}
+.bx-tab:hover { background: var(--bx-surface-hover); color: var(--bx-ink); }
+.bx-tab[aria-selected="true"] {
+  color: var(--bx-ink);
+  box-shadow: inset 0 -2px 0 0 var(--bx-accent), 0 1px 0 0 var(--bx-accent);
+}
+```
+
+The same rule applies anywhere an indicator sits on a container's edge rule - top
+nav, sub-nav, filter strips.
 - Keyboard: arrow keys move between tabs, `Home`/`End` jump, `Tab` exits to panel.
   Use `role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`.
 
@@ -324,7 +354,10 @@ segment inverted (`--bx-surface-inverse`).
   `--bx-shadow-1`.
 - Wordmark at the inline start, nav items 14/500 `--bx-ink-muted`, 16px gaps,
   `--bx-ink` on hover.
-- Active item: 2px `--bx-accent` bottom border flush with the header rule.
+- Active item: a 2px `--bx-accent` bar replacing the header rule beneath it, drawn
+  with `box-shadow: inset 0 -2px 0 0 var(--bx-accent), 0 1px 0 0 var(--bx-accent)`.
+  Do not overlap the rule with a negative margin - see the note under Tabs for why
+  that breaks on hover.
 - Actions at the inline end in a shared-border button group.
 - Below `md`: collapse to a 40px square menu button opening a full-height drawer with
   32px-tall, full-bleed nav rows separated by 1px rules.

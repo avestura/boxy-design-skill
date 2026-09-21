@@ -23,6 +23,15 @@ borders of their own.
 A grid of shadowed cards with 24px gaps and nothing connecting them.
 Instead: a collapsed grid, or cards bounded by the section rail.
 
+**An opaque hover fill on an element that overlaps a container's rule.**
+A nav item or tab pulled down with `margin-block-end: -1px` so its active bar sits
+on the strip's 1px rule. On hover the item's background paints across that 1px and
+punches a visible gap in the line.
+Instead: size the item to the container's content box so its background can never
+reach the rule, and draw the active indicator with
+`box-shadow: inset 0 -2px 0 0 var(--bx-accent), 0 1px 0 0 var(--bx-accent)`.
+Full explanation in `components-core.md`.
+
 **Inconsistent border color across one view.**
 Mixing `--bx-line`, `--bx-line-subtle`, and an ad-hoc gray.
 Instead: `--bx-line` for structure, `--bx-line-subtle` for internal dividers. Two
