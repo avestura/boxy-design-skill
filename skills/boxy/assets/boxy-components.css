@@ -135,9 +135,10 @@
 }
 .bx-input--underline:focus { box-shadow: inset 0 -2px 0 0 var(--bx-accent); }
 
-.bx-help { font-size: var(--bx-text-sm); color: var(--bx-ink-subtle); }
+.bx-help { font-size: var(--bx-text-sm); line-height: var(--bx-lh-sm); color: var(--bx-ink-subtle); }
 .bx-help--error { color: var(--bx-ink-danger); display: flex; align-items: flex-start; gap: var(--bx-space-1); }
-.bx-help--error > .bx-icon { inline-size: 12px; block-size: 12px; margin-block-start: var(--bx-space-half); flex-shrink: 0; }
+/* 1lh centres the icon on the first line of text at any line height. */
+.bx-help--error > .bx-icon { inline-size: 12px; block-size: 12px; margin-block-start: calc((1lh - 12px) / 2); flex-shrink: 0; }
 
 /* ---- Check / radio / toggle ---- */
 .bx-check {
@@ -306,7 +307,7 @@
   background: var(--bx-surface-sunken);
   font-size: var(--bx-text-base);
 }
-.bx-callout > .bx-icon { flex-shrink: 0; margin-block-start: var(--bx-space-half); }
+.bx-callout > .bx-icon { flex-shrink: 0; margin-block-start: calc((1lh - 16px) / 2); }
 .bx-callout--info    { border-color: var(--bx-line-accent); background: var(--bx-accent-soft); }
 .bx-callout--info    > .bx-icon { color: var(--bx-ink-accent); }
 .bx-callout--danger  > .bx-icon { color: var(--bx-ink-danger); }
