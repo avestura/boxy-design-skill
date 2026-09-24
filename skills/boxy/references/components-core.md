@@ -302,8 +302,9 @@ nav, sub-nav, filter strips.
 - Keyboard: arrow keys move between tabs, `Home`/`End` jump, `Tab` exits to panel.
   Use `role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`.
 
-A secondary "segmented" variant for filters: a `.bx-btn-group` with the active
-segment inverted (`--bx-surface-inverse`).
+A secondary "segmented" variant for filters: native radios with the checked
+segment inverted - full spec in `components-forms.md`. Contained (file) tabs and
+vertical tabs are in `components-navigation.md`.
 
 ---
 
@@ -373,8 +374,9 @@ segment inverted (`--bx-surface-inverse`).
   14/400 `--bx-ink-muted`.
 - Active: `--bx-surface-active`, `--bx-ink`, 500 weight, 2px `--bx-accent` inset left
   border.
-- Nested items indent by 24px with a 1px `--bx-line-subtle` vertical guide at the
-  indent position - a literal tree rule.
+- Nested items indent by 16px with a 1px `--bx-line-subtle` vertical guide at the
+  indent position - a literal tree rule. Collapsible groups, three levels and the
+  nested active mark: see Tree navigation in `components-navigation.md`.
 
 ---
 
@@ -382,7 +384,8 @@ segment inverted (`--bx-surface-inverse`).
 
 Mono, 12px, `--bx-ink-subtle`, separated by a `/` in `--bx-ink-faint` with 8px
 margins. Current page in `--bx-ink`, not a link. Truncate the middle with an ellipsis
-button past four levels. `<nav aria-label="Breadcrumb">` wrapping an `<ol>`.
+button past four levels. `<nav aria-label="Breadcrumb">` wrapping an `<ol>`. Full
+spec, including the overflow menu, in `components-navigation.md`.
 
 ---
 

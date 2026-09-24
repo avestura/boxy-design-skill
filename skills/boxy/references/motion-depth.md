@@ -58,6 +58,10 @@ transition: all 0.3s ease-in-out;
 | Input focus | `border-color` + inset shadow, 80ms linear |
 | Row hover | `background-color`, 80ms linear |
 | Dropdown / popover open | opacity 0->1, `translateY(-4px)->0`, 120ms sharp |
+| Submenu open | opacity 0->1, 80ms linear, no translate |
+| Tree group / chevron | chevron `rotate` 90deg, 120ms linear; children appear instantly |
+| Streaming caret | opacity 1 <-> 0, 1s `steps(2, jump-none)`, infinite |
+| Spinner | 4px square steps round a 16px box, 0.8s `steps(1, end)`, infinite |
 | Modal open | scrim opacity 240ms linear; dialog opacity + `translateY(4px)->0`, 160ms sharp |
 | Drawer | `translateX(100%)->0`, 160ms sharp |
 | Toast enter | opacity + `translateX(8px)->0`, 160ms sharp |

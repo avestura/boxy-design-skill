@@ -1,6 +1,6 @@
 {
   "name": "boxy-design",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Sharp-edged, zero-radius design system skill for AI coding agents — hairline structure, blueprint detailing, a disciplined neutral palette, and a linter that keeps it honest.",
   "keywords": [
     "design-system",
@@ -37,6 +37,8 @@
   },
   "exports": {
     "./boxy.css": "./skills/boxy/assets/boxy.css",
+    "./boxy-components.css": "./skills/boxy/assets/boxy-components.css",
+    "./boxy-icons.svg": "./skills/boxy/assets/boxy-icons.svg",
     "./tokens.json": "./skills/boxy/assets/design-tokens.json",
     "./package.json": "./package.json"
   },

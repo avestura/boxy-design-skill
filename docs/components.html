@@ -4,17 +4,88 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Components — Boxy</title>
-<meta name="description" content="Live Boxy components: buttons, fields, square checkboxes and toggles, tags, cards, tabs, data tables, callouts, modals, toasts and blueprint details.">
+<meta name="description" content="Live Boxy components: buttons, fields, selection, tags, cards, tabs, tables, feedback, menus and context menus, popovers, drawers, breadcrumbs, trees, accordions, code, lists, date pickers, sliders, upload, progress, avatars, layout primitives, agent chat, comboboxes, multi-selects, kanban, resizable panes, an editable grid, a colour picker and a notification inbox.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/boxy-components.css">
 <link rel="stylesheet" href="assets/site.css">
 <script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: absolute" aria-hidden="true">
+  <!--
+    Boxy icons - a 16px grid, 1.5px stroke, square caps, mitred joins.
+    Corners instead of curves wherever a corner reads; status marks are
+    polygons (square, triangle, octagon), never circles. MIT.
+
+    Inline this sprite once per page, then:
+      <svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg>
+    Icons inherit colour from currentColor.
+  -->
+
+  <!-- status -->
+  <symbol id="i-info" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="1.75" width="12.5" height="12.5"/><path d="M8 7.25v4.5 M8 4.5v.25"/></symbol>
+  <symbol id="i-success" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="1.75" width="12.5" height="12.5"/><path d="M5 8.25l2 2 4-4"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M8 1.75l6.5 12.5h-13z M8 6.5v3.5 M8 12v.25"/></symbol>
+  <symbol id="i-error" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M5.25 1.75h5.5l3.5 3.5v5.5l-3.5 3.5h-5.5l-3.5-3.5v-5.5z M6 6l4 4 M10 6l-4 4"/></symbol>
+
+  <!-- actions -->
+  <symbol id="i-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5.5" y="5.5" width="8" height="8"/><path d="M10.5 2.5h-8v8"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M10.5 2.5l3 3-8 8h-3v-3z M8.5 4.5l3 3"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 4.5h11 M6 4.5v-2h4v2 M4 4.5l.5 9h7l.5-9 M6.5 7v4 M9.5 7v4"/></symbol>
+  <symbol id="i-share" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M9.5 2.5h4v4 M13.5 2.5l-6 6 M11.5 9.5v4h-9v-9h4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 2.5v8 M4.5 7l3.5 3.5L11.5 7 M2.5 13.5h11"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 10.5v-8 M4.5 6L8 2.5 11.5 6 M2.5 13.5h11"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 3v10 M3 8h10"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 8h10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 4l8 8 M12 4l-8 8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 8.5l3 3 7-7"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M13.5 2.5v4h-4 M13.5 6.5l-2.25-2.25A5 5 0 1 0 13 9"/></symbol>
+  <symbol id="i-send" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 13.5v-11 M3.5 7L8 2.5 12.5 7"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M10.5 5v6.5a2.5 2.5 0 0 1-5 0V3.5a1.5 1.5 0 0 1 3 0v7.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M6.5 9.5l3-3 M7 4.5l1.5-1.5h5v5L12 9.5 M9 11.5L7.5 13h-5V8L4 6.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="8" height="8"/><path d="M10.5 10.5l3 3"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2 3.5h12 M4.5 8h7 M6.5 12.5h3"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M5 2.5v11 M2.5 11L5 13.5 7.5 11 M11 13.5v-11 M8.5 5L11 2.5 13.5 5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M5.5 2.5h5 M6.5 2.5v4l-2.5 3h8l-2.5-3v-4 M8 9.5v4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"><path d="M8 2l1.8 3.9 4.2.5-3.1 2.9.8 4.2L8 11.4l-3.7 2.1.8-4.2L2 6.4l4.2-.5z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.5 8L4.5 4h7l3 4-3 4h-7z"/><rect x="6.5" y="6.5" width="3" height="3"/></symbol>
+  <symbol id="i-pipette" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M9 4l3 3 M11 2.5l2.5 2.5-2 2-2.5-2.5z M9.5 5.5l-6 6v2h2l6-6"/></symbol>
+
+  <!-- navigation -->
+  <symbol id="i-down" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4.5 6.5L8 10l3.5-3.5"/></symbol>
+  <symbol id="i-up" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4.5 9.5L8 6l3.5 3.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M9.5 4.5L6 8l3.5 3.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M6.5 4.5L10 8l-3.5 3.5"/></symbol>
+  <symbol id="i-more" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="7" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="12" y="7" width="2" height="2"/></symbol>
+  <symbol id="i-grip" viewBox="0 0 16 16" fill="currentColor"><rect x="5" y="3" width="2" height="2"/><rect x="9" y="3" width="2" height="2"/><rect x="5" y="7" width="2" height="2"/><rect x="9" y="7" width="2" height="2"/><rect x="5" y="11" width="2" height="2"/><rect x="9" y="11" width="2" height="2"/></symbol>
+
+  <!-- objects -->
+  <symbol id="i-folder" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M1.5 3.5h5l1.5 1.5h6.5v8.5h-13z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="3.5" width="11" height="10"/><path d="M2.5 6.5h11 M5.5 1.5v3 M10.5 1.5v3"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M1.5 2.5h13v3h-13z M2.5 5.5v8h11v-8 M6 8.5h4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5" y="2" width="6" height="6"/><path d="M2.5 14.5v-3h11v3"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5.5" y="5.5" width="5" height="5"/><path d="M8 1.5v2 M8 12.5v2 M1.5 8h2 M12.5 8h2 M3.4 3.4l1.4 1.4 M11.2 11.2l1.4 1.4 M3.4 12.6l1.4-1.4 M11.2 4.8l1.4-1.4"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="4" height="4"/><rect x="9.5" y="2.5" width="4" height="4"/><rect x="2.5" y="9.5" width="4" height="4"/><rect x="9.5" y="9.5" width="4" height="4"/></symbol>
+  <symbol id="i-list" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M5.5 3.5h8 M5.5 8h8 M5.5 12.5h8 M2.5 3.5h0 M2.5 8h0 M2.5 12.5h0"/></symbol>
+  <symbol id="i-columns" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="2.75" width="12.5" height="10.5"/><path d="M6 2.75v10.5 M10 2.75v10.5"/></symbol>
+  <symbol id="i-term" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.5" y="2.5" width="13" height="11"/><path d="M4.5 6l2 2-2 2 M8.5 10.5h3"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="7.5" width="11" height="7"/><path d="M5 7.5v-3h6v3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"><path d="M9 1.5L3.5 9h4l-1 5.5L12.5 7h-4z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 13.5h11 M4.5 11V8 M8 11V4 M11.5 11V6.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="11" height="11"/><path d="M2.5 8h11 M8 2.5v11 M5 2.5v11 M11 2.5v11" stroke-width="1"/></symbol>
+  <symbol id="i-book" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 2.5h4.5l1 1 1-1h4.5v10h-4.5l-1 1-1-1h-4.5z M8 3.5v10"/></symbol>
+  <symbol id="i-branch" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="1.5" width="3" height="3"/><rect x="3" y="11.5" width="3" height="3"/><rect x="10" y="4.5" width="3" height="3"/><path d="M4.5 4.5v7 M11.5 7.5v1h-7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M2.5 11.5h11 M4 11.5V6.5l2-3.5h4l2 3.5v5 M6.5 14h3"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.75 8.5l2-6h8.5l2 6v5h-12.5z M1.75 8.5h3.75l1 2h3l1-2h3.75"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><rect x="1.75" y="3.25" width="12.5" height="9.5"/><path d="M1.75 3.25L8 8.5l6.25-5.25"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.75 2.75h12.5v8.5h-7l-3.5 2.5v-2.5h-2z"/></symbol>
+</svg>
 
 <header class="site-head">
   <div class="site-head__inner">
@@ -49,6 +120,35 @@
       Press <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span> for the
       command palette.
     </p>
+    <nav class="idx bx-auto-grid bx-collapse mt-6" aria-label="Components on this page">
+      <a href="#buttons"><span>01</span>Buttons</a>
+      <a href="#fields"><span>02</span>Fields</a>
+      <a href="#selection"><span>03</span>Selection</a>
+      <a href="#tags"><span>04</span>Tags &amp; status</a>
+      <a href="#cards"><span>05</span>Cards</a>
+      <a href="#tabs"><span>06</span>Tabs &amp; table</a>
+      <a href="#feedback"><span>07</span>Feedback</a>
+      <a href="#menus"><span>08</span>Menus</a>
+      <a href="#popovers"><span>09</span>Popover &amp; drawer</a>
+      <a href="#navigation"><span>10</span>Navigation</a>
+      <a href="#accordion"><span>11</span>Accordion</a>
+      <a href="#code"><span>12</span>Code</a>
+      <a href="#lists"><span>13</span>Lists</a>
+      <a href="#dates"><span>14</span>Date picker</a>
+      <a href="#range"><span>15</span>Slider &amp; stepper</a>
+      <a href="#upload"><span>16</span>File upload</a>
+      <a href="#progress"><span>17</span>Progress &amp; meters</a>
+      <a href="#people"><span>18</span>Avatars &amp; activity</a>
+      <a href="#layout"><span>19</span>Layout</a>
+      <a href="#ai"><span>20</span>Agent &amp; chat</a>
+      <a href="#combobox"><span>21</span>Combobox &amp; multi-select</a>
+      <a href="#kanban"><span>22</span>Kanban board</a>
+      <a href="#panes"><span>23</span>Resizable panes</a>
+      <a href="#datagrid"><span>24</span>Editable data grid</a>
+      <a href="#color"><span>25</span>Colour picker</a>
+      <a href="#inbox"><span>26</span>Notification inbox</a>
+      <a href="#blueprint"><span>27</span>Blueprint details</a>
+    </nav>
   </section>
 
   <!-- =========================================================== BUTTONS -->
@@ -78,15 +178,17 @@
         <div class="bx-btn-group">
           <button class="bx-btn bx-btn--primary">Deploy</button>
           <button class="bx-btn">Preview</button>
-          <button class="bx-btn bx-btn--icon" aria-label="More options">&#8230;</button>
+          <button class="bx-btn bx-btn--icon" aria-label="More options"><svg class="bx-icon" aria-hidden="true"><use href="#i-more"/></svg></button>
         </div>
       </dd></div>
       <div class="spec"><dt><span class="bx-label">Segmented</span></dt><dd>
-        <div class="bx-btn-group">
-          <button class="bx-btn bx-btn--sm" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)">Day</button>
-          <button class="bx-btn bx-btn--sm">Week</button>
-          <button class="bx-btn bx-btn--sm">Month</button>
-        </div>
+        <fieldset class="bx-segmented">
+          <legend class="bx-sr">Range</legend>
+          <label><input type="radio" name="seg-0" checked><span>Day</span></label>
+          <label><input type="radio" name="seg-0"><span>Week</span></label>
+          <label><input type="radio" name="seg-0"><span>Month</span></label>
+        </fieldset>
+        <span class="bx-label">Checked segment inverts &middot; see 15</span>
       </dd></div>
     </dl>
   </section>
@@ -118,7 +220,7 @@
           <div class="bx-field">
             <label class="bx-label" for="f3">API key</label>
             <input class="bx-input" id="f3" value="sk_live_4eC39" aria-invalid="true" aria-describedby="f3h">
-            <p class="bx-help bx-help--error" id="f3h">&#9633; This key has been revoked.</p>
+            <p class="bx-help bx-help--error" id="f3h"><svg class="bx-icon bx-icon--sm" aria-hidden="true"><use href="#i-error"/></svg>This key has been revoked.</p>
           </div>
         </div>
       </div>
@@ -152,7 +254,7 @@
             <label class="bx-label" for="f8">Search</label>
             <div style="position: relative">
               <input class="bx-input" id="f8" placeholder="Find anything" style="padding-inline: 36px 56px">
-              <span style="position: absolute; inset-block-start: 50%; inset-inline-start: 12px; transform: translateY(-50%); color: var(--bx-ink-subtle)" aria-hidden="true">&#9906;</span>
+              <svg class="bx-icon" aria-hidden="true" style="position: absolute; inset-block-start: 50%; inset-inline-start: 12px; transform: translateY(-50%); color: var(--bx-ink-subtle)"><use href="#i-search"/></svg>
               <span class="bx-kbd" style="position: absolute; inset-block-start: 50%; inset-inline-end: 12px; transform: translateY(-50%)">&#8984;K</span>
             </div>
           </div>
@@ -324,11 +426,11 @@
         <div class="row mt-4" style="justify-content: space-between">
           <span class="bx-label">Showing 1&ndash;5 of 1,284</span>
           <nav class="bx-btn-group" aria-label="Pagination">
-            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Previous page">&#8249;</button>
+            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Previous page"><svg class="bx-icon" aria-hidden="true"><use href="#i-left"/></svg></button>
             <button class="bx-btn bx-btn--sm bx-mono" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)" aria-current="page">1</button>
             <button class="bx-btn bx-btn--sm bx-mono">2</button>
             <button class="bx-btn bx-btn--sm bx-mono">3</button>
-            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Next page">&#8250;</button>
+            <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Next page"><svg class="bx-icon" aria-hidden="true"><use href="#i-right"/></svg></button>
           </nav>
         </div>
       </div>
@@ -369,10 +471,10 @@
     </div>
 
     <div class="stack" style="max-inline-size: 760px">
-      <div class="bx-callout bx-callout--info"><span class="bx-mono" aria-hidden="true">i</span><div><p style="font-weight: 600">Scheduled maintenance</p><p class="mt-2" style="font-size: var(--bx-text-base)">Read replicas will fail over on Sunday at 02:00 UTC.</p></div></div>
-      <div class="bx-callout bx-callout--success"><span class="bx-mono" aria-hidden="true">&#10003;</span><div><p style="font-weight: 600">Certificate issued</p><p class="mt-2" style="font-size: var(--bx-text-base)">Auto-renews 30 days before expiry.</p></div></div>
-      <div class="bx-callout bx-callout--warning"><span class="bx-mono" aria-hidden="true">!</span><div><p style="font-weight: 600">Approaching quota</p><p class="mt-2" style="font-size: var(--bx-text-base)">You have used 84% of this month's build minutes.</p></div></div>
-      <div class="bx-callout bx-callout--danger"><span class="bx-mono" aria-hidden="true">&#9633;</span><div><p style="font-weight: 600">Deployment failed</p><p class="mt-2" style="font-size: var(--bx-text-base)">Build step 4 exited with code 1.</p></div></div>
+      <div class="bx-callout bx-callout--info"><svg class="bx-icon" aria-hidden="true"><use href="#i-info"/></svg><div><p style="font-weight: 600">Scheduled maintenance</p><p class="mt-2" style="font-size: var(--bx-text-base)">Read replicas will fail over on Sunday at 02:00 UTC.</p></div></div>
+      <div class="bx-callout bx-callout--success"><svg class="bx-icon" aria-hidden="true"><use href="#i-success"/></svg><div><p style="font-weight: 600">Certificate issued</p><p class="mt-2" style="font-size: var(--bx-text-base)">Auto-renews 30 days before expiry.</p></div></div>
+      <div class="bx-callout bx-callout--warning"><svg class="bx-icon" aria-hidden="true"><use href="#i-warning"/></svg><div><p style="font-weight: 600">Approaching quota</p><p class="mt-2" style="font-size: var(--bx-text-base)">You have used 84% of this month's build minutes.</p></div></div>
+      <div class="bx-callout bx-callout--danger"><svg class="bx-icon" aria-hidden="true"><use href="#i-error"/></svg><div><p style="font-weight: 600">Deployment failed</p><p class="mt-2" style="font-size: var(--bx-text-base)">Build step 4 exited with code 1.</p></div></div>
     </div>
 
     <dl class="spec bx-collapse mt-8" style="grid-template-columns: 1fr">
@@ -397,10 +499,1057 @@
     </dl>
   </section>
 
+  <!-- ============================================================= MENUS -->
+  <section class="sec" id="menus">
+    <div class="sec__head">
+      <p class="bx-label">08 / Menus</p>
+      <h2>Menus, submenus and context menus share one surface</h2>
+      <p>Raised surface, 1px heavy line, a hard 2px offset. Submenus hang flush off
+      the parent's edge so the two borders read as one line. Arrow keys move,
+      <span class="bx-kbd">&rarr;</span> opens a submenu, <span class="bx-kbd">&larr;</span>
+      closes it, typing a letter jumps to it.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Dropdown</span></dt><dd>
+        <button class="bx-btn" popovertarget="menu-actions" aria-haspopup="menu" aria-expanded="false">
+          Actions <svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg>
+        </button>
+        <ul class="bx-float bx-menu" id="menu-actions" popover role="menu" aria-label="Actions">
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Opened editor"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-edit"/></svg>Edit<span class="bx-menu__hint">E</span></button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Duplicated edge-router"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-copy"/></svg>Duplicate<span class="bx-menu__hint">Ctrl D</span></button></li>
+          <li role="none">
+            <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-share"/></svg>Share</button>
+            <ul class="bx-menu" role="menu" aria-label="Share">
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Link copied"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-link"/></svg>Copy link</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Invite sent">Invite by email</button></li>
+              <li role="none">
+                <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-download"/></svg>Export as</button>
+                <ul class="bx-menu" role="menu" aria-label="Export as">
+                  <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Exported" data-say-body="edge-router.pdf">PDF<span class="bx-menu__hint">.pdf</span></button></li>
+                  <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Exported" data-say-body="edge-router.csv">CSV<span class="bx-menu__hint">.csv</span></button></li>
+                  <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Exported" data-say-body="edge-router.json">JSON<span class="bx-menu__hint">.json</span></button></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li role="separator" class="bx-menu__sep"></li>
+          <li role="none" class="bx-menu__label">View</li>
+          <li role="none"><button class="bx-menu__item" role="menuitemcheckbox" aria-checked="true">Show hidden files</button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitemcheckbox" aria-checked="false">Compact rows</button></li>
+          <li role="separator" class="bx-menu__sep"></li>
+          <li role="none"><button class="bx-menu__item" role="menuitem" disabled><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-archive"/></svg>Archive<span class="bx-menu__hint">locked</span></button></li>
+          <li role="none"><button class="bx-menu__item bx-menu__item--danger" role="menuitem" data-say="Deleted edge-router"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-trash"/></svg>Delete&hellip;<span class="bx-menu__hint">Del</span></button></li>
+        </ul>
+
+        <button class="bx-btn bx-btn--ghost bx-btn--icon" popovertarget="menu-sort" aria-haspopup="menu" aria-expanded="false" aria-label="Sort options">
+          <svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg>
+        </button>
+        <ul class="bx-float bx-menu" id="menu-sort" popover role="menu" aria-label="Sort by">
+          <li role="none" class="bx-menu__label">Sort by</li>
+          <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true">Name</button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">Last modified</button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">Size</button></li>
+        </ul>
+      </dd></div>
+
+      <div class="spec"><dt><span class="bx-label">Split button</span></dt><dd>
+        <div class="bx-btn-group">
+          <button class="bx-btn bx-btn--primary" data-say="Deploying to production">Deploy</button>
+          <button class="bx-btn bx-btn--primary bx-btn--icon" popovertarget="menu-deploy" aria-haspopup="menu" aria-expanded="false" aria-label="More deploy options"><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+        </div>
+        <ul class="bx-float bx-menu" id="menu-deploy" popover role="menu" aria-label="Deploy options">
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Deploying to staging">Deploy to staging</button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Deploying" data-say-body="Build cache cleared">Deploy without cache</button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Deploy scheduled" data-say-body="Tonight, 02:00 UTC">Schedule&hellip;</button></li>
+        </ul>
+        <span class="bx-label">The split's two halves share one border, like any group</span>
+      </dd></div>
+
+      <div class="spec"><dt><span class="bx-label">Context menu</span></dt><dd style="display: block">
+        <div class="ctx-zone hatch" tabindex="0" data-context="ctx-demo" aria-label="Context menu demo area. Press Shift F10 for the menu.">
+          <span class="bx-label">Right-click in here &mdash; or focus it and press <span class="bx-kbd">Shift</span> <span class="bx-kbd">F10</span></span>
+        </div>
+        <ul class="bx-float bx-menu" id="ctx-demo" popover data-context-menu role="menu" aria-label="Context">
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Opened"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-eye"/></svg>Open<span class="bx-menu__hint">Enter</span></button></li>
+          <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Renamed"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-edit"/></svg>Rename<span class="bx-menu__hint">F2</span></button></li>
+          <li role="none">
+            <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>Move to</button>
+            <ul class="bx-menu" role="menu" aria-label="Move to">
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to assets/">assets/</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to backups/">backups/</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to exports/">exports/</button></li>
+            </ul>
+          </li>
+          <li role="separator" class="bx-menu__sep"></li>
+          <li role="none"><button class="bx-menu__item bx-menu__item--danger" role="menuitem" data-say="Moved to trash"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-trash"/></svg>Delete<span class="bx-menu__hint">Del</span></button></li>
+        </ul>
+        <p class="bx-help mt-2">A context menu is a shortcut, never the only path. Every action in it also lives in a visible overflow menu.</p>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ========================================================== POPOVERS -->
+  <section class="sec" id="popovers">
+    <div class="sec__head">
+      <p class="bx-label">09 / Popover &amp; drawer</p>
+      <h2>Interactive content floats; a tooltip never does</h2>
+      <p>A popover holds controls and stays open until dismissed. A drawer is a modal
+      panel from the inline end &mdash; the same focus rules as a dialog.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Popover</span></dt><dd>
+        <button class="bx-btn" popovertarget="pop-share" aria-expanded="false"><svg width="16" height="16" aria-hidden="true"><use href="#i-share"/></svg>Share</button>
+        <div class="bx-float bx-popover" id="pop-share" popover role="dialog" aria-labelledby="pop-share-t">
+          <div class="bx-popover__head">
+            <p id="pop-share-t" style="font-weight: 600; font-size: var(--bx-text-base)">Share edge-router</p>
+            <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="pop-share" popovertargetaction="hide" aria-label="Close"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="bx-popover__body stack">
+            <div class="bx-field">
+              <label class="bx-label" for="pop-link">Link</label>
+              <div class="bx-btn-group" style="inline-size: 100%">
+                <input class="bx-input" id="pop-link" value="orbit.dev/s/8f3a1c" readonly style="border: 0">
+                <button class="bx-btn bx-btn--icon" data-copy="https://orbit.dev/s/8f3a1c" aria-label="Copy link"><svg width="16" height="16" aria-hidden="true"><use href="#i-copy"/></svg></button>
+              </div>
+            </div>
+            <label class="bx-choice" style="justify-content: space-between">Anyone with the link can view <input class="bx-toggle" type="checkbox" checked></label>
+          </div>
+          <div class="bx-popover__foot">
+            <button class="bx-btn bx-btn--sm" popovertarget="pop-share" popovertargetaction="hide">Done</button>
+          </div>
+        </div>
+
+        <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="pop-info" aria-label="About p95 latency" aria-expanded="false" style="font-family: var(--bx-font-mono)">?</button>
+        <div class="bx-float bx-popover" id="pop-info" popover role="dialog" aria-label="About p95 latency">
+          <div class="bx-popover__body">
+            <p class="bx-label">Metric</p>
+            <p style="font-weight: 600; margin-block-start: 4px">p95 latency</p>
+            <p class="muted mt-2">95% of requests completed faster than this. Measured at the edge, excluding cold starts.</p>
+            <p class="mt-4"><a href="#popovers" style="font-size: var(--bx-text-sm)">How latency is measured &rarr;</a></p>
+          </div>
+        </div>
+        <span class="bx-label">Esc and outside-click dismiss &middot; focus returns to the trigger</span>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Drawer</span></dt><dd>
+        <button class="bx-btn" data-drawer="tpl-drawer">Open drawer</button>
+        <span class="bx-label">400px &middot; slides 100% in 160ms sharp &middot; scrim, focus trap, Esc</span>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ======================================================== NAVIGATION -->
+  <section class="sec" id="navigation">
+    <div class="sec__head">
+      <p class="bx-label">10 / Navigation</p>
+      <h2>Breadcrumbs, tab variants and a tree with submenus</h2>
+      <p>Every active indicator replaces the rule it sits on &mdash; drawn with an inset
+      plus a 1px outset, never pulled over the line with a negative margin.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Breadcrumb</span></dt><dd style="display: grid; gap: 16px">
+        <nav class="bx-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="#navigation">acme</a></li>
+            <li><a href="#navigation">production</a></li>
+            <li><a href="#navigation">services</a></li>
+            <li><span aria-current="page">edge-router</span></li>
+          </ol>
+        </nav>
+        <nav class="bx-breadcrumb" aria-label="Breadcrumb, truncated">
+          <ol>
+            <li><a href="#navigation">docs</a></li>
+            <li>
+              <button class="bx-breadcrumb__more" popovertarget="menu-crumbs" aria-label="Show 3 hidden levels" aria-haspopup="menu" aria-expanded="false">&hellip;</button>
+              <ul class="bx-float bx-menu" id="menu-crumbs" popover role="menu" aria-label="Hidden levels">
+                <li role="none"><a class="bx-menu__item" role="menuitem" href="#navigation">guides</a></li>
+                <li role="none"><a class="bx-menu__item" role="menuitem" href="#navigation">networking</a></li>
+                <li role="none"><a class="bx-menu__item" role="menuitem" href="#navigation">routing</a></li>
+              </ul>
+            </li>
+            <li><a href="#navigation">rewrites</a></li>
+            <li><span aria-current="page">regex captures</span></li>
+          </ol>
+        </nav>
+      </dd></div>
+
+      <div class="spec"><dt><span class="bx-label">Contained tabs</span></dt><dd style="display: block">
+        <div data-tabs="self">
+          <div class="bx-tabs bx-tabs--contained" role="tablist" aria-label="Files">
+            <button class="bx-tab" role="tab" data-tab="c1" aria-selected="true">orbit.toml</button>
+            <button class="bx-tab" role="tab" data-tab="c2" aria-selected="false">routes.ts</button>
+            <button class="bx-tab" role="tab" data-tab="c3" aria-selected="false">.env</button>
+          </div>
+          <div class="bx-tabpanel" data-panel="c1" style="padding: 16px"><p class="muted" style="font-size: var(--bx-text-base)">File tabs sit on a sunken strip. The selected tab takes the panel's surface, loses its bottom rule and gains a 2px accent top edge, so tab and panel read as one box.</p></div>
+          <div class="bx-tabpanel" data-panel="c2" style="padding: 16px" hidden><p class="muted" style="font-size: var(--bx-text-base)">Use them for switching views of one object: files, languages, environments.</p></div>
+          <div class="bx-tabpanel" data-panel="c3" style="padding: 16px" hidden><p class="muted" style="font-size: var(--bx-text-base)">Never for navigating between pages &mdash; that is a nav, with links.</p></div>
+        </div>
+      </dd></div>
+
+      <div class="spec"><dt><span class="bx-label">Vertical tabs</span></dt><dd style="display: block">
+        <div data-tabs="self" style="display: grid; grid-template-columns: 184px 1fr; border: 1px solid var(--bx-line); max-inline-size: 640px">
+          <div class="bx-tabs bx-tabs--vertical" role="tablist" aria-orientation="vertical" aria-label="Settings">
+            <button class="bx-tab" role="tab" data-tab="v1" aria-selected="true">General</button>
+            <button class="bx-tab" role="tab" data-tab="v2" aria-selected="false">Domains</button>
+            <button class="bx-tab" role="tab" data-tab="v3" aria-selected="false">Environment</button>
+            <button class="bx-tab" role="tab" data-tab="v4" aria-selected="false">Webhooks</button>
+          </div>
+          <div style="padding: 20px">
+            <div data-panel="v1"><p class="bx-label">General</p><p class="muted mt-2" style="font-size: var(--bx-text-base)">Up and down arrows move between vertical tabs. The accent bar sits on the inline-end rule and replaces it.</p></div>
+            <div data-panel="v2" hidden><p class="bx-label">Domains</p><p class="muted mt-2" style="font-size: var(--bx-text-base)">orbit.app, api.orbit.app</p></div>
+            <div data-panel="v3" hidden><p class="bx-label">Environment</p><p class="muted mt-2" style="font-size: var(--bx-text-base)">12 variables, 3 secret.</p></div>
+            <div data-panel="v4" hidden><p class="bx-label">Webhooks</p><p class="muted mt-2" style="font-size: var(--bx-text-base)">None configured.</p></div>
+          </div>
+        </div>
+      </dd></div>
+
+      <div class="spec"><dt><span class="bx-label">Tree &amp; TOC</span></dt><dd style="align-items: flex-start; gap: 32px">
+        <nav class="bx-tree" aria-label="Docs" style="inline-size: 256px; border: 1px solid var(--bx-line); background: var(--bx-surface)">
+          <p class="bx-tree__heading">Guides</p>
+          <ul>
+            <li><a class="bx-tree__item" href="#navigation">Introduction</a></li>
+            <li>
+              <details open>
+                <summary class="bx-tree__item">Networking</summary>
+                <ul>
+                  <li>
+                    <details open>
+                      <summary class="bx-tree__item">Routing</summary>
+                      <ul>
+                        <li><a class="bx-tree__item" href="#navigation">Matching</a></li>
+                        <li><a class="bx-tree__item" href="#navigation" aria-current="page">Rewrites</a></li>
+                        <li><a class="bx-tree__item" href="#navigation">Redirects</a></li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li><a class="bx-tree__item" href="#navigation">Caching</a></li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary class="bx-tree__item">Storage<span class="bx-tree__count">4</span></summary>
+                <ul>
+                  <li><a class="bx-tree__item" href="#navigation">Buckets</a></li>
+                  <li><a class="bx-tree__item" href="#navigation">Databases</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </nav>
+        <div style="inline-size: 200px">
+          <p class="bx-label" style="margin-block-end: 12px">On this page</p>
+          <nav class="bx-toc" aria-label="On this page">
+            <a href="#navigation">Overview</a>
+            <a href="#navigation" aria-current="true">Regex captures</a>
+            <a class="sub" href="#navigation">Named groups</a>
+            <a class="sub" href="#navigation">Backreferences</a>
+            <a href="#navigation">Limits</a>
+          </nav>
+        </div>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ========================================================= ACCORDION -->
+  <section class="sec" id="accordion">
+    <div class="sec__head">
+      <p class="bx-label">11 / Accordion</p>
+      <h2>Native disclosure, shared rules, a drawn plus</h2>
+      <p>Built on <code class="bx-code">&lt;details&gt;</code>, so it works with script
+      disabled and the browser's find-in-page opens a match. Give items one
+      <code class="bx-code">name</code> to allow only one open at a time.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Exclusive &mdash; one open</p>
+        <div class="bx-accordion">
+          <details name="acc-demo" open>
+            <summary><span class="bx-accordion__n">01</span>What counts as a build minute?</summary>
+            <div class="bx-accordion__body"><p>Wall-clock time from the first build step to the upload finishing, rounded up to the next minute per build.</p></div>
+          </details>
+          <details name="acc-demo">
+            <summary><span class="bx-accordion__n">02</span>Can I bring my own domain?</summary>
+            <div class="bx-accordion__body"><p>Yes, on every plan. Point a CNAME at <code class="bx-code">edge.orbit.app</code>; certificates are issued automatically.</p></div>
+          </details>
+          <details name="acc-demo">
+            <summary><span class="bx-accordion__n">03</span>What happens when I hit a limit?</summary>
+            <div class="bx-accordion__body"><p>Nothing stops. You get an email at 80% and 100%, and overage is billed at the published rate.</p></div>
+          </details>
+        </div>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Independent &mdash; settings groups</p>
+        <div class="bx-accordion">
+          <details open>
+            <summary>Build &amp; output</summary>
+            <div class="bx-accordion__body">
+              <dl class="bx-dl">
+                <dt>Command</dt><dd class="bx-mono">orbit build</dd>
+                <dt>Output</dt><dd class="bx-mono">dist/</dd>
+              </dl>
+            </div>
+          </details>
+          <details>
+            <summary>Advanced</summary>
+            <div class="bx-accordion__body"><label class="bx-choice"><input class="bx-check" type="checkbox"> Skip builds for draft PRs</label></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== CODE -->
+  <section class="sec" id="code">
+    <div class="sec__head">
+      <p class="bx-label">12 / Code</p>
+      <h2>Inline, block, numbered, diff and terminal</h2>
+      <p>One line per <code class="bx-code">span.ln</code>, so numbers, highlights and
+      diff marks are line state rather than overlays &mdash; and a copy button copies
+      the code, not the line numbers.</p>
+    </div>
+
+    <div class="stack" style="--bx-gap: var(--bx-space-6)">
+      <p style="max-inline-size: 64ch">
+        Inline code sits in a sunken box with a subtle rule: run <code class="bx-code">orbit deploy --prod</code>,
+        then check <code class="bx-code">ORBIT_TOKEN</code> is set. Keys use <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span>,
+        and an inverted inline block &mdash; <span class="bx-mark">never a highlighter</span> &mdash; marks a match.
+      </p>
+
+      <div class="bx-collapse bx-collapse--2">
+        <div class="bx-codeblock bx-codeblock--numbered" style="border: 0">
+          <div class="bx-codeblock__head">
+            <span class="bx-label">send.ts</span><span class="bx-label">typescript</span>
+            <span class="bx-codeblock__spacer"></span>
+            <button class="bx-codeblock__btn" data-copy>copy</button>
+          </div>
+<pre><code><span class="ln"><span class="tk-k">export async function</span> <span class="tk-f">send</span>(hook: Hook, body: <span class="tk-k">string</span>) {</span><span class="ln">  <span class="tk-k">for</span> (<span class="tk-k">let</span> attempt = <span class="tk-n">0</span>; attempt &lt; <span class="tk-n">5</span>; attempt++) {</span><span class="ln ln--hl">    <span class="tk-k">const</span> res = <span class="tk-k">await</span> fetch(hook.url, { method: <span class="tk-s">"POST"</span>, body });</span><span class="ln">    <span class="tk-k">if</span> (res.ok) <span class="tk-k">return</span> res;</span><span class="ln">    <span class="tk-c">// back off: 200ms, 400ms, 800ms ...</span></span><span class="ln">    <span class="tk-k">await</span> sleep(<span class="tk-n">200</span> * <span class="tk-n">2</span> ** attempt);</span><span class="ln">  }</span><span class="ln">  <span class="tk-k">throw new</span> <span class="tk-e">WebhookError</span>(hook.id);</span><span class="ln">}</span></code></pre>
+        </div>
+
+        <div class="bx-codeblock bx-codeblock--diff" style="border: 0">
+          <div class="bx-codeblock__head">
+            <span class="bx-label">orbit.toml</span>
+            <span class="bx-label" style="color: var(--bx-ink-success)">+2</span><span class="bx-label" style="color: var(--bx-ink-danger)">&minus;1</span>
+            <span class="bx-codeblock__spacer"></span>
+            <button class="bx-codeblock__btn" data-copy>copy</button>
+          </div>
+<pre><code><span class="ln"><span class="tk-c">[[routes]]</span></span><span class="ln">pattern = <span class="tk-s">"/api/*"</span></span><span class="ln ln--del">timeout = <span class="tk-n">10</span></span><span class="ln ln--add">timeout = <span class="tk-n">30</span></span><span class="ln ln--add">retries = <span class="tk-n">5</span></span><span class="ln">service = <span class="tk-s">"api-gateway"</span></span></code></pre>
+        </div>
+      </div>
+
+      <div class="bx-collapse bx-collapse--2">
+        <div class="bx-codeblock bx-codeblock--term" style="border: 0">
+          <div class="bx-codeblock__head">
+            <span class="bx-label">terminal</span>
+            <span class="bx-codeblock__spacer"></span>
+            <button class="bx-codeblock__btn" data-copy="orbit deploy --prod">copy</button>
+          </div>
+<pre><code><span class="ln ln--cmd">orbit deploy --prod</span><span class="ln ln--out">&#10003; build       1.8s</span><span class="ln ln--out">&#10003; upload      0.4s</span><span class="ln ln--out">&#10003; propagate   2.1s</span><span class="ln">live at <span class="tk-s">https://orbit.app</span> &rarr; 310 pops</span></code></pre>
+          <div class="bx-codeblock__foot"><span class="bx-label">exit 0</span><span class="bx-label">4.3s</span></div>
+        </div>
+
+        <div data-tabs="self" style="padding: 0">
+          <div class="bx-tabs bx-tabs--contained" role="tablist" aria-label="Package manager" style="border-inline: 0; border-block-start: 0">
+            <button class="bx-tab" role="tab" data-tab="pm1" aria-selected="true">npm</button>
+            <button class="bx-tab" role="tab" data-tab="pm2" aria-selected="false">pnpm</button>
+            <button class="bx-tab" role="tab" data-tab="pm3" aria-selected="false">bun</button>
+          </div>
+          <div class="bx-codeblock bx-codeblock--term" data-panel="pm1" style="border: 0"><div class="bx-codeblock__head"><span class="bx-label">install</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="npm install @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">npm install @orbit/sdk</span></code></pre></div>
+          <div class="bx-codeblock bx-codeblock--term" data-panel="pm2" style="border: 0" hidden><div class="bx-codeblock__head"><span class="bx-label">install</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="pnpm add @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">pnpm add @orbit/sdk</span></code></pre></div>
+          <div class="bx-codeblock bx-codeblock--term" data-panel="pm3" style="border: 0" hidden><div class="bx-codeblock__head"><span class="bx-label">install</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="bun add @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">bun add @orbit/sdk</span></code></pre></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= LISTS -->
+  <section class="sec" id="lists">
+    <div class="sec__head">
+      <p class="bx-label">13 / Lists</p>
+      <h2>Square bullets, mono numerals, drawn checks</h2>
+      <p>Even the bullet is a square. Ordered lists count in zero-padded mono so a
+      ten-item list does not jump its alignment at item 10.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Unordered</p>
+        <ul class="bx-list" style="font-size: var(--bx-text-base)">
+          <li>Immutable, content-addressed builds</li>
+          <li>Edge routing across 310 locations
+            <ul class="bx-list">
+              <li>Automatic failover</li>
+              <li>Per-route timeouts</li>
+            </ul>
+          </li>
+          <li>Zero-config TLS</li>
+        </ul>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Ordered</p>
+        <ol class="bx-list" style="font-size: var(--bx-text-base)">
+          <li>Install the CLI</li>
+          <li>Run <code class="bx-code">orbit init</code> in your project</li>
+          <li>Link a Git repository</li>
+          <li>Push to deploy</li>
+        </ol>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Checklist &amp; plan states</p>
+        <ul class="bx-list bx-list--check" style="font-size: var(--bx-text-base)">
+          <li data-state="done">Reproduce the failing test</li>
+          <li data-state="active">Add retry with backoff</li>
+          <li data-state="pending">Update the changelog</li>
+          <li>Unlimited preview deploys</li>
+          <li data-state="absent">SAML single sign-on</li>
+        </ul>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Ruled</p>
+        <ol class="bx-list bx-list--ruled" style="font-size: var(--bx-text-base)">
+          <li>Create a project</li>
+          <li>Connect a domain</li>
+          <li>Invite the team</li>
+        </ol>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Description list</p>
+        <dl class="bx-dl">
+          <dt>Service</dt><dd class="bx-mono">edge-router</dd>
+          <dt>Region</dt><dd>us-east-1</dd>
+          <dt>Commit</dt><dd class="bx-mono">8f3a1c2</dd>
+          <dt>Status</dt><dd><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-base)">Healthy</span></dd>
+        </dl>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Blockquote</p>
+        <blockquote class="bx-quote">
+          <p>We moved 40 services in a weekend and nobody noticed. That was the point.</p>
+          <footer class="bx-label">Platform lead, Acme</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= DATE PICKER -->
+  <section class="sec" id="dates">
+    <div class="sec__head">
+      <p class="bx-label">14 / Date picker</p>
+      <h2>The calendar is a collapsed grid</h2>
+      <p>Typing stays the primary input &mdash; the field accepts <code class="bx-code">YYYY-MM-DD</code>
+      and the calendar assists. Arrows move by day and week, <span class="bx-kbd">PgUp</span>
+      <span class="bx-kbd">PgDn</span> by month. Ranges lead with presets.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Field + popover</p>
+        <div class="bx-field">
+          <label class="bx-label" for="date-1">Launch date</label>
+          <div class="bx-datefield">
+            <input class="bx-input" id="date-1" value="2026-10-14" placeholder="YYYY-MM-DD" aria-describedby="date-1h">
+            <button class="bx-btn bx-btn--icon" popovertarget="cal-1" aria-label="Choose date"><svg width="16" height="16" aria-hidden="true"><use href="#i-cal"/></svg></button>
+          </div>
+          <p class="bx-help" id="date-1h">Type it, or pick from the calendar.</p>
+        </div>
+        <div class="bx-float" id="cal-1" popover data-autofocus>
+          <div class="bx-cal" data-cal data-cal-input="date-1">
+            <div data-cal-mount>
+              <div class="bx-cal__foot">
+                <button class="bx-btn bx-btn--ghost bx-btn--sm" data-cal-act="clear">Clear</button>
+                <button class="bx-btn bx-btn--sm" data-cal-act="today">Today</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Inline</p>
+        <div class="bx-cal" data-cal style="padding: 0"><div data-cal-mount></div></div>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Range with presets</p>
+        <button class="bx-btn" popovertarget="range-1" style="font-family: var(--bx-font-mono); font-size: var(--bx-text-sm)">
+          <svg width="16" height="16" aria-hidden="true"><use href="#i-cal"/></svg><span id="range-1-label">Last 7 days</span><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg>
+        </button>
+        <div class="bx-float" id="range-1" popover>
+          <div class="bx-range" data-cal="range" data-cal-label="range-1-label">
+            <ul class="bx-range__presets bx-menu" role="menu" aria-label="Presets" style="min-inline-size: 0">
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="1">Today</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true" data-preset="7">Last 7 days</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="30">Last 30 days</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="month">This month</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="quarter">This quarter</button></li>
+              <li role="separator" class="bx-menu__sep"></li>
+              <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="custom">Custom</button></li>
+            </ul>
+            <div class="bx-cal">
+              <div data-cal-mount>
+                <div class="bx-cal__foot">
+                  <span class="bx-label">Click start, then end</span>
+                  <button class="bx-btn bx-btn--primary bx-btn--sm" data-cal-act="apply">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="bx-help mt-4">Presets as rows first &mdash; nobody fights a grid for &ldquo;last 30 days&rdquo;.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== SLIDER / NUMBER -->
+  <section class="sec" id="range">
+    <div class="sec__head">
+      <p class="bx-label">15 / Slider, stepper &amp; segmented</p>
+      <h2>A square thumb, and always a number beside it</h2>
+      <p>A slider is for approximate values. Pair it with a field so an exact value
+      is one keystroke away &mdash; dragging to 37 is a test of motor control.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">Slider</span></dt><dd style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; align-items: start">
+        <div class="bx-field">
+          <div class="row" style="justify-content: space-between"><label class="bx-label" for="sl-1">Instances</label><input class="bx-input bx-mono" type="number" min="1" max="64" value="12" data-out="sl-1" aria-label="Instances, exact value" style="inline-size: 64px; height: 28px; text-align: end; padding-inline: 8px"></div>
+          <input class="bx-slider" id="sl-1" type="range" min="1" max="64" value="12">
+          <div class="bx-slider__scale"><span>1</span><span>16</span><span>32</span><span>48</span><span>64</span></div>
+        </div>
+        <div class="bx-field">
+          <div class="row" style="justify-content: space-between"><label class="bx-label" for="sl-2">Sample rate</label><output class="bx-mono" data-out="sl-2" style="font-size: var(--bx-text-sm)">40%</output></div>
+          <input class="bx-slider" id="sl-2" type="range" min="0" max="100" step="10" value="40" data-suffix="%">
+          <div class="bx-slider__ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="bx-field">
+          <label class="bx-label" for="sl-3">Locked</label>
+          <input class="bx-slider" id="sl-3" type="range" value="70" disabled>
+        </div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Stepper</span></dt><dd>
+        <div class="bx-stepper">
+          <button class="bx-btn" data-step="-1" aria-label="Decrease replicas">&minus;</button>
+          <input class="bx-input" type="number" value="3" min="0" max="12" aria-label="Replicas">
+          <button class="bx-btn" data-step="1" aria-label="Increase replicas">+</button>
+        </div>
+        <span class="bx-label">min 0 &middot; max 12</span>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">Segmented</span></dt><dd>
+        <fieldset class="bx-segmented">
+          <legend class="bx-sr">Time range</legend>
+          <label><input type="radio" name="seg-1" value="d" checked><span>Day</span></label>
+          <label><input type="radio" name="seg-1" value="w"><span>Week</span></label>
+          <label><input type="radio" name="seg-1" value="m"><span>Month</span></label>
+        </fieldset>
+        <fieldset class="bx-segmented">
+          <legend class="bx-sr">View</legend>
+          <label><input type="radio" name="seg-2" value="grid" checked><span><svg width="16" height="16" aria-hidden="true"><use href="#i-grid"/></svg>Grid</span></label>
+          <label><input type="radio" name="seg-2" value="list"><span><svg width="16" height="16" aria-hidden="true"><use href="#i-list"/></svg>List</span></label>
+        </fieldset>
+        <span class="bx-label">Native radios &mdash; arrow keys and form values for free</span>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ============================================================ UPLOAD -->
+  <section class="sec" id="upload">
+    <div class="sec__head">
+      <p class="bx-label">16 / File upload</p>
+      <h2>The one place a dashed line is allowed</h2>
+      <p>Dashes read as a cut line &mdash; a placeholder waiting to be filled. Drag-over
+      turns it solid accent. Errors attach to the file, not the zone. Try dropping a
+      file.</p>
+    </div>
+
+    <div style="max-inline-size: 640px">
+      <label class="bx-drop" data-files="files-1">
+        <input type="file" multiple aria-describedby="drop-1h">
+        <svg class="bx-drop__glyph" viewBox="0 0 16 16" aria-hidden="true"><use href="#i-upload"/></svg>
+        <span><b style="color: var(--bx-ink)">Drop files here</b> or <span style="color: var(--bx-ink-accent)">browse</span></span>
+        <span class="bx-label" id="drop-1h">PNG, PDF, CSV &middot; up to 25 MB each</span>
+      </label>
+      <ul class="bx-files" id="files-1">
+        <li class="bx-file"><span class="bx-file__type">pdf</span><div style="min-inline-size: 0"><p class="bx-file__name">q3-invoice-acme.pdf</p><p class="bx-file__meta"><span>1.2 MB</span></p></div><span class="bx-label" style="color: var(--bx-ink-success)">Done</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Remove q3-invoice-acme.pdf" onclick="this.parentNode.remove()"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+        <li class="bx-file"><span class="bx-file__type">csv</span><div style="min-inline-size: 0"><p class="bx-file__name">requests-sep-2026.csv</p><p class="bx-file__meta"><span>8.4 MB</span><span class="bx-progress"><i style="inline-size: 64%"></i></span><span>64%</span></p></div><span class="bx-label">Uploading</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Cancel requests-sep-2026.csv" onclick="this.parentNode.remove()"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+        <li class="bx-file bx-file--error"><span class="bx-file__type">mov</span><div style="min-inline-size: 0"><p class="bx-file__name">launch-video-final-v3.mov</p><p class="bx-file__meta" style="color: var(--bx-ink-danger)"><span>184 MB &middot; exceeds the 25 MB limit</span></p></div><span class="bx-label" style="color: var(--bx-ink-danger)">Failed</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Remove launch-video-final-v3.mov" onclick="this.parentNode.remove()"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================================================== PROGRESS -->
+  <section class="sec" id="progress">
+    <div class="sec__head">
+      <p class="bx-label">17 / Progress &amp; meters</p>
+      <h2>Quantities as cells, loading as a stepped square</h2>
+      <p>Progress shows a task finishing. A meter shows a level against a limit. A
+      spinner is a 4px square stepping round a box &mdash; no arcs.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--3">
+      <div style="padding: 24px" class="stack">
+        <p class="bx-label">Progress</p>
+        <div><div class="bx-progress__row"><span>Uploading assets</span><span class="bx-mono">68%</span></div><div class="bx-progress bx-progress--lg" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Uploading assets"><i style="inline-size: 68%"></i></div></div>
+        <div><div class="bx-progress__row"><span>Build minutes</span><span class="bx-mono">84%</span></div><div class="bx-progress bx-progress--warn" role="progressbar" aria-valuenow="84" aria-label="Build minutes"><i style="inline-size: 84%"></i></div><p class="bx-help mt-2" style="color: var(--bx-ink-warning)">Approaching the monthly limit</p></div>
+        <div><div class="bx-progress__row"><span>Storage</span><span class="bx-mono">98%</span></div><div class="bx-progress bx-progress--danger" role="progressbar" aria-valuenow="98" aria-label="Storage"><i style="inline-size: 98%"></i></div></div>
+      </div>
+      <div style="padding: 24px" class="stack">
+        <p class="bx-label">Meter &amp; steps</p>
+        <div>
+          <div class="bx-progress__row"><span>Seats</span><span class="bx-mono">14 / 20</span></div>
+          <div class="bx-meter" role="meter" aria-valuenow="14" aria-valuemin="0" aria-valuemax="20" aria-label="Seats used"><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div>
+          <div class="bx-progress__row"><span>Context window</span><span class="bx-mono">172k / 200k</span></div>
+          <div class="bx-meter" role="meter" aria-valuenow="172" aria-valuemin="0" aria-valuemax="200" aria-label="Context window used"><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on="warn"></i><i data-on="warn"></i><i></i></div>
+        </div>
+        <div>
+          <div class="bx-progress__row"><span>Onboarding</span><span class="bx-mono">Step 3 of 5</span></div>
+          <div class="bx-stepbar" aria-hidden="true"><i data-state="done"></i><i data-state="done"></i><i data-state="active"></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div style="padding: 24px" class="stack">
+        <p class="bx-label">Spinner &amp; loading</p>
+        <div class="row" style="gap: 24px"><span class="bx-spinner" role="status" aria-label="Loading"></span><span class="bx-spinner bx-spinner--sm" role="status" aria-label="Loading"></span><span class="bx-label">16 / 12px</span></div>
+        <div class="row"><button class="bx-btn" aria-busy="true" style="inline-size: 136px"><span class="bx-spinner bx-spinner--sm" aria-hidden="true"></span>Deploying</button><span class="bx-label">width fixed &middot; no reflow</span></div>
+        <div><div class="bx-progress bx-progress--indeterminate"><i></i></div><p class="bx-label mt-2">Indeterminate</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PEOPLE -->
+  <section class="sec" id="people">
+    <div class="sec__head">
+      <p class="bx-label">18 / Avatars &amp; activity</p>
+      <h2>Square avatars, square presence, a literal timeline</h2>
+      <p>An avatar is a square like everything else. Groups collapse their borders
+      side by side instead of stacking in overlapping circles.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 24px" class="stack">
+        <p class="bx-label">Sizes &amp; presence</p>
+        <div class="row" style="gap: 16px">
+          <span class="bx-avatar bx-avatar--sm">MK</span>
+          <span class="bx-avatar" data-presence="online" role="img" aria-label="Mina K, online">MK</span>
+          <span class="bx-avatar bx-avatar--lg" data-presence="busy" role="img" aria-label="Jo R, busy">JR</span>
+          <span class="bx-avatar bx-avatar--xl bx-avatar--inverse">AO</span>
+          <span class="bx-avatar bx-avatar--lg" data-presence="away" role="img" aria-label="Sam L, away">SL</span>
+        </div>
+        <p class="bx-label mt-4">Group</p>
+        <div class="row">
+          <div class="bx-avatar-group" role="group" aria-label="7 collaborators">
+            <span class="bx-avatar">MK</span><span class="bx-avatar">JR</span><span class="bx-avatar">AO</span><span class="bx-avatar">SL</span><span class="bx-avatar bx-avatar--inverse">+3</span>
+          </div>
+          <span class="subtle" style="font-size: var(--bx-text-sm)">7 collaborators</span>
+        </div>
+        <p class="bx-label mt-4">In a row</p>
+        <div class="row" style="gap: 12px"><span class="bx-avatar bx-avatar--lg">JR</span><div><p style="font-weight: 600; font-size: var(--bx-text-base)">Jo Rivera</p><p class="subtle bx-mono" style="font-size: var(--bx-text-xs)">jo@acme.dev &middot; admin</p></div></div>
+      </div>
+      <div style="padding: 24px">
+        <p class="bx-label" style="margin-block-end: 16px">Timeline</p>
+        <ol class="bx-timeline">
+          <li data-kind="ok"><span class="bx-timeline__time">12:04:33</span><p class="bx-timeline__title">Deploy succeeded</p><p class="bx-timeline__body">edge-router &middot; <span class="bx-mono">8f3a1c2</span></p></li>
+          <li data-kind="accent"><span class="bx-timeline__time">11:58:10</span><p class="bx-timeline__title">Jo Rivera promoted a preview</p></li>
+          <li data-kind="warn"><span class="bx-timeline__time">11:40:02</span><p class="bx-timeline__title">p95 above 500ms in ap-south-1</p><p class="bx-timeline__body">Auto-resolved after 6 minutes.</p></li>
+          <li><span class="bx-timeline__time">09:12:45</span><p class="bx-timeline__title">Environment variable updated</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ LAYOUT -->
+  <section class="sec" id="layout">
+    <div class="sec__head">
+      <p class="bx-label">19 / Layout primitives</p>
+      <h2>Stack, cluster, grid, auto-grid, split</h2>
+      <p>Five classes in <code class="bx-code">boxy.css</code>. Each exposes its gap as one
+      custom property &mdash; <code class="bx-code">--bx-gap</code> &mdash; so you set the
+      value from the space scale and never re-implement the mechanism.</p>
+    </div>
+
+    <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
+      <div class="spec"><dt><span class="bx-label">.bx-stack</span><p class="bx-help mt-2">Vertical flow, one gap</p></dt><dd style="display: block">
+        <div class="bx-stack" style="--bx-gap: var(--bx-space-2); max-inline-size: 320px"><div class="hatch demo-cell">01</div><div class="hatch demo-cell">02</div><div class="hatch demo-cell">03</div></div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">.bx-cluster</span><p class="bx-help mt-2">A wrapping row</p></dt><dd style="display: block">
+        <div class="bx-cluster" style="--bx-gap: var(--bx-space-2)"><span class="bx-tag">edge</span><span class="bx-tag">tls</span><span class="bx-tag">routing</span><span class="bx-tag">cache</span><span class="bx-tag">observability</span><span class="bx-tag">storage</span></div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">.bx-grid</span><p class="bx-help mt-2">12 columns &middot; 16 in industrial</p></dt><dd style="display: block">
+        <div class="bx-grid" style="--bx-gap: var(--bx-space-2)">
+          <div class="hatch demo-cell" style="grid-column: span 8">span 8</div><div class="hatch demo-cell" style="grid-column: span 4">span 4</div>
+          <div class="hatch demo-cell" style="grid-column: span 3">3</div><div class="hatch demo-cell" style="grid-column: span 3">3</div><div class="hatch demo-cell" style="grid-column: span 6">span 6</div>
+        </div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">.bx-auto-grid</span><p class="bx-help mt-2">Fits tracks of --bx-min; no breakpoints</p></dt><dd style="display: block">
+        <div class="bx-auto-grid bx-collapse" style="--bx-min: 160px"><div class="demo-cell">cell</div><div class="demo-cell">cell</div><div class="demo-cell">cell</div><div class="demo-cell">cell</div><div class="demo-cell">cell</div></div>
+      </dd></div>
+      <div class="spec"><dt><span class="bx-label">.bx-split</span><p class="bx-help mt-2">Side + main; wraps when main gets narrow</p></dt><dd style="display: block">
+        <div class="bx-split" style="--bx-gap: var(--bx-space-2); --bx-side: 200px"><div class="hatch demo-cell">side &middot; 200px</div><div class="hatch demo-cell">main &middot; fluid</div></div>
+      </dd></div>
+    </dl>
+  </section>
+
+  <!-- ================================================================ AI -->
+  <section class="sec" id="ai">
+    <div class="sec__head">
+      <p class="bx-label">20 / Agent &amp; chat</p>
+      <h2>A transcript, not a pair of bubbles</h2>
+      <p>Tool calls read like log lines &mdash; status, name, arguments, duration &mdash;
+      and expand to their input and output. Reasoning is collapsed and muted. An
+      approval is the one place the agent stops for the human. The composer below is
+      live.</p>
+    </div>
+
+    <div class="bx-collapse" style="grid-template-columns: 1fr">
+      <div style="padding: 24px; max-block-size: 640px; overflow-y: auto" data-scroll>
+        <div class="bx-thread" id="thread-demo" style="max-inline-size: 760px">
+          <div class="bx-msg bx-msg--user">
+            <span class="bx-avatar bx-avatar--sm" aria-hidden="true">YO</span>
+            <div class="bx-msg__who"><span class="bx-label">You</span><span class="bx-label" style="color: var(--bx-ink-subtle)">12:02</span></div>
+            <div class="bx-msg__body"><p>The webhook test is flaky in CI. Can you find out why and fix it?</p></div>
+          </div>
+
+          <div class="bx-msg">
+            <span class="bx-avatar bx-avatar--sm bx-avatar--inverse" aria-hidden="true">AI</span>
+            <div class="bx-msg__who"><span class="bx-label">Agent</span></div>
+            <div class="bx-msg__body">
+              <details class="bx-thought">
+                <summary>Thought for 6s</summary>
+                <div class="bx-thought__body"><p>Flaky suggests timing. The test posts to a mock that sometimes returns 503 on first boot. The sender has no retry, so any cold mock fails the run.</p></div>
+              </details>
+              <div class="bx-tools">
+                <details class="bx-tool">
+                  <summary><span class="bx-tool__status" role="img" aria-label="Succeeded"></span><span class="bx-tool__name">grep</span><span class="bx-tool__args">"send(" src/webhooks</span><span class="bx-tool__dur">0.2s</span></summary>
+                  <div class="bx-tool__body"><span class="bx-label">Output</span><pre>src/webhooks/send.ts:4   export async function send(hook, body)
+src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
+                </details>
+                <details class="bx-tool" open>
+                  <summary><span class="bx-tool__status" role="img" aria-label="Succeeded"></span><span class="bx-tool__name">read_file</span><span class="bx-tool__args">src/webhooks/send.ts</span><span class="bx-tool__dur">0.1s</span></summary>
+                  <div class="bx-tool__body">
+                    <span class="bx-label">Input</span>
+<pre>{ "path": "src/webhooks/send.ts", "lines": [1, 12] }</pre>
+                    <span class="bx-label">Output &middot; 12 lines</span>
+<pre>export async function send(hook: Hook, body: string) {
+  const res = await fetch(hook.url, { method: "POST", body });
+  if (!res.ok) throw new WebhookError(hook.id);
+  return res;
+}</pre>
+                  </div>
+                </details>
+                <details class="bx-tool">
+                  <summary><span class="bx-tool__status bx-tool__status--err" role="img" aria-label="Failed"></span><span class="bx-tool__name">run</span><span class="bx-tool__args">npm test -- webhooks</span><span class="bx-tool__dur">4.8s</span></summary>
+                  <div class="bx-tool__body"><span class="bx-label">Output &middot; exit 1</span><pre>FAIL  webhooks/send.test.ts
+  &#10007; delivers to a cold endpoint (503 Service Unavailable)</pre></div>
+                </details>
+              </div>
+              <p>Found it. <code class="bx-code">send()</code> gives up on the first non-2xx response, and the mock endpoint returns
+              <code class="bx-code">503</code> for about 300ms after boot<a class="bx-cite" href="#ai" aria-label="Source 1">1</a>. I'll add a bounded retry with exponential backoff.</p>
+              <div class="bx-approval" role="group" aria-labelledby="appr-t">
+                <div class="bx-approval__head"><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)" id="appr-t">Approval needed</span></div>
+                <div class="bx-approval__body"><p>Run a command that writes to the working tree:</p><pre class="bx-mono">npm test -- webhooks --update-snapshots</pre></div>
+                <div class="bx-approval__foot">
+                  <span class="bx-label">Asked 12:03:41</span>
+                  <div class="bx-btn-group"><button class="bx-btn bx-btn--sm" data-say="Denied">Deny</button><button class="bx-btn bx-btn--sm" data-say="Allowed for this session">Always allow</button><button class="bx-btn bx-btn--sm bx-btn--contrast" data-say="Allowed once">Allow once</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="bx-msg__actions">
+              <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Copy response" data-say="Copied"><svg width="16" height="16" aria-hidden="true"><use href="#i-copy"/></svg></button>
+              <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Retry" data-say="Retrying"><svg width="16" height="16" aria-hidden="true"><use href="#i-refresh"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 16px 24px 24px">
+        <form class="bx-composer" data-composer="thread-demo" style="max-inline-size: 760px">
+          <div class="bx-composer__files">
+            <span class="bx-tag"><svg width="12" height="12" aria-hidden="true"><use href="#i-file"/></svg>send.test.ts<button type="button" class="bx-tag__x" aria-label="Remove send.test.ts" onclick="this.parentNode.remove()"><svg class="bx-icon bx-icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button></span>
+          </div>
+          <label class="bx-sr" for="composer-demo">Message the agent</label>
+          <textarea id="composer-demo" rows="2" placeholder="Ask for a change, or type / for commands"></textarea>
+          <div class="bx-composer__bar">
+            <button type="button" class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Attach file"><svg width="16" height="16" aria-hidden="true"><use href="#i-clip"/></svg></button>
+            <button type="button" class="bx-btn bx-btn--ghost bx-btn--sm" popovertarget="menu-model" aria-haspopup="menu" aria-expanded="false" style="font-family: var(--bx-font-mono); font-size: var(--bx-text-xs)"><span id="model-name">sonnet-5</span> <svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+            <ul class="bx-float bx-menu" id="menu-model" popover role="menu" aria-label="Model" data-sets="model-name">
+              <li role="none" class="bx-menu__label">Model</li>
+              <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="false">opus-5.5<span class="bx-menu__hint">deepest</span></button></li>
+              <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="true">sonnet-5<span class="bx-menu__hint">balanced</span></button></li>
+              <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="false">haiku-4.5<span class="bx-menu__hint">fastest</span></button></li>
+            </ul>
+            <span style="flex: 1"></span>
+            <span class="bx-label hide-sm">&crarr; send &middot; &#8679;&crarr; newline</span>
+            <button class="bx-btn bx-btn--primary bx-btn--sm bx-btn--icon" type="submit" aria-label="Send"><svg width="16" height="16" aria-hidden="true"><use href="#i-send"/></svg></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= COMBOBOX -->
+  <section class="sec" id="combobox">
+    <div class="sec__head">
+      <p class="bx-label">21 / Combobox &amp; multi-select</p>
+      <h2>Type to filter, arrows to move, Enter to take</h2>
+      <p>Focus never leaves the input; the highlighted option is
+      <code class="bx-code">aria-activedescendant</code>. The typed match is an inverted
+      block, not a colour. Multi-select collects square tags inside the field, and
+      <span class="bx-kbd">Backspace</span> in the empty input removes the last one.</p>
+    </div>
+
+    <div class="bx-collapse bx-collapse--2">
+      <div style="padding: 24px">
+        <div class="bx-field" style="max-inline-size: 360px">
+          <label class="bx-label" for="cb-region">Region</label>
+          <div class="bx-combo" data-listbox="cb-region-list">
+            <input class="bx-input" id="cb-region" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cb-region-list" placeholder="Search regions" autocomplete="off">
+            <button type="button" class="bx-combo__toggle" tabindex="-1" aria-label="Show all regions"><svg class="bx-icon" aria-hidden="true"><use href="#i-down"/></svg></button>
+          </div>
+          <p class="bx-help">Try &ldquo;eu&rdquo; or &ldquo;south&rdquo;.</p>
+        </div>
+        <ul class="bx-float bx-listbox" id="cb-region-list" popover="manual" role="listbox" aria-label="Regions">
+          <li class="bx-listbox__label" role="presentation">Americas</li>
+          <li class="bx-option" role="option" aria-selected="false"><span>us-east-1 &middot; Virginia</span><span class="bx-option__meta">41 ms</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>us-west-2 &middot; Oregon</span><span class="bx-option__meta">62 ms</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>sa-east-1 &middot; S&atilde;o Paulo</span><span class="bx-option__meta">118 ms</span></li>
+          <li class="bx-listbox__label" role="presentation">Europe</li>
+          <li class="bx-option" role="option" aria-selected="false"><span>eu-west-2 &middot; London</span><span class="bx-option__meta">88 ms</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>eu-central-1 &middot; Frankfurt</span><span class="bx-option__meta">91 ms</span></li>
+          <li class="bx-listbox__label" role="presentation">Asia Pacific</li>
+          <li class="bx-option" role="option" aria-selected="false"><span>ap-south-1 &middot; Mumbai</span><span class="bx-option__meta">142 ms</span></li>
+          <li class="bx-option" role="option" aria-selected="false" aria-disabled="true"><span>ap-east-2 &middot; Taipei</span><span class="bx-option__meta">soon</span></li>
+          <li class="bx-listbox__empty" role="presentation" hidden></li>
+        </ul>
+      </div>
+      <div style="padding: 24px">
+        <div class="bx-field" style="max-inline-size: 420px">
+          <div class="row" style="justify-content: space-between"><label class="bx-label" for="ms-labels">Labels</label><span class="bx-label" id="ms-count" aria-live="polite">2 selected</span></div>
+          <div class="bx-multi" data-listbox="ms-labels-list" data-count="ms-count">
+            <input class="bx-multi__input" id="ms-labels" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ms-labels-list" placeholder="Add a label" autocomplete="off">
+            <button type="button" class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon bx-multi__clear" data-clear aria-label="Clear all labels"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <p class="bx-help">Backspace removes the last label.</p>
+        </div>
+        <ul class="bx-float bx-listbox" id="ms-labels-list" popover="manual" role="listbox" aria-multiselectable="true" aria-label="Labels">
+          <li class="bx-option" role="option" aria-selected="true"><span>bug</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>performance</span></li>
+          <li class="bx-option" role="option" aria-selected="true"><span>networking</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>security</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>documentation</span></li>
+          <li class="bx-option" role="option" aria-selected="false"><span>good first issue</span></li>
+          <li class="bx-listbox__empty" role="presentation" hidden></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== KANBAN -->
+  <section class="sec" id="kanban">
+    <div class="sec__head">
+      <p class="bx-label">22 / Kanban board</p>
+      <h2>Columns share rules; a lifted card gets the hard offset</h2>
+      <p>Drag cards between columns, or focus one and use
+      <span class="bx-kbd">Alt</span> + arrows. The drop slot is dashed &mdash; it is a
+      placeholder waiting to be filled. A column over its WIP limit gets a warning rule
+      under its header, not a red background.</p>
+    </div>
+
+    <div class="bx-kanban" aria-label="Sprint board">
+      <div class="bx-kanban__col" data-limit="0">
+        <div class="bx-kanban__head"><span class="bx-label">Backlog</span><span class="bx-kanban__wip"></span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Add card to Backlog" data-say="New card" data-say-body="Added to Backlog"><svg class="bx-icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+        <ul class="bx-kanban__list">
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">Rotate staging TLS certificates</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" data-p="low" aria-label="Low priority"></span>ORB-212<span class="bx-tag bx-tag--sm">security</span><span class="bx-avatar bx-avatar--sm">SL</span></div></li>
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">Document route-level timeouts</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" aria-label="No priority"></span>ORB-219<span class="bx-tag bx-tag--sm">docs</span><span class="bx-avatar bx-avatar--sm">AE</span></div></li>
+        </ul>
+      </div>
+      <div class="bx-kanban__col" data-limit="2">
+        <div class="bx-kanban__head"><span class="bx-label">In progress</span><span class="bx-kanban__wip"></span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Add card to In progress" data-say="New card"><svg class="bx-icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+        <ul class="bx-kanban__list">
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">Retry webhooks with backoff</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" data-p="high" aria-label="High priority"></span>ORB-204<span class="bx-tag bx-tag--sm bx-tag--danger">bug</span><span class="bx-avatar bx-avatar--sm bx-avatar--inverse">AI</span></div></li>
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">p95 alert per route</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" data-p="med" aria-label="Medium priority"></span>ORB-207<span class="bx-avatar bx-avatar--sm">JR</span></div></li>
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">Migrate cron to queues</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" data-p="med" aria-label="Medium priority"></span>ORB-188<span class="bx-avatar bx-avatar--sm">AO</span></div></li>
+        </ul>
+      </div>
+      <div class="bx-kanban__col" data-limit="3">
+        <div class="bx-kanban__head"><span class="bx-label">Review</span><span class="bx-kanban__wip"></span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Add card to Review" data-say="New card"><svg class="bx-icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+        <ul class="bx-kanban__list">
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title">Preview deploys for every branch</p><div class="bx-kcard__meta"><span class="bx-kcard__pri" aria-label="No priority"></span>ORB-196<span class="bx-tag bx-tag--sm bx-tag--accent">feature</span><span class="bx-avatar bx-avatar--sm">MK</span></div></li>
+        </ul>
+      </div>
+      <div class="bx-kanban__col" data-limit="0">
+        <div class="bx-kanban__head"><span class="bx-label">Done</span><span class="bx-kanban__wip"></span></div>
+        <ul class="bx-kanban__list">
+          <li class="bx-kcard" draggable="true" tabindex="0"><p class="bx-kcard__title" style="color: var(--bx-ink-subtle)">Square radio buttons</p><div class="bx-kcard__meta"><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-xs)">Shipped</span>ORB-150</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ PANES -->
+  <section class="sec" id="panes">
+    <div class="sec__head">
+      <p class="bx-label">23 / Resizable panes</p>
+      <h2>The divider is the rule itself</h2>
+      <p>A 1px line with an 8px invisible hit area that turns into a 2px accent bar on
+      hover, drag or focus. Arrow keys resize by 16px (<span class="bx-kbd">Shift</span>
+      for 64), <span class="bx-kbd">Enter</span> or a double-click resets.</p>
+    </div>
+
+    <div class="bx-panes" style="block-size: 320px; border: 1px solid var(--bx-line); background: var(--bx-surface)">
+      <div class="bx-pane" style="background: var(--bx-surface)">
+        <div class="bx-pane__head"><span class="bx-label">Explorer</span></div>
+        <nav class="bx-tree" aria-label="Files" style="font-size: var(--bx-text-sm)">
+          <ul>
+            <li><details open><summary class="bx-tree__item"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>src</summary>
+              <ul><li><a class="bx-tree__item" href="#panes" aria-current="page"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-file"/></svg>send.ts</a></li><li><a class="bx-tree__item" href="#panes"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-file"/></svg>queue.ts</a></li></ul>
+            </details></li>
+            <li><a class="bx-tree__item" href="#panes"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-file"/></svg>orbit.toml</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="bx-resizer" role="separator" aria-orientation="vertical" aria-label="Resize explorer" tabindex="0" data-min="160" data-max="360"></div>
+      <div class="bx-pane">
+        <div class="bx-panes bx-panes--v" style="block-size: 100%">
+          <div class="bx-pane" style="flex-basis: 200px">
+            <div class="bx-pane__head"><span class="bx-label" style="color: var(--bx-ink)">send.ts</span></div>
+<pre class="bx-mono" style="margin: 0; padding: 12px 16px; font-size: var(--bx-text-sm); line-height: var(--bx-lh-base); color: var(--bx-ink-muted)"><span class="tk-k">export async function</span> send(hook, body) {
+  <span class="tk-k">for</span> (<span class="tk-k">let</span> attempt = <span class="tk-n">0</span>; attempt &lt; <span class="tk-n">5</span>; attempt++) {
+    <span class="tk-k">const</span> res = <span class="tk-k">await</span> fetch(hook.url, { body });
+    <span class="tk-k">if</span> (res.ok) <span class="tk-k">return</span> res;
+  }
+}</pre>
+          </div>
+          <div class="bx-resizer" role="separator" aria-orientation="horizontal" aria-label="Resize terminal" tabindex="0" data-min="80" data-max="240"></div>
+          <div class="bx-pane">
+            <div class="bx-pane__head"><span class="bx-label">Terminal</span></div>
+            <pre class="bx-mono" style="margin: 0; padding: 12px 16px; font-size: var(--bx-text-sm); line-height: var(--bx-lh-base); color: var(--bx-ink-subtle)">$ npm test -- webhooks
+<span style="color: var(--bx-ink-success)">&#10003;</span> 12 passed</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= GRID -->
+  <section class="sec" id="datagrid">
+    <div class="sec__head">
+      <p class="bx-label">24 / Editable data grid</p>
+      <h2>A spreadsheet: vertical rules, one ringed cell</h2>
+      <p>Arrow keys move the ring. <span class="bx-kbd">Enter</span>,
+      <span class="bx-kbd">F2</span>, a double-click or just typing starts an edit;
+      <span class="bx-kbd">Enter</span> commits and moves down,
+      <span class="bx-kbd">Tab</span> moves right, <span class="bx-kbd">Esc</span>
+      cancels. Edited cells get an accent corner; the region column validates.</p>
+    </div>
+
+    <div style="overflow-x: auto; border: 1px solid var(--bx-line)">
+      <table class="bx-grid-edit" role="grid" aria-label="Service configuration" data-bar="grid-bar">
+        <thead><tr><th scope="col"><span class="bx-sr">Row</span></th><th scope="col">Service</th><th scope="col">Region</th><th scope="col" class="num">Replicas</th><th scope="col" class="num">Memory MB</th><th scope="col">Owner</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">1</th><td aria-readonly="true" class="bx-mono">edge-router</td><td data-validate="^[a-z]{2}-[a-z]+-\d$" data-error="Use a region code like us-east-1">us-east-1</td><td class="num" data-validate="^\d{1,2}$" data-error="0 to 99">12</td><td class="num">512</td><td>Jo Rivera</td></tr>
+          <tr><th scope="row">2</th><td aria-readonly="true" class="bx-mono">api-gateway</td><td data-validate="^[a-z]{2}-[a-z]+-\d$" data-error="Use a region code like us-east-1">eu-west-2</td><td class="num" data-validate="^\d{1,2}$" data-error="0 to 99">8</td><td class="num">1024</td><td>Mina Kato</td></tr>
+          <tr><th scope="row">3</th><td aria-readonly="true" class="bx-mono">image-proxy</td><td data-validate="^[a-z]{2}-[a-z]+-\d$" data-error="Use a region code like us-east-1">ap-south-1</td><td class="num" data-validate="^\d{1,2}$" data-error="0 to 99">4</td><td class="num">2048</td><td>Ada Okafor</td></tr>
+          <tr><th scope="row">4</th><td aria-readonly="true" class="bx-mono">webhook-fanout</td><td data-validate="^[a-z]{2}-[a-z]+-\d$" data-error="Use a region code like us-east-1">us-east-1</td><td class="num" data-validate="^\d{1,2}$" data-error="0 to 99">2</td><td class="num">256</td><td>Aryan Ebrahimpour</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bx-grid-bar" id="grid-bar">
+      <span class="bx-label" data-grid-status aria-live="polite">All changes saved</span>
+      <div class="bx-btn-group"><button class="bx-btn bx-btn--sm" data-grid-discard disabled>Discard</button><button class="bx-btn bx-btn--sm bx-btn--primary" data-grid-save disabled>Save changes</button></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ COLOUR -->
+  <section class="sec" id="color">
+    <div class="sec__head">
+      <p class="bx-label">25 / Colour picker</p>
+      <h2>Square field, square thumbs, and the contrast ratio</h2>
+      <p>A saturation / brightness field, a hue strip, a hex field and swatches. The
+      readout checks the colour against the page canvas, because in a design system the
+      question is never just &ldquo;which blue&rdquo; but &ldquo;can text sit on it&rdquo;.</p>
+    </div>
+
+    <!-- boxy-ignore-start: a colour picker documents literal colour values -->
+    <div class="row" style="gap: 24px; align-items: flex-start">
+      <div class="bx-field">
+        <label class="bx-label" for="pick-btn">Brand colour</label>
+        <button class="bx-btn bx-swatch-btn" id="pick-btn" popovertarget="pick-1"><span class="bx-swatch" id="pick-swatch"></span><span data-hex>#0F62FE</span><svg class="bx-icon" aria-hidden="true"><use href="#i-down"/></svg></button>
+      </div>
+      <div class="bx-float" id="pick-1" popover role="dialog" aria-label="Choose a colour">
+        <div class="bx-picker" data-swatch="pick-swatch">
+          <div class="bx-picker__sv" tabindex="0" role="slider" aria-label="Saturation and brightness"><span class="bx-picker__thumb"></span></div>
+          <input class="bx-slider bx-picker__hue" type="range" min="0" max="360" value="217" aria-label="Hue">
+          <div class="bx-picker__row">
+            <label class="bx-sr" for="pick-hex">Hex</label>
+            <input class="bx-input bx-picker__hex" id="pick-hex" value="#0F62FE" maxlength="7" spellcheck="false">
+            <button class="bx-btn bx-btn--sm bx-btn--icon" data-eyedropper aria-label="Pick from screen"><svg class="bx-icon" aria-hidden="true"><use href="#i-pipette"/></svg></button>
+          </div>
+          <div class="bx-picker__swatches" role="group" aria-label="Swatches">
+            <button style="--c: #0F62FE" data-hex="#0F62FE" aria-label="Blue 60"></button>
+            <button style="--c: #002D9C" data-hex="#002D9C" aria-label="Blue 80"></button>
+            <button style="--c: #78A9FF" data-hex="#78A9FF" aria-label="Blue 40"></button>
+            <button style="--c: #198038" data-hex="#198038" aria-label="Green 60"></button>
+            <button style="--c: #B28600" data-hex="#B28600" aria-label="Yellow 60"></button>
+            <button style="--c: #DA1E28" data-hex="#DA1E28" aria-label="Red 60"></button>
+            <button style="--c: #616B75" data-hex="#616B75" aria-label="Gray 60"></button>
+            <button style="--c: #23282D" data-hex="#23282D" aria-label="Gray 90"></button>
+          </div>
+          <div class="bx-picker__contrast">
+            <span class="bx-label">On canvas <span class="bx-mono" data-ratio style="color: var(--bx-ink)"></span></span>
+            <span data-grade></span>
+          </div>
+        </div>
+      </div>
+      <p class="bx-help" style="max-inline-size: 44ch; margin-block-start: 28px">Drag in the field or use the arrow keys on it; the hue strip is a native range input. The eyedropper button appears only where the browser supports it.</p>
+    </div>
+    <!-- boxy-ignore-end -->
+  </section>
+
+  <!-- ============================================================ INBOX -->
+  <section class="sec" id="inbox">
+    <div class="sec__head">
+      <p class="bx-label">26 / Notification inbox</p>
+      <h2>A square count, and unread as a mark rather than a tint</h2>
+      <p>The bell's badge is the accent &mdash; it is the one thing on the bar asking for
+      attention. Unread items get a 6px accent square and ink text; read items fall back
+      to muted. Actions can be taken in place.</p>
+    </div>
+
+    <div class="row" style="gap: 16px">
+      <button class="bx-btn bx-btn--icon bx-bell" popovertarget="inbox-1" aria-label="Notifications">
+        <svg class="bx-icon" aria-hidden="true"><use href="#i-bell"/></svg><span class="bx-bell__count" id="inbox-badge">3</span>
+      </button>
+      <span class="bx-label">Open the inbox</span>
+    </div>
+    <div class="bx-float bx-inbox" id="inbox-1" popover role="dialog" aria-label="Notifications" data-badge="inbox-badge">
+      <div class="bx-inbox__head">
+        <p>Notifications <span class="bx-label" data-unread-count style="margin-inline-start: 8px"></span></p>
+        <button class="bx-btn bx-btn--ghost bx-btn--sm" data-mark-all>Mark all read</button>
+      </div>
+      <div class="bx-inbox__tabs">
+        <div class="bx-tabs" role="tablist" aria-label="Filter">
+          <button class="bx-tab" role="tab" aria-selected="true" data-inbox-filter="all">All</button>
+          <button class="bx-tab" role="tab" aria-selected="false" data-inbox-filter="unread">Unread</button>
+          <button class="bx-tab" role="tab" aria-selected="false" data-inbox-filter="mentions">Mentions</button>
+        </div>
+      </div>
+      <ul class="bx-inbox__list">
+        <li class="bx-inbox__day" role="presentation">Today</li>
+        <li class="bx-note" data-unread tabindex="0"><span class="bx-note__icon bx-note__icon--danger" aria-hidden="true"><svg class="bx-icon"><use href="#i-error"/></svg></span><div><p class="bx-note__text"><b>webhook-fanout</b> error rate is above 1% in us-east-1</p><div class="bx-note__actions"><button class="bx-btn bx-btn--sm">Acknowledge</button><button class="bx-btn bx-btn--ghost bx-btn--sm">View logs</button></div></div><span class="bx-note__time">12:31</span></li>
+        <li class="bx-note" data-unread data-mention tabindex="0"><span class="bx-avatar">AO</span><div><p class="bx-note__text"><b>Ada Okafor</b> mentioned you on <b>ORB-204</b>: &ldquo;can you review the backoff?&rdquo;</p></div><span class="bx-note__time">11:58</span></li>
+        <li class="bx-note" data-unread tabindex="0"><span class="bx-avatar bx-avatar--inverse">AI</span><div><p class="bx-note__text"><b>Agent</b> is waiting for approval to run a command</p><div class="bx-note__actions"><button class="bx-btn bx-btn--sm">Review</button></div></div><span class="bx-note__time">11:40</span></li>
+        <li class="bx-inbox__day" role="presentation">Yesterday</li>
+        <li class="bx-note" tabindex="0"><span class="bx-note__icon bx-note__icon--success" aria-hidden="true"><svg class="bx-icon"><use href="#i-success"/></svg></span><div><p class="bx-note__text"><b>edge-router</b> deployed to 310 locations</p></div><span class="bx-note__time">Tue</span></li>
+        <li class="bx-note" data-mention tabindex="0"><span class="bx-avatar">JR</span><div><p class="bx-note__text"><b>Jo Rivera</b> assigned you <b>ORB-219</b></p></div><span class="bx-note__time">Tue</span></li>
+      </ul>
+      <div class="bx-inbox__foot"><a href="#inbox" class="bx-label" style="color: var(--bx-ink-accent)">View all</a><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Notification settings"><svg class="bx-icon" aria-hidden="true"><use href="#i-gear"/></svg></button></div>
+    </div>
+  </section>
+
   <!-- ========================================================= BLUEPRINT -->
   <section class="sec" id="blueprint">
     <div class="sec__head">
-      <p class="bx-label">08 / Blueprint details</p>
+      <p class="bx-label">27 / Blueprint details</p>
       <h2>Opt-in, and rationed to three per viewport</h2>
       <p>Applied everywhere, precision turns into noise. These earn their place on
       hero blocks, feature panels and empty states.</p>
@@ -433,7 +1582,7 @@
         values are real.
       </p>
       <div class="row mt-5" style="gap: 24px">
-        <span class="bx-label">v1.0.2 &middot; MIT &middot; 4.8 KB GZIPPED</span>
+        <span class="bx-label">v1.1.0 &middot; MIT &middot; 5.6 KB GZIPPED</span>
         <span class="bx-label">FIG. 02 / REQUEST PATH</span>
         <span class="bx-label">p50 &middot; LAST 24H &middot; UTC</span>
       </div>
@@ -461,7 +1610,7 @@
     </div>
     <div class="site-foot__bar">
       <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
-      <span class="bx-label">v1.0.2 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+      <span class="bx-label">v1.1.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
     </div>
   </footer>
 
@@ -471,7 +1620,7 @@
 <template id="tpl-modal">
   <div style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding-inline: 24px; border-block-end: 1px solid var(--bx-line)">
     <h2 style="font-size: var(--bx-text-md)">Delete edge-router</h2>
-    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close">&#215;</button>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
   </div>
   <div style="padding: 24px">
     <p class="muted">
@@ -493,7 +1642,7 @@
 
 <template id="tpl-palette">
   <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-block-end: 1px solid var(--bx-line)">
-    <span class="subtle" aria-hidden="true">&#9906;</span>
+    <svg class="bx-icon subtle" aria-hidden="true"><use href="#i-search"/></svg>
     <input class="bx-input" style="border: 0; height: 46px; padding: 0; box-shadow: none; font-size: var(--bx-text-md)" placeholder="Search the system…" aria-label="Search">
   </div>
   <div role="listbox" aria-label="Results">
@@ -507,6 +1656,30 @@
     <span style="flex:1"></span>
     <button class="bx-btn bx-btn--ghost bx-btn--sm" data-dialog="close">close</button>
   </div>
+</template>
+
+<template id="tpl-drawer">
+  <div class="bx-drawer__head">
+    <div><p class="bx-label">Deployment</p><h2 style="font-size: var(--bx-text-md); margin-block-start: 2px">edge-router &middot; 8f3a1c2</h2></div>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="bx-drawer__body bx-stack" style="--bx-gap: var(--bx-space-6)">
+    <dl class="bx-dl">
+      <dt>Status</dt><dd><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-base)">Live</span></dd>
+      <dt>Branch</dt><dd class="bx-mono">main</dd>
+      <dt>Build time</dt><dd class="bx-mono">4.3s</dd>
+      <dt>Author</dt><dd>Jo Rivera</dd>
+    </dl>
+    <div>
+      <p class="bx-label" style="margin-block-end: 16px">Timeline</p>
+      <ol class="bx-timeline">
+        <li data-kind="ok"><span class="bx-timeline__time">12:04:33</span><p class="bx-timeline__title">Propagated to 310 locations</p></li>
+        <li data-kind="ok"><span class="bx-timeline__time">12:04:31</span><p class="bx-timeline__title">Upload complete</p></li>
+        <li data-kind="ok"><span class="bx-timeline__time">12:04:29</span><p class="bx-timeline__title">Build finished</p></li>
+      </ol>
+    </div>
+  </div>
+  <div class="bx-drawer__foot"><div class="bx-btn-group"><button class="bx-btn" data-dialog="close">Close</button><button class="bx-btn bx-btn--primary" data-dialog="close">Promote</button></div></div>
 </template>
 
 <script src="assets/site.js"></script>

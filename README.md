@@ -87,31 +87,49 @@ only section rhythm, display scale, grid columns and substrate visibility change
 ```
 .claude/skills/boxy/
   SKILL.md                     the axioms, modes and routing
-  references/                  13 docs, loaded on demand
+  references/                  18 docs, loaded on demand
     tokens.md                  every token, every value
     modes.md                   blueprint / industrial / editorial
     layout.md                  rails, grids, shells, breakpoints
     typography.md              scale, labels, numerals, measure
     color.md                   contrast pairs, semantics, charts
     components-core.md         16 components, exact specs
-    components-data.md         tables, tiles, charts, states
-    components-marketing.md    hero, pricing, footer, docs
-    components-forms.md        steppers, validation, auth, palette
+    components-overlays.md     menus, context menus, popovers, drawers
+    components-navigation.md   breadcrumbs, tab variants, trees, TOC
+    components-content.md      code, lists, accordion, prose, avatars
+    components-data.md         tables, tiles, charts, meters, states
+    components-marketing.md    hero, pricing, FAQ, blog, footer, docs
+    components-forms.md        validation, auth, dates, sliders, upload
+    components-ai.md           agent chat, tool calls, approvals
+    icons.md                   the icon set and its drawing rules
     motion-depth.md            durations, easing, elevation
     blueprint-details.md       substrate, ticks, annotations
     accessibility.md           contrast, focus, keyboard, targets
     anti-patterns.md           what breaks it, and the fix
   assets/
-    boxy.css                   tokens, reset, utilities
+    boxy.css                   tokens, reset, utilities, layout primitives
+    boxy-components.css        every component spec, implemented
+    boxy-icons.svg             51 square-capped icons
     design-tokens.json         W3C DTCG export
   scripts/
     boxy-check.mjs             the linter
 ```
 
-Component specs cover buttons, fields, selection controls, tags, cards, tabs,
-modals, toasts, tooltips, navigation, data tables, stat tiles, charts, empty and
-error states, filter bars, heroes, feature grids, pricing, footers, docs layouts,
-multi-step forms, validation, auth screens, settings pages and command palettes.
+Component specs cover buttons, fields, selection controls, tags, cards, tabs and
+their contained and vertical variants, modals, drawers, toasts, tooltips, popovers,
+menus with submenus, context menus, split buttons, navigation, breadcrumbs, tree
+navigation, accordions, inline code and code blocks, lists, avatars, timelines, data
+tables, stat tiles, charts, meters, spinners, empty and error states, filter bars,
+date and range pickers, sliders, steppers, segmented controls, file upload, search,
+layout primitives, resizable panes, comboboxes, multi-selects, colour pickers,
+editable data grids, kanban boards, notification inboxes, heroes, feature grids,
+pricing, FAQs, blogs, footers, docs layouts, multi-step forms, validation, auth
+screens, settings pages, command palettes and AI agent chat - tool calls,
+reasoning, approvals and the composer.
+
+Specs tell an agent how a component behaves; `boxy-components.css` gives it the
+finished visuals, with class names that match the specs, so it does not have to
+re-derive a menu or a calendar from prose.
 
 ## The linter
 
@@ -169,16 +187,22 @@ a 2px offset focus ring, keyboard paths and semantics specified per component.
 
 ## Using it without an agent
 
-The CSS is a normal stylesheet with no build step:
+The CSS is two normal stylesheets with no build step - tokens and layout first,
+components on top:
 
 ```html
 <link rel="stylesheet" href="boxy.css">
+<link rel="stylesheet" href="boxy-components.css">
 ```
 
 ```bash
-npx boxy-design css --out src/styles      # just the stylesheet
-npx boxy-design tokens --out src/tokens   # just the DTCG JSON
+npx boxy-design css --out src/styles          # both stylesheets + the icon sprite
+npx boxy-design css --core --out src/styles   # boxy.css only
+npx boxy-design tokens --out src/tokens       # just the DTCG JSON
 ```
+
+Or from the package: `boxy-design/boxy.css`, `boxy-design/boxy-components.css`,
+`boxy-design/boxy-icons.svg`.
 
 ## CLI
 
@@ -186,14 +210,15 @@ npx boxy-design tokens --out src/tokens   # just the DTCG JSON
 npx boxy-design <command> [options]
 
   init              Install the skill into this project    (default)
-  css               Copy boxy.css only
+  css               Copy boxy.css, boxy-components.css, boxy-icons.svg
   tokens            Copy design-tokens.json only
   check [paths]     Lint files against the system
 
   --ai <list>       claude, cursor, windsurf, agents, copilot, or all
   --dir <path>      Project root
   --out <path>      Output directory for css / tokens
-  --css             Also drop boxy.css into the project
+  --css             Also drop the stylesheets and icons into the project
+  --core            css: boxy.css only
   --force           Overwrite existing files
   --strict          check: treat warnings as errors
 ```
@@ -203,8 +228,10 @@ reads the same source of truth.
 
 ## Contributing
 
-`skills/boxy/` is the single source of truth. `docs/assets/boxy.css` is a copy kept
-in sync by CI — edit the skill copy, not the site copy.
+`skills/boxy/` is the single source of truth. `docs/assets/boxy.css` and
+`docs/assets/boxy-components.css` are copies kept in sync by CI — edit the skill
+copies, not the site copies. The site inlines `boxy-icons.svg` on every page; the
+smoke test fails if a page is missing an icon.
 
 ```bash
 node skills/boxy/scripts/boxy-check.mjs docs/   # the site must pass clean

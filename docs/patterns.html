@@ -4,17 +4,88 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Patterns — Boxy</title>
-<meta name="description" content="Whole-page Boxy layouts: an industrial dashboard shell, an editorial landing section, a docs layout, an auth screen and a settings page.">
+<meta name="description" content="Whole-page Boxy layouts: dashboards, a landing page, docs, auth and settings, an AI agent workspace, features and pricing, FAQ, a blog, analytics with charts, a docs site with a nested tree, a file browser and a status page.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/boxy.css">
+<link rel="stylesheet" href="assets/boxy-components.css">
 <link rel="stylesheet" href="assets/site.css">
 <script>try{var r=document.documentElement,s=localStorage;var t=s.getItem('boxy:theme');if(t)r.setAttribute('data-theme',t);var d=s.getItem('boxy:density');if(d)r.setAttribute('data-density',d);var m=s.getItem('boxy:mode');if(m)r.setAttribute('data-mode',m);}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: absolute" aria-hidden="true">
+  <!--
+    Boxy icons - a 16px grid, 1.5px stroke, square caps, mitred joins.
+    Corners instead of curves wherever a corner reads; status marks are
+    polygons (square, triangle, octagon), never circles. MIT.
+
+    Inline this sprite once per page, then:
+      <svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg>
+    Icons inherit colour from currentColor.
+  -->
+
+  <!-- status -->
+  <symbol id="i-info" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="1.75" width="12.5" height="12.5"/><path d="M8 7.25v4.5 M8 4.5v.25"/></symbol>
+  <symbol id="i-success" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="1.75" width="12.5" height="12.5"/><path d="M5 8.25l2 2 4-4"/></symbol>
+  <symbol id="i-warning" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M8 1.75l6.5 12.5h-13z M8 6.5v3.5 M8 12v.25"/></symbol>
+  <symbol id="i-error" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M5.25 1.75h5.5l3.5 3.5v5.5l-3.5 3.5h-5.5l-3.5-3.5v-5.5z M6 6l4 4 M10 6l-4 4"/></symbol>
+
+  <!-- actions -->
+  <symbol id="i-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5.5" y="5.5" width="8" height="8"/><path d="M10.5 2.5h-8v8"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M10.5 2.5l3 3-8 8h-3v-3z M8.5 4.5l3 3"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 4.5h11 M6 4.5v-2h4v2 M4 4.5l.5 9h7l.5-9 M6.5 7v4 M9.5 7v4"/></symbol>
+  <symbol id="i-share" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M9.5 2.5h4v4 M13.5 2.5l-6 6 M11.5 9.5v4h-9v-9h4"/></symbol>
+  <symbol id="i-download" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 2.5v8 M4.5 7l3.5 3.5L11.5 7 M2.5 13.5h11"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 10.5v-8 M4.5 6L8 2.5 11.5 6 M2.5 13.5h11"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 3v10 M3 8h10"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 8h10"/></symbol>
+  <symbol id="i-x" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 4l8 8 M12 4l-8 8"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 8.5l3 3 7-7"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M13.5 2.5v4h-4 M13.5 6.5l-2.25-2.25A5 5 0 1 0 13 9"/></symbol>
+  <symbol id="i-send" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M8 13.5v-11 M3.5 7L8 2.5 12.5 7"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M10.5 5v6.5a2.5 2.5 0 0 1-5 0V3.5a1.5 1.5 0 0 1 3 0v7.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M6.5 9.5l3-3 M7 4.5l1.5-1.5h5v5L12 9.5 M9 11.5L7.5 13h-5V8L4 6.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="8" height="8"/><path d="M10.5 10.5l3 3"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2 3.5h12 M4.5 8h7 M6.5 12.5h3"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M5 2.5v11 M2.5 11L5 13.5 7.5 11 M11 13.5v-11 M8.5 5L11 2.5 13.5 5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M5.5 2.5h5 M6.5 2.5v4l-2.5 3h8l-2.5-3v-4 M8 9.5v4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"><path d="M8 2l1.8 3.9 4.2.5-3.1 2.9.8 4.2L8 11.4l-3.7 2.1.8-4.2L2 6.4l4.2-.5z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.5 8L4.5 4h7l3 4-3 4h-7z"/><rect x="6.5" y="6.5" width="3" height="3"/></symbol>
+  <symbol id="i-pipette" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M9 4l3 3 M11 2.5l2.5 2.5-2 2-2.5-2.5z M9.5 5.5l-6 6v2h2l6-6"/></symbol>
+
+  <!-- navigation -->
+  <symbol id="i-down" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4.5 6.5L8 10l3.5-3.5"/></symbol>
+  <symbol id="i-up" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4.5 9.5L8 6l3.5 3.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M9.5 4.5L6 8l3.5 3.5"/></symbol>
+  <symbol id="i-right" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M6.5 4.5L10 8l-3.5 3.5"/></symbol>
+  <symbol id="i-more" viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="7" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="12" y="7" width="2" height="2"/></symbol>
+  <symbol id="i-grip" viewBox="0 0 16 16" fill="currentColor"><rect x="5" y="3" width="2" height="2"/><rect x="9" y="3" width="2" height="2"/><rect x="5" y="7" width="2" height="2"/><rect x="9" y="7" width="2" height="2"/><rect x="5" y="11" width="2" height="2"/><rect x="9" y="11" width="2" height="2"/></symbol>
+
+  <!-- objects -->
+  <symbol id="i-folder" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M1.5 3.5h5l1.5 1.5h6.5v8.5h-13z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3.5 1.5h6l3 3v10h-9z M9.5 1.5v3h3"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="3.5" width="11" height="10"/><path d="M2.5 6.5h11 M5.5 1.5v3 M10.5 1.5v3"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M1.5 2.5h13v3h-13z M2.5 5.5v8h11v-8 M6 8.5h4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5" y="2" width="6" height="6"/><path d="M2.5 14.5v-3h11v3"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5.5" y="5.5" width="5" height="5"/><path d="M8 1.5v2 M8 12.5v2 M1.5 8h2 M12.5 8h2 M3.4 3.4l1.4 1.4 M11.2 11.2l1.4 1.4 M3.4 12.6l1.4-1.4 M11.2 4.8l1.4-1.4"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="4" height="4"/><rect x="9.5" y="2.5" width="4" height="4"/><rect x="2.5" y="9.5" width="4" height="4"/><rect x="9.5" y="9.5" width="4" height="4"/></symbol>
+  <symbol id="i-list" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M5.5 3.5h8 M5.5 8h8 M5.5 12.5h8 M2.5 3.5h0 M2.5 8h0 M2.5 12.5h0"/></symbol>
+  <symbol id="i-columns" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.75" y="2.75" width="12.5" height="10.5"/><path d="M6 2.75v10.5 M10 2.75v10.5"/></symbol>
+  <symbol id="i-term" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="1.5" y="2.5" width="13" height="11"/><path d="M4.5 6l2 2-2 2 M8.5 10.5h3"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="7.5" width="11" height="7"/><path d="M5 7.5v-3h6v3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="miter"><path d="M9 1.5L3.5 9h4l-1 5.5L12.5 7h-4z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 13.5h11 M4.5 11V8 M8 11V4 M11.5 11V6.5"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2.5" y="2.5" width="11" height="11"/><path d="M2.5 8h11 M8 2.5v11 M5 2.5v11 M11 2.5v11" stroke-width="1"/></symbol>
+  <symbol id="i-book" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2.5 2.5h4.5l1 1 1-1h4.5v10h-4.5l-1 1-1-1h-4.5z M8 3.5v10"/></symbol>
+  <symbol id="i-branch" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="1.5" width="3" height="3"/><rect x="3" y="11.5" width="3" height="3"/><rect x="10" y="4.5" width="3" height="3"/><path d="M4.5 4.5v7 M11.5 7.5v1h-7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M2.5 11.5h11 M4 11.5V6.5l2-3.5h4l2 3.5v5 M6.5 14h3"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.75 8.5l2-6h8.5l2 6v5h-12.5z M1.75 8.5h3.75l1 2h3l1-2h3.75"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><rect x="1.75" y="3.25" width="12.5" height="9.5"/><path d="M1.75 3.25L8 8.5l6.25-5.25"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><path d="M1.75 2.75h12.5v8.5h-7l-3.5 2.5v-2.5h-2z"/></symbol>
+</svg>
 
 <header class="site-head">
   <div class="site-head__inner">
@@ -48,10 +119,24 @@
       from the same tokens and components — the difference is rhythm, density and
       display scale, not a different system.
     </p>
+    <nav class="idx bx-auto-grid bx-collapse mt-6" aria-label="Patterns on this page" style="--bx-min: 240px">
+      <a href="#p-dashboard"><span>01</span>Dashboard<span style="margin-inline-start: auto">industrial</span></a>
+      <a href="#p-landing"><span>02</span>Landing<span style="margin-inline-start: auto">editorial</span></a>
+      <a href="#p-docs-simple"><span>03</span>Docs<span style="margin-inline-start: auto">blueprint</span></a>
+      <a href="#p-flows"><span>04</span>Auth &amp; settings<span style="margin-inline-start: auto">flows</span></a>
+      <a href="#p-agent"><span>05</span>AI agent workspace<span style="margin-inline-start: auto">blueprint</span></a>
+      <a href="#p-pricing"><span>06</span>Features &amp; pricing<span style="margin-inline-start: auto">editorial</span></a>
+      <a href="#p-faq"><span>07</span>FAQ<span style="margin-inline-start: auto">editorial</span></a>
+      <a href="#p-blog"><span>08</span>Blog &amp; article<span style="margin-inline-start: auto">editorial</span></a>
+      <a href="#p-analytics"><span>09</span>Charts &amp; team<span style="margin-inline-start: auto">industrial</span></a>
+      <a href="#p-docs"><span>10</span>Docs with tree nav<span style="margin-inline-start: auto">blueprint</span></a>
+      <a href="#p-files"><span>11</span>File browser<span style="margin-inline-start: auto">industrial</span></a>
+      <a href="#p-status"><span>12</span>Status page<span style="margin-inline-start: auto">editorial</span></a>
+    </nav>
   </section>
 
   <!-- ======================================================== DASHBOARD -->
-  <section class="sec">
+  <section class="sec" id="p-dashboard">
     <div class="sec__head">
       <p class="bx-label">01 / App shell &mdash; industrial</p>
       <h2>Dashboard</h2>
@@ -137,7 +222,7 @@
   </section>
 
   <!-- ========================================================== LANDING -->
-  <section class="sec">
+  <section class="sec" id="p-landing">
     <div class="sec__head">
       <p class="bx-label">02 / Marketing &mdash; editorial</p>
       <h2>Landing</h2>
@@ -234,7 +319,7 @@
   </section>
 
   <!-- ============================================================= DOCS -->
-  <section class="sec">
+  <section class="sec" id="p-docs-simple">
     <div class="sec__head">
       <p class="bx-label">03 / Documentation</p>
       <h2>Docs</h2>
@@ -285,7 +370,7 @@
           </div>
 
           <div class="bx-callout bx-callout--info mt-5">
-            <span class="bx-mono" aria-hidden="true">i</span>
+            <svg class="bx-icon" aria-hidden="true"><use href="#i-info"/></svg>
             <div><p style="font-weight: 600">Order matters</p>
             <p class="mt-2" style="font-size: var(--bx-text-base)">A catch-all above a specific pattern will shadow it entirely.</p></div>
           </div>
@@ -306,7 +391,7 @@
   </section>
 
   <!-- ==================================================== AUTH + SETTINGS -->
-  <section class="sec">
+  <section class="sec" id="p-flows">
     <div class="sec__head">
       <p class="bx-label">04 / Flows</p>
       <h2>Auth and settings</h2>
@@ -392,6 +477,1093 @@
     </div>
   </section>
 
+  <!-- ======================================================= AGENT CHAT -->
+  <section class="sec" id="p-agent">
+    <div class="sec__head">
+      <p class="bx-label">05 / AI agent &mdash; blueprint</p>
+      <h2>Agent workspace</h2>
+      <p>Sessions on the left, the transcript in the middle, the agent's plan and the
+      files it touched on the right. Tool calls are log lines that expand; the one
+      approval is the only warning colour on screen. Type in the composer &mdash; it
+      streams a reply.</p>
+    </div>
+
+    <div class="frame frame--wide">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">agent.orbit.dev/s/fix-flaky-webhook</span>
+      </div>
+      <div class="frame__body" data-mode="blueprint" style="display: grid; grid-template-columns: 232px minmax(0, 1fr) 272px; block-size: 760px; background: var(--bx-canvas)">
+
+        <!-- sessions -->
+        <aside class="p-side" aria-label="Sessions">
+          <div class="p-brand"><i></i>ORBIT AGENT<span style="flex: 1"></span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="New session"><svg width="16" height="16" aria-hidden="true"><use href="#i-plus"/></svg></button></div>
+          <div style="padding: 8px"><label class="bx-search bx-search--sm"><svg aria-hidden="true"><use href="#i-search"/></svg><input class="bx-input" placeholder="Search sessions" aria-label="Search sessions"></label></div>
+          <nav class="bx-tree" style="flex: 1; overflow-y: auto">
+            <p class="bx-tree__heading">Today</p>
+            <ul>
+              <li><a class="bx-tree__item" href="#p-agent" aria-current="page"><span class="bx-spinner bx-spinner--sm" aria-hidden="true"></span>Fix flaky webhook test</a></li>
+              <li><a class="bx-tree__item" href="#p-agent"><span class="bx-status bx-status--ok" aria-hidden="true"></span>Add p95 alert to router</a></li>
+            </ul>
+            <p class="bx-tree__heading">Previous 7 days</p>
+            <ul>
+              <li><a class="bx-tree__item" href="#p-agent"><span class="bx-status bx-status--ok" aria-hidden="true"></span>Migrate cron to queues</a></li>
+              <li><a class="bx-tree__item" href="#p-agent"><span class="bx-status bx-status--down" aria-hidden="true"></span>Bump TLS library</a></li>
+              <li><a class="bx-tree__item" href="#p-agent"><span class="bx-status bx-status--idle" aria-hidden="true"></span>Draft Q4 changelog</a></li>
+            </ul>
+          </nav>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 12px; border-block-start: 1px solid var(--bx-line)">
+            <span class="bx-avatar bx-avatar--sm" data-presence="online">JR</span>
+            <span style="font-size: var(--bx-text-sm); flex: 1">Jo Rivera</span>
+            <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Settings"><svg width="16" height="16" aria-hidden="true"><use href="#i-gear"/></svg></button>
+          </div>
+        </aside>
+
+        <!-- transcript -->
+        <div style="display: flex; flex-direction: column; min-inline-size: 0">
+          <div class="p-top">
+            <nav class="bx-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#p-agent">acme/orbit</a></li><li><span aria-current="page">fix-flaky-webhook</span></li></ol></nav>
+            <span class="bx-tag bx-tag--sm"><svg width="12" height="12" aria-hidden="true"><use href="#i-branch"/></svg>agent/webhook-retry</span>
+            <span style="flex: 1"></span>
+            <span class="bx-label">Running &middot; 02:14</span>
+            <button class="bx-btn bx-btn--sm" data-say="Stopped" data-say-body="The agent will finish its current step.">Stop</button>
+          </div>
+
+          <div class="p-thread-scroll bx-grid-bg" style="flex: 1; padding: 24px 32px; --bx-grid-unit: 32px" data-scroll>
+            <div class="bx-thread" id="thread-agent" style="max-inline-size: 720px">
+              <div class="bx-msg bx-msg--user">
+                <span class="bx-avatar bx-avatar--sm" aria-hidden="true">JR</span>
+                <div class="bx-msg__who"><span class="bx-label">Jo Rivera</span><span class="bx-label">12:02</span></div>
+                <div class="bx-msg__body"><p><code class="bx-code">send.test.ts</code> fails about one run in five on CI but never locally. Find the cause and fix it; do not touch the mock server.</p></div>
+              </div>
+
+              <div class="bx-msg">
+                <span class="bx-avatar bx-avatar--sm bx-avatar--inverse" aria-hidden="true">AI</span>
+                <div class="bx-msg__who"><span class="bx-label">Agent</span><span class="bx-label">sonnet-5</span></div>
+                <div class="bx-msg__body">
+                  <details class="bx-thought">
+                    <summary>Thought for 9s</summary>
+                    <div class="bx-thought__body"><p>CI-only and intermittent points to timing. CI boots the mock in the same job, so the first request can land before it is ready. If <code class="bx-code">send()</code> has no retry, a single 503 fails the test.</p><p>Check the sender first, then reproduce with a cold mock.</p></div>
+                  </details>
+
+                  <div class="bx-tools">
+                    <div class="bx-tool__summary"><span class="bx-label">4 tool calls</span><span style="flex: 1"></span><span class="bx-label">5.4s</span></div>
+                    <details class="bx-tool">
+                      <summary><span class="bx-tool__status" role="img" aria-label="Succeeded"></span><span class="bx-tool__name">grep</span><span class="bx-tool__args">"send(" src/webhooks</span><span class="bx-tool__dur">0.2s</span></summary>
+                      <div class="bx-tool__body"><span class="bx-label">Output &middot; 2 matches</span><pre>src/webhooks/send.ts:4   export async function send(hook, body)
+src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
+                    </details>
+                    <details class="bx-tool">
+                      <summary><span class="bx-tool__status" role="img" aria-label="Succeeded"></span><span class="bx-tool__name">read_file</span><span class="bx-tool__args">src/webhooks/send.ts</span><span class="bx-tool__dur">0.1s</span></summary>
+                      <div class="bx-tool__body"><span class="bx-label">Output &middot; 7 lines</span><pre>export async function send(hook: Hook, body: string) {
+  const res = await fetch(hook.url, { method: "POST", body });
+  if (!res.ok) throw new WebhookError(hook.id);
+  return res;
+}</pre></div>
+                    </details>
+                    <details class="bx-tool" open>
+                      <summary><span class="bx-tool__status bx-tool__status--err" role="img" aria-label="Failed"></span><span class="bx-tool__name">run</span><span class="bx-tool__args">MOCK_COLD=1 npm test -- webhooks</span><span class="bx-tool__dur">4.8s</span></summary>
+                      <div class="bx-tool__body"><span class="bx-label">Input</span><pre>{ "command": "MOCK_COLD=1 npm test -- webhooks", "timeout": 60 }</pre><span class="bx-label">Output &middot; exit 1</span><pre>FAIL  webhooks/send.test.ts
+  &#10007; delivers to a cold endpoint
+    WebhookError: hook_01H8 (503 Service Unavailable)
+Tests: 1 failed, 11 passed</pre></div>
+                    </details>
+                    <details class="bx-tool">
+                      <summary><span class="bx-tool__status" role="img" aria-label="Succeeded"></span><span class="bx-tool__name">edit_file</span><span class="bx-tool__args">src/webhooks/send.ts &nbsp;+9 &minus;2</span><span class="bx-tool__dur">0.3s</span></summary>
+                      <div class="bx-tool__body"><span class="bx-label">Diff</span><pre>+ for (let attempt = 0; attempt &lt; 5; attempt++) {
++   const res = await fetch(hook.url, { method: "POST", body });
++   if (res.ok) return res;
++   await sleep(200 * 2 ** attempt);
++ }
+- if (!res.ok) throw new WebhookError(hook.id);</pre></div>
+                    </details>
+                  </div>
+
+                  <p>Reproduced it. A cold mock returns <code class="bx-code">503</code> for roughly 300ms<a class="bx-cite" href="#p-agent" aria-label="Source 1: test output">1</a>, and <code class="bx-code">send()</code> throws on the first non-2xx response. I added a bounded retry:</p>
+
+                  <div class="bx-codeblock bx-codeblock--diff">
+                    <div class="bx-codeblock__head"><span class="bx-label">src/webhooks/send.ts</span><span class="bx-label" style="color: var(--bx-ink-success)">+9</span><span class="bx-label" style="color: var(--bx-ink-danger)">&minus;2</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy>copy</button><button class="bx-codeblock__btn" data-say="Opened in editor">open</button></div>
+<pre><code><span class="ln"><span class="tk-k">export async function</span> send(hook: Hook, body: <span class="tk-k">string</span>) {</span><span class="ln ln--del">  <span class="tk-k">const</span> res = <span class="tk-k">await</span> fetch(hook.url, { method: <span class="tk-s">"POST"</span>, body });</span><span class="ln ln--del">  <span class="tk-k">if</span> (!res.ok) <span class="tk-k">throw new</span> WebhookError(hook.id);</span><span class="ln ln--add">  <span class="tk-k">for</span> (<span class="tk-k">let</span> attempt = <span class="tk-n">0</span>; attempt &lt; <span class="tk-n">5</span>; attempt++) {</span><span class="ln ln--add">    <span class="tk-k">const</span> res = <span class="tk-k">await</span> fetch(hook.url, { method: <span class="tk-s">"POST"</span>, body });</span><span class="ln ln--add">    <span class="tk-k">if</span> (res.ok) <span class="tk-k">return</span> res;</span><span class="ln ln--add">    <span class="tk-k">await</span> sleep(<span class="tk-n">200</span> * <span class="tk-n">2</span> ** attempt);</span><span class="ln ln--add">  }</span><span class="ln ln--add">  <span class="tk-k">throw new</span> WebhookError(hook.id);</span><span class="ln">}</span></code></pre>
+                  </div>
+
+                  <div class="bx-approval" role="group" aria-labelledby="appr-agent">
+                    <div class="bx-approval__head"><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)" id="appr-agent">Approval needed &middot; writes to the working tree</span></div>
+                    <div class="bx-approval__body"><p>Run the full suite 20 times against a cold mock to confirm the fix:</p><pre class="bx-mono">for i in $(seq 20); do MOCK_COLD=1 npm test -- webhooks || exit 1; done</pre></div>
+                    <div class="bx-approval__foot">
+                      <span class="bx-label">Waiting on you &middot; 12:03:41</span>
+                      <div class="bx-btn-group"><button class="bx-btn bx-btn--sm" data-say="Denied" data-say-body="The agent will propose another way to verify.">Deny</button><button class="bx-btn bx-btn--sm" data-say="Always allowed" data-say-body="npm test is now allowed in this session.">Always allow</button><button class="bx-btn bx-btn--sm bx-btn--contrast" data-say="Allowed once">Allow once</button></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 12px 32px 16px; border-block-start: 1px solid var(--bx-line); background: var(--bx-surface)">
+            <form class="bx-composer" data-composer="thread-agent" style="max-inline-size: 720px">
+              <label class="bx-sr" for="composer-agent">Message the agent</label>
+              <textarea id="composer-agent" rows="2" placeholder="Reply, or type / for commands"></textarea>
+              <div class="bx-composer__bar">
+                <button type="button" class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Attach file"><svg width="16" height="16" aria-hidden="true"><use href="#i-clip"/></svg></button>
+                <button type="button" class="bx-btn bx-btn--ghost bx-btn--sm" popovertarget="menu-agent-model" aria-haspopup="menu" aria-expanded="false" style="font-family: var(--bx-font-mono); font-size: var(--bx-text-xs)"><span id="agent-model">sonnet-5</span><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+                <ul class="bx-float bx-menu" id="menu-agent-model" popover role="menu" aria-label="Model" data-sets="agent-model">
+                  <li role="none" class="bx-menu__label">Model</li>
+                  <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="false">opus-5.5<span class="bx-menu__hint">deepest</span></button></li>
+                  <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="true">sonnet-5<span class="bx-menu__hint">balanced</span></button></li>
+                  <li role="none"><button type="button" class="bx-menu__item" role="menuitemradio" aria-checked="false">haiku-4.5<span class="bx-menu__hint">fastest</span></button></li>
+                </ul>
+                <span style="flex: 1"></span>
+                <span class="bx-label">&crarr; send</span>
+                <button class="bx-btn bx-btn--primary bx-btn--sm bx-btn--icon" type="submit" aria-label="Send"><svg width="16" height="16" aria-hidden="true"><use href="#i-send"/></svg></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- plan + context -->
+        <aside style="border-inline-start: 1px solid var(--bx-line); background: var(--bx-surface); display: flex; flex-direction: column; min-inline-size: 0; overflow-y: auto" aria-label="Session details">
+          <div class="p-panel__head" style="min-block-size: 48px; border-block-end-color: var(--bx-line)"><h4>Plan</h4><span class="bx-label" style="padding-inline-end: 12px">3 / 5</span></div>
+          <div style="padding: 16px; display: grid; gap: 16px">
+            <div class="bx-stepbar" aria-hidden="true"><i data-state="done"></i><i data-state="done"></i><i data-state="active"></i><i></i><i></i></div>
+            <ul class="bx-list bx-list--check" style="font-size: var(--bx-text-sm)">
+              <li data-state="done">Read the sender and its test</li>
+              <li data-state="done">Reproduce with a cold mock</li>
+              <li data-state="active">Add bounded retry with backoff</li>
+              <li data-state="pending">Verify 20 cold runs pass</li>
+              <li data-state="pending">Open a pull request</li>
+            </ul>
+          </div>
+          <p class="bx-tree__heading">Files changed</p>
+          <ul class="bx-list bx-list--ruled" style="font-size: var(--bx-text-sm); border-block-start: 0; padding-inline: 16px">
+            <li style="display: flex; gap: 8px"><span class="bx-mono" style="flex: 1; overflow: hidden; text-overflow: ellipsis">src/webhooks/send.ts</span><span class="bx-mono" style="color: var(--bx-ink-success)">+9</span><span class="bx-mono" style="color: var(--bx-ink-danger)">&minus;2</span></li>
+            <li style="display: flex; gap: 8px"><span class="bx-mono" style="flex: 1">src/util/sleep.ts</span><span class="bx-mono" style="color: var(--bx-ink-success)">+3</span><span class="bx-mono" style="color: var(--bx-ink-danger)">&minus;0</span></li>
+          </ul>
+          <p class="bx-tree__heading">Context</p>
+          <div style="padding: 16px; display: grid; gap: 16px">
+            <div>
+              <div class="bx-progress__row"><span>Window</span><span class="bx-mono">48k / 200k</span></div>
+              <div class="bx-meter bx-meter--accent" role="meter" aria-valuenow="48" aria-valuemin="0" aria-valuemax="200" aria-label="Context used"><i data-on></i><i data-on></i><i data-on></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <dl class="bx-dl" style="font-size: var(--bx-text-sm)">
+              <dt>Model</dt><dd class="bx-mono">sonnet-5</dd>
+              <dt>Tools</dt><dd class="bx-mono">12 calls</dd>
+              <dt>Cost</dt><dd class="bx-mono">$0.084</dd>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- ================================================ FEATURES + PRICING -->
+  <section class="sec" id="p-pricing">
+    <div class="sec__head">
+      <p class="bx-label">06 / Marketing &mdash; editorial</p>
+      <h2>Features and pricing</h2>
+      <p>A feature grid with one asymmetric cell, then pricing as what it honestly is
+      &mdash; a table. The recommended plan is marked by inverting its header, not by
+      scaling it up. The billing toggle is live.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/pricing</span>
+      </div>
+      <div class="frame__body" data-mode="editorial" style="background: var(--bx-canvas)">
+
+        <header class="p-site">
+          <span class="p-logo"><i></i>ORBIT</span>
+          <nav aria-label="Site"><a href="#p-pricing">Product</a><a href="#p-pricing" aria-current="page">Pricing</a><a href="#p-docs">Docs</a><a href="#p-blog">Blog</a></nav>
+          <span style="flex: 1"></span>
+          <div class="bx-btn-group"><span class="bx-btn bx-btn--sm">Sign in</span><span class="bx-btn bx-btn--sm bx-btn--primary">Start free</span></div>
+        </header>
+
+        <!-- features -->
+        <div style="padding: 80px 48px; border-block-end: 1px solid var(--bx-line)">
+          <p class="bx-label">01 / Platform</p>
+          <p class="p-display" style="font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); max-inline-size: 18ch; margin-block-start: 16px">Everything between git push and production</p>
+          <div class="bx-collapse" style="grid-template-columns: repeat(3, minmax(0, 1fr)); margin-block-start: 48px">
+            <div style="grid-column: span 2; padding: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center">
+              <div>
+                <span class="bx-label" style="color: var(--bx-ink-faint)">01</span>
+                <h3 style="font-size: var(--bx-text-2xl); margin-block-start: 16px">Deploys you can undo</h3>
+                <p class="muted mt-4" style="font-size: var(--bx-text-base)">Every build is immutable and content-addressed. Rolling back is a pointer move that lands in under a second, at every edge location at once.</p>
+                <ul class="bx-list bx-list--check mt-5" style="font-size: var(--bx-text-base)">
+                  <li>Instant, global rollback</li>
+                  <li>Preview URL per pull request</li>
+                  <li>90 days of build history</li>
+                </ul>
+              </div>
+              <div class="bx-ticks" style="border: 1px solid var(--bx-line); background: var(--bx-surface-sunken)">
+                <div style="height: 28px; display: flex; align-items: center; justify-content: space-between; padding-inline: 12px; border-block-end: 1px solid var(--bx-line); background: var(--bx-surface)"><span class="bx-label">Deploys</span><span class="bx-label">FIG. 01</span></div>
+                <ol class="bx-timeline" style="padding: 16px; font-size: var(--bx-text-sm)">
+                  <li data-kind="ok"><span class="bx-timeline__time">12:04 &middot; 8f3a1c2</span><p class="bx-timeline__title">Live</p></li>
+                  <li data-kind="accent"><span class="bx-timeline__time">11:52 &middot; 2b7d9e0</span><p class="bx-timeline__title">Rolled back in 0.8s</p></li>
+                  <li><span class="bx-timeline__time">11:40 &middot; c41a0f3</span><p class="bx-timeline__title">Superseded</p></li>
+                </ol>
+              </div>
+            </div>
+            <div style="padding: 32px">
+              <span class="bx-label" style="color: var(--bx-ink-faint)">02</span>
+              <svg width="20" height="20" class="mt-5" aria-hidden="true"><use href="#i-globe"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 16px">310 edge locations</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Requests terminate at the nearest location with automatic failover.</p>
+            </div>
+            <div style="padding: 32px">
+              <span class="bx-label" style="color: var(--bx-ink-faint)">03</span>
+              <svg width="20" height="20" class="mt-5" aria-hidden="true"><use href="#i-lock"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 16px">Zero-config TLS</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Certificates issued, renewed and stapled without a line of config.</p>
+            </div>
+            <div style="padding: 32px">
+              <span class="bx-label" style="color: var(--bx-ink-faint)">04</span>
+              <svg width="20" height="20" class="mt-5" aria-hidden="true"><use href="#i-chart"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 16px">Built-in observability</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">p50, p95 and error rate per route, kept for 30 days.</p>
+            </div>
+            <div style="padding: 32px">
+              <span class="bx-label" style="color: var(--bx-ink-faint)">05</span>
+              <svg width="20" height="20" class="mt-5" aria-hidden="true"><use href="#i-bolt"/></svg>
+              <h3 style="font-size: var(--bx-text-xl); margin-block-start: 16px">Cold starts under 5ms</h3>
+              <p class="muted mt-3" style="font-size: var(--bx-text-base)">Isolates, not containers. Nothing to keep warm.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- pricing -->
+        <div style="padding: 80px 48px" data-billing>
+          <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap">
+            <div>
+              <p class="bx-label">02 / Pricing</p>
+              <p class="p-display" style="font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); margin-block-start: 16px">Pay for what you ship</p>
+            </div>
+            <fieldset class="bx-segmented">
+              <legend class="bx-sr">Billing period</legend>
+              <label><input type="radio" name="billing" value="monthly" checked><span>Monthly</span></label>
+              <label><input type="radio" name="billing" value="yearly"><span>Yearly <span class="bx-tag bx-tag--success">&minus;20%</span></span></label>
+            </fieldset>
+          </div>
+
+          <div class="bx-collapse" style="grid-template-columns: repeat(3, minmax(0, 1fr)); margin-block-start: 48px">
+            <div style="display: flex; flex-direction: column">
+              <div style="padding: 24px 24px 0"><p class="bx-label">Hobby</p><p style="margin-block-start: 16px"><span class="p-price">$0</span> <span class="subtle" style="font-size: var(--bx-text-base)">/month</span></p><p class="muted mt-2" style="font-size: var(--bx-text-base); min-block-size: 40px">Personal projects and experiments.</p></div>
+              <div style="padding: 24px"><span class="bx-btn bx-btn--block">Start free</span></div>
+              <ul class="bx-list bx-list--check" style="padding: 24px; border-block-start: 1px solid var(--bx-line-subtle); font-size: var(--bx-text-base)"><li>1 project</li><li>100 GB bandwidth</li><li>Preview deploys</li><li data-state="absent">Team members</li><li data-state="absent">SSO</li></ul>
+            </div>
+            <div style="display: flex; flex-direction: column">
+              <div class="bx-inverse" style="padding: 24px 24px 0"><div class="row" style="justify-content: space-between"><p class="bx-label">Team</p><span class="bx-label">Recommended</span></div><p style="margin-block-start: 16px"><span class="p-price" data-monthly="$20" data-yearly="$16">$20</span> <span class="subtle" style="font-size: var(--bx-text-base)" data-per>/month</span></p><p class="muted mt-2" style="font-size: var(--bx-text-base); min-block-size: 40px">Per member. For teams shipping weekly.</p><div style="padding-block: 24px"><span class="bx-btn bx-btn--primary bx-btn--block">Start 14-day trial</span></div></div>
+              <ul class="bx-list bx-list--check" style="padding: 24px; font-size: var(--bx-text-base)"><li>Unlimited projects</li><li>1 TB bandwidth</li><li>Preview deploys</li><li>Up to 50 members</li><li data-state="absent">SSO</li></ul>
+            </div>
+            <div style="display: flex; flex-direction: column">
+              <div style="padding: 24px 24px 0"><p class="bx-label">Enterprise</p><p style="margin-block-start: 16px"><span class="p-price">Custom</span></p><p class="muted mt-2" style="font-size: var(--bx-text-base); min-block-size: 40px">Volume pricing, SLAs and support.</p></div>
+              <div style="padding: 24px"><span class="bx-btn bx-btn--block">Talk to sales</span></div>
+              <ul class="bx-list bx-list--check" style="padding: 24px; border-block-start: 1px solid var(--bx-line-subtle); font-size: var(--bx-text-base)"><li>Unlimited projects</li><li>Committed bandwidth</li><li>Preview deploys</li><li>Unlimited members</li><li>SAML SSO &amp; SCIM</li></ul>
+            </div>
+          </div>
+
+          <p class="bx-label" style="margin-block: 64px 16px">Compare plans</p>
+          <div style="border: 1px solid var(--bx-line); max-block-size: 360px; overflow-y: auto">
+            <table class="p-cmp">
+              <thead><tr><th class="bx-label">Feature</th><th class="bx-label">Hobby</th><th class="bx-label">Team</th><th class="bx-label">Enterprise</th></tr></thead>
+              <tbody>
+                <tr class="grp"><th colspan="4" class="bx-label">Deploy</th></tr>
+                <tr><th>Build minutes / month</th><td class="bx-mono">100</td><td class="bx-mono">6,000</td><td class="bx-mono">Custom</td></tr>
+                <tr><th>Concurrent builds</th><td class="bx-mono">1</td><td class="bx-mono">4</td><td class="bx-mono">24</td></tr>
+                <tr><th>Instant rollback</th><td><span class="p-yes" role="img" aria-label="Included"></span></td><td><span class="p-yes" role="img" aria-label="Included"></span></td><td><span class="p-yes" role="img" aria-label="Included"></span></td></tr>
+                <tr class="grp"><th colspan="4" class="bx-label">Security</th></tr>
+                <tr><th>Audit log</th><td><span class="p-no" role="img" aria-label="Not included"></span></td><td class="bx-mono">30 days</td><td class="bx-mono">1 year</td></tr>
+                <tr><th>SAML SSO</th><td><span class="p-no" role="img" aria-label="Not included"></span></td><td><span class="p-no" role="img" aria-label="Not included"></span></td><td><span class="p-yes" role="img" aria-label="Included"></span></td></tr>
+                <tr><th>Uptime SLA</th><td><span class="p-no" role="img" aria-label="Not included"></span></td><td class="bx-mono">99.9%</td><td class="bx-mono">99.99%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- =============================================================== FAQ -->
+  <section class="sec" id="p-faq">
+    <div class="sec__head">
+      <p class="bx-label">07 / Support &mdash; editorial</p>
+      <h2>Frequently asked questions</h2>
+      <p>A sticky heading column and a numbered, exclusive accordion. The category
+      filter is a segmented control that narrows the list in place; a real person to
+      contact closes the section, because an FAQ that dead-ends is a wall.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/faq</span>
+      </div>
+      <div class="frame__body" data-mode="editorial" style="background: var(--bx-canvas); padding: 80px 48px; display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start">
+        <div style="position: sticky; inset-block-start: 0">
+          <p class="bx-label">03 / FAQ</p>
+          <p class="p-display" style="font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); max-inline-size: 12ch; margin-block-start: 16px">Questions, answered plainly</p>
+          <p class="muted mt-5" style="max-inline-size: 36ch">Can&rsquo;t find it here? The docs go deeper, and a human answers the rest.</p>
+          <div class="p-panel mt-8" style="max-inline-size: 360px">
+            <div class="p-panel__body" style="display: grid; gap: 16px">
+              <div class="row" style="gap: 12px">
+                <div class="bx-avatar-group" aria-hidden="true"><span class="bx-avatar">MK</span><span class="bx-avatar">AO</span><span class="bx-avatar">SL</span></div>
+                <div><p style="font-weight: 600; font-size: var(--bx-text-base)">Still stuck?</p><p class="subtle" style="font-size: var(--bx-text-sm)">Median first reply: 38 minutes</p></div>
+              </div>
+              <div class="bx-btn-group" style="inline-size: 100%"><span class="bx-btn bx-btn--sm" style="flex: 1">Read the docs</span><span class="bx-btn bx-btn--sm" style="flex: 1">Contact support</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-filter>
+          <fieldset class="bx-segmented" style="margin-block-end: 24px">
+            <legend class="bx-sr">Category</legend>
+            <label><input type="radio" name="filter-faq" value="all" checked><span>All</span></label>
+            <label><input type="radio" name="filter-faq" value="billing"><span>Billing</span></label>
+            <label><input type="radio" name="filter-faq" value="tech"><span>Technical</span></label>
+            <label><input type="radio" name="filter-faq" value="security"><span>Security</span></label>
+          </fieldset>
+          <div class="bx-accordion">
+            <details name="faq" data-cat="billing" open>
+              <summary><span class="bx-accordion__n">01</span>What counts as a build minute?</summary>
+              <div class="bx-accordion__body"><p>Wall-clock time from the first build step to the upload finishing, rounded up to the next minute per build. Cached steps that are skipped cost nothing.</p></div>
+            </details>
+            <details name="faq" data-cat="billing">
+              <summary><span class="bx-accordion__n">02</span>What happens when I go over a limit?</summary>
+              <div class="bx-accordion__body"><p>Nothing stops. You get an email at 80% and 100%, and overage is billed at the published rate:</p><ul class="bx-list"><li>Bandwidth: $0.15 per GB</li><li>Build minutes: $0.01 per minute</li></ul></div>
+            </details>
+            <details name="faq" data-cat="tech">
+              <summary><span class="bx-accordion__n">03</span>Can I bring my own domain?</summary>
+              <div class="bx-accordion__body"><p>Yes, on every plan. Point a CNAME at <code class="bx-code">edge.orbit.app</code>; certificates are issued within a minute and renew on their own.</p></div>
+            </details>
+            <details name="faq" data-cat="tech">
+              <summary><span class="bx-accordion__n">04</span>Which runtimes are supported?</summary>
+              <div class="bx-accordion__body"><p>Node 20 and 22, Bun, Deno and any static output. Set it per project in <code class="bx-code">orbit.toml</code>.</p></div>
+            </details>
+            <details name="faq" data-cat="security">
+              <summary><span class="bx-accordion__n">05</span>Where is my data stored?</summary>
+              <div class="bx-accordion__body"><p>Build artefacts live in the region you pick at project creation. Logs are kept for 30 days and never leave that region.</p></div>
+            </details>
+            <details name="faq" data-cat="security">
+              <summary><span class="bx-accordion__n">06</span>Do you support SSO?</summary>
+              <div class="bx-accordion__body"><p>SAML SSO and SCIM provisioning are on the Enterprise plan. Google and GitHub sign-in are on every plan.</p></div>
+            </details>
+          </div>
+          <p class="bx-label mt-4" aria-live="polite" data-filter-count>6 questions</p>
+        </div>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- ============================================================== BLOG -->
+  <section class="sec" id="p-blog">
+    <div class="sec__head">
+      <p class="bx-label">08 / Content &mdash; editorial</p>
+      <h2>Blog index and article</h2>
+      <p>The index leads with one featured post and puts the rest in a collapsed grid
+      that reads as a table of contents. The article constrains prose to 68ch, hangs a
+      sticky table of contents off a rule, and uses every content component: lists,
+      a blockquote, code, a callout and a captioned figure.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/blog</span>
+      </div>
+      <div class="frame__body" data-mode="editorial" style="background: var(--bx-canvas)">
+        <header class="p-site">
+          <span class="p-logo"><i></i>ORBIT</span>
+          <nav aria-label="Site"><a href="#p-pricing">Product</a><a href="#p-pricing">Pricing</a><a href="#p-docs">Docs</a><a href="#p-blog" aria-current="page">Blog</a></nav>
+          <span style="flex: 1"></span>
+          <span class="bx-btn bx-btn--sm"><svg width="16" height="16" aria-hidden="true"><use href="#i-share"/></svg>RSS</span>
+        </header>
+
+        <div style="padding: 64px 48px 0">
+          <p class="bx-label">Blog</p>
+          <p class="p-display" style="font-size: var(--bx-text-5xl); line-height: var(--bx-lh-5xl); margin-block-start: 16px">Engineering notes</p>
+        </div>
+
+        <!-- featured -->
+        <a href="#p-blog" class="p-card-link" style="display: grid; grid-template-columns: 7fr 5fr; gap: 0; padding: 0; margin: 48px 48px 0; border: 1px solid var(--bx-line)">
+          <div class="p-figure bx-ticks" style="min-block-size: 320px; border: 0; border-inline-end: 1px solid var(--bx-line)">
+            <svg viewBox="0 0 320 180" width="320" height="180" aria-hidden="true" style="color: var(--bx-ink-subtle)">
+              <g fill="none" stroke="currentColor" stroke-width="1">
+                <rect x="20.5" y="20.5" width="80" height="60"/><rect x="120.5" y="20.5" width="80" height="60"/><rect x="220.5" y="20.5" width="80" height="60"/>
+                <rect x="70.5" y="110.5" width="180" height="50" stroke-width="1.5" style="color: var(--bx-ink)" stroke="currentColor"/>
+                <path d="M60.5 80.5v30M160.5 80.5v30M260.5 80.5v30M60.5 110.5h200"/>
+              </g>
+              <text x="160" y="140" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="currentColor" style="color: var(--bx-ink)">QUEUE</text>
+            </svg>
+          </div>
+          <div style="padding: 40px; display: grid; gap: 16px; align-content: center">
+            <div class="row"><span class="bx-tag bx-tag--accent">Featured</span><span class="bx-tag">Infrastructure</span></div>
+            <h4 style="font-size: var(--bx-text-3xl); line-height: var(--bx-lh-3xl); letter-spacing: var(--bx-track-heading)">How we moved cron to a queue without dropping a job</h4>
+            <p class="muted" style="font-size: var(--bx-text-base)">Four million scheduled jobs a day, one migration weekend, and the three invariants that let us do it with zero missed runs.</p>
+            <div class="p-meta"><span class="bx-avatar bx-avatar--sm">AO</span><span>Ada Okafor</span><span>Sep 18, 2026</span><span>12 min read</span></div>
+          </div>
+        </a>
+
+        <!-- list -->
+        <div style="padding: 48px">
+          <div class="row" style="justify-content: space-between; margin-block-end: 24px">
+            <div class="bx-tabs" role="tablist" aria-label="Category" data-tabs="self" style="flex: 1">
+              <button class="bx-tab" role="tab" data-tab="all" aria-selected="true">All</button>
+              <button class="bx-tab" role="tab" data-tab="eng" aria-selected="false">Engineering</button>
+              <button class="bx-tab" role="tab" data-tab="product" aria-selected="false">Product</button>
+              <button class="bx-tab" role="tab" data-tab="changelog" aria-selected="false">Changelog</button>
+            </div>
+          </div>
+          <div class="bx-collapse" style="grid-template-columns: repeat(3, minmax(0, 1fr))">
+            <a class="p-card-link" href="#p-blog-post"><div class="p-figure" style="block-size: 128px"><span class="bx-label">FIG. 02</span></div><span class="bx-label">Engineering &middot; Sep 11</span><h4>p95 is a lie your dashboard tells you</h4><p class="muted" style="font-size: var(--bx-text-base)">Why we alert on the whole distribution instead of one percentile.</p><div class="p-meta"><span class="bx-avatar bx-avatar--sm">AE</span><span>Aryan Ebrahimpour</span><span>8 min</span></div></a>
+            <a class="p-card-link" href="#p-blog-post"><div class="p-figure" style="block-size: 128px"><span class="bx-label">FIG. 03</span></div><span class="bx-label">Product &middot; Sep 04</span><h4>Preview deploys for every branch, not just PRs</h4><p class="muted" style="font-size: var(--bx-text-base)">Push anything and get a URL. Here is what it costs us, and why it is free.</p><div class="p-meta"><span class="bx-avatar bx-avatar--sm">JR</span><span>Jo Rivera</span><span>5 min</span></div></a>
+            <a class="p-card-link" href="#p-blog-post"><div class="p-figure" style="block-size: 128px"><span class="bx-label">FIG. 04</span></div><span class="bx-label">Changelog &middot; Aug 28</span><h4>Orbit 2.14: route-level timeouts</h4><p class="muted" style="font-size: var(--bx-text-base)">Per-route timeouts and retries, a faster CLI and 11 fixes.</p><div class="p-meta"><span class="bx-avatar bx-avatar--sm">SL</span><span>Sam Lee</span><span>3 min</span></div></a>
+          </div>
+          <div class="row" style="justify-content: space-between; margin-block-start: 24px">
+            <span class="bx-label">Showing 1&ndash;3 of 86 posts</span>
+            <nav class="bx-btn-group" aria-label="Pagination">
+              <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Previous page" disabled><svg class="bx-icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+              <button class="bx-btn bx-btn--sm bx-mono" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)" aria-current="page">1</button>
+              <button class="bx-btn bx-btn--sm bx-mono">2</button>
+              <button class="bx-btn bx-btn--sm bx-mono">3</button>
+              <button class="bx-btn bx-btn--sm bx-btn--icon" aria-label="Next page"><svg class="bx-icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame mt-8" id="p-blog-post">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/blog/p95-is-a-lie</span>
+      </div>
+      <div class="frame__body" data-mode="editorial" style="background: var(--bx-canvas)">
+        <article style="padding: 64px 48px; display: grid; grid-template-columns: minmax(0, 1fr) 208px; gap: 64px">
+          <div>
+            <nav class="bx-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#p-blog">blog</a></li><li><a href="#p-blog">engineering</a></li><li><span aria-current="page">p95-is-a-lie</span></li></ol></nav>
+            <h3 class="p-display" style="font-size: var(--bx-text-5xl); line-height: var(--bx-lh-5xl); max-inline-size: 16ch; margin-block-start: 24px">p95 is a lie your dashboard tells you</h3>
+            <p class="lede mt-5" style="max-inline-size: 56ch">A single percentile hides the shape of the distribution. Here is what we alert on instead, and the incident that changed our minds.</p>
+            <div class="p-meta mt-6" style="padding-block: 16px; border-block: 1px solid var(--bx-line)">
+              <span class="bx-avatar">AE</span><span style="color: var(--bx-ink); font-weight: 500">Aryan Ebrahimpour</span><span>Sep 11, 2026</span><span>8 min read</span>
+            </div>
+
+            <div class="bx-prose mt-8">
+              <p>On a Tuesday in July our p95 latency looked perfect &mdash; <strong>88ms</strong>, flat all afternoon &mdash; while 4% of checkout requests timed out. The dashboard was right about p95. It was wrong about the question we cared about.</p>
+              <h2 id="post-shape">The shape matters</h2>
+              <p>A percentile is one point on a curve. Two very different services can share a p95:</p>
+              <ul class="bx-list">
+                <li>A tight distribution with a clean tail</li>
+                <li>A bimodal one, where a slow path serves a few percent of traffic</li>
+                <li>A healthy body with a cliff at p99.5 that a p95 never sees</li>
+              </ul>
+              <blockquote class="bx-quote"><p>We were not measuring the service. We were measuring one number the service happened to produce.</p></blockquote>
+              <h2 id="post-instead">What we alert on instead</h2>
+              <p>We now keep a full histogram per route and alert on the <em>share of requests over budget</em>, which is closer to what a user feels. The query is short:</p>
+              <div class="bx-codeblock bx-codeblock--numbered">
+                <div class="bx-codeblock__head"><span class="bx-label">alert.sql</span><span class="bx-label">sql</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy>copy</button></div>
+<pre><code><span class="ln"><span class="tk-k">SELECT</span> route,</span><span class="ln">       count_if(latency_ms &gt; budget_ms) / count(*) <span class="tk-k">AS</span> over_budget</span><span class="ln"><span class="tk-k">FROM</span> requests</span><span class="ln ln--hl"><span class="tk-k">WHERE</span> ts &gt; now() - <span class="tk-k">INTERVAL</span> <span class="tk-s">'5 minutes'</span></span><span class="ln"><span class="tk-k">GROUP BY</span> route</span><span class="ln"><span class="tk-k">HAVING</span> over_budget &gt; <span class="tk-n">0.01</span>;</span></code></pre>
+              </div>
+              <div class="bx-callout bx-callout--info"><svg class="bx-icon" aria-hidden="true"><use href="#i-info"/></svg><div><p style="font-weight: 600; color: var(--bx-ink)">Budgets are per route</p><p class="mt-2" style="font-size: var(--bx-text-base)">Checkout gets 300ms, image resizing gets 2s. One global budget recreates the p95 problem.</p></div></div>
+              <h2 id="post-results">Results</h2>
+              <ol class="bx-list">
+                <li>Pages per week fell from 14 to 3</li>
+                <li>Every remaining page mapped to user-visible impact</li>
+                <li>Median time to detect dropped from 11 to 2 minutes</li>
+              </ol>
+              <figure>
+                <div class="p-figure" style="block-size: 160px"><span class="bx-label">Histogram &middot; checkout &middot; Jul 14</span></div>
+                <figcaption class="bx-label">FIG. 01 &mdash; The second mode at 4.2s is invisible at p95</figcaption>
+              </figure>
+            </div>
+
+            <div class="row mt-8" style="padding-block-start: 24px; border-block-start: 1px solid var(--bx-line); justify-content: space-between">
+              <div class="bx-cluster" style="--bx-gap: var(--bx-space-2)"><span class="bx-tag">observability</span><span class="bx-tag">alerting</span><span class="bx-tag">sre</span></div>
+              <div class="bx-btn-group"><button class="bx-btn bx-btn--sm" data-copy="https://orbit.dev/blog/p95-is-a-lie"><svg width="16" height="16" aria-hidden="true"><use href="#i-link"/></svg>Copy link</button><button class="bx-btn bx-btn--sm"><svg width="16" height="16" aria-hidden="true"><use href="#i-share"/></svg>Share</button></div>
+            </div>
+            <div class="bx-collapse bx-collapse--2 mt-6">
+              <a class="p-card-link" href="#p-blog"><span class="bx-label">&larr; Previous</span><h4 style="font-size: var(--bx-text-md)">Preview deploys for every branch</h4></a>
+              <a class="p-card-link" href="#p-blog" style="text-align: end"><span class="bx-label">Next &rarr;</span><h4 style="font-size: var(--bx-text-md)">How we moved cron to a queue</h4></a>
+            </div>
+          </div>
+
+          <aside style="position: sticky; inset-block-start: 24px; align-self: start">
+            <p class="bx-label" style="margin-block-end: 12px">On this page</p>
+            <nav class="bx-toc" aria-label="On this page">
+              <a href="#p-blog-post">Introduction</a>
+              <a href="#p-blog-post" aria-current="true">The shape matters</a>
+              <a href="#p-blog-post">What we alert on instead</a>
+              <a href="#p-blog-post">Results</a>
+            </nav>
+            <div class="mt-6" style="padding-block-start: 16px; border-block-start: 1px solid var(--bx-line-subtle)">
+              <div class="bx-progress__row"><span class="bx-label">Read</span><span class="bx-mono" style="font-size: var(--bx-text-xs)">38%</span></div>
+              <div class="bx-progress"><i style="inline-size: 38%"></i></div>
+            </div>
+          </aside>
+        </article>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frames sideways &mdash; the previews keep their desktop proportions</p>
+  </section>
+
+  <!-- ======================================================= ANALYTICS -->
+  <section class="sec" id="p-analytics">
+    <div class="sec__head">
+      <p class="bx-label">09 / Analytics &mdash; industrial</p>
+      <h2>Dashboard with charts and a team view</h2>
+      <p>Filters in one row above everything they scope, date range first. KPI tiles
+      with sparklines in a collapsed grid, a two-series line chart (the comparison is
+      neutral and dashed, so it survives greyscale), a single-series bar chart with
+      direct labels, and a manager's team table with workload meters and row menus.
+      Hover or arrow-key the charts.</p>
+    </div>
+
+    <div class="frame frame--wide">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">console.orbit.dev/acme/insights</span>
+      </div>
+      <div class="frame__body" data-mode="industrial" data-density="compact">
+        <div class="p-shell" style="min-block-size: 880px">
+          <aside class="p-side">
+            <div class="p-brand"><i></i>ORBIT</div>
+            <nav class="bx-tree" aria-label="Console">
+              <p class="bx-tree__heading">Workspace</p>
+              <ul>
+                <li><a class="bx-tree__item" href="#p-analytics"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-grid"/></svg>Overview</a></li>
+                <li><a class="bx-tree__item" href="#p-analytics" aria-current="page"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-chart"/></svg>Insights</a></li>
+                <li><a class="bx-tree__item" href="#p-analytics"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-bolt"/></svg>Deployments<span class="bx-tree__count">3</span></a></li>
+                <li>
+                  <details open>
+                    <summary class="bx-tree__item"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-user"/></svg>People</summary>
+                    <ul>
+                      <li><a class="bx-tree__item" href="#p-analytics">Team</a></li>
+                      <li><a class="bx-tree__item" href="#p-analytics">Roles</a></li>
+                      <li><a class="bx-tree__item" href="#p-analytics">Invites<span class="bx-tree__count">2</span></a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+              <p class="bx-tree__heading">Account</p>
+              <ul>
+                <li><a class="bx-tree__item" href="#p-analytics"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-archive"/></svg>Billing</a></li>
+                <li><a class="bx-tree__item" href="#p-analytics"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-gear"/></svg>Settings</a></li>
+              </ul>
+            </nav>
+            <div style="margin-block-start: auto; padding: 12px; border-block-start: 1px solid var(--bx-line)">
+              <div class="bx-progress__row"><span class="bx-label">Seats</span><span class="bx-mono" style="font-size: var(--bx-text-xs)">14 / 20</span></div>
+              <div class="bx-meter" role="meter" aria-valuenow="14" aria-valuemin="0" aria-valuemax="20" aria-label="Seats used" style="block-size: 8px"><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i></i><i></i><i></i></div>
+            </div>
+          </aside>
+
+          <div style="min-inline-size: 0; display: flex; flex-direction: column">
+            <header class="p-top">
+              <nav class="bx-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#p-analytics">acme</a></li><li><span aria-current="page">insights</span></li></ol></nav>
+              <span style="flex: 1"></span>
+              <label class="bx-search bx-search--sm" style="inline-size: 240px"><svg aria-hidden="true"><use href="#i-search"/></svg><input class="bx-input" placeholder="Search" aria-label="Search"><span class="bx-kbd">Ctrl K</span></label>
+              <button class="bx-btn bx-btn--ghost bx-btn--sm" popovertarget="menu-account" aria-haspopup="menu" aria-expanded="false" style="padding-inline: 4px"><span class="bx-avatar bx-avatar--sm" data-presence="online">JR</span><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+              <ul class="bx-float bx-menu" id="menu-account" popover role="menu" aria-label="Account">
+                <li role="none" class="bx-menu__head"><span class="bx-avatar" data-presence="online">JR</span><span style="display: grid; gap: 2px"><span style="font-weight: 600; font-size: var(--bx-text-base)">Jo Rivera</span><span class="bx-mono subtle" style="font-size: var(--bx-text-xs)">jo@acme.dev</span></span></li>
+                <li role="none"><button class="bx-menu__item" role="menuitem"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-user"/></svg>Profile</button></li>
+                <li role="none">
+                  <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-grid"/></svg>Switch workspace</button>
+                  <ul class="bx-menu" role="menu" aria-label="Workspaces">
+                    <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true">acme</button></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">acme-labs</button></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">personal</button></li>
+                  </ul>
+                </li>
+                <li role="separator" class="bx-menu__sep"></li>
+                <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Signed out">Sign out</button></li>
+              </ul>
+            </header>
+
+            <main class="p-main">
+              <div class="p-head">
+                <div><p class="bx-label">Insights</p><h3 style="margin-block-start: 4px">Traffic and team</h3></div>
+                <div class="row">
+                  <button class="bx-btn bx-btn--sm" popovertarget="range-dash" style="font-family: var(--bx-font-mono); font-size: var(--bx-text-xs)"><svg width="16" height="16" aria-hidden="true"><use href="#i-cal"/></svg><span id="range-dash-label">Last 7 days</span><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+                  <div class="bx-float" id="range-dash" popover>
+                    <div class="bx-range" data-cal="range" data-cal-label="range-dash-label">
+                      <ul class="bx-range__presets bx-menu" role="menu" aria-label="Presets" style="min-inline-size: 0">
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="1">Today</button></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true" data-preset="7">Last 7 days</button></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="30">Last 30 days</button></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="quarter">This quarter</button></li>
+                        <li role="separator" class="bx-menu__sep"></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false" data-preset="custom">Custom</button></li>
+                      </ul>
+                      <div class="bx-cal"><div data-cal-mount><div class="bx-cal__foot"><span class="bx-label">Click start, then end</span><button class="bx-btn bx-btn--primary bx-btn--sm" data-cal-act="apply">Apply</button></div></div></div>
+                    </div>
+                  </div>
+                  <fieldset class="bx-segmented">
+                    <legend class="bx-sr">Environment</legend>
+                    <label><input type="radio" name="dash-env" checked><span>Production</span></label>
+                    <label><input type="radio" name="dash-env"><span>Preview</span></label>
+                  </fieldset>
+                  <div class="bx-btn-group">
+                    <button class="bx-btn bx-btn--sm" data-say="Exported" data-say-body="insights-last-7-days.csv"><svg width="16" height="16" aria-hidden="true"><use href="#i-download"/></svg>Export</button>
+                    <button class="bx-btn bx-btn--sm bx-btn--icon" popovertarget="menu-dash-more" aria-haspopup="menu" aria-expanded="false" aria-label="More"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button>
+                  </div>
+                  <ul class="bx-float bx-menu" id="menu-dash-more" popover role="menu" aria-label="More">
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Scheduled" data-say-body="Weekly on Monday, 09:00">Schedule report&hellip;</button></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Link copied">Copy share link</button></li>
+                    <li role="separator" class="bx-menu__sep"></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitemcheckbox" aria-checked="true">Compare to previous period</button></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bx-collapse bx-collapse--4">
+                <div class="p-kpi"><p class="bx-label">Requests</p><div class="p-kpi__row"><p class="p-kpi__val">14.2<small>M</small></p><svg class="bx-spark" data-spark="8,9,8,11,10,12,11,13,12,14" aria-hidden="true"></svg></div><p class="p-delta"><span class="p-up">&#9650; 12.4%</span> <span class="subtle">vs prev 7d</span></p></div>
+                <div class="p-kpi"><p class="bx-label">p95 latency</p><div class="p-kpi__row"><p class="p-kpi__val">88<small>ms</small></p><svg class="bx-spark" data-spark="92,90,95,91,89,93,90,88,86,88" aria-hidden="true"></svg></div><p class="p-delta"><span class="p-up">&#9660; 4ms</span> <span class="subtle">vs prev 7d</span></p></div>
+                <div class="p-kpi"><p class="bx-label">Error rate</p><div class="p-kpi__row"><p class="p-kpi__val">0.12<small>%</small></p><svg class="bx-spark" data-spark="4,5,4,6,5,5,7,6,8,9" aria-hidden="true"></svg></div><p class="p-delta"><span class="p-down">&#9650; 0.03pp</span> <span class="subtle">vs prev 7d</span></p></div>
+                <div class="p-kpi"><p class="bx-label">Spend</p><div class="p-kpi__row"><p class="p-kpi__val"><small>$</small>1,284</p><svg class="bx-spark" data-spark="10,11,11,12,12,12,13,13,13,14" aria-hidden="true"></svg></div><p class="p-delta"><span class="subtle">64% of $2,000 budget</span></p></div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px">
+                <div class="p-panel">
+                  <div class="p-panel__head"><h4>Requests per day</h4><span class="bx-label" style="padding-inline-end: 12px">Millions &middot; UTC</span></div>
+                  <div class="p-panel__body">
+                    <div class="bx-chart__legend"><span class="bx-chart__key bx-label">This period</span><span class="bx-chart__key bx-chart__key--muted bx-label">Previous period</span></div>
+                    <div class="bx-chart" data-chart="line" data-height="208" data-unit="M" data-name="This period" data-compare-name="Previous"
+                      data-labels='["Sep 19","Sep 20","Sep 21","Sep 22","Sep 23","Sep 24","Sep 25"]'
+                      data-series='[1.8,1.6,1.7,2.1,2.3,2.2,2.5]'
+                      data-compare='[1.6,1.5,1.4,1.8,1.9,2.0,1.9]' role="img" aria-label="Line chart: requests per day, this period against the previous period. Table follows."></div>
+                    <div class="bx-sr"><table><caption>Requests per day, millions</caption><thead><tr><th>Day</th><th>This period</th><th>Previous</th></tr></thead><tbody><tr><td>Sep 19</td><td>1.8</td><td>1.6</td></tr><tr><td>Sep 20</td><td>1.6</td><td>1.5</td></tr><tr><td>Sep 21</td><td>1.7</td><td>1.4</td></tr><tr><td>Sep 22</td><td>2.1</td><td>1.8</td></tr><tr><td>Sep 23</td><td>2.3</td><td>1.9</td></tr><tr><td>Sep 24</td><td>2.2</td><td>2.0</td></tr><tr><td>Sep 25</td><td>2.5</td><td>1.9</td></tr></tbody></table></div>
+                  </div>
+                </div>
+                <div class="p-panel">
+                  <div class="p-panel__head"><h4>Requests by region</h4><span class="bx-label" style="padding-inline-end: 12px">Millions</span></div>
+                  <div class="p-panel__body">
+                    <div class="bx-chart__legend"><span class="bx-chart__key bx-chart__key--bar bx-label">Busiest region highlighted</span></div>
+                    <div class="bx-chart" data-chart="bar" data-height="208" data-unit="M" data-name="Requests" data-hot="0"
+                      data-labels='["us-e","eu-w","ap-s","us-w","sa-e"]'
+                      data-series='[5.8,4.1,2.2,1.5,0.6]' role="img" aria-label="Bar chart: requests by region. Table follows."></div>
+                    <div class="bx-sr"><table><caption>Requests by region, millions</caption><tbody><tr><th>us-east</th><td>5.8</td></tr><tr><th>eu-west</th><td>4.1</td></tr><tr><th>ap-south</th><td>2.2</td></tr><tr><th>us-west</th><td>1.5</td></tr><tr><th>sa-east</th><td>0.6</td></tr></tbody></table></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px">
+                <div class="p-panel">
+                  <div class="p-panel__head"><h4>Team &middot; on-call workload</h4><div class="row" style="gap: 4px"><span class="bx-label" style="padding-inline-end: 8px">14 members</span><button class="bx-btn bx-btn--sm" data-say="Invite sent"><svg width="16" height="16" aria-hidden="true"><use href="#i-plus"/></svg>Invite</button></div></div>
+                  <div class="bx-table-wrap bx-table-wrap--flush">
+                    <table class="bx-table">
+                      <thead><tr><th>Member</th><th>Role</th><th>Workload</th><th class="num">Pages 7d</th><th>Status</th><th style="inline-size: 40px"><span class="bx-sr">Actions</span></th></tr></thead>
+                      <tbody>
+                        <tr><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><span class="bx-avatar bx-avatar--sm" data-presence="online">MK</span>Mina Kato</div></td><td><span class="bx-tag bx-tag--sm">Lead</span></td><td><div class="bx-meter" style="inline-size: 96px; block-size: 8px" role="meter" aria-valuenow="40" aria-label="Workload 40%"><i data-on></i><i data-on></i><i></i><i></i><i></i></div></td><td class="num">3</td><td><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">On call</span></td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="menu-row" aria-haspopup="menu" aria-label="Actions for Mina Kato"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                        <tr><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><span class="bx-avatar bx-avatar--sm" data-presence="busy">JR</span>Jo Rivera</div></td><td><span class="bx-tag bx-tag--sm">Admin</span></td><td><div class="bx-meter" style="inline-size: 96px; block-size: 8px" role="meter" aria-valuenow="100" aria-label="Workload 100%"><i data-on="danger"></i><i data-on="danger"></i><i data-on="danger"></i><i data-on="danger"></i><i data-on="danger"></i></div></td><td class="num">11</td><td><span class="bx-status bx-status--down" style="font-size: var(--bx-text-sm)">Overloaded</span></td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="menu-row" aria-haspopup="menu" aria-label="Actions for Jo Rivera"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                        <tr><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><span class="bx-avatar bx-avatar--sm" data-presence="away">AO</span>Ada Okafor</div></td><td><span class="bx-tag bx-tag--sm">Member</span></td><td><div class="bx-meter" style="inline-size: 96px; block-size: 8px" role="meter" aria-valuenow="80" aria-label="Workload 80%"><i data-on="warn"></i><i data-on="warn"></i><i data-on="warn"></i><i data-on="warn"></i><i></i></div></td><td class="num">7</td><td><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)">High</span></td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="menu-row" aria-haspopup="menu" aria-label="Actions for Ada Okafor"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                        <tr><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><span class="bx-avatar bx-avatar--sm">SL</span>Sam Lee</div></td><td><span class="bx-tag bx-tag--sm">Member</span></td><td><div class="bx-meter" style="inline-size: 96px; block-size: 8px" role="meter" aria-valuenow="20" aria-label="Workload 20%"><i data-on></i><i></i><i></i><i></i><i></i></div></td><td class="num">1</td><td><span class="bx-status bx-status--idle" style="font-size: var(--bx-text-sm)">Off rota</span></td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="menu-row" aria-haspopup="menu" aria-label="Actions for Sam Lee"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <ul class="bx-float bx-menu" id="menu-row" popover role="menu" aria-label="Member actions">
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Opened profile"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-user"/></svg>View profile</button></li>
+                    <li role="none">
+                      <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-lock"/></svg>Change role</button>
+                      <ul class="bx-menu" role="menu" aria-label="Role">
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">Admin</button></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true">Member</button></li>
+                        <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">Viewer</button></li>
+                      </ul>
+                    </li>
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Removed from rota"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-refresh"/></svg>Take off rota</button></li>
+                    <li role="separator" class="bx-menu__sep"></li>
+                    <li role="none"><button class="bx-menu__item bx-menu__item--danger" role="menuitem" data-say="Member removed"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-trash"/></svg>Remove from team</button></li>
+                  </ul>
+                </div>
+                <div class="p-panel">
+                  <div class="p-panel__head"><h4>Activity</h4><a href="#p-analytics" class="bx-label" style="padding-inline-end: 12px; color: var(--bx-ink-accent)">View all</a></div>
+                  <div class="p-panel__body">
+                    <ol class="bx-timeline" style="font-size: var(--bx-text-sm)">
+                      <li data-kind="down"><span class="bx-timeline__time">12:31 &middot; webhook-fanout</span><p class="bx-timeline__title">Error rate above 1%</p><p class="bx-timeline__body">Paged Jo Rivera</p></li>
+                      <li data-kind="ok"><span class="bx-timeline__time">12:04 &middot; edge-router</span><p class="bx-timeline__title">Deploy succeeded</p></li>
+                      <li data-kind="accent"><span class="bx-timeline__time">11:58 &middot; people</span><p class="bx-timeline__title">Sam Lee joined the rota</p></li>
+                      <li><span class="bx-timeline__time">09:12 &middot; billing</span><p class="bx-timeline__title">Budget alert at 60%</p></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- ====================================================== DOCS + TREE -->
+  <section class="sec" id="p-docs">
+    <div class="sec__head">
+      <p class="bx-label">10 / Documentation &mdash; blueprint</p>
+      <h2>Docs site with a nested tree</h2>
+      <p>Sidebar sections as mono headings on sunken strips, groups that open as
+      submenus three levels deep and hang off literal tree rules. The article carries
+      a breadcrumb, package-manager tabs, a parameter table, an accordion for the
+      rarely-needed options, and a pager. The version switcher is a menu.</p>
+    </div>
+
+    <div class="frame frame--wide">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">orbit.dev/docs/networking/routing/rewrites</span>
+      </div>
+      <div class="frame__body" data-mode="blueprint" style="background: var(--bx-canvas)">
+        <header class="p-site" style="gap: 16px">
+          <span class="p-logo"><i></i>ORBIT <span class="bx-label" style="margin-inline-start: 4px">Docs</span></span>
+          <button class="bx-btn bx-btn--sm bx-mono" popovertarget="menu-version" aria-haspopup="menu" aria-expanded="false" style="font-size: var(--bx-text-xs)"><span id="doc-version">v2.14</span><svg width="16" height="16" aria-hidden="true"><use href="#i-down"/></svg></button>
+          <ul class="bx-float bx-menu" id="menu-version" popover role="menu" aria-label="Version" data-sets="doc-version">
+            <li role="none" class="bx-menu__label">Version</li>
+            <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">v3.0<span class="bx-menu__hint">beta</span></button></li>
+            <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="true">v2.14<span class="bx-menu__hint">latest</span></button></li>
+            <li role="none"><button class="bx-menu__item" role="menuitemradio" aria-checked="false">v1.x<span class="bx-menu__hint">legacy</span></button></li>
+          </ul>
+          <span style="flex: 1"></span>
+          <label class="bx-search bx-search--sm" style="inline-size: 280px"><svg aria-hidden="true"><use href="#i-search"/></svg><input class="bx-input" placeholder="Search docs" aria-label="Search docs"><span class="bx-kbd">Ctrl K</span></label>
+          <nav aria-label="Site"><a href="#p-docs" aria-current="page">Docs</a><a href="#p-docs">API</a><a href="#p-blog">Blog</a></nav>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 256px minmax(0, 1fr) 208px; min-block-size: 760px">
+          <nav class="bx-tree" aria-label="Documentation" style="border-inline-end: 1px solid var(--bx-line); background: var(--bx-surface)">
+            <p class="bx-tree__heading">Get started</p>
+            <ul>
+              <li><a class="bx-tree__item" href="#p-docs">Introduction</a></li>
+              <li><a class="bx-tree__item" href="#p-docs">Installation</a></li>
+              <li><a class="bx-tree__item" href="#p-docs">Your first deploy</a></li>
+            </ul>
+            <p class="bx-tree__heading">Guides</p>
+            <ul>
+              <li>
+                <details open>
+                  <summary class="bx-tree__item">Networking</summary>
+                  <ul>
+                    <li>
+                      <details open>
+                        <summary class="bx-tree__item">Routing</summary>
+                        <ul>
+                          <li><a class="bx-tree__item" href="#p-docs">Matching</a></li>
+                          <li><a class="bx-tree__item" href="#p-docs" aria-current="page">Rewrites</a></li>
+                          <li><a class="bx-tree__item" href="#p-docs">Redirects</a></li>
+                          <li><a class="bx-tree__item" href="#p-docs">Headers</a></li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li><a class="bx-tree__item" href="#p-docs">Caching</a></li>
+                    <li><a class="bx-tree__item" href="#p-docs">Custom domains</a></li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary class="bx-tree__item">Storage</summary>
+                  <ul><li><a class="bx-tree__item" href="#p-docs">Buckets</a></li><li><a class="bx-tree__item" href="#p-docs">Databases</a></li><li><a class="bx-tree__item" href="#p-docs">Queues</a></li></ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary class="bx-tree__item">Observability</summary>
+                  <ul><li><a class="bx-tree__item" href="#p-docs">Logs</a></li><li><a class="bx-tree__item" href="#p-docs">Metrics</a></li><li><a class="bx-tree__item" href="#p-docs">Alerts</a></li></ul>
+                </details>
+              </li>
+            </ul>
+            <p class="bx-tree__heading">Reference</p>
+            <ul>
+              <li><a class="bx-tree__item" href="#p-docs">CLI<span class="bx-tag bx-tag--sm" style="margin-inline-start: auto">v2.14</span></a></li>
+              <li><a class="bx-tree__item" href="#p-docs">orbit.toml</a></li>
+            </ul>
+          </nav>
+
+          <article style="padding: 40px 48px; min-inline-size: 0">
+            <nav class="bx-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#p-docs">docs</a></li><li><a href="#p-docs">networking</a></li><li><a href="#p-docs">routing</a></li><li><span aria-current="page">rewrites</span></li></ol></nav>
+            <div class="bx-prose" style="margin-block-start: 16px">
+              <h3 style="font-size: var(--bx-text-4xl); line-height: var(--bx-lh-4xl); letter-spacing: var(--bx-track-display); margin: 0">Rewrites</h3>
+              <p class="lede">A rewrite serves a different path than the one requested, without changing the URL the visitor sees.</p>
+
+              <p>Install the SDK if you want to define rewrites in code rather than in <code>orbit.toml</code>:</p>
+              <div data-tabs="self">
+                <div class="bx-tabs bx-tabs--contained" role="tablist" aria-label="Package manager">
+                  <button class="bx-tab" role="tab" data-tab="d1" aria-selected="true">npm</button>
+                  <button class="bx-tab" role="tab" data-tab="d2" aria-selected="false">pnpm</button>
+                  <button class="bx-tab" role="tab" data-tab="d3" aria-selected="false">bun</button>
+                </div>
+                <div class="bx-codeblock bx-codeblock--term" data-panel="d1" style="border-block-start: 0"><div class="bx-codeblock__head"><span class="bx-label">terminal</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="npm install @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">npm install @orbit/sdk</span></code></pre></div>
+                <div class="bx-codeblock bx-codeblock--term" data-panel="d2" style="border-block-start: 0" hidden><div class="bx-codeblock__head"><span class="bx-label">terminal</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="pnpm add @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">pnpm add @orbit/sdk</span></code></pre></div>
+                <div class="bx-codeblock bx-codeblock--term" data-panel="d3" style="border-block-start: 0" hidden><div class="bx-codeblock__head"><span class="bx-label">terminal</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy="bun add @orbit/sdk">copy</button></div><pre><code><span class="ln ln--cmd">bun add @orbit/sdk</span></code></pre></div>
+              </div>
+
+              <h2 id="doc-captures">Regex captures</h2>
+              <p>Patterns may use named groups. Each group is available in the destination as <code>:name</code>.</p>
+              <div class="bx-codeblock bx-codeblock--numbered">
+                <div class="bx-codeblock__head"><span class="bx-label">orbit.toml</span><span class="bx-label">toml</span><span class="bx-codeblock__spacer"></span><button class="bx-codeblock__btn" data-copy>copy</button></div>
+<pre><code><span class="ln"><span class="tk-c">[[rewrites]]</span></span><span class="ln ln--hl">source      = <span class="tk-s">"/blog/(?&lt;slug&gt;[a-z0-9-]+)"</span></span><span class="ln">destination = <span class="tk-s">"/posts/:slug.html"</span></span><span class="ln">status      = <span class="tk-n">200</span></span></code></pre>
+              </div>
+
+              <h3>Parameters</h3>
+              <div class="bx-table-wrap">
+                <table class="bx-table">
+                  <thead><tr><th>Key</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+                  <tbody>
+                    <tr><td class="bx-mono">source</td><td class="bx-mono">string</td><td class="subtle">&mdash;</td><td>Path or regex to match. Required.</td></tr>
+                    <tr><td class="bx-mono">destination</td><td class="bx-mono">string</td><td class="subtle">&mdash;</td><td>Path to serve instead. Required.</td></tr>
+                    <tr><td class="bx-mono">status</td><td class="bx-mono">number</td><td class="bx-mono">200</td><td>Response status to send.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="bx-callout bx-callout--warning"><svg class="bx-icon" aria-hidden="true"><use href="#i-warning"/></svg><div><p style="font-weight: 600; color: var(--bx-ink)">Rewrites run after redirects</p><p class="mt-2" style="font-size: var(--bx-text-base)">A redirect that matches first will win. Check <a href="#p-docs">matching order</a>.</p></div></div>
+
+              <h2 id="doc-advanced">Advanced</h2>
+              <div class="bx-accordion">
+                <details><summary>Rewriting to an external origin</summary><div class="bx-accordion__body"><p>Set <code>destination</code> to a full URL. Orbit proxies the request and streams the response back; caching headers from the origin are respected.</p></div></details>
+                <details><summary>Preserving the query string</summary><div class="bx-accordion__body"><p>Query strings are forwarded by default. Set <code>query = "drop"</code> to strip them.</p></div></details>
+                <details><summary>Limits</summary><div class="bx-accordion__body"><ul class="bx-list"><li>1,024 rewrites per project</li><li>Patterns up to 4 KB</li><li>No lookbehind in regex</li></ul></div></details>
+              </div>
+            </div>
+
+            <div class="bx-collapse bx-collapse--2" style="margin-block-start: 48px">
+              <a class="p-card-link" href="#p-docs"><span class="bx-label">&larr; Previous</span><h4 style="font-size: var(--bx-text-md)">Matching</h4></a>
+              <a class="p-card-link" href="#p-docs" style="text-align: end"><span class="bx-label">Next &rarr;</span><h4 style="font-size: var(--bx-text-md)">Redirects</h4></a>
+            </div>
+            <div class="row mt-5" style="justify-content: space-between">
+              <span class="bx-label">Last updated Sep 22, 2026</span>
+              <a href="#p-docs" style="font-size: var(--bx-text-sm)"><svg width="16" height="16" aria-hidden="true" style="display: inline; vertical-align: -3px"><use href="#i-edit"/></svg> Edit this page</a>
+            </div>
+          </article>
+
+          <aside style="border-inline-start: 1px solid var(--bx-line); padding: 40px 16px">
+            <div style="position: sticky; inset-block-start: 24px">
+              <p class="bx-label" style="margin-block-end: 12px">On this page</p>
+              <nav class="bx-toc" aria-label="On this page">
+                <a href="#p-docs">Overview</a>
+                <a href="#p-docs" aria-current="true">Regex captures</a>
+                <a class="sub" href="#p-docs">Parameters</a>
+                <a href="#p-docs">Advanced</a>
+              </nav>
+              <div class="mt-6" style="display: grid; gap: 8px">
+                <p class="bx-label">Was this helpful?</p>
+                <div class="bx-btn-group"><button class="bx-btn bx-btn--sm" data-say="Thanks for the feedback">Yes</button><button class="bx-btn bx-btn--sm" data-say="Thanks" data-say-body="We will look at this page.">No</button></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- ===================================================== FILE MANAGER -->
+  <section class="sec" id="p-files">
+    <div class="sec__head">
+      <p class="bx-label">11 / Storage &mdash; industrial</p>
+      <h2>File browser</h2>
+      <p>A folder tree, a breadcrumb that is also the path, and a table you can
+      right-click. The context menu duplicates the row's visible overflow menu, never
+      replaces it. Drop files onto the dashed zone and they join the upload tray.</p>
+    </div>
+
+    <div class="frame frame--wide">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">console.orbit.dev/acme/storage/assets</span>
+      </div>
+      <div class="frame__body" data-mode="industrial" data-density="compact">
+        <div class="p-shell" style="grid-template-columns: 240px minmax(0, 1fr); min-block-size: 640px">
+          <aside class="p-side">
+            <div class="p-brand"><i></i>ORBIT <span class="bx-label" style="margin-inline-start: 4px">Storage</span></div>
+            <div style="padding: 12px"><button class="bx-btn bx-btn--primary bx-btn--sm bx-btn--block" popovertarget="menu-new" aria-haspopup="menu" aria-expanded="false"><svg width="16" height="16" aria-hidden="true"><use href="#i-plus"/></svg>New</button></div>
+            <ul class="bx-float bx-menu" id="menu-new" popover role="menu" aria-label="New">
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Folder created" data-say-body="assets/untitled/"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>Folder<span class="bx-menu__hint">Shift N</span></button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Choose files to upload"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-upload"/></svg>Upload files</button></li>
+              <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Choose a folder to upload"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>Upload folder</button></li>
+            </ul>
+            <nav class="bx-tree" aria-label="Buckets" style="flex: 1">
+              <p class="bx-tree__heading">Buckets</p>
+              <ul>
+                <li>
+                  <details open>
+                    <summary class="bx-tree__item"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-archive"/></svg>production</summary>
+                    <ul>
+                      <li><a class="bx-tree__item" href="#p-files" aria-current="page"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>assets</a></li>
+                      <li>
+                        <details>
+                          <summary class="bx-tree__item"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>backups</summary>
+                          <ul><li><a class="bx-tree__item" href="#p-files">2026-09</a></li><li><a class="bx-tree__item" href="#p-files">2026-08</a></li></ul>
+                        </details>
+                      </li>
+                      <li><a class="bx-tree__item" href="#p-files"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>exports</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li><a class="bx-tree__item" href="#p-files"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-archive"/></svg>staging</a></li>
+              </ul>
+            </nav>
+            <div style="padding: 12px; border-block-start: 1px solid var(--bx-line)">
+              <div class="bx-progress__row"><span class="bx-label">Storage</span><span class="bx-mono" style="font-size: var(--bx-text-xs)">84.2 / 100 GB</span></div>
+              <div class="bx-progress bx-progress--warn" role="progressbar" aria-valuenow="84" aria-label="Storage used"><i style="inline-size: 84%"></i></div>
+            </div>
+          </aside>
+
+          <div style="min-inline-size: 0; display: flex; flex-direction: column; position: relative">
+            <header class="p-top">
+              <nav class="bx-breadcrumb" aria-label="Path"><ol><li><a href="#p-files">production</a></li><li><span aria-current="page">assets</span></li></ol></nav>
+              <span class="bx-label">1,204 objects &middot; 12.8 GB</span>
+              <span style="flex: 1"></span>
+              <label class="bx-search bx-search--sm" style="inline-size: 200px"><svg aria-hidden="true"><use href="#i-search"/></svg><input class="bx-input" placeholder="Filter by name" aria-label="Filter by name"></label>
+              <fieldset class="bx-segmented">
+                <legend class="bx-sr">View</legend>
+                <label><input type="radio" name="files-view" checked aria-label="List"><span><svg width="16" height="16" aria-hidden="true"><use href="#i-list"/></svg></span></label>
+                <label><input type="radio" name="files-view" aria-label="Grid"><span><svg width="16" height="16" aria-hidden="true"><use href="#i-grid"/></svg></span></label>
+              </fieldset>
+            </header>
+
+            <div style="padding: 16px; display: grid; gap: 16px">
+              <label class="bx-drop" data-files="files-tray" style="min-block-size: 80px; padding: 16px; grid-auto-flow: column; justify-content: center; gap: 12px">
+                <input type="file" multiple aria-label="Upload files to assets">
+                <svg width="16" height="16" aria-hidden="true" style="color: var(--bx-ink)"><use href="#i-upload"/></svg>
+                <span><b style="color: var(--bx-ink)">Drop files to upload to assets/</b> <span class="bx-label" style="margin-inline-start: 8px">or browse &middot; 25 MB max</span></span>
+              </label>
+
+              <div class="bx-table-wrap" data-context="ctx-files" aria-label="Files. Right-click or press Shift F10 on a row for actions.">
+                <table class="bx-table">
+                  <thead><tr><th style="inline-size: 40px"><input class="bx-check" type="checkbox" aria-label="Select all"></th><th aria-sort="ascending">Name &#9650;</th><th>Type</th><th class="num">Size</th><th class="num">Modified</th><th style="inline-size: 40px"><span class="bx-sr">Actions</span></th></tr></thead>
+                  <tbody>
+                    <tr class="p-row-sel" data-context-item tabindex="0"><td><input class="bx-check" type="checkbox" aria-label="Select fonts"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-folder"/></svg>fonts/</div></td><td class="subtle">Folder</td><td class="num">&mdash;</td><td class="num">Sep 21</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for fonts"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                    <tr class="p-row-sel" data-context-item tabindex="0"><td><input class="bx-check" type="checkbox" aria-label="Select img"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-folder"/></svg>img/</div></td><td class="subtle">Folder</td><td class="num">&mdash;</td><td class="num">Sep 24</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for img"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                    <tr class="p-row-sel" data-context-item tabindex="0" aria-selected="true"><td><input class="bx-check" type="checkbox" checked aria-label="Select app.css"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-file"/></svg><span class="bx-mono">app.4e2c.css</span></div></td><td class="subtle">text/css</td><td class="num">48.2 KB</td><td class="num">12:04</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for app.4e2c.css"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                    <tr class="p-row-sel" data-context-item tabindex="0"><td><input class="bx-check" type="checkbox" aria-label="Select app.js"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-file"/></svg><span class="bx-mono">app.91bf.js</span></div></td><td class="subtle">text/javascript</td><td class="num">212.6 KB</td><td class="num">12:04</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for app.91bf.js"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                    <tr class="p-row-sel" data-context-item tabindex="0"><td><input class="bx-check" type="checkbox" aria-label="Select hero.avif"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-file"/></svg><span class="bx-mono">hero.avif</span></div></td><td class="subtle">image/avif</td><td class="num">1.4 MB</td><td class="num">Sep 19</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for hero.avif"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                    <tr class="p-row-sel" data-context-item tabindex="0"><td><input class="bx-check" type="checkbox" aria-label="Select robots.txt"></td><td><div class="row" style="gap: 8px; flex-wrap: nowrap"><svg width="16" height="16" aria-hidden="true"><use href="#i-file"/></svg><span class="bx-mono">robots.txt</span></div></td><td class="subtle">text/plain</td><td class="num">112 B</td><td class="num">Aug 02</td><td><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="ctx-files" aria-label="Actions for robots.txt"><svg width="16" height="16" aria-hidden="true"><use href="#i-more"/></svg></button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul class="bx-float bx-menu" id="ctx-files" popover data-context-menu role="menu" aria-label="File actions">
+                <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Opened preview"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-eye"/></svg>Preview<span class="bx-menu__hint">Space</span></button></li>
+                <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Download started"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-download"/></svg>Download</button></li>
+                <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Public URL copied"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-link"/></svg>Copy public URL</button></li>
+                <li role="separator" class="bx-menu__sep"></li>
+                <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Renamed"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-edit"/></svg>Rename<span class="bx-menu__hint">F2</span></button></li>
+                <li role="none">
+                  <button class="bx-menu__item" role="menuitem" aria-haspopup="menu" aria-expanded="false"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-folder"/></svg>Move to</button>
+                  <ul class="bx-menu" role="menu" aria-label="Move to">
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to backups/">backups/</button></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to exports/">exports/</button></li>
+                    <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Moved to staging">staging bucket</button></li>
+                  </ul>
+                </li>
+                <li role="separator" class="bx-menu__sep"></li>
+                <li role="none"><button class="bx-menu__item bx-menu__item--danger" role="menuitem" data-say="Deleted" data-say-body="1 object moved to trash"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-trash"/></svg>Delete<span class="bx-menu__hint">Del</span></button></li>
+              </ul>
+            </div>
+
+            <!-- upload tray -->
+            <div style="position: absolute; inset-inline-end: 16px; inset-block-end: 16px; inline-size: 360px; background: var(--bx-surface-raised); border: 1px solid var(--bx-line-heavy); box-shadow: var(--bx-shadow-2)" role="region" aria-label="Uploads">
+              <div class="p-panel__head" style="border-block-end-color: var(--bx-line)"><h4>Uploads</h4><span class="row" style="gap: 0"><span class="bx-label" style="padding-inline-end: 8px">2 of 3 done</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Close uploads" onclick="this.closest('[role=region]').hidden = true"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></span></div>
+              <ul class="bx-files" id="files-tray" style="border: 0; max-block-size: 200px; overflow-y: auto">
+                <li class="bx-file"><span class="bx-file__type">svg</span><div style="min-inline-size: 0"><p class="bx-file__name">logo-mark.svg</p><p class="bx-file__meta"><span>4.1 KB</span></p></div><span class="bx-label" style="color: var(--bx-ink-success)">Done</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Clear logo-mark.svg" onclick="this.parentNode.remove()"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+                <li class="bx-file"><span class="bx-file__type">woff</span><div style="min-inline-size: 0"><p class="bx-file__name">inter-var.woff2</p><p class="bx-file__meta"><span>312 KB</span><span class="bx-progress"><i style="inline-size: 72%"></i></span><span>72%</span></p></div><span class="bx-label">Uploading</span><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Cancel inter-var.woff2" onclick="this.parentNode.remove()"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
+  <!-- ======================================================= STATUS PAGE -->
+  <section class="sec" id="p-status">
+    <div class="sec__head">
+      <p class="bx-label">12 / Status &mdash; editorial</p>
+      <h2>Status page</h2>
+      <p>Ninety days as ninety square cells per component &mdash; the most literal use of
+      the grid in the system. Each cell has its own tooltip. State is always a colour
+      plus a word, and incidents are a timeline, newest first.</p>
+    </div>
+
+    <div class="frame">
+      <div class="frame__bar">
+        <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bx-label">status.orbit.dev</span>
+      </div>
+      <div class="frame__body" data-mode="editorial" style="background: var(--bx-canvas)">
+        <header class="p-site">
+          <span class="p-logo"><i></i>ORBIT <span class="bx-label" style="margin-inline-start: 4px">Status</span></span>
+          <span style="flex: 1"></span>
+          <button class="bx-btn bx-btn--sm" popovertarget="pop-subscribe" aria-expanded="false">Subscribe to updates</button>
+          <div class="bx-float bx-popover" id="pop-subscribe" popover role="dialog" aria-labelledby="sub-t" data-autofocus>
+            <div class="bx-popover__head"><p id="sub-t" style="font-weight: 600; font-size: var(--bx-text-base)">Get incident updates</p><button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" popovertarget="pop-subscribe" popovertargetaction="hide" aria-label="Close"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+            <div class="bx-popover__body stack">
+              <div class="bx-field"><label class="bx-label" for="sub-email">Email</label><input class="bx-input" id="sub-email" type="email" autocomplete="email" placeholder="you@company.com"></div>
+              <fieldset style="border: 0; padding: 0; margin: 0; display: grid">
+                <legend class="bx-label" style="margin-block-end: 4px">Components</legend>
+                <label class="bx-choice"><input class="bx-check" type="checkbox" checked> Edge network</label>
+                <label class="bx-choice"><input class="bx-check" type="checkbox" checked> Builds</label>
+                <label class="bx-choice"><input class="bx-check" type="checkbox"> Dashboard</label>
+              </fieldset>
+            </div>
+            <div class="bx-popover__foot"><button class="bx-btn bx-btn--sm bx-btn--primary" popovertarget="pop-subscribe" popovertargetaction="hide" data-say="Subscribed" data-say-body="Confirm from your inbox.">Subscribe</button></div>
+          </div>
+        </header>
+
+        <div style="padding: 64px 48px; display: grid; gap: 48px; max-inline-size: 960px; margin-inline: auto">
+          <div style="display: flex; align-items: center; gap: 16px; padding: 20px 24px; border: 1px solid var(--bx-warning); border-inline-start-width: 3px; background: var(--bx-warning-soft)" role="status">
+            <span class="bx-status bx-status--warn" style="font-size: var(--bx-text-lg); font-weight: 600; color: var(--bx-ink)">Degraded performance in ap-south-1</span>
+            <span style="flex: 1"></span>
+            <span class="bx-label">Updated 12:40 UTC</span>
+          </div>
+
+          <div>
+            <div class="row" style="justify-content: space-between; margin-block-end: 16px">
+              <p class="bx-label">Components &middot; last 90 days</p>
+              <div class="row" style="gap: 16px"><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Operational</span><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)">Degraded</span><span class="bx-status bx-status--down" style="font-size: var(--bx-text-sm)">Outage</span></div>
+            </div>
+            <div class="bx-collapse" style="grid-template-columns: 1fr">
+              <div style="padding: 20px 24px; display: grid; gap: 12px">
+                <div class="row" style="justify-content: space-between"><p style="font-weight: 600">Edge network</p><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Operational</span></div>
+                <div class="bx-uptime" data-uptime="ooooooooooooooooooooooooooooooooooooooooooooooooooooowoooooooooooooooooooooooooooooooooooo" aria-label="Edge network: 90 days, 1 degraded day"></div>
+                <div class="row" style="justify-content: space-between"><span class="bx-label">90 days ago</span><span class="bx-mono" style="font-size: var(--bx-text-xs); color: var(--bx-ink-muted)">99.99% uptime</span><span class="bx-label">Today</span></div>
+              </div>
+              <div style="padding: 20px 24px; display: grid; gap: 12px">
+                <div class="row" style="justify-content: space-between"><p style="font-weight: 600">Builds</p><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Operational</span></div>
+                <div class="bx-uptime" data-uptime="oooooooooooooooooooooooodooooooooooooooooooooooooooooooooooooooooooowwoooooooooooooooooooo" aria-label="Builds: 90 days, 1 outage, 2 degraded days"></div>
+                <div class="row" style="justify-content: space-between"><span class="bx-label">90 days ago</span><span class="bx-mono" style="font-size: var(--bx-text-xs); color: var(--bx-ink-muted)">99.91% uptime</span><span class="bx-label">Today</span></div>
+              </div>
+              <div style="padding: 20px 24px; display: grid; gap: 12px">
+                <div class="row" style="justify-content: space-between"><p style="font-weight: 600">ap-south-1</p><span class="bx-status bx-status--warn" style="font-size: var(--bx-text-sm)">Degraded</span></div>
+                <div class="bx-uptime" data-uptime="--------oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooowoooooow" aria-label="ap-south-1: 82 days of data, 2 degraded days"></div>
+                <div class="row" style="justify-content: space-between"><span class="bx-label">90 days ago</span><span class="bx-mono" style="font-size: var(--bx-text-xs); color: var(--bx-ink-muted)">99.95% uptime</span><span class="bx-label">Today</span></div>
+              </div>
+              <div style="padding: 20px 24px; display: grid; gap: 12px">
+                <div class="row" style="justify-content: space-between"><p style="font-weight: 600">Dashboard &amp; API</p><span class="bx-status bx-status--ok" style="font-size: var(--bx-text-sm)">Operational</span></div>
+                <div class="bx-uptime" data-uptime="oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" aria-label="Dashboard and API: 90 days operational"></div>
+                <div class="row" style="justify-content: space-between"><span class="bx-label">90 days ago</span><span class="bx-mono" style="font-size: var(--bx-text-xs); color: var(--bx-ink-muted)">100.00% uptime</span><span class="bx-label">Today</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="bx-label" style="margin-block-end: 24px">Incident history</p>
+            <ol class="bx-timeline">
+              <li data-kind="warn"><span class="bx-timeline__time">Sep 25 &middot; 12:14 UTC &middot; Monitoring</span><p class="bx-timeline__title">Elevated latency in ap-south-1</p><p class="bx-timeline__body">An upstream transit provider is dropping packets. Traffic has been shifted to secondary links; p95 is recovering.</p></li>
+              <li data-kind="ok"><span class="bx-timeline__time">Sep 02 &middot; 09:40 UTC &middot; Resolved in 38m</span><p class="bx-timeline__title">Slow builds for large monorepos</p><p class="bx-timeline__body">A cache eviction bug forced cold builds. Fixed and backfilled.</p></li>
+              <li data-kind="ok"><span class="bx-timeline__time">Jul 28 &middot; 22:05 UTC &middot; Resolved in 1h 12m</span><p class="bx-timeline__title">Build queue outage</p><p class="bx-timeline__body">A failed database migration stopped the queue. Builds were retried automatically once it recovered. <a href="#p-status">Read the postmortem &rarr;</a></p></li>
+            </ol>
+          </div>
+        </div>
+
+        <footer style="display: flex; justify-content: space-between; padding: 16px 48px; border-block-start: 1px solid var(--bx-line); background: var(--bx-surface-sunken)">
+          <span class="bx-label">&copy; 2026 Orbit</span>
+          <span class="bx-label">Times in UTC &middot; refreshes every 60s</span>
+        </footer>
+      </div>
+    </div>
+    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+  </section>
+
   <footer class="site-foot">
     <div class="site-foot__cols">
       <div>
@@ -407,7 +1579,7 @@
     </div>
     <div class="site-foot__bar">
       <span class="bx-label">MIT &middot; &copy; 2026 avestura</span>
-      <span class="bx-label">v1.0.2 &middot; radius 0 &middot; 4px grid &middot; AA</span>
+      <span class="bx-label">v1.1.0 &middot; radius 0 &middot; 4px grid &middot; AA</span>
     </div>
   </footer>
 
@@ -417,7 +1589,7 @@
 <template id="tpl-modal">
   <div style="height: 56px; display: flex; align-items: center; justify-content: space-between; padding-inline: 24px; border-block-end: 1px solid var(--bx-line)">
     <h2 style="font-size: var(--bx-text-md)">Delete project</h2>
-    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close">&#215;</button>
+    <button class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" data-dialog="close" aria-label="Close"><svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>
   </div>
   <div style="padding: 24px">
     <p class="muted">This permanently removes the project, its services and 90 days of build history.</p>

@@ -24,7 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Fail if the site drifted from the skill stylesheet
-        run: diff -u skills/boxy/assets/boxy.css docs/assets/boxy.css
+        run: |
+          diff -u skills/boxy/assets/boxy.css docs/assets/boxy.css
+          diff -u skills/boxy/assets/boxy-components.css docs/assets/boxy-components.css
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

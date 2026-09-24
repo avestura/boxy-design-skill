@@ -532,6 +532,56 @@ hr { border: 0; border-top: var(--bx-border) solid var(--bx-line); margin: 0; }
    an auto track wider than the container and pushing the page sideways. */
 .bx-collapse > * { background: var(--bx-surface); min-inline-size: 0; }
 
+/* Layout primitives. Gaps come from the space scale through one custom
+   property each, so a caller overrides the gap and never the mechanism:
+     <div class="bx-stack" style="--bx-gap: var(--bx-space-5)"> */
+
+/* Stack - vertical flow with one gap. */
+.bx-stack { display: flex; flex-direction: column; gap: var(--bx-gap, var(--bx-space-4)); }
+.bx-stack > * { min-inline-size: 0; }
+
+/* Cluster - a wrapping row: toolbars, tag lists, button rows, metadata. */
+.bx-cluster {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--bx-gap, var(--bx-space-3));
+}
+
+/* Grid - the 12-column grid (16 in industrial). Span with grid-column. */
+.bx-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--bx-grid-columns), minmax(0, 1fr));
+  gap: var(--bx-gap, var(--bx-gutter));
+}
+
+/* Auto grid - as many equal tracks of at least --bx-min as fit. Responsive
+   with no breakpoints. Add .bx-collapse to share borders between cells. */
+.bx-auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--bx-min, 240px), 100%), 1fr));
+  gap: var(--bx-gap, var(--bx-gutter));
+}
+/* Collapsed auto grid: an unfilled last row would show the line colour
+   through the empty tracks, so here cells draw their own end and bottom rules
+   and the container draws the start and top pair. Lines never double. */
+.bx-auto-grid.bx-collapse {
+  gap: 0; background: var(--bx-surface); border: 0;
+  border-block-start: var(--bx-border) solid var(--bx-line);
+  border-inline-start: var(--bx-border) solid var(--bx-line);
+}
+.bx-auto-grid.bx-collapse > * {
+  border-inline-end: var(--bx-border) solid var(--bx-line);
+  border-block-end: var(--bx-border) solid var(--bx-line);
+}
+
+/* Split - a fixed side column and a fluid main column that wraps to one
+   column once the main column would drop below --bx-split-min. */
+.bx-split {
+  display: flex; flex-wrap: wrap;
+  gap: var(--bx-gap, var(--bx-gutter));
+}
+.bx-split > :first-child { flex: 1 1 var(--bx-side, 256px); }
+.bx-split > :last-child { flex: 999 1 0; min-inline-size: var(--bx-split-min, 60%); }
+
 /* Screen-reader only */
 .bx-sr {
   position: absolute; inline-size: 1px; block-size: 1px;

@@ -17,7 +17,8 @@ gh repo create avestura/boxy-design-skill --public --source=. --push \
 The site is a static `docs/` folder with no build step, so either option works.
 
 **Actions (recommended)** — `.github/workflows/pages.yml` already handles it, and it
-fails the deploy if `docs/assets/boxy.css` has drifted from the skill copy:
+fails the deploy if `docs/assets/boxy.css` or `docs/assets/boxy-components.css` has
+drifted from the skill copy:
 
 ```bash
 gh api -X POST repos/avestura/boxy-design-skill/pages \

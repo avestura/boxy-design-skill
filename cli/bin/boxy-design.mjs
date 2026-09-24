@@ -5,7 +5,7 @@
  *   npx boxy-design init                   # Claude Code (.claude/skills/boxy)
  *   npx boxy-design init --ai all          # every supported agent
  *   npx boxy-design init --ai cursor,agents
- *   npx boxy-design css --out src/styles   # just the stylesheet
+ *   npx boxy-design css --out src/styles   # stylesheets + icon sprite
  *   npx boxy-design check "src/**e/*.tsx"  # run the linter
  *
  * Zero dependencies. Node 18+.
@@ -68,7 +68,7 @@ function help() {
 
   ${c.b("COMMANDS")}
     init              Install the skill into this project    ${c.dim("(default)")}
-    css               Copy boxy.css only
+    css               Copy boxy.css, boxy-components.css, boxy-icons.svg
     tokens            Copy design-tokens.json only
     check [paths]     Lint files against the system
     help              Show this
@@ -78,7 +78,8 @@ function help() {
                       ${Object.keys(TARGETS).join(", ")}
     --dir <path>      Project root                          ${c.dim("(default: .)")}
     --out <path>      Output directory for css / tokens
-    --css             Also drop boxy.css into the project
+    --css             Also drop the stylesheets and icons into the project
+    --core            css: tokens and utilities only (boxy.css)
     --force           Overwrite existing files
     --strict          check: treat warnings as errors
 
@@ -127,7 +128,9 @@ function refNote(refDir) {
       .filter((f) => f.endsWith(".md"))
       .map((f) => `- \`${refDir}/references/${f}\``)
       .join("\n") +
-    `\n\nThe stylesheet is \`${refDir}/assets/boxy.css\` and the linter is ` +
+    `\n\nThe stylesheets are \`${refDir}/assets/boxy.css\` (tokens, reset, layout) and ` +
+    `\`${refDir}/assets/boxy-components.css\` (every component spec, implemented), ` +
+    `the icon sprite is \`${refDir}/assets/boxy-icons.svg\`, and the linter is ` +
     `\`node ${refDir}/scripts/boxy-check.mjs\`. Read a reference file before ` +
     `building the thing it covers.\n`;
 }
@@ -198,7 +201,9 @@ function init() {
 
   if (has("css")) {
     const out = String(flag("out", join(root, "styles")));
-    write(join(resolve(out), "boxy.css"), readFileSync(join(SKILL_SRC, "assets", "boxy.css"), "utf8"), force);
+    for (const name of styleAssets()) {
+      write(join(resolve(out), name), readFileSync(join(SKILL_SRC, "assets", name), "utf8"), force);
+    }
   }
 
   report(root);
@@ -226,11 +231,17 @@ function report(root) {
 
 /* ------------------------------------------------------------- css/tokens */
 
-function copyAsset(name, defaultDir) {
+/* boxy.css is tokens, reset, utilities and layout primitives. The component
+   layer and the icon sprite sit on top of it; --core leaves them out. */
+function styleAssets() {
+  return has("core") ? ["boxy.css"] : ["boxy.css", "boxy-components.css", "boxy-icons.svg"];
+}
+
+function copyAsset(names, defaultDir) {
   const out = resolve(String(flag("out", defaultDir)));
-  const src = join(SKILL_SRC, "assets", name);
-  const dest = join(out, name);
-  write(dest, readFileSync(src, "utf8"), has("force"));
+  for (const name of [].concat(names)) {
+    write(join(out, name), readFileSync(join(SKILL_SRC, "assets", name), "utf8"), has("force"));
+  }
   report(process.cwd());
 }
 
@@ -253,7 +264,7 @@ if (has("version") || has("v") || cmd === "version") {
 } else if (cmd === "init") {
   init();
 } else if (cmd === "css") {
-  copyAsset("boxy.css", "styles");
+  copyAsset(styleAssets(), "styles");
 } else if (cmd === "tokens") {
   copyAsset("design-tokens.json", "tokens");
 } else if (cmd === "check") {

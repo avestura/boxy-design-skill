@@ -117,6 +117,8 @@ test("css and tokens subcommands emit the assets", () => {
   eq(run([CLI, "css", "--out", join(dir, "s")], { cwd: dir }).status, 0, "css exit code");
   eq(run([CLI, "tokens", "--out", join(dir, "t")], { cwd: dir }).status, 0, "tokens exit code");
   ok(existsSync(join(dir, "s", "boxy.css")), "boxy.css missing");
+  ok(existsSync(join(dir, "s", "boxy-components.css")), "boxy-components.css missing");
+  ok(existsSync(join(dir, "s", "boxy-icons.svg")), "boxy-icons.svg missing");
   ok(existsSync(join(dir, "t", "design-tokens.json")), "design-tokens.json missing");
   JSON.parse(readFileSync(join(dir, "t", "design-tokens.json"), "utf8"));
 });
@@ -200,6 +202,19 @@ test("linter catches primitive tokens in component code", () => {
   eq(lint('<div style="background: var(--bx-surface-inverse)">x</div>', "html").findings.length, 0, "role token flagged");
 });
 
+test("linter treats a component layer named after the system as component code", () => {
+  /* boxy.css is the token file and may hold primitives; boxy-components.css is
+     not, even though its name also starts with "boxy". */
+  const dir = join(tmp, "lint", "named");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "boxy-components.css"), ".a { color: var(--bx-n-700); }", "utf8");
+  writeFileSync(join(dir, "boxy.css"), ":root { --x: var(--bx-n-700); }", "utf8");
+  const out = JSON.parse(run([CHECK, dir, "--json"]).stdout);
+  const byFile = (n) => out.findings.filter((f) => f.file.endsWith(n)).map((f) => f.rule);
+  ok(byFile("boxy-components.css").includes("primitive"), "component file exempted");
+  eq(byFile("boxy.css").length, 0, "token file flagged");
+});
+
 test("linter honours the suppression comments", () => {
   eq(lint(".a { border-radius: 8px; } /* boxy-ignore */").findings.length, 0, "line ignore");
   eq(lint("/* boxy-ignore-start */\n.a { border-radius: 8px; }\n/* boxy-ignore-end */").findings.length, 0, "block ignore");
@@ -226,12 +241,31 @@ test("the showcase site passes its own linter", () => {
   eq(run([CHECK, join(ROOT, "docs")]).status, 0, "exit code");
 });
 
-test("docs/assets/boxy.css is in sync with the skill copy", () => {
-  eq(
-    readFileSync(join(ROOT, "docs", "assets", "boxy.css"), "utf8"),
-    readFileSync(join(ROOT, "skills", "boxy", "assets", "boxy.css"), "utf8"),
-    "copies differ - run: cp skills/boxy/assets/boxy.css docs/assets/boxy.css"
-  );
+for (const asset of ["boxy.css", "boxy-components.css"]) {
+  test(`docs/assets/${asset} is in sync with the skill copy`, () => {
+    eq(
+      readFileSync(join(ROOT, "docs", "assets", asset), "utf8"),
+      readFileSync(join(ROOT, "skills", "boxy", "assets", asset), "utf8"),
+      `copies differ - run: cp skills/boxy/assets/${asset} docs/assets/${asset}`
+    );
+  });
+}
+
+test("the component layer passes the linter as component code", () => {
+  eq(run([CHECK, join(ROOT, "skills", "boxy", "assets", "boxy-components.css"), "--strict"]).status, 0, "exit code");
+});
+
+test("icons: square caps only, and every page inlines the whole set", () => {
+  const svg = readFileSync(join(ROOT, "skills", "boxy", "assets", "boxy-icons.svg"), "utf8");
+  ok(!/stroke-linecap="round"|stroke-linejoin="round"/.test(svg), "round caps or joins in the icon set");
+  ok(!/<circle|<ellipse|\brx=/.test(svg), "circles or rounded rects in the icon set");
+  const ids = [...svg.matchAll(/<symbol id="([\w-]+)"/g)].map((m) => m[1]);
+  ok(ids.length >= 40, `only ${ids.length} icons`);
+  for (const page of ["index.html", "tokens.html", "components.html", "patterns.html"]) {
+    const html = readFileSync(join(ROOT, "docs", page), "utf8");
+    for (const id of ids) ok(html.includes(`<symbol id="${id}"`), `${page} is missing icon ${id}`);
+    for (const m of html.matchAll(/<use href="#([\w-]+)"/g)) ok(ids.includes(m[1]), `${page} uses unknown icon ${m[1]}`);
+  }
 });
 
 test("the stylesheet ships an inverse scope with no self-referencing vars", () => {

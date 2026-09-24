@@ -127,7 +127,41 @@ The recommended plan is marked by inverting its header block
 card up, not by a colored glow.
 
 For more than four plans or many features, use a real comparison table with a sticky
-header row, per `components-data.md`.
+header row, per `components-data.md`: group rows under mono labels on sunken strips,
+a drawn check or a faint dash per cell (never a red X), mono values where the cell is
+a number.
+
+**Billing toggle**: a segmented control (`components-forms.md`) - `Monthly` /
+`Yearly` - at the inline end of the section heading, with the saving as a success
+tag inside the yearly segment. Switching swaps the prices in place; the `/month`
+suffix becomes `/mo, billed yearly`. Never hide the monthly price.
+
+## FAQ
+
+- Two columns in `editorial`: a sticky 5/12 heading column (title, one line, and a
+  contact card with real people and a response time), and a 7/12 accordion.
+- The accordion is exclusive and numbered (`components-content.md`). Six to ten
+  questions; beyond that, group them and filter with a segmented control that hides
+  non-matching items in place and announces the count (`aria-live`).
+- Answers are short and concrete, with a link to the docs for depth. An FAQ that
+  dead-ends without a way to reach a human is a wall.
+
+## Blog
+
+**Index**: a large display title, one featured post as a 7/5 split (a figure panel
+bleeding to the rule on one side, tags, headline at 32px, excerpt, author meta row),
+underline tabs for categories, then the rest in a 3-column collapsed grid of
+link-cells - figure, mono `CATEGORY · DATE` label, 18px title, two-line excerpt,
+author. Whole cell is the link. Pagination as the shared-border group with a mono
+`SHOWING 1–3 OF 86` caption.
+
+**Article**: breadcrumb, 54px display title capped at 16ch, an 18px lede, a meta row
+between two rules, then prose (`components-content.md`) at 68ch with a 208px sticky
+on-this-page column and a reading-progress bar. End with tags, share actions, and a
+previous/next pair as a two-cell collapsed grid.
+
+Figures are hatched placeholder panels or real diagrams in line art - never stock
+photography with a gradient overlay.
 
 ---
 

@@ -139,8 +139,177 @@ The most Boxy-appropriate component there is.
 
 - Drop zone: a 160px block with a 1px **dashed** `--bx-line-strong` border - dashes
   are permitted here and only here, since they read as a placeholder cut line.
-  Square, obviously.
-- Drag-over: `--bx-accent-soft` fill, 2px solid `--bx-accent` border.
-- File rows after upload: 48px, 1px rules between them, a 16px file-type glyph, the
-  name, a mono size, a 4px progress bar, and a ghost remove button.
-- Errors attach to the individual row, not the drop zone.
+  Square, obviously. A compact 80px single-row variant sits above file tables.
+- Build it as a `<label>` wrapping a real `<input type="file" multiple>` stretched
+  invisibly over the zone: click, keyboard and screen readers work with no script,
+  and `:focus-within` draws the focus ring on the zone.
+- Content: a 32px upload glyph in `--bx-ink`, `Drop files here` in 500 `--bx-ink`
+  with `browse` in `--bx-ink-accent`, and the constraints as a mono label
+  (`PNG, PDF, CSV · UP TO 25 MB EACH`). State the limits before the upload, not after.
+- Hover: border to `--bx-ink-subtle`, `--bx-surface-hover`.
+- Drag-over: `--bx-accent-soft` fill, the border turns solid `--bx-accent` and a 1px
+  inset accent ring makes it read as 2px without shifting layout.
+- File list directly below, sharing the zone's border (no top border of its own):
+
+| Part | Spec |
+|---|---|
+| Row | 48px min, grid `32px 1fr auto auto`, 1px `--bx-line-subtle` between rows |
+| Type | a 32px bordered sunken square holding the extension in mono 10px uppercase |
+| Name | 14px, one line, ellipsis |
+| Meta | mono 11px tabular: size, then a 4px progress bar (max 160px) and percent while uploading |
+| State | mono label: `UPLOADING`, `DONE` in `--bx-ink-success`, `FAILED` in `--bx-ink-danger` |
+| Remove / cancel | 32px ghost icon button, labelled with the file name |
+
+- Errors attach to the individual row: `--bx-danger-soft` fill, danger-bordered type
+  square, and the reason in the meta line (`184 MB · exceeds the 25 MB limit`).
+  Never reject a whole batch because one file failed.
+- A background upload tray (bottom inline-end, 360px, floating surface) lists
+  in-flight files while the user keeps working; it can be dismissed once all are done.
+
+## Date picker
+
+Typing is the primary input; the calendar assists. Never try to restyle the native
+`<input type="date">` popup - it cannot be styled, and half the browsers ignore you.
+
+- **Field**: a text input in mono tabular figures with the format as placeholder
+  (`YYYY-MM-DD`, or the locale's format stated in helper text), joined to a square
+  calendar icon button in one shared-border unit. Parse on blur; show the parsed date
+  in the helper text when the input is ambiguous.
+- **Calendar**: the floating surface (`components-overlays.md`), 12px padding.
+  - Header: month and year at 14/600, then prev/next as 32px ghost icon buttons.
+  - Grid: 7 columns of 36px square cells as a collapsed grid - 1px gap over
+    `--bx-line-subtle`, so the calendar is literally a ruled table.
+  - Weekday row: 24px, mono 10px uppercase on `--bx-surface-sunken`. Start the week
+    on the locale's first day.
+  - Day: mono 12px tabular. Outside-month days `--bx-ink-subtle` on
+    `--bx-surface-sunken` (still text - never `--bx-ink-faint`). Today: a 1px inset
+    `--bx-line-heavy` ring. Selected: `--bx-accent` fill, `--bx-on-accent` text.
+    Disabled: `--bx-ink-faint` on sunken, `not-allowed`.
+  - Footer: `Clear` (ghost) and `Today` (secondary).
+- **Range**: presets first, as a list of radio menu items in a 168px column beside
+  the grid (`Today`, `Last 7 days`, `Last 30 days`, `This month`, `This quarter`,
+  separator, `Custom`). Nobody fights a grid for "last 30 days". The first click sets
+  the start, the second the end (swapped if earlier); days between take
+  `--bx-accent-soft`, both ends the accent fill. An `Apply` primary in the footer
+  commits. The trigger shows the range in mono: `Sep 19 – Sep 25, 2026`.
+- **Keyboard**: `role="grid"`, roving `tabindex` on the day buttons. Arrows move by
+  day and week, `Home` / `End` to week start / end, `PageUp` / `PageDown` by month,
+  `Enter` selects, `Esc` closes and returns focus to the field. Each day has a full
+  `aria-label` (`Wed Oct 14 2026`); today gets `aria-current="date"`. The month title
+  is `aria-live="polite"`.
+- An inline (always-visible) calendar uses the same grid without the surface.
+
+## Slider
+
+For approximate values only - volume, sample rate, a rough size. **Always pair it
+with a number field** bound to the same value; dragging to exactly 37 is a test of
+motor control, not a form.
+
+- Native `<input type="range">` with `appearance: none`.
+- Track: 4px, 1px `--bx-line` border, `--bx-surface-sunken`; the filled part is
+  `--bx-accent`, drawn as a hard-stop gradient at `var(--val)` (set from script on
+  `input`). Style both `::-webkit-slider-runnable-track` and `::-moz-range-track`.
+- Thumb: a **16px square**, `--bx-surface` with a 1px `--bx-line-heavy` border.
+  Hover: accent border. Active: accent fill. The WebKit thumb needs
+  `margin-top: calc(1px - 8px)` to centre on a bordered 4px track.
+- Focus: the standard outline on the input, offset 4px.
+- Scale: optional mono 10px labels under the ends and quarters; optional 1px x 4px
+  ticks per step, inset 8px so they align with the thumb's centre at each end.
+- Value: the paired field, or an `<output>` in mono at the label row's inline end.
+- Disabled: sunken thumb, `--bx-line` border, `not-allowed`.
+- A dual-thumb range slider cannot be built well from one native input. Use two
+  number fields, or two overlaid range inputs with the pointer-events trick and
+  both labelled - and prefer the fields.
+
+## Number stepper
+
+A shared-border group: `−` button, a 72px centred mono tabular input, `+` button,
+each at the control height. Hide the native spinners. Respect `min` / `max` / `step`
+and disable the button at a bound. The input stays typeable; the buttons have
+`aria-label`s that name the field (`Increase replicas`).
+
+## Segmented control
+
+2-4 short, mutually exclusive options - a mode or a filter, not navigation.
+
+- Native radios inside labels, visually hidden but stretched over each segment - so
+  arrow keys, form values and screen-reader semantics come free. A `<fieldset>` with
+  a visually hidden `<legend>`.
+- Segments share borders (a 1px gap over `--bx-line`), 32px tall, 12px padding-x,
+  12px/500 `--bx-ink-muted`.
+- Checked: inverted (`--bx-surface-inverse` / `--bx-ink-inverse`). Not accent -
+  that is reserved for the one primary action.
+- Focus: the outline on the checked segment's visual box, raised above its
+  neighbours with `z-index`.
+- Icon-only segments need `aria-label` on the input.
+- More than four options, or options that navigate to another page: tabs.
+
+## Search field
+
+A 32px input with a leading 16px magnifier (absolutely positioned 12px in,
+`--bx-ink-subtle`), padding reserved for it (32px) and for a trailing key hint
+(`Ctrl K` in a `.bx-kbd`, 8px in). The glyph and hint are `pointer-events: none`.
+In a header it opens the command palette; in a list it filters in place with a
+200ms debounce and an `aria-live` result count.
+
+## Combobox (autocomplete)
+
+A text input that filters a list. Use it past about 10 options, or when people know
+what they are looking for; a plain select is better for a short, stable list.
+
+- The field is `.bx-input` with a square toggle cell at the inline end (a 1px
+  `--bx-line-subtle` rule, the chevron, `tabindex="-1"` - the input is the tab stop).
+  The chevron turns 180deg while open.
+- The listbox is the floating surface, at least as wide as the field, 264px max
+  height, 4px block padding. Open it on typing, `ArrowDown`, or the toggle.
+- **Focus stays in the input.** The highlighted option is `aria-activedescendant`;
+  the input has `role="combobox"`, `aria-autocomplete="list"`, `aria-expanded` and
+  `aria-controls`. Render the listbox as a `popover="manual"` (top layer, but no
+  light dismiss that would fight the input) and close it on outside `pointerdown`.
+- Option: 32px, 12px padding-x, optional mono meta at the inline end. Highlighted:
+  hover fill plus the 2px accent bar. Selected: 500 weight and a drawn check at the
+  end. Disabled: `--bx-ink-faint`, not selectable, still visible.
+- **The typed match** is wrapped in `<mark>` styled as an inverted inline block. Build
+  it with text nodes - option labels are data, never `innerHTML`.
+- Group labels are mono 10px strips; hide a label when nothing under it matches.
+- No match: `NO RESULTS FOR "query"` in mono, in the list - never an empty surface.
+- Re-position after every filter: the list's height changes, and positioning on the
+  unfiltered height flips it above the field for no reason.
+- Keys: `ArrowDown` / `ArrowUp` move, `Enter` takes, `Esc` closes (a second `Esc`
+  may clear), typing filters. Selecting writes the label into the input and closes.
+
+## Multi-select
+
+The combobox, collecting several values as tags inside the field.
+
+- The field is a wrapping box with the input's border, focus ring and hover - never
+  a horizontally scrolling strip. Tags are standard square tags (28px) with a
+  1px-ruled `x` cell; the inline input takes the remaining width (96px minimum).
+- Options show a 16px square check box at the inline start (accent fill with a white
+  drawn check when selected); the list stays open while choosing and clears the
+  typed text after each pick.
+- `Backspace` in the empty input removes the last tag. A ghost `x` at the end clears
+  all. The label row states the count in mono (`3 SELECTED`, `aria-live`).
+- `aria-multiselectable="true"` on the listbox; each tag's remove button is
+  labelled with its value.
+- Past about 8 selections, collapse the overflow into a `+5` tag that opens the list.
+
+## Colour picker
+
+For brand and theme settings - not a general paint tool.
+
+- Trigger: a secondary button showing a 16px swatch (1px `--bx-line-strong` inset
+  ring, so white and near-canvas colours stay visible) and the hex in mono.
+- Popover (272px): a 160px saturation / brightness field (two flat gradients over the
+  hue - never blurred), a hue strip (native range, square thumb), a hex input in mono
+  uppercase, an eyedropper button only where `EyeDropper` exists, and swatches from
+  the system's own ramps (8 across, 2px pressed ring, labelled).
+- The field's thumb is a 12px square with a 2px white border and a 1px black outline,
+  so it reads on any colour. The field is focusable (`role="slider"` with an
+  `aria-valuetext` naming saturation and brightness) and moves with the arrows
+  (`Shift` for bigger steps).
+- **Show contrast.** A footer row with the ratio against the canvas and a tag -
+  `AA TEXT`, `AA LARGE / UI`, `DECORATIVE ONLY` - in the matching semantic. In a
+  design system the question is never only "which colour" but "can text sit on it".
+- The linter flags raw hex outside the token file: wrap a picker's literal swatch
+  values in `boxy-ignore-start` / `boxy-ignore-end`, which is what the comment is for.

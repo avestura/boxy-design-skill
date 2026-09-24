@@ -239,3 +239,48 @@ more obviously correct:
 10. Add blueprint details last, and sparingly.
 
 Run `node scripts/boxy-check.mjs` after step 4 and again at the end.
+
+---
+
+## Components added in 1.1
+
+**Round avatars and presence dots.**
+Instead: square avatars, a 10px square presence mark notched by a surface border,
+and a group whose borders collapse side by side - never overlapping circles.
+
+**Chat bubbles.**
+Rounded, tailed bubbles with the user on the right and the agent on the left.
+Instead: a left-aligned transcript. The user's turn is a sunken bordered block, the
+agent's is plain prose, tool calls are ruled log lines (`components-ai.md`).
+
+**An action that exists only in a context menu.**
+Right-click is invisible on touch and to most keyboard users.
+Instead: a visible `...` overflow button on the same row opening the same menu.
+
+**A slider with no number beside it.**
+Instead: pair it with a bound number field, or use a stepper.
+
+**Restyling the native date picker popup.**
+It cannot be done reliably. Instead: a text field that parses dates plus the Boxy
+calendar popover (`components-forms.md`).
+
+**A submenu with a gap, or overlapping its parent.**
+Instead: hang it flush off the parent's inline-end rule so the two borders coincide.
+
+**Rainbow syntax highlighting.**
+Instead: near-monochrome tokens - weight and ink for hierarchy, accent for strings
+only (`components-content.md`).
+
+**Chevron and plus on the same accordion, or a rotating plus.**
+Instead: one indicator - the drawn plus in a 16px square, becoming a minus.
+
+**Carousels and auto-advancing sliders of content.**
+They hide content, move without consent and fail keyboard users.
+Instead: a collapsed grid that shows everything, or a paginated list.
+
+**Pill-shaped segmented controls and toggles.**
+Instead: square segments sharing borders, the checked one inverted.
+
+**A dashed border anywhere except a drop zone.**
+The dash means "placeholder cut line". Using it for emphasis or grouping dilutes the
+one signal it carries.

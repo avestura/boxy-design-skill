@@ -12,7 +12,8 @@ than *decorated*.
 ## Use this skill when
 
 Building or restyling any UI surface: landing pages, dashboards, admin panels, forms,
-docs sites, component libraries, design tokens, marketing sections. If the output has
+docs sites, blogs, pricing pages, AI chat and agent interfaces, component libraries,
+design tokens, marketing sections. If the output has
 a visual interface, this skill applies.
 
 ## The seven axioms
@@ -44,9 +45,15 @@ Violating these is a bug, not a style preference.
 2. **Install the tokens** - copy `assets/boxy.css` into the project and link it, or
    port the `:root` block into the project's existing stylesheet. Never invent token
    values; read them from that file.
-3. **Build with role tokens only** (`--bx-ink`, `--bx-line`, `--bx-surface`, ...).
+3. **Use the components, don't re-derive them** - `assets/boxy-components.css` is the
+   reference implementation of every spec in `references/`, with `bx-` class names
+   that match the specs. Link it after `boxy.css`, or port the blocks you need into
+   the project's own components (JSX, Vue, Tailwind layers). The spec is the source
+   of truth for behaviour and accessibility; the CSS is the source of truth for the
+   visuals. Icons come from `assets/boxy-icons.svg` (`references/icons.md`).
+4. **Build with role tokens only** (`--bx-ink`, `--bx-line`, `--bx-surface`, ...).
    Primitive tokens (`--bx-n-500`, `--bx-a-500`) belong only inside the token file.
-4. **Run the check before you report done**: `node scripts/boxy-check.mjs "src/**/*"`.
+5. **Run the check before you report done**: `node scripts/boxy-check.mjs "src/**/*"`.
 
 ## The three modes
 
@@ -124,7 +131,7 @@ break the aesthetic instantly:
 | Pill badges and tags | Square tags with 1px border |
 | Soft drop-shadowed floating cards | Bordered cards in a collapsed grid |
 | `transition: all 300ms ease-in-out` | Named properties, 120ms, linear |
-| Emoji as UI icons | A real icon set, 16/20/24px, 1.5px stroke |
+| Emoji or characters (`× □ ›`) as UI icons | `assets/boxy-icons.svg`, 16px, 1.5px square-capped stroke |
 | Centered everything | Left-aligned text; center only short hero copy |
 
 ## References
@@ -135,13 +142,18 @@ Load these as needed - do not read them all up front.
 |---|---|
 | `references/tokens.md` | You need exact token names and values |
 | `references/modes.md` | Choosing or configuring blueprint/industrial/editorial |
-| `references/layout.md` | Page structure, grid, rails, section rhythm, responsive |
+| `references/layout.md` | Page structure, layout primitives (stack, cluster, grid, auto-grid, split), resizable panes, rails, section rhythm, responsive |
 | `references/typography.md` | Setting type, scale pairings, label treatment |
 | `references/color.md` | Applying color, contrast pairs, semantic usage, charts |
 | `references/components-core.md` | Button, input, select, checkbox, toggle, tag, card, tabs, modal, toast, tooltip, nav, sidebar, breadcrumb, pagination |
-| `references/components-data.md` | Data tables, stat tiles, charts, empty/loading/error states, filter bars |
-| `references/components-marketing.md` | Hero, feature grid, pricing, logo wall, CTA, footer, docs layout |
-| `references/components-forms.md` | Multi-step forms, validation, auth screens, settings, command palette |
+| `references/components-overlays.md` | Floating-surface contract, menus and submenus, context menus, split buttons, popovers, drawers, notification inbox |
+| `references/components-navigation.md` | Breadcrumb overflow, contained and vertical tabs, tree navigation with nested groups, on-this-page TOC |
+| `references/components-content.md` | Inline code, code blocks (numbered, diff, terminal), lists and checklists, description lists, accordion, prose, avatars, timeline, banner |
+| `references/components-data.md` | Data tables, editable data grid, kanban board, stat tiles, charts (and how to implement them), meters, step bars, spinners, uptime strips, empty/loading/error states, filter bars |
+| `references/components-marketing.md` | Hero, feature grid, pricing and billing toggle, FAQ, blog index and article, logo wall, CTA, footer, docs layout |
+| `references/components-forms.md` | Multi-step forms, validation, auth, settings, command palette, search, upload, date and range pickers, slider, stepper, segmented control, combobox, multi-select, colour picker |
+| `references/components-ai.md` | Agent and chat UIs: transcript layout, tool calls, reasoning, approvals, citations, streaming, composer |
+| `references/icons.md` | Any icon: the Boxy sprite, its drawing rules, adapting Lucide for gaps |
 | `references/motion-depth.md` | Any transition, animation, or elevation decision |
 | `references/blueprint-details.md` | Grid substrate, corner ticks, annotations, dimension lines |
 | `references/accessibility.md` | Contrast, focus, keyboard, touch targets, semantics |

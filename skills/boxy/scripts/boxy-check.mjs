@@ -30,6 +30,9 @@ const SKIP_DIRS = new Set([
 
 /* Files exempt from the raw-hex rule: these are where hex legitimately lives. */
 const TOKEN_FILE = /(^|[\\/])(boxy|tokens?|theme|palette|colou?rs?|variables)[.\-\w]*\.(css|scss|less|js|ts|json)$/i;
+/* ...but a component layer named after the system (boxy-components.css) is
+   component code, and must obey the primitive and raw-hex rules like any other. */
+const COMPONENT_FILE = /(^|[\\/])[.\-\w]*components?[.\-\w]*\.(css|scss|less|js|ts)$/i;
 
 /* Axiom 4: everything snaps to 4px. 1px and 2px are hairline/tick exceptions. */
 const onScale = (px) => px === 0 || px === 1 || px === 2 || px % 4 === 0;
@@ -286,7 +289,7 @@ for (const file of files) {
   try { text = readFileSync(file, "utf8"); } catch { continue; }
   if (basename(file) === "boxy-check.mjs") continue;
   if (/boxy-ignore-file/.test(text)) continue;
-  const isTokenFile = TOKEN_FILE.test(file);
+  const isTokenFile = TOKEN_FILE.test(file) && !COMPONENT_FILE.test(file);
   const lines = text.split(/\r?\n/);
   let muted = false;
 

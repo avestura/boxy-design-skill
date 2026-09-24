@@ -90,6 +90,15 @@ Every interactive element must be reachable and operable without a mouse.
 | Data table | `Tab` reaches row actions; row actions revealed on hover must also appear on `:focus-within` |
 | Toast with an action | Reachable via `F6` or a landmark; never auto-dismiss it |
 | Drawer | Same rules as modal |
+| Menu | Arrows move and wrap, `Home`/`End`, type-ahead, `Right` opens a submenu, `Left`/`Esc` closes it, `Tab` closes the menu |
+| Context menu | `Shift+F10` and the Menu key open it at the focused row; every item is also reachable from a visible overflow button |
+| Popover | Focus moves in on open, `Esc` and outside click close, focus returns to the trigger |
+| Tree navigation | Native `<details>`/`<summary>`: `Enter`/`Space` toggles a group; `aria-current="page"` on the current link |
+| Accordion | Native `<details>`; focus ring inset so neighbours do not clip it |
+| Calendar | `role="grid"`, roving tabindex, arrows by day/week, `PageUp`/`PageDown` by month, `Home`/`End` week bounds |
+| Slider | Native range input; arrows step, `PageUp`/`PageDown` jump; always a bound number field beside it |
+| Segmented control | Native radios: arrows move and select |
+| Chart | Focusable; `Left`/`Right` step the readout; a `.bx-sr` data table follows it |
 
 Provide a skip link as the first focusable element: visually hidden, appearing as a
 standard bordered block at the top-left on focus.

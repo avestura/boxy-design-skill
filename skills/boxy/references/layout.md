@@ -53,6 +53,35 @@ is the workhorse for feature sections, stat rows, pricing tables, and card grids
 The gap *is* the border. Cells never carry their own borders, so lines are never
 doubled and never misalign.
 
+## Layout primitives
+
+Five classes ship in `boxy.css`. Each takes its gap from **one** custom property,
+`--bx-gap`, which you set from the space scale - so a caller changes the value and
+never re-implements the mechanism.
+
+| Class | Does | Knobs |
+|---|---|---|
+| `.bx-stack` | Vertical flex flow with one gap | `--bx-gap` (default 16px) |
+| `.bx-cluster` | Wrapping row, centred cross-axis - toolbars, tags, metadata | `--bx-gap` (default 12px) |
+| `.bx-grid` | The 12-column grid (16 in `industrial`); place children with `grid-column: span N` | `--bx-gap` (default `--bx-gutter`) |
+| `.bx-auto-grid` | As many equal tracks of at least `--bx-min` as fit - responsive with no breakpoints | `--bx-min` (240px), `--bx-gap` |
+| `.bx-split` | A side column and a fluid main column that wraps to one column when the main column would drop below `--bx-split-min` | `--bx-side` (256px), `--bx-split-min` (60%), `--bx-gap` |
+
+```html
+<div class="bx-stack" style="--bx-gap: var(--bx-space-5)"> ... </div>
+<div class="bx-auto-grid bx-collapse" style="--bx-min: 200px"> ... </div>
+```
+
+- Add `.bx-collapse` to `.bx-auto-grid` for shared borders. In that combination the
+  cells draw their own end and bottom rules and the container draws the start and top
+  pair, because an unfilled last row would otherwise show the line colour through the
+  empty tracks.
+- `.bx-stack` is flex, not grid, on purpose: inside a fixed-height container (a
+  drawer body, a panel) a grid stretches its rows to fill the height; a flex column
+  does not.
+- Prefer these over one-off flex/grid declarations for anything that repeats. A stack
+  with a gap of 13px is exactly the drift they exist to prevent.
+
 ## Section rhythm
 
 | Mode | Between sections | Within a section |
@@ -160,3 +189,22 @@ Use only these values.
 | Modal scrim + dialog | `40` |
 | Toast | `50` |
 | Command palette | `60` |
+
+## Resizable panes
+
+Editors, file browsers and inspectors where the user decides the split.
+
+- `.bx-panes` is a flex row (`.bx-panes--v` for a column). Panes scroll on their own;
+  the last one takes the remaining space; the others get a pixel basis.
+- **The divider is the 1px rule itself** (`--bx-line`), with an invisible 8px hit
+  area from a pseudo-element. On hover, drag or focus it turns into a 2px accent bar
+  (a 1px accent plus a 1px accent offset). No grip dots, no thick handle.
+- `role="separator"`, `aria-orientation`, `aria-valuenow` / `-min` / `-max` in pixels,
+  `tabindex="0"`, and an `aria-label` naming what it resizes.
+- Pointer: `setPointerCapture`, `touch-action: none`, `col-resize` / `row-resize`
+  cursor. Keyboard: arrows by 16px, `Shift` for 64, `Home` / `End` to the limits,
+  `Enter` (or a double-click) restores the default.
+- Always clamp to a minimum that keeps the pane usable (160px for a tree, 80px for a
+  terminal); persist the size per user.
+- Each pane may carry a 32px sunken, sticky header with a mono label.
+- Below `lg`, drop the split: stack the panes or turn the side pane into a drawer.
