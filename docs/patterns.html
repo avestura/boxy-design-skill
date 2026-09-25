@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Patterns — Boxy</title>
+<title>Patterns | Boxy</title>
 <meta name="description" content="Whole-page Boxy layouts: dashboards, a landing page, docs, auth and settings, an AI agent workspace, features and pricing, FAQ, a blog, analytics with charts, a docs site with a nested tree, a file browser and a status page.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,9 +115,9 @@
     <p class="bx-label">Reference</p>
     <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Patterns</h1>
     <p class="lede mt-4" style="max-inline-size: 64ch">
-      Whole layouts, each in the mode it belongs to. Every one of these is assembled
-      from the same tokens and components — the difference is rhythm, density and
-      display scale, not a different system.
+      Full page layouts, each shown in the mode that suits it. They all use the same
+      tokens and components. Only the spacing, density and size of display type change
+      from one to the next.
     </p>
     <nav class="idx bx-auto-grid bx-collapse mt-6" aria-label="Patterns on this page" style="--bx-min: 240px">
       <a href="#p-dashboard"><span>01</span>Dashboard<span style="margin-inline-start: auto">industrial</span></a>
@@ -138,10 +138,11 @@
   <!-- ======================================================== DASHBOARD -->
   <section class="sec" id="p-dashboard">
     <div class="sec__head">
-      <p class="bx-label">01 / App shell &mdash; industrial</p>
+      <p class="bx-label">01 / App shell &middot; industrial</p>
       <h2>Dashboard</h2>
-      <p>48px top bar, 256px sidebar, both separated by 1px rules. Compact density,
-      sticky mono table headers, status as a square plus a word.</p>
+      <p>A 48px top bar and a 256px sidebar, each separated by a 1px line. Compact
+      density, mono table headers that stick as you scroll, and status shown as a
+      square plus a word.</p>
     </div>
 
     <div class="frame">
@@ -218,16 +219,17 @@
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ========================================================== LANDING -->
   <section class="sec" id="p-landing">
     <div class="sec__head">
-      <p class="bx-label">02 / Marketing &mdash; editorial</p>
+      <p class="bx-label">02 / Marketing &middot; editorial</p>
       <h2>Landing</h2>
-      <p>Split hero with a 1px rule between columns, a collapsed feature grid so the
-      whole section reads as one ruled table, and exactly one inverted CTA band.</p>
+      <p>A two-column hero with a 1px line between the columns, a feature grid with
+      shared borders so the section reads as one table, and a single inverted
+      call-to-action band.</p>
     </div>
 
     <div class="frame">
@@ -315,7 +317,7 @@
 
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ============================================================= DOCS -->
@@ -323,8 +325,9 @@
     <div class="sec__head">
       <p class="bx-label">03 / Documentation</p>
       <h2>Docs</h2>
-      <p>Three columns separated by 1px rules. Prose constrained to 68ch, square code
-      blocks with a mono language strip, an accent rule on the active heading.</p>
+      <p>Three columns separated by 1px lines. Body text is capped at 68ch, code
+      blocks have a mono strip naming the language, and the active heading gets an
+      accent line.</p>
     </div>
 
     <div class="frame">
@@ -387,7 +390,7 @@
         </aside>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ==================================================== AUTH + SETTINGS -->
@@ -395,8 +398,8 @@
     <div class="sec__head">
       <p class="bx-label">04 / Flows</p>
       <h2>Auth and settings</h2>
-      <p>A 400px auth card on a sunken canvas with a grid substrate, and a settings
-      page where each row is a cell in a collapsed grid.</p>
+      <p>A 400px sign-in card on a darker background with the grid showing, and a
+      settings page where each row is a cell in one shared grid.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
@@ -480,12 +483,12 @@
   <!-- ======================================================= AGENT CHAT -->
   <section class="sec" id="p-agent">
     <div class="sec__head">
-      <p class="bx-label">05 / AI agent &mdash; blueprint</p>
+      <p class="bx-label">05 / AI agent &middot; blueprint</p>
       <h2>Agent workspace</h2>
-      <p>Sessions on the left, the transcript in the middle, the agent's plan and the
-      files it touched on the right. Tool calls are log lines that expand; the one
-      approval is the only warning colour on screen. Type in the composer &mdash; it
-      streams a reply.</p>
+      <p>Sessions on the left, the transcript in the middle, and the agent's plan and
+      changed files on the right. Tool calls are log lines you can expand. The
+      approval request is the only thing in the warning colour. Type in the composer
+      and it streams back a reply.</p>
     </div>
 
     <div class="frame frame--wide">
@@ -653,17 +656,17 @@ Tests: 1 failed, 11 passed</pre></div>
         </aside>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ================================================ FEATURES + PRICING -->
   <section class="sec" id="p-pricing">
     <div class="sec__head">
-      <p class="bx-label">06 / Marketing &mdash; editorial</p>
+      <p class="bx-label">06 / Marketing &middot; editorial</p>
       <h2>Features and pricing</h2>
-      <p>A feature grid with one asymmetric cell, then pricing as what it honestly is
-      &mdash; a table. The recommended plan is marked by inverting its header, not by
-      scaling it up. The billing toggle is live.</p>
+      <p>A feature grid with one wider cell, then pricing laid out as a plain table.
+      The recommended plan gets an inverted header instead of a bigger card. The
+      billing toggle works.</p>
     </div>
 
     <div class="frame">
@@ -782,17 +785,18 @@ Tests: 1 failed, 11 passed</pre></div>
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- =============================================================== FAQ -->
   <section class="sec" id="p-faq">
     <div class="sec__head">
-      <p class="bx-label">07 / Support &mdash; editorial</p>
+      <p class="bx-label">07 / Support &middot; editorial</p>
       <h2>Frequently asked questions</h2>
-      <p>A sticky heading column and a numbered, exclusive accordion. The category
-      filter is a segmented control that narrows the list in place; a real person to
-      contact closes the section, because an FAQ that dead-ends is a wall.</p>
+      <p>A heading column that stays in place as you scroll, next to a numbered
+      accordion that opens one answer at a time. A segmented control filters the
+      questions by category. The section ends with a real person to contact, so
+      readers who don't find their answer still have somewhere to go.</p>
     </div>
 
     <div class="frame">
@@ -854,18 +858,18 @@ Tests: 1 failed, 11 passed</pre></div>
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ============================================================== BLOG -->
   <section class="sec" id="p-blog">
     <div class="sec__head">
-      <p class="bx-label">08 / Content &mdash; editorial</p>
+      <p class="bx-label">08 / Content &middot; editorial</p>
       <h2>Blog index and article</h2>
-      <p>The index leads with one featured post and puts the rest in a collapsed grid
-      that reads as a table of contents. The article constrains prose to 68ch, hangs a
-      sticky table of contents off a rule, and uses every content component: lists,
-      a blockquote, code, a callout and a captioned figure.</p>
+      <p>The index puts one featured post at the top and the rest in a grid that reads
+      like a table of contents. The article keeps text to 68ch, has a sticky table of
+      contents beside a vertical line, and uses every content component: lists, a
+      blockquote, code, a callout and a figure with a caption.</p>
     </div>
 
     <div class="frame">
@@ -951,7 +955,7 @@ Tests: 1 failed, 11 passed</pre></div>
             </div>
 
             <div class="bx-prose mt-8">
-              <p>On a Tuesday in July our p95 latency looked perfect &mdash; <strong>88ms</strong>, flat all afternoon &mdash; while 4% of checkout requests timed out. The dashboard was right about p95. It was wrong about the question we cared about.</p>
+              <p>One Tuesday in July our p95 latency looked perfect: <strong>88ms</strong>, flat all afternoon. Meanwhile 4% of checkout requests were timing out. The dashboard was right about p95, but p95 was the wrong thing to be watching.</p>
               <h2 id="post-shape">The shape matters</h2>
               <p>A percentile is one point on a curve. Two very different services can share a p95:</p>
               <ul class="bx-list">
@@ -975,7 +979,7 @@ Tests: 1 failed, 11 passed</pre></div>
               </ol>
               <figure>
                 <div class="p-figure" style="block-size: 160px"><span class="bx-label">Histogram &middot; checkout &middot; Jul 14</span></div>
-                <figcaption class="bx-label">FIG. 01 &mdash; The second mode at 4.2s is invisible at p95</figcaption>
+                <figcaption class="bx-label">FIG. 01 / The second mode at 4.2s is invisible at p95</figcaption>
               </figure>
             </div>
 
@@ -1005,19 +1009,19 @@ Tests: 1 failed, 11 passed</pre></div>
         </article>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frames sideways &mdash; the previews keep their desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the previews at desktop width</p>
   </section>
 
   <!-- ======================================================= ANALYTICS -->
   <section class="sec" id="p-analytics">
     <div class="sec__head">
-      <p class="bx-label">09 / Analytics &mdash; industrial</p>
+      <p class="bx-label">09 / Analytics &middot; industrial</p>
       <h2>Dashboard with charts and a team view</h2>
-      <p>Filters in one row above everything they scope, date range first. KPI tiles
-      with sparklines in a collapsed grid, a two-series line chart (the comparison is
-      neutral and dashed, so it survives greyscale), a single-series bar chart with
-      direct labels, and a manager's team table with workload meters and row menus.
-      Hover or arrow-key the charts.</p>
+      <p>Filters sit in one row above everything they affect, with the date range
+      first. Below them are KPI tiles with sparklines, a line chart with two series
+      (the comparison line is gray and dashed, so it still reads in greyscale), a bar
+      chart labelled on the bars, and a team table with workload meters and row menus.
+      Hover over the charts or step through them with the arrow keys.</p>
     </div>
 
     <div class="frame frame--wide">
@@ -1193,18 +1197,18 @@ Tests: 1 failed, 11 passed</pre></div>
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ====================================================== DOCS + TREE -->
   <section class="sec" id="p-docs">
     <div class="sec__head">
-      <p class="bx-label">10 / Documentation &mdash; blueprint</p>
+      <p class="bx-label">10 / Documentation &middot; blueprint</p>
       <h2>Docs site with a nested tree</h2>
-      <p>Sidebar sections as mono headings on sunken strips, groups that open as
-      submenus three levels deep and hang off literal tree rules. The article carries
-      a breadcrumb, package-manager tabs, a parameter table, an accordion for the
-      rarely-needed options, and a pager. The version switcher is a menu.</p>
+      <p>Sidebar sections have mono headings on darker strips, and groups open three
+      levels deep along drawn tree lines. The article has a breadcrumb, a tab for each
+      package manager, a parameter table, an accordion for options you rarely need,
+      and previous and next links. The version switcher is a menu.</p>
     </div>
 
     <div class="frame frame--wide">
@@ -1352,17 +1356,18 @@ Tests: 1 failed, 11 passed</pre></div>
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ===================================================== FILE MANAGER -->
   <section class="sec" id="p-files">
     <div class="sec__head">
-      <p class="bx-label">11 / Storage &mdash; industrial</p>
+      <p class="bx-label">11 / Storage &middot; industrial</p>
       <h2>File browser</h2>
-      <p>A folder tree, a breadcrumb that is also the path, and a table you can
-      right-click. The context menu duplicates the row's visible overflow menu, never
-      replaces it. Drop files onto the dashed zone and they join the upload tray.</p>
+      <p>A folder tree, a breadcrumb that doubles as the path, and a table you can
+      right-click. The right-click menu repeats the actions in each row's overflow
+      menu, which stays visible. Drop files on the dashed area to add them to the
+      upload tray.</p>
     </div>
 
     <div class="frame frame--wide">
@@ -1471,17 +1476,17 @@ Tests: 1 failed, 11 passed</pre></div>
         </div>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <!-- ======================================================= STATUS PAGE -->
   <section class="sec" id="p-status">
     <div class="sec__head">
-      <p class="bx-label">12 / Status &mdash; editorial</p>
+      <p class="bx-label">12 / Status &middot; editorial</p>
       <h2>Status page</h2>
-      <p>Ninety days as ninety square cells per component &mdash; the most literal use of
-      the grid in the system. Each cell has its own tooltip. State is always a colour
-      plus a word, and incidents are a timeline, newest first.</p>
+      <p>Each component gets 90 square cells, one per day, which is the most literal
+      use of the grid anywhere in the system. Every cell has its own tooltip, every
+      state has both a colour and a word, and incidents are listed newest first.</p>
     </div>
 
     <div class="frame">
@@ -1561,7 +1566,7 @@ Tests: 1 failed, 11 passed</pre></div>
         </footer>
       </div>
     </div>
-    <p class="bx-label pan-hint mt-2">Scroll the frame sideways &mdash; the preview keeps its desktop proportions</p>
+    <p class="bx-label pan-hint mt-2">Scroll sideways to see the whole preview at desktop width</p>
   </section>
 
   <footer class="site-foot">

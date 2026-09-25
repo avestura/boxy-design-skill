@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Boxy — a sharp-edged design system</title>
-<meta name="description" content="A zero-radius design system for AI coding agents. Hairline structure, blueprint detailing, a disciplined neutral palette, and a linter that keeps it honest.">
-<meta property="og:title" content="Boxy — a sharp-edged design system">
-<meta property="og:description" content="radius: 0. Hairline structure, blueprint detailing, and a linter that keeps it honest.">
+<title>Boxy: a square-cornered design system</title>
+<meta name="description" content="A design system for AI coding agents. Square corners, 1px borders, a mostly gray palette, and a linter that fails the build when the agent breaks a rule.">
+<meta property="og:title" content="Boxy: a square-cornered design system">
+<meta property="og:description" content="Square corners, 1px borders, and a linter that checks the UI code your agent writes.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
 
     Inline this sprite once per page, then:
       <svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg>
-    Icons inherit colour from currentColor.
+    Icons inherit color from currentColor.
   -->
 
   <!-- status -->
@@ -118,11 +118,11 @@
   <section class="hero">
     <div class="hero__grid" aria-hidden="true"></div>
     <p class="bx-label">01 / A design system for agents</p>
-    <h1>Interfaces with square corners and nothing to hide</h1>
+    <h1>Interfaces with square corners and visible structure</h1>
     <p class="hero__sub lede">
-      A zero-radius design system your coding agent actually follows. Hairline
-      structure, engineering detail, a rationed palette — and a linter that fails
-      the build when something drifts.
+      Boxy gives your coding agent a design system with no border radius, 1px borders
+      and a mostly gray palette. It also ships a linter, so when the agent slips back
+      into rounded cards and soft shadows, the build fails.
     </p>
 
     <div class="install" data-tabs="self">
@@ -171,11 +171,11 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">02 / The rules</p>
-      <h2>Seven axioms. Violating one is a bug, not a preference.</h2>
+      <h2>Seven rules. Breaking one counts as a bug.</h2>
       <p>
-        Most design guidance is advisory, so agents drift back to rounded cards and
-        soft shadows by the third prompt. These are written as constraints, and the
-        last cell is what enforces them.
+        Agents treat most style guides as suggestions. A few prompts in, the rounded
+        cards and soft shadows are back. Boxy writes its rules as hard constraints,
+        and the eighth box explains how they get checked.
       </p>
     </div>
 
@@ -183,44 +183,45 @@
       <div class="axiom">
         <p class="axiom__n">01</p>
         <h3>Radius is zero</h3>
-        <p>Everywhere, without exception. Including avatars, badges and toggles. The radius token exists only so that zero is explicit and greppable.</p>
+        <p>Everywhere, including avatars, badges and toggles. There is a radius token, but it only exists so the zero is written down and easy to grep for.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">02</p>
         <h3>Lines carry structure</h3>
-        <p>A 1px border is the primary separator. Reach for a border before a background change, and a background change before a shadow.</p>
+        <p>Separate things with a 1px border first. If that isn't enough, change the background. Use a shadow last.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">03</p>
         <h3>Never blur a shadow</h3>
-        <p>Depth is a hard offset or a hairline. Any blur radius above zero is forbidden, <code>backdrop-filter</code> included.</p>
+        <p>Show depth with a hard offset shadow or a thin line. Any blur above zero is banned, and that includes <code>backdrop-filter</code>.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">04</p>
         <h3>Everything snaps to 4px</h3>
-        <p>Spacing, sizing and leading come from one scale. No 13px, no 0.375rem, no arbitrary values slipped in under deadline.</p>
+        <p>Spacing, sizes and line heights all come from one scale. 13px and 0.375rem aren't on it, so they don't get used, even on a deadline.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">05</p>
         <h3>Accent is rationed</h3>
-        <p>Under 5% of painted pixels: links, focus, one primary action. Neutrals carry everything else.</p>
+        <p>The accent color covers less than 5% of the screen. It goes on links, focus rings and the one primary action. Everything else is gray.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">06</p>
         <h3>Hierarchy is typographic</h3>
-        <p>Size, weight, tracking, case and rules. Not colored headings, not gradient text, not another shade of purple.</p>
+        <p>Show what matters with size, weight, letter spacing, case and rules. Don't color the headings, and don't put a gradient on text.</p>
       </div>
       <div class="axiom">
         <p class="axiom__n">07</p>
         <h3>Motion is mechanical</h3>
-        <p>80&ndash;160ms, linear or sharp. Opacity, color and whole-pixel translation. No scale, no bounce, no spring.</p>
+        <p>Transitions take 80 to 160ms with linear or sharp easing. They animate opacity, color and whole-pixel movement. Nothing scales, bounces or springs.</p>
       </div>
       <div class="axiom" style="background: var(--bx-surface-inverse); color: var(--bx-ink-inverse)">
         <p class="axiom__n" style="color: var(--bx-ink-inverse-muted)">08</p>
-        <h3 style="color: var(--bx-ink-inverse)">And it is checked</h3>
+        <h3 style="color: var(--bx-ink-inverse)">And a linter checks them</h3>
         <p style="color: var(--bx-ink-inverse-muted)">
-          <code style="color: var(--bx-ink-inverse)">boxy-check</code> reads your source and
-          fails on every one of the rules above. The agent runs it before it says done.
+          <code style="color: var(--bx-ink-inverse)">boxy-check</code> reads your
+          source files and reports every broken rule. The agent runs it before it
+          tells you the work is done.
         </p>
       </div>
     </div>
@@ -230,12 +231,12 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">03 / The difference</p>
-      <h2>Same content. One of them was designed by default.</h2>
+      <h2>The same card, with and without Boxy</h2>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
       <div style="padding: 32px">
-        <p class="bx-label" style="color: var(--bx-ink-danger)">Before &mdash; the default</p>
+        <p class="bx-label" style="color: var(--bx-ink-danger)">Before: the usual default</p>
         <!-- boxy-ignore-start: the counter-example is meant to violate the system -->
         <svg viewBox="0 0 320 180" width="100%" style="margin-block-start: 20px; max-inline-size: 360px" role="img" aria-label="A rounded card with a soft drop shadow, a pill badge and a gradient button">
           <defs>
@@ -257,14 +258,14 @@
         <ul class="stack--tight mt-5" style="list-style: none; padding: 0; display: grid; font-size: var(--bx-text-base); color: var(--bx-ink-muted)">
           <li>&times;&nbsp; 14px radius, pill badge, pill button</li>
           <li>&times;&nbsp; 8px blurred drop shadow</li>
-          <li>&times;&nbsp; Violet gradient doing the work of hierarchy</li>
-          <li>&times;&nbsp; Indistinguishable from every other dashboard</li>
+          <li>&times;&nbsp; A violet gradient to make the button stand out</li>
+          <li>&times;&nbsp; Looks like every other dashboard</li>
         </ul>
         <!-- boxy-ignore-end -->
       </div>
 
       <div style="padding: 32px">
-        <p class="bx-label" style="color: var(--bx-ink-success)">After &mdash; Boxy</p>
+        <p class="bx-label" style="color: var(--bx-ink-success)">After: Boxy</p>
         <svg viewBox="0 0 320 180" width="100%" style="margin-block-start: 20px; max-inline-size: 360px" role="img" aria-label="A square card with a hairline border, a square mono tag and a flat accent button">
           <rect x="16" y="14" width="288" height="146" fill="var(--bx-surface)" stroke="var(--bx-line)" stroke-width="1"/>
           <path d="M16 14 h10 M16 14 v10 M304 160 h-10 M304 160 v-10" stroke="var(--bx-line-heavy)" stroke-width="1.5" fill="none"/>
@@ -278,9 +279,9 @@
         </svg>
         <ul class="stack--tight mt-5" style="list-style: none; padding: 0; display: grid; font-size: var(--bx-text-base); color: var(--bx-ink-muted)">
           <li>&#10003;&nbsp; Zero radius, square tag, square buttons</li>
-          <li>&#10003;&nbsp; 1px hairline and corner ticks carry the structure</li>
-          <li>&#10003;&nbsp; One flat accent; the second action is an outline</li>
-          <li>&#10003;&nbsp; Reads as engineered rather than decorated</li>
+          <li>&#10003;&nbsp; A 1px border and corner ticks mark the edges</li>
+          <li>&#10003;&nbsp; One flat accent button, with an outline for the second action</li>
+          <li>&#10003;&nbsp; Closer to a technical drawing than a template</li>
         </ul>
       </div>
     </div>
@@ -290,12 +291,13 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">04 / Modes</p>
-      <h2>One system, three postures</h2>
+      <h2>Three modes for different kinds of product</h2>
       <p>
-        Identical radius, borders, spacing, type and motion. Only section rhythm,
-        display scale, grid columns and substrate visibility change. Set
-        <code>data-mode</code> and the whole page follows — try the
-        <b>mode</b> control in the header.
+        All three share the same radius, borders, spacing, type and motion. What
+        changes is the space between sections, the size of display type, the number of
+        grid columns, and whether the background grid shows. Set
+        <code>data-mode</code> on the page to switch, or try the <b>mode</b> button in
+        the header.
       </p>
     </div>
 
@@ -315,8 +317,8 @@
           </div>
         </div>
         <p class="muted mt-4" style="font-size: var(--bx-text-base)">
-          Dev tools, infra, technical products. Grid substrate, corner ticks, mono
-          annotations, dense by default.
+          For dev tools, infrastructure and other technical products. Shows the
+          background grid, corner ticks and mono labels, and is dense by default.
         </p>
       </div>
 
@@ -337,8 +339,8 @@
           </table>
         </div>
         <p class="muted mt-4" style="font-size: var(--bx-text-base)">
-          Enterprise apps, dashboards, admin. 16 columns, bottom-border fields,
-          heavy tables, no substrate.
+          For enterprise apps, dashboards and admin screens. 16 columns, fields with
+          only a bottom border, heavier tables and no background grid.
         </p>
       </div>
 
@@ -359,8 +361,8 @@
           </div>
         </div>
         <p class="muted mt-4" style="font-size: var(--bx-text-base)">
-          Marketing, landing, docs. Big display type, 160px rhythm, generous air,
-          still perfectly square.
+          For marketing, landing pages and docs. Large display type, 160px between
+          sections and plenty of space. The corners stay square.
         </p>
       </div>
     </div>
@@ -370,11 +372,12 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">05 / Enforcement</p>
-      <h2>The part that makes it stick</h2>
+      <h2>A linter that fails the build</h2>
       <p>
-        Guidance an agent can ignore is decoration. <code>boxy-check</code> parses
-        CSS, HTML, JSX, Vue and Svelte, flags every violation with a file and line,
-        and exits non-zero. Zero dependencies, Node 18+.
+        Written rules only go so far with an agent, so Boxy checks the code too.
+        <code>boxy-check</code> parses CSS, HTML, JSX, Vue and Svelte, reports each
+        violation with its file and line, and exits non-zero. It has no dependencies
+        and needs Node 18 or later.
       </p>
     </div>
 
@@ -404,7 +407,7 @@
 
     <div class="bx-collapse bx-collapse--2 mt-8" style="max-inline-size: 860px">
       <div style="padding: 20px 24px">
-        <p class="bx-label">Errors &mdash; build fails</p>
+        <p class="bx-label">Errors: the build fails</p>
         <!-- boxy-ignore-start: naming the banned utilities -->
         <ul class="mt-2 muted" style="font-size: var(--bx-text-base); padding-inline-start: 20px; display: grid; gap: 4px">
           <li>Nonzero radius, and rounded utility classes</li>
@@ -416,7 +419,7 @@
         <!-- boxy-ignore-end -->
       </div>
       <div style="padding: 20px 24px">
-        <p class="bx-label">Warnings &mdash; --strict to fail</p>
+        <p class="bx-label">Warnings: fail only with --strict</p>
         <ul class="mt-2 muted" style="font-size: var(--bx-text-base); padding-inline-start: 20px; display: grid; gap: 4px">
           <li>Spacing off the 4px scale</li>
           <li>Font sizes off the type scale</li>
@@ -432,7 +435,7 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">06 / Contents</p>
-      <h2>What lands in your project</h2>
+      <h2>What gets installed</h2>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
@@ -491,8 +494,8 @@
 <pre><i>$</i> npx boxy-design init --ai all --css</pre>
         </div>
         <p class="muted mt-4" style="font-size: var(--bx-text-base)">
-          Non-Claude targets also get the full reference set in <code>.boxy/</code>,
-          so every agent reads the same source of truth.
+          Agents other than Claude also get the full reference docs in
+          <code>.boxy/</code>, so every agent reads the same files.
         </p>
       </div>
     </div>
@@ -507,8 +510,8 @@
           Stop asking your agent to remove the rounded corners
         </h2>
         <p class="muted mt-4" style="max-inline-size: 52ch">
-          Install once. Every UI it builds afterwards is square, ruled, accessible
-          and checked.
+          Install it once. After that, the UI your agent builds has square corners,
+          passes the contrast checks and gets linted before it reaches you.
         </p>
       </div>
       <div class="bx-btn-group" style="flex-shrink: 0">
@@ -525,8 +528,8 @@
       <div>
         <a class="site-mark" href="index.html"><span class="site-mark__glyph" aria-hidden="true"></span>BOXY</a>
         <p class="muted mt-4" style="font-size: var(--bx-text-base); max-inline-size: 36ch">
-          A sharp-edged design system for AI coding agents. Inspired by Zed, Stripe
-          and IBM Carbon.
+          A square-cornered design system for AI coding agents. It borrows from Zed,
+          Stripe and IBM Carbon.
         </p>
         <p class="mt-4"><span class="bx-status bx-status--ok bx-mono" style="font-size: var(--bx-text-xs); letter-spacing: 0.08em">ALL SYSTEMS OPERATIONAL</span></p>
       </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Components — Boxy</title>
+<title>Components | Boxy</title>
 <meta name="description" content="Live Boxy components: buttons, fields, selection, tags, cards, tabs, tables, feedback, menus and context menus, popovers, drawers, breadcrumbs, trees, accordions, code, lists, date pickers, sliders, upload, progress, avatars, layout primitives, agent chat, comboboxes, multi-selects, kanban, resizable panes, an editable grid, a colour picker and a notification inbox.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,9 +115,8 @@
     <p class="bx-label">Reference</p>
     <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Components</h1>
     <p class="lede mt-4" style="max-inline-size: 64ch">
-      Everything on this page is live and built from the role tokens. Toggle theme
-      and density in the header; every component follows without a re-render.
-      Press <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span> for the
+      Every component here is live and built from the role tokens. Change the theme or
+      density in the header and they all update in place. Press <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span> for the
       command palette.
     </p>
     <nav class="idx bx-auto-grid bx-collapse mt-6" aria-label="Components on this page">
@@ -156,8 +155,8 @@
     <div class="sec__head">
       <p class="bx-label">01 / Buttons</p>
       <h2>One primary action per view</h2>
-      <p>Everything else is outline or ghost. Groups share a single border so two
-      1px lines never sit side by side.</p>
+      <p>Other buttons are outline or ghost. Buttons in a group share their borders,
+      so two 1px lines never end up next to each other.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -197,14 +196,15 @@
   <section class="sec" id="fields">
     <div class="sec__head">
       <p class="bx-label">02 / Fields</p>
-      <h2>Labels above, helper text permanent</h2>
-      <p>No floating labels — the animation and the mid-border position both fight
-      the system. Focus uses an inset ring so nothing shifts.</p>
+      <h2>Labels go above, and helper text stays visible</h2>
+      <p>There are no floating labels. Their animation and their spot on the border
+      both clash with the rest of the system. Focus draws an inset ring, so the layout
+      doesn't move.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
       <div style="padding: 24px">
-        <p class="bx-label" style="margin-block-end: 16px">Boxed &mdash; default</p>
+        <p class="bx-label" style="margin-block-end: 16px">Boxed (default)</p>
         <div class="stack">
           <div class="bx-field">
             <label class="bx-label" for="f1">Project name</label>
@@ -226,7 +226,7 @@
       </div>
 
       <div style="padding: 24px">
-        <p class="bx-label" style="margin-block-end: 16px">Underlined &mdash; industrial</p>
+        <p class="bx-label" style="margin-block-end: 16px">Underlined (industrial)</p>
         <div class="stack">
           <div class="bx-field">
             <label class="bx-label" for="f4">Cluster</label>
@@ -268,9 +268,9 @@
     <div class="sec__head">
       <p class="bx-label">03 / Selection</p>
       <h2>The radio is a square too</h2>
-      <p>This is the intentional break from convention, and the one most people
-      hesitate over. Keep it — a single round control in a square interface reads
-      as an oversight.</p>
+      <p>This breaks with convention on purpose, and people push back on it more than
+      anything else. Keep it anyway. One round control in a square interface looks
+      like a mistake.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -295,8 +295,8 @@
   <section class="sec" id="tags">
     <div class="sec__head">
       <p class="bx-label">04 / Tags &amp; status</p>
-      <h2>Square tags, square status squares</h2>
-      <p>Never a pill, never a circular dot. Status is always a shape plus a word.</p>
+      <h2>Tags and status marks are square</h2>
+      <p>No pills and no round dots. A status always has both a shape and a word.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -327,9 +327,10 @@
   <section class="sec" id="cards">
     <div class="sec__head">
       <p class="bx-label">05 / Cards</p>
-      <h2>Cards sit in a collapsed grid, not in whitespace</h2>
-      <p>The 1px gap over a line-colored background <em>is</em> the border. Cells
-      carry none of their own, so lines are never doubled and never misalign.</p>
+      <h2>Cards share one grid and one set of lines</h2>
+      <p>The grid has a 1px gap over a background in the border colour, and that gap
+      <em>is</em> the border you see. The cards have no borders of their own, so lines
+      never double up or drift out of line.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
@@ -394,9 +395,10 @@
   <section class="sec" id="tabs">
     <div class="sec__head">
       <p class="bx-label">06 / Tabs &amp; table</p>
-      <h2>Dense data is where this system earns its keep</h2>
-      <p>Mono uppercase headers on a sunken strip, 1px row rules, no vertical rules,
-      numbers right-aligned and tabular. Arrow keys move between tabs.</p>
+      <h2>Boxy is at its best with dense data</h2>
+      <p>Headers are uppercase mono on a darker strip. Rows are split by 1px lines,
+      with no vertical lines. Numbers are right-aligned with tabular figures. Use the
+      arrow keys to move between tabs.</p>
     </div>
 
     <div data-tabs="self">
@@ -458,7 +460,7 @@
             </tbody>
           </table>
         </div>
-        <p class="bx-label mt-4">Skeletons pulse on steps(4, end) &mdash; a stepped hold, never a sweeping shimmer</p>
+        <p class="bx-label mt-4">Skeletons pulse in four hard steps with steps(4, end). No sweeping shimmer</p>
       </div>
     </div>
   </section>
@@ -486,7 +488,7 @@
         <span class="bx-btn bx-btn--ghost" data-tip="A square tooltip, offset 6px, with no arrow">Hover for a tooltip</span>
       </dd></div>
       <div class="spec"><dt><span class="bx-label">Progress</span></dt><dd>
-        <div style="inline-size: 200px"><div class="bx-progress"><i style="inline-size: 68%"></i></div><p class="bx-label mt-2">68% &mdash; 34 of 50 steps</p></div>
+        <div style="inline-size: 200px"><div class="bx-progress"><i style="inline-size: 68%"></i></div><p class="bx-label mt-2">68% &middot; 34 of 50 steps</p></div>
         <div style="inline-size: 200px"><div class="bx-progress bx-progress--indeterminate"><i></i></div><p class="bx-label mt-2">Indeterminate</p></div>
       </dd></div>
       <div class="spec"><dt><span class="bx-label">Skeleton</span></dt><dd>
@@ -503,11 +505,12 @@
   <section class="sec" id="menus">
     <div class="sec__head">
       <p class="bx-label">08 / Menus</p>
-      <h2>Menus, submenus and context menus share one surface</h2>
-      <p>Raised surface, 1px heavy line, a hard 2px offset. Submenus hang flush off
-      the parent's edge so the two borders read as one line. Arrow keys move,
+      <h2>Menus, submenus and context menus look the same</h2>
+      <p>All three use a raised surface, a heavy 1px border and a hard 2px shadow. A
+      submenu sits flush against its parent, so the two borders look like one line.
+      Arrow keys move between items,
       <span class="bx-kbd">&rarr;</span> opens a submenu, <span class="bx-kbd">&larr;</span>
-      closes it, typing a letter jumps to it.</p>
+      closes it, and typing a letter jumps to the matching item.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -568,7 +571,7 @@
 
       <div class="spec"><dt><span class="bx-label">Context menu</span></dt><dd style="display: block">
         <div class="ctx-zone hatch" tabindex="0" data-context="ctx-demo" aria-label="Context menu demo area. Press Shift F10 for the menu.">
-          <span class="bx-label">Right-click in here &mdash; or focus it and press <span class="bx-kbd">Shift</span> <span class="bx-kbd">F10</span></span>
+          <span class="bx-label">Right-click in here, or focus it and press <span class="bx-kbd">Shift</span> <span class="bx-kbd">F10</span></span>
         </div>
         <ul class="bx-float bx-menu" id="ctx-demo" popover data-context-menu role="menu" aria-label="Context">
           <li role="none"><button class="bx-menu__item" role="menuitem" data-say="Opened"><svg class="bx-menu__icon" aria-hidden="true"><use href="#i-eye"/></svg>Open<span class="bx-menu__hint">Enter</span></button></li>
@@ -593,9 +596,10 @@
   <section class="sec" id="popovers">
     <div class="sec__head">
       <p class="bx-label">09 / Popover &amp; drawer</p>
-      <h2>Interactive content floats; a tooltip never does</h2>
-      <p>A popover holds controls and stays open until dismissed. A drawer is a modal
-      panel from the inline end &mdash; the same focus rules as a dialog.</p>
+      <h2>Popovers can hold controls. Tooltips can't.</h2>
+      <p>A popover holds controls and stays open until you dismiss it. A drawer is a
+      modal panel that opens from the end side and follows the same focus rules as a
+      dialog.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -644,8 +648,9 @@
     <div class="sec__head">
       <p class="bx-label">10 / Navigation</p>
       <h2>Breadcrumbs, tab variants and a tree with submenus</h2>
-      <p>Every active indicator replaces the rule it sits on &mdash; drawn with an inset
-      plus a 1px outset, never pulled over the line with a negative margin.</p>
+      <p>An active indicator takes the place of the line it sits on. It's drawn with
+      an inset plus a 1px outset, and never pulled over the line with a negative
+      margin.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -684,7 +689,7 @@
           </div>
           <div class="bx-tabpanel" data-panel="c1" style="padding: 16px"><p class="muted" style="font-size: var(--bx-text-base)">File tabs sit on a sunken strip. The selected tab takes the panel's surface, loses its bottom rule and gains a 2px accent top edge, so tab and panel read as one box.</p></div>
           <div class="bx-tabpanel" data-panel="c2" style="padding: 16px" hidden><p class="muted" style="font-size: var(--bx-text-base)">Use them for switching views of one object: files, languages, environments.</p></div>
-          <div class="bx-tabpanel" data-panel="c3" style="padding: 16px" hidden><p class="muted" style="font-size: var(--bx-text-base)">Never for navigating between pages &mdash; that is a nav, with links.</p></div>
+          <div class="bx-tabpanel" data-panel="c3" style="padding: 16px" hidden><p class="muted" style="font-size: var(--bx-text-base)">Don't use tabs to move between pages. Use a nav with links for that.</p></div>
         </div>
       </dd></div>
 
@@ -757,15 +762,16 @@
   <section class="sec" id="accordion">
     <div class="sec__head">
       <p class="bx-label">11 / Accordion</p>
-      <h2>Native disclosure, shared rules, a drawn plus</h2>
-      <p>Built on <code class="bx-code">&lt;details&gt;</code>, so it works with script
-      disabled and the browser's find-in-page opens a match. Give items one
-      <code class="bx-code">name</code> to allow only one open at a time.</p>
+      <h2>Accordions built on native disclosure</h2>
+      <p>It's built on <code class="bx-code">&lt;details&gt;</code>, so it works
+      without JavaScript and the browser's find-in-page can open a matching item. Give
+      the items the same <code class="bx-code">name</code> and only one can be open at
+      a time.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
       <div style="padding: 24px">
-        <p class="bx-label" style="margin-block-end: 16px">Exclusive &mdash; one open</p>
+        <p class="bx-label" style="margin-block-end: 16px">Exclusive: one open at a time</p>
         <div class="bx-accordion">
           <details name="acc-demo" open>
             <summary><span class="bx-accordion__n">01</span>What counts as a build minute?</summary>
@@ -782,7 +788,7 @@
         </div>
       </div>
       <div style="padding: 24px">
-        <p class="bx-label" style="margin-block-end: 16px">Independent &mdash; settings groups</p>
+        <p class="bx-label" style="margin-block-end: 16px">Independent: for settings groups</p>
         <div class="bx-accordion">
           <details open>
             <summary>Build &amp; output</summary>
@@ -807,16 +813,16 @@
     <div class="sec__head">
       <p class="bx-label">12 / Code</p>
       <h2>Inline, block, numbered, diff and terminal</h2>
-      <p>One line per <code class="bx-code">span.ln</code>, so numbers, highlights and
-      diff marks are line state rather than overlays &mdash; and a copy button copies
-      the code, not the line numbers.</p>
+      <p>Each line is its own <code class="bx-code">span.ln</code>, so line numbers,
+      highlights and diff marks belong to the line instead of sitting on top of it.
+      The copy button copies the code without the line numbers.</p>
     </div>
 
     <div class="stack" style="--bx-gap: var(--bx-space-6)">
       <p style="max-inline-size: 64ch">
         Inline code sits in a sunken box with a subtle rule: run <code class="bx-code">orbit deploy --prod</code>,
         then check <code class="bx-code">ORBIT_TOKEN</code> is set. Keys use <span class="bx-kbd">Ctrl</span> <span class="bx-kbd">K</span>,
-        and an inverted inline block &mdash; <span class="bx-mark">never a highlighter</span> &mdash; marks a match.
+        and a match shows up as an <span class="bx-mark">inverted inline block</span> instead of a highlighter.
       </p>
 
       <div class="bx-collapse bx-collapse--2">
@@ -870,8 +876,8 @@
     <div class="sec__head">
       <p class="bx-label">13 / Lists</p>
       <h2>Square bullets, mono numerals, drawn checks</h2>
-      <p>Even the bullet is a square. Ordered lists count in zero-padded mono so a
-      ten-item list does not jump its alignment at item 10.</p>
+      <p>Bullets are squares too. Numbered lists use zero-padded mono numbers, so the
+      alignment doesn't shift when a list reaches item 10.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
@@ -938,10 +944,11 @@
   <section class="sec" id="dates">
     <div class="sec__head">
       <p class="bx-label">14 / Date picker</p>
-      <h2>The calendar is a collapsed grid</h2>
-      <p>Typing stays the primary input &mdash; the field accepts <code class="bx-code">YYYY-MM-DD</code>
-      and the calendar assists. Arrows move by day and week, <span class="bx-kbd">PgUp</span>
-      <span class="bx-kbd">PgDn</span> by month. Ranges lead with presets.</p>
+      <h2>The calendar is a grid of shared cells</h2>
+      <p>Typing is still the main way to enter a date. The field accepts
+      <code class="bx-code">YYYY-MM-DD</code> and the calendar is there to help. Arrow
+      keys move by day and week, <span class="bx-kbd">PgUp</span>
+      <span class="bx-kbd">PgDn</span> by month. Range pickers show presets first.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
@@ -996,7 +1003,7 @@
             </div>
           </div>
         </div>
-        <p class="bx-help mt-4">Presets as rows first &mdash; nobody fights a grid for &ldquo;last 30 days&rdquo;.</p>
+        <p class="bx-help mt-4">Presets come first, because nobody wants to click around a grid to pick &ldquo;last 30 days&rdquo;.</p>
       </div>
     </div>
   </section>
@@ -1006,8 +1013,8 @@
     <div class="sec__head">
       <p class="bx-label">15 / Slider, stepper &amp; segmented</p>
       <h2>A square thumb, and always a number beside it</h2>
-      <p>A slider is for approximate values. Pair it with a field so an exact value
-      is one keystroke away &mdash; dragging to 37 is a test of motor control.</p>
+      <p>Sliders are for rough values. Put a number field next to one, so people can
+      type 37 instead of trying to drag to it.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -1047,7 +1054,7 @@
           <label><input type="radio" name="seg-2" value="grid" checked><span><svg width="16" height="16" aria-hidden="true"><use href="#i-grid"/></svg>Grid</span></label>
           <label><input type="radio" name="seg-2" value="list"><span><svg width="16" height="16" aria-hidden="true"><use href="#i-list"/></svg>List</span></label>
         </fieldset>
-        <span class="bx-label">Native radios &mdash; arrow keys and form values for free</span>
+        <span class="bx-label">Built on native radios, so arrow keys and form values just work</span>
       </dd></div>
     </dl>
   </section>
@@ -1057,9 +1064,9 @@
     <div class="sec__head">
       <p class="bx-label">16 / File upload</p>
       <h2>The one place a dashed line is allowed</h2>
-      <p>Dashes read as a cut line &mdash; a placeholder waiting to be filled. Drag-over
-      turns it solid accent. Errors attach to the file, not the zone. Try dropping a
-      file.</p>
+      <p>A dashed line looks like a space waiting to be filled. Drag a file over it
+      and the line turns solid accent. Errors show up on the file that caused them,
+      not on the drop zone. Try dropping a file.</p>
     </div>
 
     <div style="max-inline-size: 640px">
@@ -1082,8 +1089,9 @@
     <div class="sec__head">
       <p class="bx-label">17 / Progress &amp; meters</p>
       <h2>Quantities as cells, loading as a stepped square</h2>
-      <p>Progress shows a task finishing. A meter shows a level against a limit. A
-      spinner is a 4px square stepping round a box &mdash; no arcs.</p>
+      <p>A progress bar shows how far along a task is. A meter shows a level against a
+      limit. The spinner is a 4px square stepping around the edge of a box, with no
+      arcs anywhere.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
@@ -1122,8 +1130,8 @@
     <div class="sec__head">
       <p class="bx-label">18 / Avatars &amp; activity</p>
       <h2>Square avatars, square presence, a literal timeline</h2>
-      <p>An avatar is a square like everything else. Groups collapse their borders
-      side by side instead of stacking in overlapping circles.</p>
+      <p>Avatars are square like everything else. In a group they sit side by side and
+      share borders, instead of overlapping like a stack of circles.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
@@ -1163,9 +1171,9 @@
     <div class="sec__head">
       <p class="bx-label">19 / Layout primitives</p>
       <h2>Stack, cluster, grid, auto-grid, split</h2>
-      <p>Five classes in <code class="bx-code">boxy.css</code>. Each exposes its gap as one
-      custom property &mdash; <code class="bx-code">--bx-gap</code> &mdash; so you set the
-      value from the space scale and never re-implement the mechanism.</p>
+      <p>Five classes in <code class="bx-code">boxy.css</code>. Each one reads its gap
+      from a single custom property, <code class="bx-code">--bx-gap</code>, so you
+      pick a value from the space scale and never rebuild the layout yourself.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -1194,11 +1202,11 @@
   <section class="sec" id="ai">
     <div class="sec__head">
       <p class="bx-label">20 / Agent &amp; chat</p>
-      <h2>A transcript, not a pair of bubbles</h2>
-      <p>Tool calls read like log lines &mdash; status, name, arguments, duration &mdash;
-      and expand to their input and output. Reasoning is collapsed and muted. An
-      approval is the one place the agent stops for the human. The composer below is
-      live.</p>
+      <h2>Agent chat reads like a transcript</h2>
+      <p>There are no chat bubbles. Tool calls look like log lines, with status, name,
+      arguments and duration, and expand to show their input and output. Reasoning is
+      collapsed and muted. An approval is the only point where the agent waits for a
+      person. You can type in the composer below.</p>
     </div>
 
     <div class="bx-collapse" style="grid-template-columns: 1fr">
@@ -1291,10 +1299,11 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
     <div class="sec__head">
       <p class="bx-label">21 / Combobox &amp; multi-select</p>
       <h2>Type to filter, arrows to move, Enter to take</h2>
-      <p>Focus never leaves the input; the highlighted option is
-      <code class="bx-code">aria-activedescendant</code>. The typed match is an inverted
-      block, not a colour. Multi-select collects square tags inside the field, and
-      <span class="bx-kbd">Backspace</span> in the empty input removes the last one.</p>
+      <p>Focus stays in the input the whole time, and the highlighted option is
+      tracked with <code class="bx-code">aria-activedescendant</code>. The part of
+      each option that matches what you typed is shown inverted. In the multi-select,
+      chosen items become square tags inside the field, and
+      <span class="bx-kbd">Backspace</span> in an empty input removes the last one.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
@@ -1347,11 +1356,11 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="kanban">
     <div class="sec__head">
       <p class="bx-label">22 / Kanban board</p>
-      <h2>Columns share rules; a lifted card gets the hard offset</h2>
-      <p>Drag cards between columns, or focus one and use
-      <span class="bx-kbd">Alt</span> + arrows. The drop slot is dashed &mdash; it is a
-      placeholder waiting to be filled. A column over its WIP limit gets a warning rule
-      under its header, not a red background.</p>
+      <h2>Columns share borders, and a dragged card gets a hard shadow</h2>
+      <p>Drag cards between columns, or focus a card and press
+      <span class="bx-kbd">Alt</span> with the arrow keys. The drop slot is dashed
+      because it's an empty space waiting for a card. A column over its WIP limit gets
+      a warning line under its header instead of a red background.</p>
     </div>
 
     <div class="bx-kanban" aria-label="Sprint board">
@@ -1389,10 +1398,11 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="panes">
     <div class="sec__head">
       <p class="bx-label">23 / Resizable panes</p>
-      <h2>The divider is the rule itself</h2>
-      <p>A 1px line with an 8px invisible hit area that turns into a 2px accent bar on
-      hover, drag or focus. Arrow keys resize by 16px (<span class="bx-kbd">Shift</span>
-      for 64), <span class="bx-kbd">Enter</span> or a double-click resets.</p>
+      <h2>The divider is just the line</h2>
+      <p>It's a 1px line with an invisible 8px hit area, and it becomes a 2px accent
+      bar on hover, drag or focus. Arrow keys resize by 16px (64px with
+      <span class="bx-kbd">Shift</span>). <span class="bx-kbd">Enter</span> or a
+      double-click resets it.</p>
     </div>
 
     <div class="bx-panes" style="block-size: 320px; border: 1px solid var(--bx-line); background: var(--bx-surface)">
@@ -1434,12 +1444,13 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="datagrid">
     <div class="sec__head">
       <p class="bx-label">24 / Editable data grid</p>
-      <h2>A spreadsheet: vertical rules, one ringed cell</h2>
-      <p>Arrow keys move the ring. <span class="bx-kbd">Enter</span>,
-      <span class="bx-kbd">F2</span>, a double-click or just typing starts an edit;
-      <span class="bx-kbd">Enter</span> commits and moves down,
-      <span class="bx-kbd">Tab</span> moves right, <span class="bx-kbd">Esc</span>
-      cancels. Edited cells get an accent corner; the region column validates.</p>
+      <h2>It works like a spreadsheet</h2>
+      <p>Arrow keys move the selection ring. <span class="bx-kbd">Enter</span>,
+      <span class="bx-kbd">F2</span>, a double-click or just typing starts an edit.
+      <span class="bx-kbd">Enter</span> saves and moves down,
+      <span class="bx-kbd">Tab</span> moves right, and <span class="bx-kbd">Esc</span>
+      cancels. Edited cells get an accent corner, and the region column checks what
+      you type.</p>
     </div>
 
     <div style="overflow-x: auto; border: 1px solid var(--bx-line)">
@@ -1463,10 +1474,11 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="color">
     <div class="sec__head">
       <p class="bx-label">25 / Colour picker</p>
-      <h2>Square field, square thumbs, and the contrast ratio</h2>
-      <p>A saturation / brightness field, a hue strip, a hex field and swatches. The
-      readout checks the colour against the page canvas, because in a design system the
-      question is never just &ldquo;which blue&rdquo; but &ldquo;can text sit on it&rdquo;.</p>
+      <h2>A colour picker that tells you the contrast</h2>
+      <p>It has a saturation and brightness field, a hue strip, a hex input and
+      swatches. The readout also checks the colour against the page background.
+      Picking a blue is only half the job. You also need to know whether text is
+      readable on it.</p>
     </div>
 
     <!-- boxy-ignore-start: a colour picker documents literal colour values -->
@@ -1509,10 +1521,11 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="inbox">
     <div class="sec__head">
       <p class="bx-label">26 / Notification inbox</p>
-      <h2>A square count, and unread as a mark rather than a tint</h2>
-      <p>The bell's badge is the accent &mdash; it is the one thing on the bar asking for
-      attention. Unread items get a 6px accent square and ink text; read items fall back
-      to muted. Actions can be taken in place.</p>
+      <h2>Unread items get a mark instead of a tint</h2>
+      <p>The count on the bell uses the accent colour, because it's the one thing in
+      the bar that needs attention. Unread items get a 6px accent square and
+      full-strength text. Read items are muted. You can act on an item without opening
+      it.</p>
     </div>
 
     <div class="row" style="gap: 16px">
@@ -1550,36 +1563,36 @@ src/webhooks/queue.ts:31  await send(hook, payload)</pre></div>
   <section class="sec" id="blueprint">
     <div class="sec__head">
       <p class="bx-label">27 / Blueprint details</p>
-      <h2>Opt-in, and rationed to three per viewport</h2>
-      <p>Applied everywhere, precision turns into noise. These earn their place on
-      hero blocks, feature panels and empty states.</p>
+      <h2>Off by default, and no more than three per screen</h2>
+      <p>Put these everywhere and they turn into clutter. They work best on hero
+      sections, feature panels and empty states.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--3">
       <div style="padding: 40px 32px">
         <p class="bx-label">Grid substrate</p>
         <div class="bx-grid-bg mt-5" style="block-size: 120px; border: 1px solid var(--bx-line)"></div>
-        <p class="muted mt-4" style="font-size: var(--bx-text-base)">8px pitch at 5.5% ink. Real element edges must land on it.</p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">8px squares at 5.5% ink. Element edges should line up with it.</p>
       </div>
       <div style="padding: 40px 32px">
         <p class="bx-label">Corner ticks</p>
         <div class="bx-ticks mt-5" style="block-size: 120px; border: 1px solid var(--bx-line); display: grid; place-items: center">
           <span class="bx-label">Registration marks</span>
         </div>
-        <p class="muted mt-4" style="font-size: var(--bx-text-base)">Two corners is the tasteful default. Not on every card.</p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">Mark two corners by default, and leave most cards without them.</p>
       </div>
       <div style="padding: 40px 32px">
         <p class="bx-label">Hatch fill</p>
         <div class="mt-5" style="block-size: 120px; border: 1px solid var(--bx-line); background-image: repeating-linear-gradient(45deg, var(--bx-grid-line) 0 1px, transparent 1px 6px)"></div>
-        <p class="muted mt-4" style="font-size: var(--bx-text-base)">Placeholders and inactive regions. The Boxy gray blob.</p>
+        <p class="muted mt-4" style="font-size: var(--bx-text-base)">For placeholders and inactive areas. Boxy's version of the gray placeholder box.</p>
       </div>
     </div>
 
     <div class="mt-8" style="border: 1px solid var(--bx-line); padding: 32px; max-inline-size: 760px">
       <p class="bx-label">Technical annotations</p>
       <p class="mt-4" style="font-size: var(--bx-text-lg); max-inline-size: 48ch">
-        Mono metadata is the cheapest way to get the datasheet feel — as long as the
-        values are real.
+        Small mono metadata is the easiest way to make a page look like a datasheet.
+        Only use it for real values.
       </p>
       <div class="row mt-5" style="gap: 24px">
         <span class="bx-label">v1.1.0 &middot; MIT &middot; 5.6 KB GZIPPED</span>

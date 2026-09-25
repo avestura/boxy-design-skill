@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tokens — Boxy</title>
-<meta name="description" content="Every Boxy token: the neutral and accent ramps with live contrast ratios, the type scale, the 4px space scale, elevation, motion and density.">
+<title>Tokens | Boxy</title>
+<meta name="description" content="Every Boxy token: the gray and accent ramps with live contrast ratios, the type scale, the 4px spacing scale, shadows, motion and density.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%230f62fe' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
     Inline this sprite once per page, then:
       <svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg>
-    Icons inherit colour from currentColor.
+    Icons inherit color from currentColor.
   -->
 
   <!-- status -->
@@ -115,10 +115,11 @@
     <p class="bx-label">Reference</p>
     <h1 style="margin-block-start: 12px; font-size: var(--bx-text-4xl)">Tokens</h1>
     <p class="lede mt-4" style="max-inline-size: 64ch">
-      Two layers. <b>Primitives</b> are raw values, referenced only inside the token
-      file. <b>Roles</b> are what component code uses. <!-- boxy-ignore-start: naming the primitive is the point -->Writing
-      <code>var(--bx-n-600)</code> in a component is a violation — reach for
-      <code>var(--bx-ink-subtle)</code>.<!-- boxy-ignore-end -->
+      Tokens come in two layers. <b>Primitives</b> are raw values and only appear
+      inside the token file. <b>Roles</b> are the names component code uses.
+      <!-- boxy-ignore-start: naming the primitive is the point -->So a component
+      writes <code>var(--bx-ink-subtle)</code>, never
+      <code>var(--bx-n-600)</code>.<!-- boxy-ignore-end -->
     </p>
     <div class="row mt-6">
       <a class="bx-btn" href="assets/boxy.css" download>boxy.css</a>
@@ -131,9 +132,9 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">01 / Color primitives</p>
-      <h2>The neutral ramp does 95% of the work</h2>
-      <p>A cool gray, 13 stops. Every surface, every line, every piece of text on a
-      Boxy page comes from here.</p>
+      <h2>Most of every page comes from this gray ramp</h2>
+      <p>A cool gray in 13 steps. The surfaces, borders and text on a Boxy page all
+      use it.</p>
     </div>
 
     <!-- boxy-ignore-start: a color reference page prints hex on purpose -->
@@ -153,7 +154,7 @@
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-n-1000)"></div><div class="swatch__meta"><div class="swatch__name">n-1000</div><div class="swatch__hex">#0b0d0f</div></div></div>
     </div>
 
-    <p class="bx-label mt-8">Accent — interaction only, under 5% of painted pixels</p>
+    <p class="bx-label mt-8">Accent: for interaction only, under 5% of the screen</p>
     <div class="swatches mt-2">
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-50)"></div><div class="swatch__meta"><div class="swatch__name">a-50</div><div class="swatch__hex">#edf5ff</div></div></div>
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-100)"></div><div class="swatch__meta"><div class="swatch__name">a-100</div><div class="swatch__hex">#d0e2ff</div></div></div>
@@ -167,7 +168,7 @@
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-a-900)"></div><div class="swatch__meta"><div class="swatch__name">a-900</div><div class="swatch__hex">#001141</div></div></div>
     </div>
 
-    <p class="bx-label mt-8">Semantic — always paired with an icon or a word, never color alone</p>
+    <p class="bx-label mt-8">Semantic: always shown with an icon or a word, never by color alone</p>
     <div class="swatches mt-2">
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-r-50)"></div><div class="swatch__meta"><div class="swatch__name">red-50</div><div class="swatch__hex">#fff1f1</div></div></div>
       <div class="swatch"><div class="swatch__chip" style="background: var(--bx-r-500)"></div><div class="swatch__meta"><div class="swatch__name">red-500</div><div class="swatch__hex">#da1e28</div></div></div>
@@ -186,9 +187,9 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">02 / Color roles</p>
-      <h2>The only color names component code may use</h2>
-      <p>Ratios are computed in the browser against the light-theme canvas. Switch
-      the theme in the header and every swatch below follows.</p>
+      <h2>The color names components are allowed to use</h2>
+      <p>Your browser computes the contrast ratios against the light-theme background.
+      Switch the theme in the header and the swatches update.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--2">
@@ -253,8 +254,9 @@
     <div class="sec__head">
       <p class="bx-label">03 / Type</p>
       <h2>Inter, Inter Tight, JetBrains Mono</h2>
-      <p>Thirteen steps. Every line-height snaps to 4px. Tracking tightens as size
-      grows and opens up only for mono labels.</p>
+      <p>The type scale has 13 steps, and every line height is a multiple of 4px.
+      Letter spacing gets tighter as text gets larger. Mono labels are the only text
+      spaced wider.</p>
     </div>
 
     <div class="bx-table-wrap">
@@ -270,7 +272,7 @@
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-xl</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">20 / 28</td><td style="font-size: var(--bx-text-xl); line-height: var(--bx-lh-xl); font-weight: 600">Card title</td></tr>
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-lg</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">18 / 28</td><td style="font-size: var(--bx-text-lg); line-height: var(--bx-lh-lg)">Lead paragraph, large body copy</td></tr>
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-md</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">16 / 24</td><td style="font-size: var(--bx-text-md); line-height: var(--bx-lh-md)">Default body copy for reading</td></tr>
-          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-base</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">14 / 20</td><td style="font-size: var(--bx-text-base); line-height: var(--bx-lh-base)">Default UI text — controls, tables, navigation</td></tr>
+          <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-base</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">14 / 20</td><td style="font-size: var(--bx-text-base); line-height: var(--bx-lh-base)">Default UI text for controls, tables and navigation</td></tr>
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-sm</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">12 / 16</td><td style="font-size: var(--bx-text-sm); line-height: var(--bx-lh-sm)">Captions, helper text, dense tables</td></tr>
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-xs</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">11 / 16</td><td class="bx-label">Mono label, eyebrow, table header</td></tr>
           <tr><td class="bx-mono" style="font-size: var(--bx-text-sm)">text-2xs</td><td class="num bx-mono" style="font-size: var(--bx-text-sm)">10 / 14</td><td class="bx-label" style="font-size: var(--bx-text-2xs)">Micro annotation, dimension label</td></tr>
@@ -312,9 +314,9 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">04 / Space</p>
-      <h2>One 4px scale for every gap in the system</h2>
-      <p>Seventeen steps. A value outside this list is a lint warning, and usually a
-      sign the layout is wrong rather than the number.</p>
+      <h2>One 4px scale for all spacing</h2>
+      <p>17 steps. Anything off this list gets a lint warning. If you need an
+      off-scale value, the layout is usually what needs fixing.</p>
     </div>
 
     <dl class="spec bx-collapse" style="grid-template-columns: 1fr">
@@ -335,10 +337,10 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">05 / Elevation</p>
-      <h2>Hard offsets. Never a blur radius.</h2>
-      <p>The offset is always positive on both axes, so the implied light source is
-      consistent across the whole interface. A floating element always carries a 1px
-      border in addition to its shadow.</p>
+      <h2>Shadows are hard offsets with no blur</h2>
+      <p>Shadows always fall down and to the right, so the light seems to come from
+      the same place everywhere. Anything that floats also gets a 1px border on top of
+      its shadow.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--4">
@@ -366,8 +368,9 @@
     <div class="sec__head">
       <p class="bx-label">06 / Motion &amp; density</p>
       <h2>Four durations, three curves</h2>
-      <p>Hover the squares. <code>linear</code> is the house easing — no acceleration
-      means no implied weight, which is what makes it read as mechanical.</p>
+      <p>Hover over the squares. The default easing is <code>linear</code>. Without
+      acceleration nothing seems to have weight, and that is why the motion feels
+      mechanical.</p>
     </div>
 
     <div class="bx-collapse bx-collapse--4">
@@ -381,7 +384,7 @@
         onmouseover="this.style.background='var(--bx-accent)'" onmouseout="this.style.background='var(--bx-surface-sunken)'"></div><p class="subtle mt-2" style="font-size: var(--bx-text-sm)">Scrim. The ceiling.</p></div>
     </div>
 
-    <p class="bx-label mt-8">Control heights — toggle density in the header</p>
+    <p class="bx-label mt-8">Control heights (toggle density in the header)</p>
     <div class="bx-collapse bx-collapse--3 mt-2">
       <div style="padding: 24px"><p class="bx-label">control-sm</p><button class="bx-btn bx-btn--sm mt-4">Small</button></div>
       <div style="padding: 24px"><p class="bx-label">control-md</p><button class="bx-btn mt-4">Medium</button></div>
@@ -393,7 +396,7 @@
   <section class="sec">
     <div class="sec__head">
       <p class="bx-label">07 / Extending</p>
-      <h2>Rebrand by overriding roles, never primitives</h2>
+      <h2>To rebrand, override roles and leave primitives alone</h2>
     </div>
     <div class="code" style="max-inline-size: 760px">
       <div class="code__head"><span class="bx-label">your-theme.css</span></div>
