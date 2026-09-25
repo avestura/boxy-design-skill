@@ -113,9 +113,15 @@ The most Boxy-appropriate component there is.
 - Triggered by `Cmd/Ctrl+K`, 640px wide, positioned 96px from the top - not centered.
 - `--bx-surface-raised`, 1px `--bx-line-heavy`, `--bx-shadow-3`, over a scrim.
 - Input row: 48px, no border, 16px text, a leading 16px glyph, a 1px bottom rule.
-- Results: 40px rows, 12px padding-x, an 16px icon, the label, and a mono keyboard
-  hint at the inline end. Selected row: `--bx-surface-active` with a 2px `--bx-accent`
-  inset left border.
+- Results: 40px rows, 16px padding-x, a 16px icon, the label, and mono meta at the
+  inline end (a path, a shortcut that really exists - never a decorative fake).
+  Selected row: the raised hover fill with a 2px `--bx-accent` inset left border.
+- **One selection, two inputs.** Focus stays in the search field and the selected row
+  is `aria-activedescendant`; arrows move it, and so does the pointer - on
+  `mousemove`, not `mouseover`, so a list scrolling under a still pointer does not
+  steal the selection from the keyboard. There is never a separate hover highlight.
+- Typing filters in place: the match is an inverted inline block, empty groups
+  disappear, and no match shows `NO RESULTS FOR "query"`.
 - Group headings: mono labels on 24px `--bx-surface-sunken` strips.
 - Footer: 32px, `--bx-surface-sunken`, 1px top rule, mono key hints
   (`&uarr;&darr; navigate` - `&crarr; select` - `esc close`).

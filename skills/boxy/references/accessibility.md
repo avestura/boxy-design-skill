@@ -100,6 +100,12 @@ Every interactive element must be reachable and operable without a mouse.
 | Segmented control | Native radios: arrows move and select |
 | Chart | Focusable; `Left`/`Right` step the readout; a `.bx-sr` data table follows it |
 
+**Finding "the first focusable element" in script:** use
+`a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]),
+textarea:not([disabled]), [tabindex]:not([tabindex="-1"])`. Never a bare `[href]` -
+an inline SVG icon's `<use href="#i-x">` matches it, usually comes first, and cannot
+take focus, so the dialog opens with focus nowhere and the trap leaks.
+
 Provide a skip link as the first focusable element: visually hidden, appearing as a
 standard bordered block at the top-left on focus.
 

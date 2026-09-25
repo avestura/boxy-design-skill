@@ -383,6 +383,69 @@
   font-size: var(--bx-text-sm); white-space: nowrap; pointer-events: none;
 }
 
+/* ---- Command palette ----
+   A dialog pinned 96px from the top, not centred, so the list can grow
+   downward without the input jumping. Focus stays in the input; the selected
+   row is aria-activedescendant. The pointer moves the selection too (on
+   mousemove, so a list scrolling under a still pointer does not steal it),
+   which keeps exactly one highlighted row. */
+.bx-dialog--palette {
+  inset-block-start: var(--bx-space-11);
+  transform: translateX(-50%);
+  inline-size: min(640px, calc(100vw - var(--bx-space-6)));
+  animation-name: bx-rise-top;
+}
+@keyframes bx-rise-top { from { opacity: 0; transform: translate(-50%, 4px); } }
+.bx-palette__search {
+  display: flex; align-items: center; gap: var(--bx-space-3);
+  height: 48px; padding-inline: var(--bx-space-4);
+  border-block-end: var(--bx-border) solid var(--bx-line);
+  color: var(--bx-ink-subtle);
+}
+.bx-palette__search input {
+  flex: 1; min-inline-size: 0; height: 46px; padding: 0;
+  border: 0; background: transparent; color: var(--bx-ink); font-size: var(--bx-text-md);
+}
+.bx-palette__search input:focus { outline: none; }
+.bx-palette__search input::placeholder { color: var(--bx-ink-subtle); }
+.bx-palette__list { max-block-size: min(360px, calc(100vh - 240px)); overflow-y: auto; }
+.bx-palette__group {
+  display: flex; align-items: center; height: 24px; padding-inline: var(--bx-space-4);
+  background: var(--bx-surface-sunken);
+  border-block: var(--bx-border) solid var(--bx-line-subtle);
+  font-family: var(--bx-font-mono); font-size: var(--bx-text-2xs); font-weight: var(--bx-weight-medium);
+  letter-spacing: var(--bx-track-label); text-transform: uppercase; color: var(--bx-ink-subtle);
+}
+.bx-palette__group:first-child { border-block-start: 0; }
+.bx-palette__item {
+  display: flex; align-items: center; gap: var(--bx-space-3);
+  inline-size: 100%; height: 40px; padding-inline: var(--bx-space-4);
+  border: 0; background: transparent; color: var(--bx-ink);
+  font: inherit; font-size: var(--bx-text-base); text-align: start; text-decoration: none; cursor: pointer;
+  transition: background-color var(--bx-dur-1) var(--bx-ease), box-shadow var(--bx-dur-1) var(--bx-ease);
+}
+.bx-palette__item:hover { text-decoration: none; }
+.bx-palette__item .bx-icon { color: var(--bx-ink-subtle); transition: color var(--bx-dur-1) var(--bx-ease); }
+.bx-palette__item.is-active {
+  background: var(--bx-surface-hover);
+  box-shadow: inset 2px 0 0 0 var(--bx-accent);
+}
+.bx-palette__item.is-active .bx-icon { color: var(--bx-ink); }
+.bx-palette__item mark { background: var(--bx-surface-inverse); color: var(--bx-ink-inverse); padding-inline: 1px; }
+.bx-palette__meta { margin-inline-start: auto; font-family: var(--bx-font-mono); font-size: var(--bx-text-xs); color: var(--bx-ink-subtle); }
+.bx-palette__item[hidden], .bx-palette__group[hidden], .bx-palette__empty[hidden] { display: none; }
+.bx-palette__empty {
+  padding: var(--bx-space-6) var(--bx-space-4);
+  font-family: var(--bx-font-mono); font-size: var(--bx-text-xs); letter-spacing: var(--bx-track-label);
+  text-transform: uppercase; color: var(--bx-ink-subtle);
+}
+.bx-palette__foot {
+  display: flex; align-items: center; gap: var(--bx-space-4);
+  height: 32px; padding-inline: var(--bx-space-4) var(--bx-space-1);
+  background: var(--bx-surface-sunken); border-block-start: var(--bx-border) solid var(--bx-line);
+}
+.bx-palette__foot .bx-kbd { margin-inline-end: var(--bx-space-1); }
+
 /* ---- Empty state ---- */
 .bx-empty { text-align: center; padding-block: var(--bx-space-9); max-inline-size: 400px; margin-inline: auto; }
 .bx-empty__glyph {
@@ -503,11 +566,15 @@
 .bx-menu__item[role="menuitemradio"]::before {
   content: ""; inline-size: 16px; block-size: 16px; flex-shrink: 0;
 }
-.bx-menu__item[role="menuitemcheckbox"][aria-checked="true"]::before {
-  background: var(--bx-ink);
+/* The check's mask is applied permanently and only its fill toggles. Adding
+   and removing the mask together with the fill lets a browser paint a frame
+   with the fill but no mask yet - a solid 16px square flashing on uncheck. */
+.bx-menu__item[role="menuitemcheckbox"]::before {
+  background-color: transparent;
   -webkit-mask: var(--bx-check) center / 16px 16px no-repeat;
   mask: var(--bx-check) center / 16px 16px no-repeat;
 }
+.bx-menu__item[role="menuitemcheckbox"][aria-checked="true"]::before { background-color: var(--bx-ink); }
 .bx-menu__item[role="menuitemradio"][aria-checked="true"]::before {
   background: linear-gradient(var(--bx-ink), var(--bx-ink)) center / 6px 6px no-repeat;
 }

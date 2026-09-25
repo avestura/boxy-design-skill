@@ -565,24 +565,45 @@
 </div>
 
 <!-- command palette template (Cmd/Ctrl+K) -->
-<template id="tpl-palette">
-  <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding-inline: 16px; border-block-end: 1px solid var(--bx-line)">
-    <svg class="bx-icon subtle" aria-hidden="true"><use href="#i-search"/></svg>
-    <input class="bx-input" style="border: 0; height: 46px; padding: 0; box-shadow: none; font-size: var(--bx-text-md)"
-           placeholder="Search the system…" aria-label="Search">
-  </div>
-  <div role="listbox" aria-label="Results">
-    <div class="bx-label" style="height: 24px; display: flex; align-items: center; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-end: 1px solid var(--bx-line-subtle)">Pages</div>
-    <a href="tokens.html" role="option" aria-selected="true" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); background: var(--bx-surface-active); box-shadow: inset 2px 0 0 0 var(--bx-accent); text-decoration: none">Tokens<span style="flex:1"></span><span class="bx-kbd">T</span></a>
-    <a href="components.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Components<span style="flex:1"></span><span class="bx-kbd">C</span></a>
-    <a href="patterns.html" role="option" style="display: flex; align-items: center; gap: 12px; height: 40px; padding-inline: 16px; color: var(--bx-ink); text-decoration: none">Patterns<span style="flex:1"></span><span class="bx-kbd">P</span></a>
-  </div>
-  <div style="height: 32px; display: flex; align-items: center; gap: 16px; padding-inline: 16px; background: var(--bx-surface-sunken); border-block-start: 1px solid var(--bx-line)">
-    <span class="bx-label">&uarr;&darr; navigate</span>
-    <span class="bx-label">&crarr; select</span>
-    <span class="bx-label">esc close</span>
-    <span style="flex:1"></span>
-    <button class="bx-btn bx-btn--ghost bx-btn--sm" data-dialog="close">close</button>
+<template id="tpl-palette" data-kind="bx-dialog bx-dialog--palette">
+  <div class="bx-palette" role="presentation">
+    <div class="bx-palette__search">
+      <svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <input role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list" placeholder="Search pages, components and actions" aria-label="Search" autocomplete="off" spellcheck="false">
+      <span class="bx-kbd">esc</span>
+    </div>
+    <div class="bx-palette__list" id="palette-list" role="listbox" aria-label="Results">
+      <div class="bx-palette__group" role="presentation">Pages</div>
+      <a class="bx-palette__item" role="option" href="index.html"><svg class="bx-icon" aria-hidden="true"><use href="#i-book"/></svg><span class="bx-palette__label">Overview</span><span class="bx-palette__meta">index.html</span></a>
+      <a class="bx-palette__item" role="option" href="tokens.html"><svg class="bx-icon" aria-hidden="true"><use href="#i-grid"/></svg><span class="bx-palette__label">Tokens</span><span class="bx-palette__meta">tokens.html</span></a>
+      <a class="bx-palette__item" role="option" href="components.html"><svg class="bx-icon" aria-hidden="true"><use href="#i-columns"/></svg><span class="bx-palette__label">Components</span><span class="bx-palette__meta">components.html</span></a>
+      <a class="bx-palette__item" role="option" href="patterns.html"><svg class="bx-icon" aria-hidden="true"><use href="#i-list"/></svg><span class="bx-palette__label">Patterns</span><span class="bx-palette__meta">patterns.html</span></a>
+      <div class="bx-palette__group" role="presentation">Components</div>
+      <a class="bx-palette__item" role="option" href="components.html#menus"><svg class="bx-icon" aria-hidden="true"><use href="#i-more"/></svg><span class="bx-palette__label">Menus &amp; context menus</span><span class="bx-palette__meta">#menus</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#navigation"><svg class="bx-icon" aria-hidden="true"><use href="#i-branch"/></svg><span class="bx-palette__label">Tree navigation</span><span class="bx-palette__meta">#navigation</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#dates"><svg class="bx-icon" aria-hidden="true"><use href="#i-cal"/></svg><span class="bx-palette__label">Date picker</span><span class="bx-palette__meta">#dates</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#code"><svg class="bx-icon" aria-hidden="true"><use href="#i-term"/></svg><span class="bx-palette__label">Code blocks</span><span class="bx-palette__meta">#code</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#combobox"><svg class="bx-icon" aria-hidden="true"><use href="#i-search"/></svg><span class="bx-palette__label">Combobox &amp; multi-select</span><span class="bx-palette__meta">#combobox</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#datagrid"><svg class="bx-icon" aria-hidden="true"><use href="#i-grid"/></svg><span class="bx-palette__label">Editable data grid</span><span class="bx-palette__meta">#datagrid</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#kanban"><svg class="bx-icon" aria-hidden="true"><use href="#i-columns"/></svg><span class="bx-palette__label">Kanban board</span><span class="bx-palette__meta">#kanban</span></a>
+      <a class="bx-palette__item" role="option" href="components.html#ai"><svg class="bx-icon" aria-hidden="true"><use href="#i-comment"/></svg><span class="bx-palette__label">Agent &amp; chat</span><span class="bx-palette__meta">#ai</span></a>
+      <div class="bx-palette__group" role="presentation">Patterns</div>
+      <a class="bx-palette__item" role="option" href="patterns.html#p-agent"><svg class="bx-icon" aria-hidden="true"><use href="#i-comment"/></svg><span class="bx-palette__label">AI agent workspace</span><span class="bx-palette__meta">#p-agent</span></a>
+      <a class="bx-palette__item" role="option" href="patterns.html#p-pricing"><svg class="bx-icon" aria-hidden="true"><use href="#i-star"/></svg><span class="bx-palette__label">Features &amp; pricing</span><span class="bx-palette__meta">#p-pricing</span></a>
+      <a class="bx-palette__item" role="option" href="patterns.html#p-analytics"><svg class="bx-icon" aria-hidden="true"><use href="#i-chart"/></svg><span class="bx-palette__label">Analytics dashboard</span><span class="bx-palette__meta">#p-analytics</span></a>
+      <a class="bx-palette__item" role="option" href="patterns.html#p-docs"><svg class="bx-icon" aria-hidden="true"><use href="#i-book"/></svg><span class="bx-palette__label">Docs with tree nav</span><span class="bx-palette__meta">#p-docs</span></a>
+      <a class="bx-palette__item" role="option" href="patterns.html#p-status"><svg class="bx-icon" aria-hidden="true"><use href="#i-success"/></svg><span class="bx-palette__label">Status page</span><span class="bx-palette__meta">#p-status</span></a>
+      <div class="bx-palette__group" role="presentation">Actions</div>
+      <button type="button" class="bx-palette__item" role="option" data-act="theme"><svg class="bx-icon" aria-hidden="true"><use href="#i-eye"/></svg><span class="bx-palette__label">Toggle light / dark theme</span><span class="bx-palette__meta">theme</span></button>
+      <button type="button" class="bx-palette__item" role="option" data-act="density"><svg class="bx-icon" aria-hidden="true"><use href="#i-grid"/></svg><span class="bx-palette__label">Toggle density</span><span class="bx-palette__meta">density</span></button>
+      <button type="button" class="bx-palette__item" role="option" data-act="mode"><svg class="bx-icon" aria-hidden="true"><use href="#i-refresh"/></svg><span class="bx-palette__label">Cycle mode</span><span class="bx-palette__meta">mode</span></button>
+      <p class="bx-palette__empty" hidden></p>
+    </div>
+    <div class="bx-palette__foot">
+      <span class="bx-label"><span class="bx-kbd">&uarr;</span><span class="bx-kbd">&darr;</span> navigate</span>
+      <span class="bx-label"><span class="bx-kbd">&crarr;</span> select</span>
+      <span class="bx-label"><span class="bx-kbd">esc</span> close</span>
+    </div>
   </div>
 </template>
 

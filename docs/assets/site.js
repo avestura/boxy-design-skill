@@ -159,6 +159,11 @@
 
   var lastFocus = null;
 
+  /* Elements that can actually take focus. Not a bare [href]: an SVG icon's
+     <use href="#i-x"> matches that too, sits first in the DOM, and cannot be
+     focused - so a dialog would open with focus nowhere. */
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
   function openDialog(id, kind) {
     var tpl = document.getElementById(id);
     if (!tpl) return;
@@ -169,7 +174,7 @@
     scrim.setAttribute("data-dialog", "close");
 
     var host = document.createElement("div");
-    host.className = kind || "bx-dialog";
+    host.className = kind || tpl.getAttribute("data-kind") || "bx-dialog";
     host.setAttribute("role", "dialog");
     host.setAttribute("aria-modal", "true");
     host.innerHTML = tpl.innerHTML;
@@ -178,7 +183,8 @@
     document.body.appendChild(host);
     document.body.style.overflow = "hidden";
 
-    var focusable = host.querySelector("button, [href], input, select, textarea");
+    if (host.querySelector(".bx-palette")) Palette(host);
+    var focusable = host.querySelector(FOCUSABLE);
     if (focusable) focusable.focus();
 
     host.addEventListener("keydown", trap);
@@ -188,7 +194,7 @@
   function trap(e) {
     if (e.key !== "Tab") return;
     var host = e.currentTarget;
-    var items = [].slice.call(host.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+    var items = [].slice.call(host.querySelectorAll(FOCUSABLE))
       .filter(function (n) { return n.offsetParent !== null; });
     if (!items.length) return;
     var first = items[0], last = items[items.length - 1];
@@ -258,6 +264,82 @@
       el.removeEventListener("mouseleave", h);
     });
   });
+
+  /* --------------------------------------------------- command palette */
+
+  function Palette(host) {
+    var input = host.querySelector(".bx-palette__search input");
+    var items = [].slice.call(host.querySelectorAll(".bx-palette__item"));
+    var groups = [].slice.call(host.querySelectorAll(".bx-palette__group"));
+    var empty = host.querySelector(".bx-palette__empty");
+    var active = null;
+    items.forEach(function (it, i) {
+      it.id = "palette-o" + i;
+      it.tabIndex = -1;                   /* focus stays in the input */
+      var lab = it.querySelector(".bx-palette__label");
+      lab.setAttribute("data-text", lab.textContent);
+    });
+    var shown = function () { return items.filter(function (it) { return !it.hidden; }); };
+    function set(it) {
+      if (active) { active.classList.remove("is-active"); active.setAttribute("aria-selected", "false"); }
+      active = it || null;
+      if (!active) { input.removeAttribute("aria-activedescendant"); return; }
+      active.classList.add("is-active");
+      active.setAttribute("aria-selected", "true");
+      input.setAttribute("aria-activedescendant", active.id);
+      active.scrollIntoView({ block: "nearest" });
+    }
+    function filter() {
+      var q = input.value.trim().toLowerCase();
+      items.forEach(function (it) {
+        var lab = it.querySelector(".bx-palette__label"), text = lab.getAttribute("data-text");
+        var at = text.toLowerCase().indexOf(q);
+        it.hidden = q !== "" && at === -1;
+        lab.textContent = "";
+        if (q && at > -1) {
+          lab.appendChild(document.createTextNode(text.slice(0, at)));
+          lab.appendChild(el("mark", null, text.slice(at, at + q.length)));
+          lab.appendChild(document.createTextNode(text.slice(at + q.length)));
+        } else lab.textContent = text;
+      });
+      groups.forEach(function (g) {
+        var n = g.nextElementSibling, any = false;
+        while (n && !n.classList.contains("bx-palette__group")) { if (n.classList.contains("bx-palette__item") && !n.hidden) any = true; n = n.nextElementSibling; }
+        g.hidden = !any;
+      });
+      var vis = shown();
+      if (empty) { empty.hidden = vis.length > 0; empty.textContent = 'No results for "' + input.value.trim() + '"'; }
+      set(vis[0]);
+    }
+    function run(it) {
+      if (!it) return;
+      if (it.tagName === "A") { closeDialog(); location.href = it.href; return; }
+      it.click();
+    }
+    input.addEventListener("input", filter);
+    input.addEventListener("keydown", function (e) {
+      var vis = shown(), i = vis.indexOf(active);
+      if (e.key === "ArrowDown") { e.preventDefault(); set(vis[(i + 1) % vis.length]); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); set(vis[(i - 1 + vis.length) % vis.length]); }
+      else if (e.key === "Home" && e.ctrlKey) { e.preventDefault(); set(vis[0]); }
+      else if (e.key === "End" && e.ctrlKey) { e.preventDefault(); set(vis[vis.length - 1]); }
+      else if (e.key === "Enter") { e.preventDefault(); run(active); }
+    });
+    /* mousemove, not mouseover: a list scrolling under a still pointer must
+       not steal the selection from the keyboard. */
+    host.addEventListener("mousemove", function (e) {
+      var it = e.target.closest(".bx-palette__item");
+      if (it && it !== active) set(it);
+    });
+    host.addEventListener("mousedown", function (e) { if (e.target.closest(".bx-palette__item")) e.preventDefault(); });
+    host.addEventListener("click", function (e) {
+      var it = e.target.closest(".bx-palette__item");
+      if (!it) return;
+      if (it.tagName === "A") { closeDialog(); return; }   /* the link navigates itself */
+      setTimeout(closeDialog, 0);                          /* after the action's own handler */
+    });
+    filter();
+  }
 
   /* ----------------------------------------------------- command palette */
 
