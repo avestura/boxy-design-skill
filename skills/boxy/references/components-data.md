@@ -177,7 +177,7 @@ Boxy does not use spinners with circular arcs where it can avoid them.
   on the end. Past 80% of a limit the fill becomes `--bx-warning`, past 95%
   `--bx-danger`, and a helper line in the semantic ink says so. `role="progressbar"`
   with `aria-valuenow`. Indeterminate version: a 25%-wide accent block translating
-  across the track over 1.2s linear.
+  across the track over 1.2s linear, clipped by `overflow: hidden` on the track.
 - **Spinner**: a 16px box with a 1px `--bx-line-strong` inset ring and a 4px accent
   square stepping clockwise round its corners (`steps(1, end)` between four
   keyframes, 0.8s infinite). 12px variant with a 2px square for inline use. No arcs,

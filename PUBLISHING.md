@@ -98,7 +98,7 @@ Versions appear in four places and the smoke test asserts three of them agree:
 - the footer strings in `docs/*.html`
 
 ```bash
-V=1.1.0
+V=1.1.1
 node -e "for (const f of ['package.json','.claude-plugin/plugin.json']) {
   const j = require('./'+f); j.version = process.argv[1];
   require('fs').writeFileSync(f, JSON.stringify(j, null, 2)+'\n');

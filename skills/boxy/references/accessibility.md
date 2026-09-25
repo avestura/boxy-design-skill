@@ -142,6 +142,8 @@ that breaks the tab sequence.
 
 - `prefers-reduced-motion: reduce` is honored globally in `boxy.css`; check it
   explicitly in JavaScript animation.
+- Loaders (indeterminate progress, spinner, skeleton) keep animating under reduced
+  motion, because they report status. See motion-depth.md.
 - `prefers-color-scheme` is honored by default; a manual `data-theme` override always
   wins.
 - `prefers-contrast: more` - raise `--bx-line` to `--bx-line-strong` and

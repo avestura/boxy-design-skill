@@ -56,6 +56,37 @@
   var savedMode = LS.get("mode", null);
   if (savedMode) root.setAttribute("data-mode", savedMode);
 
+  /* -------------------------------------------------------- reduced motion */
+
+  /* With reduced motion on, boxy.css stops most animation, so say so once at
+     the top of the page. Dismissing it is remembered; the note follows the OS
+     setting live if it changes while the page is open. */
+  (function () {
+    var main = document.querySelector(".site-main");
+    if (!main || !window.matchMedia || LS.get("motion-note", null) === "dismissed") return;
+    var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var note = document.createElement("div");
+    note.className = "motion-note bx-callout bx-callout--info";
+    note.setAttribute("role", "note");
+    note.innerHTML =
+      '<svg class="bx-icon" aria-hidden="true"><use href="#i-info"/></svg>' +
+      '<div class="motion-note__text"><p class="motion-note__title">Reduced motion is on</p>' +
+      '<p class="mt-2">Your system settings ask for less motion, so most animation on this ' +
+      'site is switched off, including transitions, menus and the streamed agent replies. ' +
+      'Progress bars, spinners and skeleton loaders still animate, because they show that ' +
+      'something is loading.</p></div>' +
+      '<button type="button" class="bx-btn bx-btn--ghost bx-btn--sm bx-btn--icon" aria-label="Dismiss">' +
+      '<svg class="bx-icon" aria-hidden="true"><use href="#i-x"/></svg></button>';
+    note.querySelector("button").addEventListener("click", function () {
+      LS.set("motion-note", "dismissed");
+      note.remove();
+    });
+    main.insertBefore(note, main.firstChild);
+    function sync() { note.hidden = !mq.matches; }
+    sync();
+    if (mq.addEventListener) mq.addEventListener("change", sync);
+  })();
+
   /* --------------------------------------------------------------- events */
 
   document.addEventListener("click", function (e) {

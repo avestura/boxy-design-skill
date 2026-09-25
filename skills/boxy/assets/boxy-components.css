@@ -329,7 +329,7 @@
 }
 
 /* ---- Progress / skeleton ---- */
-.bx-progress { block-size: 4px; background: var(--bx-surface-sunken); border: var(--bx-border) solid var(--bx-line); }
+.bx-progress { block-size: 4px; background: var(--bx-surface-sunken); border: var(--bx-border) solid var(--bx-line); overflow: hidden; }
 .bx-progress > i { display: block; block-size: 100%; background: var(--bx-accent); }
 .bx-progress--indeterminate > i { inline-size: 25%; animation: bx-slide 1.2s var(--bx-ease) infinite; }
 @keyframes bx-slide { from { transform: translateX(-100%); } to { transform: translateX(400%); } }
@@ -1126,6 +1126,16 @@ ul.bx-list--check > li[data-state="done"] { color: var(--bx-ink-subtle); text-de
   25%  { transform: translate(6px, 0); }
   50%  { transform: translate(6px, 6px); }
   75%  { transform: translate(0, 6px); }
+}
+/* Loaders keep moving under reduced motion. boxy.css stops every animation
+   after one cycle there, but a frozen spinner or bar reads as a hang, and
+   the motion here is the only signal that work is still happening. */
+@media (prefers-reduced-motion: reduce) {
+  .bx-progress--indeterminate > i { animation: bx-slide 1.2s var(--bx-ease) infinite !important; }
+  .bx-skeleton { animation: bx-pulse 1s var(--bx-ease-step) infinite !important; }
+  .bx-spinner::after { animation: bx-orbit 0.8s steps(1, end) infinite !important; }
+  .bx-spinner--sm::after { animation-name: bx-orbit-sm !important; }
+  ul.bx-list--check > li[data-state="active"]::before { animation: bx-quad 0.8s var(--bx-ease-step) infinite !important; }
 }
 
 /* ---- Avatar ---- */

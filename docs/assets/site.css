@@ -85,6 +85,14 @@ body { font-size: var(--bx-text-md); }
 
 .site-main { display: block; }
 
+/* Reduced-motion notice: a full-width strip under the header. It drops the
+   callout's side borders because .site already draws them. */
+.motion-note { border-width: 0 0 var(--bx-border); padding-inline: var(--bx-space-6); }
+.motion-note[hidden] { display: none; }
+.motion-note__text { flex: 1; max-inline-size: 88ch; }
+.motion-note__title { font-weight: var(--bx-weight-semibold); }
+.motion-note > .bx-btn { margin-block: calc(var(--bx-space-1) * -1); margin-inline-start: auto; }
+
 .sec { padding-block: var(--bx-section-y); padding-inline: var(--bx-space-6);
   border-block-end: var(--bx-border) solid var(--bx-line); }
 .sec--tight { padding-block: var(--bx-space-8); }

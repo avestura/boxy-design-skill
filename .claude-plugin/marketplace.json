@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "The Boxy design system, packaged as an installable skill.",
-    "version": "1.1.0"
+    "version": "1.1.1"
   },
   "plugins": [
     {
       "name": "boxy",
       "source": "./",
       "description": "Sharp-edged, zero-radius design system for AI-built UI — hairline structure, blueprint detailing, and a disciplined neutral palette.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "avestura"
       },

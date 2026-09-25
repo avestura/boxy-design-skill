@@ -95,6 +95,13 @@ Under reduced motion, state changes still happen - they just happen immediately.
 Never remove the state change itself, and keep color transitions (they are not
 motion).
 
+Loaders are the exception. The indeterminate progress bar, the spinner, skeletons
+and the active checklist square keep animating under reduced motion, because a
+frozen loader looks like a hang and the movement is the only sign that work is
+still going. `boxy-components.css` restores their loop inside its own
+`prefers-reduced-motion` block. A custom loader needs the same override, and should
+stay small, stepped or opacity-only, never a large sweep across the screen.
+
 ---
 
 ## Depth
